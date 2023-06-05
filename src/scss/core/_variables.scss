@@ -1,0 +1,52 @@
+:root {
+  --site-edge-margin: 130px;
+
+  --main-font-family: 'Noto Sans TC', sans-serif;
+}
+
+body {
+  // color palette from figma - style guide
+  --main-color: #ff6600;
+  --primary-color: #0062ff;
+  --secondary-color: #6c757d;
+  --success-color: #3dd598;
+  --warning-color: #ffc542;
+  --error-color: #fc5a5a;
+  --main-white: var(--gray-0);
+  --main-black: var(--gray-100);
+
+  --sec-color-orange: #ff974a;
+  --sec-color-blue: #50b5ff;
+  --sec-color-green: #82c43c;
+  --sec-color-purple: #a461d8;
+  --sec-color-pink: #ff9ad5;
+
+  --gray-100: #171725;
+  --gray-90: #44444f;
+  --gray-80: #696975;
+  --gray-70: #92929d;
+  --gray-60: #b5b5be;
+  --gray-50: #d5d5dc;
+  --gray-40: #e2e2ea;
+  --gray-30: #f1f1f5;
+  --gray-20: #fafafb;
+  --gray-0: #ffffff;
+
+  // color palette for filter
+  --icon-main-color: brightness(0) saturate(100%) invert(54%) sepia(46%)
+    saturate(6975%) hue-rotate(2deg) brightness(104%) contrast(104%);
+  --icon-gray-color: invert(25%) sepia(10%) saturate(545%) hue-rotate(201deg)
+    brightness(97%) contrast(92%);
+
+  // custom color
+  --background-color: var(--gray-0);
+
+  // margin
+  --margin-s: 16px;
+  --margin-m: 24px;
+  --margin-l: 40px;
+
+  // basic set up
+  background-color: var(--background-color);
+  color: var(--gray-90);
+}

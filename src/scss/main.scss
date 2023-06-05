@@ -1,0 +1,17 @@
+//import css
+@import './core/reset.scss';
+@import './core/variables';
+@import './core/basic.scss';
+// bootstrap grid system
+@import 'bootstrap/dist/css/bootstrap-grid.min.css';
+@import './core/layout.scss';
+@import './core/form.scss';
+
+//import google fonts
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap');
+
+//import Component Custom Css
+// @import '../components/Header/Header.module.scss';
+// @import '../components/StepProgressBar/StepProgressBar.module.scss';

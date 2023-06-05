@@ -1,0 +1,230 @@
+/* @group All Overrides ----------------------------------------------------------------------------------------*/
+html,
+body {
+  // font-family: '微軟正黑體', 'Microsoft JhengHei', '新細明體', 'PMingLiU',
+  //   '細明體', 'MingLiU', Arial, 'Arial Black', Verdana;
+  font-family: var(--main-font-family), 'sans-serif';
+  text-align: left;
+  text-justify: distribute;
+  text-justify: inter-ideograph;
+  background: #fff;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  color: #222222;
+  word-break: break-word;
+}
+
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+textarea,
+input,
+button,
+span,
+applet,
+object,
+iframe,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  // font-family: '微軟正黑體', 'Microsoft JhengHei', '新細明體', 'PMingLiU',
+  //   '細明體', 'MingLiU', Arial, 'Arial Black', Verdana;
+  font-family: var(--main-font-family), 'sans-serif';
+  color: #3e3e3e;
+}
+
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  /* andoid按鈕點擊有藍色背景消除 */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+}
+
+.cursor-point {
+  cursor: pointer;
+}
+
+/* End  [@group All Overrides ] ----------------------------------------------------------------------------------------*/
+
+/* @group [字型基本設定] ----------------------------------------------------------------------------------------*/
+
+body {
+  font-family: var(--main-font-family);
+  font-size: 16px;
+  user-select: none;
+  font-style: normal;
+  font-weight: 400;
+}
+h1 {
+  color: var(--gray-100);
+  font-weight: 700;
+  font-size: 68px;
+  line-height: 78px;
+}
+h2 {
+  color: var(--gray-100);
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 52px;
+}
+h3 {
+  color: var(--gray-100);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 26px;
+}
+h4 {
+  color: var(--gray-100);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 26px;
+}
+h5 {
+  color: var(--gray-100);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+/* End  [@字型基本設定 ] ----------------------------------------------------------------------------------------*/
+
+/* @group [icon樣式設定] ----------------------------------------------------------------------------------------*/
+
+.icon-notice {
+  filter: var(--icon-gray-color);
+}
+
+.icon-notice_active {
+  filter: var(--icon-main-color);
+}
+
+/* End [icon樣式設定] ---------------------------------------------------------------------------------------- */
+
+/* @group [共用元件] ----------------------------------------------------------------------------------------*/
+.page-logo {
+  margin-bottom: var(--margin-m);
+  .icon-logo {
+    width: 50px;
+    height: 50px;
+    filter: var(--icon-main-color);
+  }
+}
+.page-title {
+  // font-style: normal;
+  // font-weight: 700;
+  // font-size: 28px;
+  // line-height: 26px;
+  margin-bottom: var(--margin-l);
+}
+
+/* End [共用元件] ---------------------------------------------------------------------------------------- */
+
+/* @group [buttons] ----------------------------------------------------------------------------------------*/
+
+.button-filled {
+  background: var(--main-color);
+  color: var(--main-white);
+  border-radius: 50px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  padding: 8px 24px;
+  height: 46px;
+  &.button-lg {
+    width: 100%;
+  }
+}
+/* End [buttons] ---------------------------------------------------------------------------------------- */
+
+/* @testing [快速測試頁面用] ----------------------------------------------------------------------------------------*/
+
+.title_test {
+  color: teal;
+  font-size: 100px;
+}
+/* End [快速測試頁面用] ---------------------------------------------------------------------------------------- */

@@ -1,0 +1,61 @@
+/* @group [排列共用] ----------------------------------------------------------------------------------------*/
+
+/*flex排列*/
+
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex_col {
+  display: flex;
+  flex-direction: column;
+}
+
+.row_center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex_row_cc {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex_row_cb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex_row_ca {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.flex_col_cc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* End [排列共用] ---------------------------------------------------------------------------------------- */
+
+/* @group [layout樣式設定] ----------------------------------------------------------------------------------------*/
+
+.container_one {
+  padding: 64px 130px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* End [layout樣式設定] ---------------------------------------------------------------------------------------- */
