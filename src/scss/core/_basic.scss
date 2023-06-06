@@ -205,6 +205,20 @@ h5 {
 /* End [共用元件] ---------------------------------------------------------------------------------------- */
 
 /* @group [buttons] ----------------------------------------------------------------------------------------*/
+@mixin button-setting($size, $weight, $height, $width, $padding, $line-height) {
+  font-size: $size;
+  font-weight: $weight;
+  height: $height;
+  width: $width;
+  padding: $padding;
+  line-height: $line-height;
+}
+
+%button-style {
+  background-color: var(--main-color);
+  color: var(--main-white);
+  border-radius: 50px;
+}
 
 .button-filled {
   background: var(--main-color);
@@ -219,6 +233,51 @@ h5 {
     width: 100%;
   }
 }
+
+.button-main-tweet {
+  @extend %button-style;
+  @include button-setting(16px, 400, 40px, 64px, 8px 16px, 24px);
+}
+
+.button-setting-save {
+  @extend %button-style;
+  @include button-setting(20px, 400, 46px, 88px, 8px 24px, 30px);
+}
+
+.button-main-tweet-error {
+  @extend %button-style;
+  @include button-setting(18px, 500, 38px, 66px, 10px 15px, 18px);
+}
+
+.button-popular_follower-following {
+  @extend %button-style;
+  @include button-setting(16px, 400, 40px, 96px, 8px 16px, 24px);
+}
+
+.button-popular_follower-follow {
+  background-color: var(--main-white);
+  color: var(--main-color);
+  box-shadow: 0 0 0 1px var(--main-color);
+  border-radius: 50px;
+  @include button-setting(16px, 400, 40px, 64px, 8px 16px, 24px);
+}
+
+.button-user_self-edit {
+  background-color: var(--main-white);
+  color: var(--main-color);
+  box-shadow: 0 0 0 1px var(--main-color);
+  border-radius: 50px;
+  @include button-setting(16px, 400, 40px, 128px, 8px 16px, 24px);
+}
+
+.button-link {
+  color: var(--primary-color);
+  @include button-setting(16px, 400, 24px, auto, 0, 24px);
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+}
+
+
 /* End [buttons] ---------------------------------------------------------------------------------------- */
 
 /* @testing [快速測試頁面用] ----------------------------------------------------------------------------------------*/
