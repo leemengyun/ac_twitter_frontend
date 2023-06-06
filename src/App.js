@@ -10,9 +10,10 @@ import {
 import './scss/main.scss';
 
 //import component
-import HomePage from './pages/HomePage';
+// import HomePage from './pages/HomePage';
 import NestedSelfPage from './pages/main/NestedSelfPage';
 import LoginPage from './pages/LoginPage';
+import StoryBookPage from './pages/StoryBookPage';
 // import MainPage from './pages/MainPage';
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<HomePage />}></Route>
+          <Route path='/' element={<StoryBookPage />}></Route>
           <Route path='/login' element={<LoginPage />}></Route>
           <Route path='/main/self2' element={<NestedSelfPage />}></Route>
         </Routes>

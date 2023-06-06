@@ -277,6 +277,15 @@ h5 {
   text-underline-offset: 3px;
 }
 
+.button-group-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 0;
+  &.login-button-group {
+    justify-content: flex-end;
+  }
+}
 
 /* End [buttons] ---------------------------------------------------------------------------------------- */
 

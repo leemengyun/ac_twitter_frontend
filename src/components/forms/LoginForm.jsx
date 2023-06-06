@@ -73,13 +73,15 @@ const LoginForm = () => {
         <button className='button-filled button-lg' type='submit'>
           登入
         </button>
-        <button className='button-filled button-lg' type='submit'>登入</button>
-        <button className='button-main-tweet button-lg' type='submit'>推文</button>
-        <button className='button-setting-save button-lg' type='submit'>儲存</button>
-        <button className='button-main-tweet-error button-lg' type='submit'>推文</button>
-        <button className='button-popular_follower-following button-lg' type='submit'>正在跟隨</button>
-        <button className='button-popular_follower-follow button-lg' type='submit'>跟隨</button>
-        <button className='button-link button-lg' type='submit'>取消</button>
+        <div className='button-group-row login-button-group'>
+          <button className='button-link' type='submit'>
+            註冊
+          </button>
+          <span>・</span>
+          <button className='button-link' type='submit'>
+            後台登入
+          </button>
+        </div>
       </form>
     </div>
   );
