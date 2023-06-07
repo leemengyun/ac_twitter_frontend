@@ -1,18 +1,17 @@
 import React from 'react';
 // import custom components
-import PageLayout from '../components/layout/PageLayout';
-import ContainerColSec from '../components/layout/ContainerColSec';
+import PageLayout from '../../components/layout/PageLayout';
 
 //import css
-import '../scss/components/_storyBookPage.scss';
+import '../../scss/components/storyBookPage.scss';
 
-const StoryBookPage = () => {
+const LayoutNav = () => {
   return (
     <>
       <PageLayout>
         {/* 二欄式頁面 */}
 
-        <ContainerColSec>
+        <div>
           <div className='storybook-container'>
             <h2>Storybooks</h2>
             <h4 className='page-sec-title'>
@@ -41,15 +40,15 @@ const StoryBookPage = () => {
               <button className='button-popular_follower-follow ' type='submit'>
                 按鈕
               </button>
-              <button className='button-link' type='submit'>
+              <a className='button-link' type='submit'>
                 取消
-              </button>
+              </a>
             </div>
           </div>
-        </ContainerColSec>
+        </div>
       </PageLayout>
     </>
   );
 };
 
-export default StoryBookPage;
+export default LayoutNav;

@@ -1,20 +1,21 @@
 import React from 'react';
 // import custom components
 import PageLayout from '../components/layout/PageLayout';
-import ContainerColOne from '../components/layout/ContainerColOne';
-// import LoginForm from '../components/forms/LoginForm';
+import ContainerColSec from '../components/layout/ContainerColSec';
+// import SecLeftNev from '../components/SecLeftNev';
 
-const SettingPage = () => {
+const AdminPage = () => {
   return (
     <>
       <PageLayout>
-        <ContainerColOne>
-          <h1> SettingPage</h1>
-          {/* <SettingForm /> */}
-        </ContainerColOne>
+        <ContainerColSec>
+          <div className='main-section-m'>
+            <h1> AdminPage</h1>
+          </div>
+        </ContainerColSec>
       </PageLayout>
     </>
   );
 };
 
-export default SettingPage;
+export default AdminPage;

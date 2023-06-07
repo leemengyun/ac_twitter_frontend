@@ -1,0 +1,21 @@
+.menu-link {
+  a {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.icon-home {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  background-image: url(../../assets/images/icon/home.svg);
+  &.active {
+    background-image: url(../../assets/images/icon/home-filled.svg);
+  }
+}
+
+nav {
+  margin: 0;
+  width: 100%;
+}

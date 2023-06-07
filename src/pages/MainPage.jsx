@@ -3,14 +3,18 @@ import React from 'react';
 
 // import custom components
 import PageLayout from '../components/layout/PageLayout';
-// import ContainerThree from '../components/layout/ContainerThree';
+import ContainerColSec from '../components/layout/ContainerColSec';
 
 const MainPage = () => {
   return (
     <>
       <PageLayout>
-        {/* 三欄式頁面 */}
-        {/* <ContainerThree> */}
+        <ContainerColSec>
+          <div className='main-section-lg'>
+            <h1>MainPage</h1>
+          </div>
+          <div className='follow-lists-container'></div>
+        </ContainerColSec>
       </PageLayout>
     </>
   );

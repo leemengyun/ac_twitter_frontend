@@ -1,6 +1,7 @@
 import React from 'react';
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import InputGroup from './InputGroup';
 
@@ -34,6 +35,7 @@ const LoginForm = () => {
             label='帳號'
             type='text'
             placeholder='請輸入帳號'
+            maxLength='50'
             errors={errors}
             register={register}
             validationSchema={{
@@ -41,10 +43,6 @@ const LoginForm = () => {
               minLength: {
                 value: 3,
                 message: 'Please enter a minimum of 3 characters',
-              },
-              maxLength: {
-                value: 50,
-                message: 'Please enter a max of 50 characters',
               },
             }}
             watch={watch}
@@ -74,13 +72,13 @@ const LoginForm = () => {
           登入
         </button>
         <div className='button-group-row login-button-group'>
-          <button className='button-link' type='submit'>
+          <Link to='/admin' className='button-link'>
             註冊
-          </button>
+          </Link>
           <span>・</span>
-          <button className='button-link' type='submit'>
+          <Link to='/admin' className='button-link'>
             後台登入
-          </button>
+          </Link>
         </div>
       </form>
     </div>

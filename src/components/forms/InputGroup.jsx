@@ -7,6 +7,7 @@ const InputGroup = ({
   placeholder,
   errors,
   register,
+  maxLength,
   // required,
   validationSchema,
   watch,
@@ -21,6 +22,7 @@ const InputGroup = ({
           name={name}
           placeholder={placeholder}
           {...register(name, validationSchema)}
+          maxLength={maxLength || null}
         />
       </div>
       <div className='error-message-group'>
