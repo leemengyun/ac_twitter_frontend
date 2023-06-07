@@ -40,7 +40,7 @@ const LeftNev = () => {
                   登出
                 </Link>
               </div>
-            </div>
+            </div> 
           </div>
         </nav>
       </div>
