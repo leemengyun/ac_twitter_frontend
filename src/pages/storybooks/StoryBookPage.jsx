@@ -22,23 +22,17 @@ const LayoutNav = () => {
               <button className='button-filled button-lg' type='submit'>
                 登入
               </button>
-              <button className='button-main-tweet' type='submit'>
+              <button className='button-sm button-m active' type='submit'>
                 推文
               </button>
-              <button className='button-setting-save ' type='submit'>
+              <button className='button-bg button-m active' type='submit'>
                 儲存
               </button>
-              <button className='button-main-tweet-error ' type='submit'>
-                推文
+              <button className='button-md button-m active' type='submit'>
+                正在追蹤
               </button>
-              <button
-                className='button-popular_follower-following '
-                type='submit'
-              >
-                按鈕
-              </button>
-              <button className='button-popular_follower-follow ' type='submit'>
-                按鈕
+              <button className='button-md button-m' type='submit'>
+                編輯個人資料
               </button>
               <a className='button-link' type='submit'>
                 取消
