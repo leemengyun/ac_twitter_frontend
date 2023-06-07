@@ -4,15 +4,14 @@ import React from 'react';
 import iconLogo from '../assets/images/icon/logo.svg';
 
 // import custom components
-import PageLayout from '../components/layout/PageLayout';
 import ContainerColOne from '../components/layout/ContainerColOne';
 import LoginForm from '../components/forms/LoginForm';
 
 const LoginPage = () => {
   return (
     <>
-      <PageLayout>
-        <ContainerColOne>
+      <ContainerColOne>
+        <div className='login-container col4 flex_col_cc'>
           <div className='page-logo'>
             <img
               src={iconLogo}
@@ -22,8 +21,8 @@ const LoginPage = () => {
           </div>
           <h3 className='page-title'>登入 Alphitter</h3>
           <LoginForm />
-        </ContainerColOne>
-      </PageLayout>
+        </div>
+      </ContainerColOne>
     </>
   );
 };
