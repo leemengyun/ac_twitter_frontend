@@ -51,9 +51,8 @@ const LayoutNav = () => {
 
   return (
     <>
-      <PageLayout >
-        {/* 二欄式頁面 */}
-        <UserAvatar 
+      <div className='storybook-layout'>
+    <UserAvatar 
         Default={Defaultavatar}
         imgURL={' https://media.licdn.com/dms/image/D5603AQGmA1K4ud_M1g/profile-displayphoto-shrink_400_400/0/1675331260718?e=1691625600&v=beta&t=eR4xDwl0gMzApYrYmf92cOOy8575nA9mrUlZZxvb2Ys'}
         />
@@ -70,36 +69,34 @@ const LayoutNav = () => {
         name={'James'}
         account={'TEOFW'}
         />
-        <div>
-          <div className='storybook-container'>
-            <h2>Storybooks</h2>
-            <h4 className='page-sec-title'>
-              === Buttons-元件本身目前沒有製作上下margin，是本表顯示用 ===
-            </h4>
+        <div className='storybook-container'>
+          <h2>Storybooks</h2>
+          <h4 className='page-sec-title'>
+            === Buttons-元件本身目前沒有製作上下margin，是本表顯示用 ===
+          </h4>
 
-            <div className='flex_col_cc comp-container'>
-              <button className='button-filled button-lg' type='submit'>
-                登入
-              </button>
-              <button className='button-sm button-m active' type='submit'>
-                推文
-              </button>
-              <button className='button-bg button-m active' type='submit'>
-                儲存
-              </button>
-              <button className='button-md button-m active' type='submit'>
-                正在追蹤
-              </button>
-              <button className='button-md button-m' type='submit'>
-                編輯個人資料
-              </button>
-              <a className='button-link' type='submit'>
-                取消
-              </a>
-            </div>
+          <div className='flex_col_cc comp-container'>
+            <button className='button-filled button-lg' type='submit'>
+              登入
+            </button>
+            <button className='button-sm button-m active' type='submit'>
+              推文
+            </button>
+            <button className='button-bg button-m active' type='submit'>
+              儲存
+            </button>
+            <button className='button-md button-m active' type='submit'>
+              正在追蹤
+            </button>
+            <button className='button-md button-m' type='submit'>
+              編輯個人資料
+            </button>
+            <a className='button-link' type='submit'>
+              取消
+            </a>
           </div>
         </div>
-      </PageLayout>
+      </div>
     </>
   );
 };

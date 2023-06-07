@@ -9,7 +9,9 @@ import {
 //import css
 import './scss/main.scss';
 
-//import component
+// import component
+import PageLayout from './components/layout/PageLayout';
+
 // import HomePage from './pages/HomePage';
 import NestedSelfPage from './pages/main/NestedSelfPage';
 import LoginPage from './pages/LoginPage';
@@ -23,15 +25,17 @@ function App() {
   return (
     <>
       <Router>
-        <Routes>
-          <Route path='/' element={<StoryBookPage />}></Route>
-          <Route path='/login' element={<LoginPage />}></Route>
-          <Route path='/admin' element={<AdminPage />}></Route>
-          <Route path='/main' element={<MainPage />}></Route>
-          <Route path='/profile' element={<ProfilePage />}></Route>
-          <Route path='/setting' element={<SettingPage />}></Route>
-          <Route path='/main/self2' element={<NestedSelfPage />}></Route>
-        </Routes>
+        <PageLayout>
+          <Routes>
+            <Route path='/' element={<StoryBookPage />}></Route>
+            <Route path='/login' element={<LoginPage />}></Route>
+            <Route path='/admin' element={<AdminPage />}></Route>
+            <Route path='/main' element={<MainPage />}></Route>
+            <Route path='/profile' element={<ProfilePage />}></Route>
+            <Route path='/setting' element={<SettingPage />}></Route>
+            <Route path='/main/self2' element={<NestedSelfPage />}></Route>
+          </Routes>
+        </PageLayout>
       </Router>
     </>
   );
