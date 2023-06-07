@@ -1,15 +1,15 @@
 import React from 'react';
-import SecLeftNev from '../SecLeftNev';
+import SecLeftNav from '../SecLeftNev';
 
-const ContainerColSec = ({ children }) => {
+const ContainerColSec = ({ children, role }) => {
   return (
     <>
-      <div className='row'>
-        <main className='container_sec col-12'>
-          <SecLeftNev />
-          {children}
-        </main>
-      </div>
+      {/* bootstrap gutter system needs come after row => row gx-4 */}
+      <main className='container_sec'>
+        {/* <main className='container_sec grid'> */}
+        <SecLeftNav role={role} />
+        {children}
+      </main>
     </>
   );
 };

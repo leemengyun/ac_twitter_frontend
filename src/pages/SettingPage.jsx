@@ -1,15 +1,19 @@
 import React from 'react';
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
-// import LoginForm from '../components/forms/LoginForm';
+import SettingForm from '../components/forms/SettingForm';
+import { HeaderMain } from '../components/basic/Header';
 
 const SettingPage = () => {
   return (
     <>
       <ContainerColSec>
-        <div className='main-section-m'>
-          <h1> SettingPage</h1>
-        </div>
+        <section className='section-outer-m col-7'>
+          <div className='section-main-m'>
+            <HeaderMain pageTitle='帳戶設定' />
+            <SettingForm />
+          </div>
+        </section>
       </ContainerColSec>
     </>
   );

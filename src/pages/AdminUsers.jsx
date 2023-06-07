@@ -3,13 +3,13 @@ import React from 'react';
 import ContainerColSec from '../components/layout/ContainerColSec';
 // import SecLeftNav from '../components/SecLeftNav';
 
-const AdminPage = () => {
+const AdminUsers = () => {
   return (
     <>
       <ContainerColSec role='admin'>
         <div className='section-outer-l col-10'>
           <div className='section-main-l'>
-            <h1> AdminPage</h1>
+            <h1>Users</h1>
           </div>
         </div>
       </ContainerColSec>
@@ -17,4 +17,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default AdminUsers;

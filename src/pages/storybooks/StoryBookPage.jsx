@@ -1,6 +1,7 @@
 import React from 'react';
 // import custom components
-import PageLayout from '../../components/layout/PageLayout';
+import { Link } from 'react-router-dom';
+import { TabThreeGroup, TabTwoGroup } from '../../components/basic/Tab';
 
 //import css
 import '../../scss/components/storyBookPage.scss';
@@ -31,10 +32,16 @@ const LayoutNav = () => {
             <button className='button-md button-m' type='submit'>
               編輯個人資料
             </button>
-            <a className='button-link' type='submit'>
+            <Link className='button-link' type='submit'>
               取消
-            </a>
+            </Link>
           </div>
+
+          <h4 className='page-sec-title'>
+            === tabs -元件本身綁定切換內容，這頁的tab 點了會壞不要管他lol ===
+          </h4>
+          <TabThreeGroup />
+          <TabTwoGroup />
         </div>
       </div>
     </>

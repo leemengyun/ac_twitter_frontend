@@ -14,6 +14,8 @@ body {
   --error-color: #fc5a5a;
   --main-white: var(--gray-0);
   --main-black: var(--gray-100);
+  --main-border: #e6ecf0;
+  --test-border: #5273e0;
 
   --sec-color-orange: #ff974a;
   --sec-color-blue: #50b5ff;
@@ -45,6 +47,11 @@ body {
   --margin-s: 16px;
   --margin-m: 24px;
   --margin-l: 40px;
+
+  // padding
+  --padding-s: 16px;
+  --padding-m: 24px;
+  --padding-l: 40px;
 
   // basic set up
   background-color: var(--background-color);
