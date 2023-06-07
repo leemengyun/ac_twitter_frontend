@@ -1,21 +1,77 @@
 .menu-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   a {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 18px;
+
+    .nav-icon {
+      margin-right: 20px;
+    }
+
+    &:has(.active) {
+      filter: var(--icon-main-color);
+    }
+  }
+
+  .icon-home {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url(../../assets/images/icon/home.svg);
+
+    &.active {
+      background-image: url(../../assets/images/icon/home-filled.svg);
+    }
+  }
+
+  .icon-user {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url(../../assets/images/icon/user.svg);
+
+    &.active {
+      background-image: url(../../assets/images/icon/user-filled.svg);
+    }
+  }
+
+  .icon-setting {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url(../../assets/images/icon/setting.svg);
+
+    &.active {
+      background-image: url(../../assets/images/icon/setting-filled.svg);
+    }
+  }
+
+  .icon-logout {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url(../../assets/images/icon/logout.svg);
   }
 }
 
-.icon-home {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  background-image: url(../../assets/images/icon/home.svg);
-  &.active {
-    background-image: url(../../assets/images/icon/home-filled.svg);
-  }
-}
 
 nav {
   margin: 0;
   width: 100%;
+  .menu {
+    width: 100%;
+    img.icon-logo {
+      margin: 8px;
+    }
+  }
 }
+
+.nav-container {
+  width: 178px;
+} 
