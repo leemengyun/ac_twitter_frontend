@@ -217,12 +217,14 @@ h5 {
 %button-style-active {
   background-color: var(--main-color);
   color: var(--main-white);
+  cursor: pointer;
 }
 %button-style {
   background-color: var(--main-white);
   color: var(--main-color);
   box-shadow: 0 0 0 1px var(--main-color);
   border-radius: 50px;
+  cursor: pointer;
 }
 
 .button-filled {
@@ -234,6 +236,7 @@ h5 {
   text-align: center;
   padding: 8px 24px;
   height: 46px;
+  cursor: pointer;
   &.button-lg {
     width: 100%;
   }
