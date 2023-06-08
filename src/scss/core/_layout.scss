@@ -71,14 +71,53 @@
 }
 
 .container_sec {
-  // padding: 64px 130px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   height: 100vh;
-  border: 5px solid pink;
+  padding-left: 0;
+  // layout test border
+  // border: 5px solid var(--test-border);
+}
+
+.section-outer-l {
+  height: 100%;
+  padding: 0 0 0 12px;
+}
+
+.section-main-l {
+  border: 1px solid var(--main-border);
+  height: 100%;
+  // @ this section is scrollable
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+.section-outer-m {
+  height: 100%;
+  padding: 0 12px;
+}
+
+.section-main-m {
+  border: 1px solid var(--main-border);
+  height: 100%;
+  // @ this section is scrollable
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+.section-right {
+  // border: 3px solid #5273e0;
+  height: 100%;
+  padding-left: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.page-container-line {
+  border: 1px solid rgb(7, 7, 19);
 }
 
 /* End [layout樣式設定] ---------------------------------------------------------------------------------------- */

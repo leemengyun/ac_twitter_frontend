@@ -2,11 +2,15 @@
 @import './core/reset.scss';
 @import './core/variables';
 @import './core/basic.scss';
-// bootstrap grid system
+//bootstrap grid
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
 @import './core/layout.scss';
 @import './core/form.scss';
+@import './core/tab.scss';
 @import './components/nav.scss';
+@import './components/header.scss';
+@import './components/followCardList.scss';
+@import './core/media.scss';
 
 //import google fonts
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');

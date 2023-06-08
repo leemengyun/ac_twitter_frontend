@@ -1,0 +1,18 @@
+.follow-list-container {
+  width: 273px;
+  background: var(--gray-20);
+  border-radius: 16px;
+  margin-top: 16px;
+  border: 1px solid;
+  overflow: hidden;
+}
+
+.title-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 75px;
+  border-bottom: 1px solid var(--main-border);
+  // padding: $padding-l;
+  padding: 0 var(--padding-m);
+}

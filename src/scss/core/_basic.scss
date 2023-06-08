@@ -367,8 +367,8 @@ h5 {
   @extend %button-style;
   @include button-setting(16px, 400, 32px, auto, 4px 8px, 24px);
   &.active {
-      @extend %button-style-active
-    } 
+    @extend %button-style-active;
+  }
 }
 
 .button-md {
@@ -376,10 +376,10 @@ h5 {
   @extend %button-style;
   @include button-setting(16px, 400, 40px, auto, 8px 16px, 24px);
   &.active {
-      @extend %button-style-active
-    }
+    @extend %button-style-active;
+  }
   &.error {
-      @include button-setting(18px, 500, 38px, auto, 10px 15px, 18px);
+    @include button-setting(18px, 500, 38px, auto, 10px 15px, 18px);
   }
 }
 
@@ -389,7 +389,7 @@ h5 {
   @include button-setting(20px, 400, 46px, auto, 8px 24px, 30px);
 
   &.active {
-    @extend %button-style-active
+    @extend %button-style-active;
   }
 }
 
@@ -399,8 +399,6 @@ h5 {
   text-decoration-line: underline;
   text-underline-offset: 3px;
 }
-
-
 
 .button-group-row {
   display: flex;

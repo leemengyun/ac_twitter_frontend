@@ -1,0 +1,21 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 75px;
+  border-bottom: 1px solid var(--main-border);
+
+  // padding: $padding-l;
+  padding: 0 var(--padding-m);
+  .icon-back {
+    margin-right: var(--margin-s);
+  }
+
+  .header-user-info {
+    p {
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 19px;
+    }
+  }
+}

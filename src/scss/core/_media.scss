@@ -1,0 +1,43 @@
+// ipad break point
+$screen-break-point: 992px;
+
+@media screen and (max-width: $screen-break-point) {
+  // @media screen and (max-width: 985px) {
+  .section-right {
+    h3 {
+      color: teal;
+    }
+  }
+  .header-container {
+    h5 {
+      font-size: 200;
+    }
+  }
+
+  nav {
+    &.left-nav {
+      &.col-2 {
+        width: 56px;
+        padding-right: 0;
+      }
+    }
+    .left-nav-link {
+      .icon-logo {
+        width: 40px;
+        height: 40px;
+      }
+
+      a {
+        .nav-icon {
+          margin-right: 0px;
+        }
+        p {
+          display: none;
+        }
+      }
+    }
+    .button-tweet {
+      display: none;
+    }
+  }
+}
