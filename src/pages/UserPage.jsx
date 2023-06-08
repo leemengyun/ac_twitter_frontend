@@ -6,12 +6,12 @@ import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
 import { TabThreeGroup } from '../components/basic/Tab';
 
-import FollowCardList from '../components/FollowCardList';
-import ReplyLists from './self/ReplyLists';
-import TweetsLists from './self/TweetsLists';
-import LikeLists from './self/LikeLists';
+import FollowCardList from '../components/user/FollowCardList';
+import ReplyLists from '../components/user/ReplyLists';
+import TweetsLists from '../components/user/TweetsLists';
+import LikeLists from '../components/user/LikeLists';
 
-const SelfPage = () => {
+const UserPage = () => {
   const [tabIndex, setTabIndex] = useState('0');
 
   //swtich case 與 if else概念相同，但return component更簡潔(??)
@@ -53,4 +53,4 @@ const SelfPage = () => {
   );
 };
 
-export default SelfPage;
+export default UserPage;

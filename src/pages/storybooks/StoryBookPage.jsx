@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import { TabThreeGroup, TabTwoGroup } from '../../components/basic/Tab';
 
 //import css
-import '../../scss/components/storyBookPage.scss';
-
+import '../../scss/storybooks/storyBookPage.scss';
 
 const LayoutNav = () => {
-
   return (
     <>
       <div className='storybook-layout'>

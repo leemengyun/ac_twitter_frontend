@@ -4,12 +4,12 @@
 @import './core/basic.scss';
 //bootstrap grid
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
-@import './core/layout.scss';
-@import './core/form.scss';
-@import './core/tab.scss';
-@import './components/nav.scss';
-@import './components/header.scss';
-@import './components/followCardList.scss';
+@import './layout/layout.scss';
+@import './forms/form.scss';
+@import './basic/tab.scss';
+@import './basic/nav.scss';
+@import './basic/header.scss';
+@import './basic/followCardList.scss';
 @import './core/media.scss';
 
 //import google fonts

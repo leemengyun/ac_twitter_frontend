@@ -4,7 +4,7 @@ import React from 'react';
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderMain } from '../components/basic/Header';
-import FollowCardList from '../components/FollowCardList';
+import FollowCardList from '../components/user/FollowCardList';
 
 const MainPage = () => {
   return (

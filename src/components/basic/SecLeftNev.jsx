@@ -1,5 +1,5 @@
 import React from 'react';
-import iconLogo from '../assets/images/icon/logo.svg';
+import iconLogo from '../../assets/images/icon/logo.svg';
 import { Link } from 'react-router-dom';
 
 // import svg
@@ -18,14 +18,14 @@ const SecLeftNav = ({ role }) => {
               className='icon-logo cursor-point'
             />
             <Link
-              to={role === 'admin' ? '/admin' : '/main'}
+              to={role === 'admin' ? '/admin' : '/admin/users'}
               className='nav-link '
             >
               <span className='nav-icon icon-home active'></span>
               <p>{role === 'admin' ? '推文清單' : '首頁'}</p>
             </Link>
 
-            <Link to={role === 'admin' ? '/users' : '/self'}>
+            <Link to={role === 'admin' ? '/admin/users' : '/user'}>
               <span className='nav-icon icon-user'></span>
               <p>{role === 'admin' ? '使用者列表' : '個人資料'}</p>
             </Link>

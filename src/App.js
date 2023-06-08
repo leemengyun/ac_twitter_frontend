@@ -13,12 +13,12 @@ import './scss/main.scss';
 import PageLayout from './components/layout/PageLayout';
 
 // import HomePage from './pages/HomePage';
-import NestedSelfPage from './pages/main/NestedSelfPage';
+import NestedUserPage from './pages/main/NestedUserPage';
 import LoginPage from './pages/LoginPage';
 import StoryBookPage from './pages/storybooks/StoryBookPage';
 import AdminPage from './pages/AdminPage';
 import SettingPage from './pages/SettingPage';
-import SelfPage from './pages/SelfPage';
+import UserPage from './pages/UserPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 
@@ -32,10 +32,10 @@ function App() {
             <Route path='/login' element={<LoginPage />}></Route>
             <Route path='/admin' element={<AdminPage />}></Route>
             <Route path='/main' element={<MainPage />}></Route>
-            <Route path='/self' element={<SelfPage />}></Route>
+            <Route path='/user' element={<UserPage />}></Route>
             <Route path='/setting' element={<SettingPage />}></Route>
-            <Route path='/users' element={<AdminUsers />}></Route>
-            <Route path='/main/self2' element={<NestedSelfPage />}></Route>
+            <Route path='/admin/users' element={<AdminUsers />}></Route>
+            <Route path='/main/self2' element={<NestedUserPage />}></Route>
           </Routes>
         </PageLayout>
       </Router>

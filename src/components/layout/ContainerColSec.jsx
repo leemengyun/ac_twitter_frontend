@@ -1,5 +1,5 @@
 import React from 'react';
-import SecLeftNav from '../SecLeftNev';
+import SecLeftNav from '../basic/SecLeftNev';
 
 const ContainerColSec = ({ children, role }) => {
   return (
