@@ -5,47 +5,65 @@ import { Link } from 'react-router-dom';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const LeftNev = () => {
+const SecLeftNav = ({ role }) => {
   return (
     <>
-      <div className='nav-container'>
-        <nav>
-          <div className='menu'>
+      <nav className='left-nav col-2'>
+        {/* <nav className='left-nav g-col-2'> */}
+        <div className='left-nav-link'>
+          <div className='left-nav-link-items'>
             <img
               src={iconLogo}
               alt='Alphitter Icon'
               className='icon-logo cursor-point'
             />
-            <div className='menu-link'>
-              <div className='menu-link-items'>
-                <Link to='/main' >
-                  <span className='nav-icon icon-home'></span>
-                  首頁
-                </Link>
-                <Link to='/profile' >
-                  <span className='nav-icon icon-user '></span>
-                  個人資料
-                </Link>
-                <Link to='/setting' >
+
+            <Link
+              to={role === 'admin' ? '/admin' : '/main'}
+              className='nav-link '
+            >
+              <span className='nav-icon icon-home active'></span>
+              <p>{role === 'admin' ? '推文清單' : '首頁'}</p>
+            </Link>
+
+            <Link to={role === 'admin' ? '/users' : '/self'}>
+              <span className='nav-icon icon-user'></span>
+              <p>{role === 'admin' ? '使用者列表' : '個人資料'}</p>
+            </Link>
+
+            {role !== 'admin' && (
+              <>
+                <Link to='/setting'>
                   <span className='nav-icon icon-setting'></span>
-                  設定
+                  <p>設定</p>
                 </Link>
-                <button className='button-filled button-lg' type='submit'>
-                推文
+
+                <button
+                  className='button-filled button-lg button-tweet'
+                  type='submit'
+                >
+                  推文
                 </button>
-              </div>
-              <div className='menu-link-logout'>
-                <Link to='/login' >
-                  <span className='nav-icon icon-logout '></span>
-                  登出
-                </Link>
-              </div>
-            </div> 
+              </>
+            )}
           </div>
-        </nav>
-      </div>
+          <div className='left-nav-link-logout'>
+            <Link to='/login'>
+              <span className='nav-icon icon-logout'></span>
+              <p>登出</p>
+            </Link>
+          </div>
+          {/* //06/07 與keifer衝突區塊 */}
+          {/* <div className='menu-link-logout'>
+            <Link to='/login'>
+              <span className='nav-icon icon-logout '></span>
+              登出
+            </Link>
+          </div> */}
+        </div>
+      </nav>
     </>
   );
 };
 
-export default LeftNev;
+export default SecLeftNav;
