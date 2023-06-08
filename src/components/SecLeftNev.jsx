@@ -47,13 +47,19 @@ const SecLeftNav = ({ role }) => {
               </>
             )}
           </div>
-
           <div className='left-nav-link-logout'>
             <Link to='/login'>
               <span className='nav-icon icon-logout'></span>
               <p>登出</p>
             </Link>
           </div>
+          {/* //06/07 與keifer衝突區塊 */}
+          {/* <div className='menu-link-logout'>
+            <Link to='/login'>
+              <span className='nav-icon icon-logout '></span>
+              登出
+            </Link>
+          </div> */}
         </div>
       </nav>
     </>
