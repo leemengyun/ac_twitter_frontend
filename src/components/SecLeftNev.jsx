@@ -17,7 +17,6 @@ const SecLeftNav = ({ role }) => {
               alt='Alphitter Icon'
               className='icon-logo cursor-point'
             />
-
             <Link
               to={role === 'admin' ? '/admin' : '/main'}
               className='nav-link '
