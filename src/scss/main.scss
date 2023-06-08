@@ -10,12 +10,21 @@
 @import './basic/nav.scss';
 @import './basic/header.scss';
 @import './basic/followCardList.scss';
+@import './basic/profileCard.scss';
+@import './basic/profileMiniCard.scss';
+@import './basic/modal.scss';
+//page
+@import './admin/adminPages.scss';
+
+//import RWD
 @import './core/media.scss';
 
 //import google fonts
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap');
+// fonts for numbers
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 //import Component Custom Css
 // @import '../components/Header/Header.module.scss';

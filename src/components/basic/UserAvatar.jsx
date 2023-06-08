@@ -1,19 +1,18 @@
-import React from "react";
-import Defaultavatar from '../../assets/images/icon/avatar.svg'
+import React from 'react';
+import Defaultavatar from '../../assets/images/icon/avatar.svg';
 
+const UserAvatar = ({ avatar }) => {
+  return (
+    <>
+      <div className='avatar'>
+        <img
+          src={avatar || Defaultavatar}
+          alt='userAvatar'
+          className='user-avatar'
+        />
+      </div>
+    </>
+  );
+};
 
-const UserAvatar = ({avatr}) =>{
-    return (
-      <>
-        <div className='avatar'>
-          <img
-            src={avatr || Defaultavatar}
-            alt='userAvatar'
-            className='user-avatar'
-          />
-        </div>
-      </>
-    )
-  }
-
-  export default UserAvatar;
+export default UserAvatar;

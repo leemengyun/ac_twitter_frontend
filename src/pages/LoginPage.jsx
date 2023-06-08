@@ -11,7 +11,7 @@ const LoginPage = () => {
   return (
     <>
       <ContainerColOne>
-        <div className='login-container col4 flex_col_cc'>
+        <div className='login-container col-4 flex_col_cc'>
           <div className='page-logo'>
             <img
               src={iconLogo}

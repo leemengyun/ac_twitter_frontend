@@ -32,6 +32,9 @@ const InputGroup = ({
         {errors && errors[name]?.type === 'minLength' && (
           <span className='error'>{errors[name]?.message}</span>
         )}
+        {errors && errors[name]?.type === 'pattern' && (
+          <span className='error'>{errors[name]?.message}</span>
+        )}
 
         {/* <span className='limit-num'>15/50</span> */}
         <span className='limit-num'>
