@@ -19,7 +19,7 @@ const LeftNev = () => {
             <div className='menu-link'>
               <div className='menu-link-items'>
                 <Link to='/main' >
-                  <span className='nav-icon icon-home'></span>
+                  <span className='nav-icon icon-home '></span>
                   首頁
                 </Link>
                 <Link to='/profile' >

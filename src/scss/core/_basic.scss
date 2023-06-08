@@ -202,32 +202,126 @@ h5 {
   margin-bottom: var(--margin-l);
 }
 //tweet s component
-.user_avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+.avatar{
+  margin-right: 8px;
+  & .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 }
-.user_name {
+
+.user-name {
   font-size: 16px;
   font-weight: 700;
   line-height: 26px;
   margin-right: 8px;
   color: var(--gray-100);
 }
-.user_account,
-.user_time{
+.user-account,
+.user-time{
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
   color: var(--secondary-color);
 }
-.tweet_username_2 {
+.tweet-username-2 {
   display: flex;
   flex-direction: column;
 }
+.tweet-username-3 {
+  min-width: 158px;
+}
 
-
+// card 樣式
+.tweet-card-basic  {
+  display: grid;
+  min-width: 269px;
+  grid-template-columns: 50px auto;
+  gap: 8px;
+  & .tweet-card-left-info{
+    & .avatar {
+      grid-column: 1/2;  
+    }
+    & .tweet-card-name-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 528px;
+      & .tweet-card-basic-follow {
+          & .button-md {
+            display: flex;
+            align-items: center;
+            height: 32px;
+            min-width: 80px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    & .tweet-card-basic-reply {
+      font-size: 14px;
+      font-weight: 400;
+      height: 22px;
+      padding: 8px 0px;
+      & .reply-user-account {
+        color: var(--main-color);
+        padding-left: 2px;
+      }
+    }
+    & .tweet-card-basic-description {
+      color: var(--icon-gray-color);
+      max-width: 528px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      margin: 8px 0px;
+   }
+     .tweet-card-icon-count {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       width: 120px; //暫時寫死
+  
+       & .reply-icon {
+         width: 13.17px;
+         height: 13.17px;
+         margin-right: 9px;
+       }
+  
+       & .like-icon {
+         width: 13.4px;
+         height: 12.61px;
+         margin-right: 9px;
+       }
+  
+       & .tweet-count {
+         font-size: 14px;
+         font-weight: 600;
+         color: var(--secondary-color);
+       }
+     }
+  }
+  // FollowCardList
+  .follow-card {
+    display: flex;
+    align-items: center;
+    min-width: 273px; 
+    height: 82px;
+    padding: 16px;
+    & .tweet-username-2{
+      max-width:83px;
+      margin-right:3px;
+      & .user-name,
+      .user-account{
+        display:-webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }    
+    }
+  }
 /* End [共用元件] ---------------------------------------------------------------------------------------- */
 
 /* @group [buttons] ----------------------------------------------------------------------------------------*/
