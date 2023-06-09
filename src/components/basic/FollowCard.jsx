@@ -2,8 +2,8 @@ import React from 'react';
 import UserAvatar from './UserAvatar';
 import TweetUserName2 from './TweetUserName2';
 
-const FollowCard = ({props}) => {
-  console.log(props)
+const FollowCard = ({...props}) => {
+  // console.log(props)
   return (
     <div className='follow-card'>
       <UserAvatar avatar={props.avatar} />

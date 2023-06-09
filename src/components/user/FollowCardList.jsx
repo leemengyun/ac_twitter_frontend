@@ -160,9 +160,9 @@ const FollowCardList = () => {
         <div className='title-secondary'>
           <h4>推薦跟隨</h4>
         </div>
-         {/* <FollowCard 
-         {...users[0]}
-         /> */}
+         <FollowCard 
+         {...users}
+         />
       </div>
     </>
   );
