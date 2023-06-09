@@ -10,9 +10,14 @@ import FollowCardList from '../components/user/FollowCardList';
 import ReplyLists from '../components/user/ReplyLists';
 import TweetsLists from '../components/user/TweetsLists';
 import LikeLists from '../components/user/LikeLists';
+
 import { useParams } from 'react-router-dom';
 
-const UserPage = () => {
+import ProfileCard from '../components/basic/ProfileCard';
+// import Modal from '../components/basic/Modal';
+
+
+const UserPage = ({ modalOpen, setModalOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
   const pathId = Number(useParams().id) //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料 
@@ -95,15 +100,15 @@ const UserPage = () => {
 
   return (
     <>
-      <ContainerColSec>
+      <ContainerColSec modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <section className='section-outer-m  col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25' />
-            <h1>UserCard</h1>
-            <TabThreeGroup
-              // handleTabChange={handleTabChange}
-              setTabIndex={setTabIndex}
-            />
+
+            {/* <h1>UserCard</h1> */}
+            <ProfileCard />
+            <TabThreeGroup setTabIndex={setTabIndex} />
+
             {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <TweetsLists />}
             {tabIndex === '1' && <ReplyLists />}
@@ -114,6 +119,7 @@ const UserPage = () => {
           <FollowCardList />
         </section>
       </ContainerColSec>
+      {/* <Modal /> */}
     </>
   );
 };

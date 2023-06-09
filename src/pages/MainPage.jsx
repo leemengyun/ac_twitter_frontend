@@ -9,6 +9,7 @@ import FollowCardList from '../components/user/FollowCardList';
 import TweetLists from '../components/user/TweetsLists'
 import { getTweets } from '../api/twitter';
 import { useNavigate } from 'react-router-dom';
+import ProfileCard from '../components/basic/ProfileCard';
 
 
 const MainPage = () => {
@@ -38,9 +39,10 @@ const MainPage = () => {
         <section className='section-outer-m col-7'>
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
-            {/* <h1>輸入tweet區塊</h1>
-            <h1>卡片lists</h1> */}
-            <TweetLists 
+            <h1>輸入tweet區塊</h1>
+            <h1>卡片lists</h1>
+            <ProfileCard />
+             <TweetLists 
               tweets={tweets}
               onClick={handleClickAvatar}
             />

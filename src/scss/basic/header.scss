@@ -5,13 +5,20 @@
   height: 75px;
   border-bottom: 1px solid var(--main-border);
 
-  // padding: $padding-l;
-  padding: 0 var(--padding-m);
+  &.header-main {
+    padding: 0 var(--padding-m);
+  }
+
   .icon-back {
-    margin-right: var(--margin-s);
+    display: block;
+    padding: 16px;
+    // height: 100%;
+    // margin-right: var(--margin-s);
   }
 
   .header-user-info {
+    // margin-left: var(--margin-s);
+
     p {
       font-weight: 500;
       font-size: 13px;

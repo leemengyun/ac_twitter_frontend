@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const SecLeftNav = ({ role }) => {
+const SecLeftNav = ({ role, modalOpen, setModalOpen }) => {
   return (
     <>
       <nav className='left-nav col-2'>
@@ -40,6 +40,7 @@ const SecLeftNav = ({ role }) => {
                 <button
                   className='button-filled button-lg button-tweet'
                   type='submit'
+                  // onClick={() => setModalOpen(!modalOpen)}
                 >
                   推文
                 </button>

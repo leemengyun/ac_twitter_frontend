@@ -1,5 +1,7 @@
-import React from "react";
-import Defaultavatar from '../../assets/images/icon/avatar.svg'
+import React from 'react';
+import Defaultavatar from '../../assets/images/icon/avatar.svg';
+
+
 
 
 const UserAvatar = ({avatar,onClick,id,userId}) =>{
@@ -16,4 +18,5 @@ const UserAvatar = ({avatar,onClick,id,userId}) =>{
     )
   }
 
-  export default UserAvatar;
+ export default UserAvatar;
+
