@@ -5,6 +5,7 @@ import React from 'react';
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderMain } from '../components/basic/Header';
 import FollowCardList from '../components/user/FollowCardList';
+import ProfileCard from '../components/basic/ProfileCard';
 
 const MainPage = () => {
   return (
@@ -15,6 +16,7 @@ const MainPage = () => {
             <HeaderMain pageTitle='首頁' />
             <h1>輸入tweet區塊</h1>
             <h1>卡片lists</h1>
+            <ProfileCard />
           </div>
         </section>
         <section className='section-right col-3'>

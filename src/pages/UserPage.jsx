@@ -10,8 +10,10 @@ import FollowCardList from '../components/user/FollowCardList';
 import ReplyLists from '../components/user/ReplyLists';
 import TweetsLists from '../components/user/TweetsLists';
 import LikeLists from '../components/user/LikeLists';
+import ProfileCard from '../components/basic/ProfileCard';
+// import Modal from '../components/basic/Modal';
 
-const UserPage = () => {
+const UserPage = ({ modalOpen, setModalOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
 
   //swtich case 與 if else概念相同，但return component更簡潔(??)
@@ -30,15 +32,15 @@ const UserPage = () => {
 
   return (
     <>
-      <ContainerColSec>
+      <ContainerColSec modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <section className='section-outer-m  col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25' />
-            <h1>UserCard</h1>
-            <TabThreeGroup
-              // handleTabChange={handleTabChange}
-              setTabIndex={setTabIndex}
-            />
+
+            {/* <h1>UserCard</h1> */}
+            <ProfileCard />
+            <TabThreeGroup setTabIndex={setTabIndex} />
+
             {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <ReplyLists />}
             {tabIndex === '1' && <LikeLists />}
@@ -49,6 +51,7 @@ const UserPage = () => {
           <FollowCardList />
         </section>
       </ContainerColSec>
+      {/* <Modal /> */}
     </>
   );
 };

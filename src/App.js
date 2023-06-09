@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   // Link,
@@ -21,8 +22,11 @@ import SettingPage from './pages/SettingPage';
 import UserPage from './pages/UserPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
+import Modal from './components/basic/Modal';
 
 function App() {
+  // const [modalOpen, setModalOpen] = useState('false');
+
   return (
     <>
       <Router>
@@ -37,6 +41,7 @@ function App() {
             <Route path='/admin/users' element={<AdminUsers />}></Route>
             <Route path='/main/self2' element={<NestedUserPage />}></Route>
           </Routes>
+          <Modal />
         </PageLayout>
       </Router>
     </>

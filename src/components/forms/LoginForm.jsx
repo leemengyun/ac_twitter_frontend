@@ -27,7 +27,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className='formLayout'>
+    <div className='formLayout login-form'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='input-group-container'>
           <InputGroup
