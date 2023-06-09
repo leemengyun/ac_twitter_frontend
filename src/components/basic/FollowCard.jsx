@@ -1,23 +1,19 @@
-import React from "react";
-import UserAvatar from "./UserAvatar";
-import TweetUserName2 from "./TweetUserName2"
+import React from 'react';
+import UserAvatar from './UserAvatar';
+import TweetUserName2 from './TweetUserName2';
 
-
-const FollowCardList = ({...props})=>{
+const FollowCard = ({...props}) => {
+  // console.log(props)
   return (
     <div className='follow-card'>
-      <UserAvatar 
-        avatr={props.avatr}
-      />
-      <TweetUserName2
-        name={props.name}
-        account={props.account}
-      /> 
+      <UserAvatar avatar={props.avatar} />
+      <TweetUserName2 name={props.name} account={props.account} />
       <button className='button-md button-m' type='submit'>
-              跟蹤
+        跟蹤
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default FollowCardList;
+export default FollowCard;
+
