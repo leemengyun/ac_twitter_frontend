@@ -5,15 +5,14 @@ import TweetIconCount from "./TweetIconCount";
 
 
 const TweetCardBasic = ({...props})=>{
-
   return (
     <div className='tweet-card-basic'>
-      <UserAvatar avatr={props.avatr}
+      <UserAvatar avatr={props.user.avatar}
       />
       <div className='tweet-card-left-info'>
       <TweetUserName3 
-        name={props.name} 
-        account={props.account} 
+        name={props.user.name} 
+        account={props.user.account} 
         time={props.time}
       />
         <p className='tweet-card-basic-description'>
@@ -21,7 +20,7 @@ const TweetCardBasic = ({...props})=>{
         </p>
         <TweetIconCount 
           likeCount={props.likeCount} 
-          replyCount={props.repliesCount}
+          repliesCount={props.repliesCount}
         />
       </div>
     </div>

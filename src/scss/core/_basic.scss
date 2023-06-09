@@ -238,8 +238,12 @@ h5 {
 .tweet-card-basic  {
   display: grid;
   min-width: 269px;
+  width: 100%;
   grid-template-columns: 50px auto;
   gap: 8px;
+  margin: 16px 0px;
+  padding: 0px 24px 24px 16px;
+  border-bottom: 1px solid var(--main-border);
   & .tweet-card-left-info{
     & .avatar {
       grid-column: 1/2;  

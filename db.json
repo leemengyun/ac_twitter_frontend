@@ -1,0 +1,110 @@
+{
+  "twitter": [
+    {
+"status": "success",
+"data": {
+"tweets": [
+{
+"id": 1,
+"userId": 1,
+"description": "Test-Tweet-user1-1",
+"createdAt": "2023-05-25T11:09:42.000Z",
+"updatedAt": "2023-05-25T11:09:42.000Z",
+"isLiked": true,
+"repliesCount": 1,
+"user": {
+"name": "test-1-name",
+"account": "test-1-account",
+"avatar": "https://i.imgur.com/YcP0tik.jpeg"
+}
+},
+{
+"id": 2,
+"userId": 1,
+"description": "Test-Tweet-user1-2",
+"createdAt": "2023-05-25T11:09:42.000Z",
+"updatedAt": "2023-05-25T11:09:42.000Z",
+"isLiked": false,
+"repliesCount": 2,
+"user": {
+"name": "test-1-name",
+"account": "test-1-account",
+"avatar": "https://i.imgur.com/YcP0tik.jpeg"
+}
+},
+{
+"id": 3,
+"userId": 1,
+"description": "Test-Tweet-user3-3",
+"createdAt": "2023-05-25T11:09:42.000Z",
+"updatedAt": "2023-05-25T11:09:42.000Z",
+"isLiked": false,
+"repliesCount": 3,
+"user": {
+"name": "test-1-name",
+"account": "test-1-account",
+"avatar": "https://i.imgur.com/YcP0tik.jpeg"
+}
+},
+{
+"id": 4,
+"userId": 2,
+"description": "Test-Tweet-user2-1",
+"createdAt": "2023-05-25T11:09:42.000Z",
+"updatedAt": "2023-05-25T11:09:42.000Z",
+"isLiked": false,
+"repliesCount": 4,
+"user": {
+"name": "test-1-name",
+"account": "test-1-account",
+"avatar": "https://i.imgur.com/D5wcicT.jpeg"
+}
+},
+{
+"id": 5,
+"userId": 2,
+"description": "Test-Tweet-user2-2",
+"createdAt": "2023-05-25T11:09:42.000Z",
+"updatedAt": "2023-05-25T11:09:42.000Z",
+"isLiked": false,
+"repliesCount": 5,
+"user": {
+"name": "test-1-name",
+"account": "test-1-account",
+"avatar": "https://i.imgur.com/D5wcicT.jpeg"
+}
+},
+{
+"id": 6,
+"userId": 3,
+"description": "Test-Tweet-user3-1",
+"createdAt": "2023-05-25T11:09:42.000Z",
+"updatedAt": "2023-05-25T11:09:42.000Z",
+"isLiked": false,
+"repliesCount": 6,
+"user": {
+"name": "test-1-name",
+"account": "test-1-account",
+"avatar": "https://i.imgur.com/iM1zUJP.gif"
+}
+},
+{
+"id": 7,
+"userId": 3,
+"description": "Test-Tweet-user3-2",
+"createdAt": "2023-05-25T11:09:42.000Z",
+"updatedAt": "2023-05-25T11:09:42.000Z",
+"isLiked": true,
+"repliesCount": 7,
+"user": {
+"name": "test-1-name",
+"account": "test-1-account",
+"avatar": "https://i.imgur.com/iM1zUJP.gif"
+}
+}
+]
+}
+}
+  ]
+}
+ 
