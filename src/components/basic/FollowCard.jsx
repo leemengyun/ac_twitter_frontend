@@ -2,7 +2,8 @@ import React from 'react';
 import UserAvatar from './UserAvatar';
 import TweetUserName2 from './TweetUserName2';
 
-const FollowCardList = ({ ...props }) => {
+const FollowCard = ({props}) => {
+  console.log(props)
   return (
     <div className='follow-card'>
       <UserAvatar avatar={props.avatar} />
@@ -14,4 +15,4 @@ const FollowCardList = ({ ...props }) => {
   );
 };
 
-export default FollowCardList;
+export default FollowCard;
