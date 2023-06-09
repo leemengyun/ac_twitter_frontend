@@ -25,7 +25,7 @@ import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
 
 function App() {
-  // const [modalOpen, setModalOpen] = useState('false');
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
@@ -35,13 +35,16 @@ function App() {
             <Route path='/' element={<StoryBookPage />}></Route>
             <Route path='/login' element={<LoginPage />}></Route>
             <Route path='/admin' element={<AdminPage />}></Route>
-            <Route path='/main' element={<MainPage />}></Route>
+            <Route
+              path='/main'
+              element={<MainPage setModalOpen={setModalOpen} />}
+            ></Route>
             <Route path='/user/:id' element={<UserPage />}></Route>
             <Route path='/setting' element={<SettingPage />}></Route>
             <Route path='/admin/users' element={<AdminUsers />}></Route>
             <Route path='/main/self2' element={<NestedUserPage />}></Route>
           </Routes>
-          <Modal />
+          {modalOpen && <Modal setModalOpen={setModalOpen} />}
         </PageLayout>
       </Router>
     </>
