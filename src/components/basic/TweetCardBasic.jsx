@@ -5,13 +5,11 @@ import TweetUserName3 from "./TweetUserName3";
 import TweetIconCount from "./TweetIconCount";
 
 
-const TweetCardBasic = ({...props})=>{
+const TweetCardBasic = ({ ...props }) => {
   const value ={
     id: props.id,
     userId: props.id,
   }
-
-const TweetCardBasic = ({ ...props }) => {
   return (
     <div className='tweet-card-basic'>
       <UserAvatar 
