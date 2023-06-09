@@ -16,3 +16,4 @@ const FollowCard = ({...props}) => {
 };
 
 export default FollowCard;
+
