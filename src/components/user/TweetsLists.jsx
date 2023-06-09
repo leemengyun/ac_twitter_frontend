@@ -1,16 +1,20 @@
 import React from 'react';
-// import TweetCardBasic from '../basic/TweetCardBasic';
+import TweetCardBasic from '../basic/TweetCardBasic';
 
-const TweetsLists = ({user}) => {
+const TweetsLists = ({tweets,onClick}) => {
+  console.log(tweets)
   return (
     <div>
       <h1>Nested TweetsLists</h1>
-      {/* {data.map((tweet)=>{
+      {tweets.map((tweet)=>{
         return <TweetCardBasic 
           key={tweet.id}
           {...tweet}
+          onClick={({id})=>{
+            onClick?.({id})
+          }}
         />
-      })} */}
+      })}
     </div>
   );
 };

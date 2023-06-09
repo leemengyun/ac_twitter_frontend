@@ -2,12 +2,12 @@ import React from "react";
 import Defaultavatar from '../../assets/images/icon/avatar.svg'
 
 
-const UserAvatar = ({avatr}) =>{
+const UserAvatar = ({avatar,onClick,id,userId}) =>{
     return (
       <>
-        <div className='avatar'>
+        <div className='avatar' onClick={()=>{onClick?.({id})}}>
           <img
-            src={avatr || Defaultavatar}
+            src={avatar || Defaultavatar}
             alt='userAvatar'
             className='user-avatar'
           />

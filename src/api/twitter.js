@@ -12,4 +12,3 @@ export const getTweets = async()=>{
     console.log('[Get Tweets failed]:', error);
   }
 };
-

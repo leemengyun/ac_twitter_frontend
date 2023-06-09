@@ -18,14 +18,14 @@ const SecLeftNav = ({ role }) => {
               className='icon-logo cursor-point'
             />
             <Link
-              to={role === 'admin' ? '/admin' : '/admin/users'}
+              to={role === 'admin' ? '/admin' : '/main'}
               className='nav-link '
             >
               <span className='nav-icon icon-home active'></span>
               <p>{role === 'admin' ? '推文清單' : '首頁'}</p>
             </Link>
 
-            <Link to={role === 'admin' ? '/admin/users' : '/user'}>
+            <Link to={role === 'admin' ? '/admin/users' : '/user/:id'}>
               <span className='nav-icon icon-user'></span>
               <p>{role === 'admin' ? '使用者列表' : '個人資料'}</p>
             </Link>
