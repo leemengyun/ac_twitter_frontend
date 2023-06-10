@@ -24,6 +24,7 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
   const pathId = Number(useParams().id); //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
+  // @ tweets 的 dummy資料
   const dummyData = {
     user: {
       id: 1,
@@ -155,6 +156,7 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
   // const userInfo = dummyData.data.user;
 
   //@ profileCard 渲染後端 userInfo
+
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
@@ -189,14 +191,11 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
       >
         <section className='section-outer-m  col-7'>
           <div className='section-main-m'>
-
             <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
 
             {/* <h1>UserCard</h1> */}
-            <ProfileCard />
+            <ProfileCard {...userInfo} />
             <TabThreeGroup setTabIndex={setTabIndex} />
-
-
 
             {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <TweetsLists />}
