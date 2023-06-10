@@ -38,8 +38,7 @@ const MainPage = ({ setModalOpen }) => {
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
             <h1>輸入tweet區塊</h1>
-            <h1>卡片lists</h1>
-            <ProfileCard />
+            {/* <ProfileCard /> */}
             <TweetLists tweets={tweets} onClick={handleClickAvatar} />
           </div>
         </section>

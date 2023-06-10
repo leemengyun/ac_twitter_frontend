@@ -190,14 +190,10 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
         <section className='section-outer-m  col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25' />
-
-            {/* <h1>UserCard</h1> */}
-            <ProfileCard />
-            <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
             <ProfileCard {...userInfo} />
-            <TabThreeGroup setTabIndex={setTabIndex} />
+            <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
-            {/* {switchContext(tabIndex)} */}
+            {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <TweetsLists />}
             {tabIndex === '1' && <ReplyLists />}
             {tabIndex === '2' && <LikeLists />} */}
