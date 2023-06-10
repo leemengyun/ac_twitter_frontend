@@ -27,11 +27,11 @@ import TweetPage from './pages/TweetPage';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
-  // const basename = process.env.PUBLIC_URL;
+  const basename = process.env.PUBLIC_URL;
 
   return (
     <>
-      <Router>
+      <Router basename={basename}>
         <PageLayout>
           <Routes>
             <Route path='*' element={<StoryBookPage />}></Route>
