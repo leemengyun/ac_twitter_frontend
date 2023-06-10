@@ -8,7 +8,7 @@ import FollowCardList from "../components/user/FollowCardList";
 
 
 const TweetPage = ()=>{
-  const [tweetInfo, setTweetInfo] = useState([])
+  const [tweetInfo, setTweetInfo] = useState({description:"",user:{avatar:"",name:"",account:""}})
   useEffect(()=>{
     const getTweetAsync = async()=>{
       try{
@@ -28,9 +28,9 @@ console.log(tweetInfo)
           <HeaderUser 
             userAccountName='推文'
           />
-          {/* <TweetBigCard 
+          <TweetBigCard 
           tweetInfo={tweetInfo}
-          />           */}
+          />          
         </div>      
       </section>
       <section className='section-right col-3'>
