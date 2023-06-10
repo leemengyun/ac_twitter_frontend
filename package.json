@@ -1,7 +1,7 @@
 {
   "name": "twitter-concept",
   "version": "0.1.0",
-  "homepage": "http://leemengyun.github.io/ac_twitter_frontend",
+  "homepage": "https://leemengyun.github.io/ac_twitter_frontend",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
