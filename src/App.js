@@ -27,13 +27,14 @@ import TweetPage from './pages/TweetPage';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
+  const basename = process.env.PUBLIC_URL;
 
   return (
     <>
-      <Router>
+      <Router basename='basename'>
         <PageLayout>
           <Routes>
-            <Route path='/' element={<StoryBookPage />}></Route>
+            <Route path='*' element={<StoryBookPage />}></Route>
             <Route path='/login' element={<LoginPage />}></Route>
             <Route path='/admin' element={<AdminPage />}></Route>
             <Route
@@ -41,7 +42,7 @@ function App() {
               element={<MainPage setModalOpen={setModalOpen} />}
             ></Route>
             <Route path='/user/:id' element={<UserPage />}></Route>
-            <Route path='/main/tweet/:id' element={<TweetPage/>}></Route>
+            <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
             <Route path='/setting' element={<SettingPage />}></Route>
             <Route path='/admin/users' element={<AdminUsers />}></Route>
             <Route path='/main/self2' element={<NestedUserPage />}></Route>
