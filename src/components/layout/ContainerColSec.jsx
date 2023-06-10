@@ -2,7 +2,13 @@ import React from 'react';
 import SecLeftNav from '../basic/SecLeftNev';
 // import Modal from '../basic/Modal';
 
-const ContainerColSec = ({ children, role, modalOpen, setModalOpen }) => {
+const ContainerColSec = ({
+  children,
+  role,
+  modalOpen,
+  setModalOpen,
+  pageIndex,
+}) => {
   return (
     <>
       {/* bootstrap gutter system needs come after row => row gx-4 */}
@@ -12,6 +18,7 @@ const ContainerColSec = ({ children, role, modalOpen, setModalOpen }) => {
           role={role}
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
+          pageIndex={pageIndex}
         />
         {children}
       </main>

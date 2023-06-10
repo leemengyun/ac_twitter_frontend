@@ -8,7 +8,7 @@ import ProfileMiniCard from '../components/basic/ProfileMiniCard';
 const AdminUsers = () => {
   return (
     <>
-      <ContainerColSec role='admin'>
+      <ContainerColSec role='admin' pageIndex={1}>
         <div className='section-outer-l col-10'>
           <div className='section-main-l'>
             <HeaderMain pageTitle='使用者列表' />

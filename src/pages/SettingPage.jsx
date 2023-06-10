@@ -7,7 +7,7 @@ import { HeaderMain } from '../components/basic/Header';
 const SettingPage = () => {
   return (
     <>
-      <ContainerColSec>
+      <ContainerColSec pageIndex={2}>
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderMain pageTitle='帳戶設定' />
