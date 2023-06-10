@@ -15,10 +15,16 @@ import ProfileCard from '../components/basic/ProfileCard';
 const MainPage = () => {
   const [tweets, setTweets] = useState([])
   const navigation = useNavigate()
-  const handleClickAvatar = ({id})=>{
-    console.log(id)
-    navigation(`/user/${id}`)
+  
+  
+  
+  const handleClickCard = ({id,userId})=>{
+    console.log(`id ${id}`)
+    console.log(`userid ${userId}`)
+    {userId && navigation(`/user/${userId}`)}
+    {id && navigation(`/main/tweet/${id}`)}
     //http://localhost:3000/user/:id
+    console.log(id)
   }
 
 
@@ -33,6 +39,8 @@ const MainPage = () => {
   }
   getTweetsAsync()
 },[])
+
+
   return (
     <>
       <ContainerColSec role='user'>
@@ -44,7 +52,7 @@ const MainPage = () => {
             <ProfileCard />
              <TweetLists 
               tweets={tweets}
-              onClick={handleClickAvatar}
+              onClick={handleClickCard}
             />
           </div>
         </section>

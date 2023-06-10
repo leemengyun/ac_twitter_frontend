@@ -103,7 +103,7 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
       <ContainerColSec modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <section className='section-outer-m  col-7'>
           <div className='section-main-m'>
-            <HeaderUser userAccountName='John Doe' userTweetsLength='25' />
+            <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
 
             {/* <h1>UserCard</h1> */}
             <ProfileCard />

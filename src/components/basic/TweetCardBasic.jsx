@@ -11,40 +11,29 @@ const TweetCardBasic = ({ ...props }) => {
     userId: props.id,
   }
   return (
-    <div className='tweet-card-basic'>
+    <div className='tweet-card-basic' onClick={()=>{
+      props.onClick?.({id: props.id})
+      }}>
       <UserAvatar 
       avatar={props.user.avatar}
       {...value}
-      onClick={({id})=>{
-        props.onClick?.({id})
+      onClick={({id,userId})=>{
+        props.onClick?.({id,userId})
       }}
       />
       <div className='tweet-card-left-info'>
-      <TweetUserName3 
-        name={props.user.name} 
-        account={props.user.account} 
-        time={props.time}
-      />
-        <p className='tweet-card-basic-description'>
-          {props.description}
-        </p>
-        <TweetIconCount 
-          likeCount={props.likeCount} 
-          repliesCount={props.repliesCount}
-  //6/9 15:12 衝突 確認後刪除
-//       <UserAvatar avatar={props.avatar} />
-//       <div className='tweet-card-left-info'>
-//         <TweetUserName3
-//           name={props.name}
-//           account={props.account}
-//           time={props.time}
-//         />
-//         <p className='tweet-card-basic-description'>{props.description}</p>
-//         <TweetIconCount
-//           likeCount={props.likeCount}
-//           replyCount={props.repliesCount}
-
+        <TweetUserName3 
+          name={props.user.name} 
+          account={props.user.account} 
+          time={'2023-06-10T03:29:40.000Z'}
         />
+          <p className='tweet-card-basic-description'>
+            {props.description}
+          </p>
+          <TweetIconCount 
+            likeCount={props.likeCount} 
+            repliesCount={props.repliesCount}
+          />
       </div>
     </div>
   );

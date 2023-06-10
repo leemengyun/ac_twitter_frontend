@@ -23,6 +23,7 @@ import UserPage from './pages/UserPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
+import TweetPage from './pages/TweetPage';
 
 function App() {
   // const [modalOpen, setModalOpen] = useState('false');
@@ -37,6 +38,7 @@ function App() {
             <Route path='/admin' element={<AdminPage />}></Route>
             <Route path='/main' element={<MainPage />}></Route>
             <Route path='/user/:id' element={<UserPage />}></Route>
+            <Route path='/main/tweet/:id' element={<TweetPage/>}></Route>
             <Route path='/setting' element={<SettingPage />}></Route>
             <Route path='/admin/users' element={<AdminUsers />}></Route>
             <Route path='/main/self2' element={<NestedUserPage />}></Route>
