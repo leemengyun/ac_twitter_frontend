@@ -5,6 +5,7 @@ import {
   // Link,
   Routes,
   Route,
+  HashRouter,
 } from 'react-router-dom';
 
 //import css
@@ -25,13 +26,14 @@ import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
 import TweetPage from './pages/TweetPage';
 
-function App() {
+function App({ router }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const basename = process.env.PUBLIC_URL;
+  // const basename = process.env.PUBLIC_URL;
 
   return (
     <>
-      <Router basename={basename}>
+      {/* <Router basename={basename}> */}
+      <HashRouter>
         <PageLayout>
           <Routes>
             <Route path='*' element={<StoryBookPage />}></Route>
@@ -49,7 +51,8 @@ function App() {
           </Routes>
           {modalOpen && <Modal setModalOpen={setModalOpen} />}
         </PageLayout>
-      </Router>
+      </HashRouter>
+      {/* </Router> */}
     </>
   );
 }
