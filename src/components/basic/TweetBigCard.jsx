@@ -3,21 +3,23 @@ import TweetIconCount from "./TweetIconCount";
 import TweetUserName2 from "./TweetUserName2";
 import UserAvatar from "./UserAvatar";
 
-const TweetBigCard = ({...props})=>{
+const TweetBigCard = ({tweetInfo})=>{
+
+  console.log({tweetInfo})
   return (
     <div className="TweetBigCard">
       <div className="TweetUserInfo">
         <div className="TweetUserInfo-head">
           <UserAvatar 
-            avatar={props.user.avatar}
+            avatar={tweetInfo.user.avatar}
           />
           <TweetUserName2 
-            name={props.user.name}
-            account={props.user.account}
+            name={tweetInfo.user.name}
+            account={tweetInfo.user.account}
           />
         </div>
         <p className='tweet-card-basic-description'>
-            {props.description}
+            {tweetInfo.description}
         </p>
         <p className="tweetDate">{`上午10:05·2021年11月10日`}
         </p>
