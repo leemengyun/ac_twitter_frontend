@@ -189,9 +189,14 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
       >
         <section className='section-outer-m  col-7'>
           <div className='section-main-m'>
-            <HeaderUser userAccountName='John Doe' userTweetsLength='25' />
-            <ProfileCard {...userInfo} />
-            <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
+
+            <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
+
+            {/* <h1>UserCard</h1> */}
+            <ProfileCard />
+            <TabThreeGroup setTabIndex={setTabIndex} />
+
+
 
             {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <TweetsLists />}

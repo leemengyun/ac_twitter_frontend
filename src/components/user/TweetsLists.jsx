@@ -4,19 +4,18 @@ import TweetCardBasic from '../basic/TweetCardBasic';
 const TweetsLists = ({ tweets, onClick }) => {
   console.log(tweets);
   return (
-    <div>
+    <div className='TweetLists'>
       <h1>Nested TweetsLists</h1>
-      {tweets.map((tweet) => {
-        return (
-          <TweetCardBasic
-            key={tweet.id}
-            {...tweet}
-            onClick={({ id }) => {
-              onClick?.({ id });
-            }}
-          />
-        );
-      })}
+ update/main
+      {tweets.map((tweet)=>{
+        return <TweetCardBasic 
+          key={tweet.id}
+          {...tweet}
+          onClick={({id,userId})=>{
+            onClick?.({id,userId})
+          }}
+        />
+   })}
     </div>
   );
 };

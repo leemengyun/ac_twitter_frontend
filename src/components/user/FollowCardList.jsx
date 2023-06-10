@@ -13,7 +13,7 @@ const [users,setUsers] = useState([]);
       const getUsersAsync = async()=>{
          try{
             const data = await getTopUsers()
-            setUsers(data)
+            setUsers(data.users)
          }catch(error){
             console.log(error)
          }

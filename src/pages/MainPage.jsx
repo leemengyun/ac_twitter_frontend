@@ -11,14 +11,18 @@ import { getTweets } from '../api/twitter';
 import { useNavigate } from 'react-router-dom';
 import ProfileCard from '../components/basic/ProfileCard';
 
+
 const MainPage = ({ setModalOpen }) => {
   const [tweets, setTweets] = useState([]);
   const navigation = useNavigate();
-  const handleClickAvatar = ({ id }) => {
-    console.log(id);
-    navigation(`/user/${id}`);
+  const handleClickCard = ({id,userId})=>{
+    console.log(`id ${id}`)
+    console.log(`userid ${userId}`)
+    {userId && navigation(`/user/${userId}`)}
+    {id && navigation(`/main/tweet/${id}`)}
     //http://localhost:3000/user/:id
-  };
+    console.log(id)
+  }
 
   useEffect(() => {
     const getTweetsAsync = async () => {
@@ -31,6 +35,7 @@ const MainPage = ({ setModalOpen }) => {
     };
     getTweetsAsync();
   }, []);
+
   return (
     <>
       <ContainerColSec role='user' setModalOpen={setModalOpen} pageIndex={0}>
@@ -38,8 +43,14 @@ const MainPage = ({ setModalOpen }) => {
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
             <h1>輸入tweet區塊</h1>
-            {/* <ProfileCard /> */}
-            <TweetLists tweets={tweets} onClick={handleClickAvatar} />
+
+            <h1>卡片lists</h1>
+            <ProfileCard />
+             <TweetLists 
+              tweets={tweets}
+              onClick={handleClickCard}
+            />
+
           </div>
         </section>
         <section className='section-right col-3'>

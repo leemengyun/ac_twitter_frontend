@@ -21,7 +21,7 @@ const HeaderUser = ({ userAccountName, userTweetsLength }) => {
       />
       <div className='header-user-info'>
         <h5>{userAccountName}</h5>
-        <p>{userTweetsLength} 推文</p>
+        <p>{userTweetsLength}</p>
       </div>
     </div>
   );
