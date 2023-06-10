@@ -26,7 +26,7 @@ export const getTopUsers = async()=>{
 export const getTweet = async()=>{
   try{
     const res = await axios.get(`${baseUrl}/tweets/1`)
-    return res.data
+    return res.data.data
   }catch(error){
     console.log('[Get Tweet Failed]: ', error)
   }

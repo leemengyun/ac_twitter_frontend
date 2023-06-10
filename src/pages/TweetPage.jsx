@@ -4,25 +4,23 @@ import {HeaderUser} from "../components/basic/Header"
 import TweetBigCard from "../components/basic/TweetBigCard";
 import { useEffect,useState  } from "react";
 import { getTweet } from "../api/twitter";
+import FollowCardList from "../components/user/FollowCardList";
 
 
 const TweetPage = ()=>{
   const [tweetInfo, setTweetInfo] = useState([])
-  
   useEffect(()=>{
     const getTweetAsync = async()=>{
       try{
-        const data = await getTweet();
-         setTweetInfo(data.data.tweet)
+        const data = await getTweet()
+        setTweetInfo(data.tweet)
       }catch(error){
         console.log(error)
       }
     }
     getTweetAsync()
-    
   },[])
-  
-  
+console.log(tweetInfo)
   return (
     <ContainerColSec>
      <section className="section-outer-m col-7">  
@@ -31,10 +29,13 @@ const TweetPage = ()=>{
             userAccountName='推文'
           />
           {/* <TweetBigCard 
-            {...tweetInfo}
-          /> */}
-        </div> 
+          tweetInfo={tweetInfo}
+          />           */}
+        </div>      
       </section>
+      <section className='section-right col-3'>
+          <FollowCardList />
+        </section>
     </ContainerColSec>
   )
 }

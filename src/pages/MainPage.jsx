@@ -15,14 +15,13 @@ import ProfileCard from '../components/basic/ProfileCard';
 const MainPage = ({ setModalOpen }) => {
   const [tweets, setTweets] = useState([]);
   const navigation = useNavigate();
-  const handleClickCard = ({id,userId})=>{
-    console.log(`id ${id}`)
-    console.log(`userid ${userId}`)
-    {userId && navigation(`/user/${userId}`)}
-    {id && navigation(`/main/tweet/${id}`)}
-    //http://localhost:3000/user/:id
-    console.log(id)
-  }
+  
+  
+  const handleClickCard = ({id,userId})=>{    
+      {id && navigation(`/main/tweet/${id}`)} 
+      {userId && navigation(`/user/${userId}`)}
+      
+    }
 
   useEffect(() => {
     const getTweetsAsync = async () => {
