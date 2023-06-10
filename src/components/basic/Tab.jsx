@@ -3,16 +3,27 @@ import React from 'react';
 // import svg
 // import iconBack from '../../assets/images/icon/back.svg';
 
-const TabThreeGroup = ({ setTabIndex }) => {
+// tab styles
+
+const TabThreeGroup = ({ tabIndex, setTabIndex }) => {
   return (
     <div className='tab-group'>
-      <div className='tab active' onClick={() => setTabIndex('0')}>
+      <div
+        className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')}
+        onClick={() => setTabIndex('0')}
+      >
         推文
       </div>
-      <div className='tab' onClick={() => setTabIndex('1')}>
+      <div
+        className={['tab', tabIndex === '1' ? 'active' : ''].join(' ')}
+        onClick={() => setTabIndex('1')}
+      >
         回覆
       </div>
-      <div className='tab' onClick={() => setTabIndex('2')}>
+      <div
+        className={['tab', tabIndex === '2' ? 'active' : ''].join(' ')}
+        onClick={() => setTabIndex('2')}
+      >
         喜歡的內容
       </div>
     </div>
