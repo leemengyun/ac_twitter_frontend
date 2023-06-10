@@ -195,7 +195,7 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
 
             {/* <h1>UserCard</h1> */}
             <ProfileCard {...userInfo} />
-            <TabThreeGroup setTabIndex={setTabIndex} />
+            <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
             {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <TweetsLists />}
