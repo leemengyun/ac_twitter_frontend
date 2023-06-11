@@ -5,7 +5,7 @@ import UserBk from './UserBk';
 
 // import svg
 // @ testing local photo
-import testAvatar from '../../assets/images/avatar1.jpg';
+// import testAvatar from '../../assets/images/avatar1.jpg';
 import iconMessage from '../../assets/images/icon/message.svg';
 import iconNotice from '../../assets/images/icon/notice.svg';
 
