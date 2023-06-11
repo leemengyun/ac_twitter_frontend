@@ -9,6 +9,7 @@ const ContainerColSec = ({
   setModalOpen,
   pageIndex,
 }) => {
+
   return (
     <>
       {/* bootstrap gutter system needs come after row => row gx-4 */}

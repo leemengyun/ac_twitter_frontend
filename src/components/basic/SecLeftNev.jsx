@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import iconLogo from '../../assets/images/icon/logo.svg';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
 const SecLeftNav = ({ role, modalOpen, setModalOpen, pageIndex }) => {
   // className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')
+  const {logout} = useAuth()
+  const handleClick = ()=>{
+    logout()
+  }
 
   return (
     <>
@@ -69,7 +74,7 @@ const SecLeftNav = ({ role, modalOpen, setModalOpen, pageIndex }) => {
             )}
           </div>
           <div className='left-nav-link-logout'>
-            <Link to='/login'>
+            <Link to='/login' onClick={handleClick}>
               <span className='nav-icon icon-logout'></span>
               <p>登出</p>
             </Link>

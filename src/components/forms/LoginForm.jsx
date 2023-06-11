@@ -16,7 +16,7 @@ const LoginForm = () => {
     watch,
   } = useForm();
   const {login,isAuthentical} = useAuth()
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   const onSubmit = async(data) => {
     // 如果是只要給api
@@ -44,10 +44,10 @@ const LoginForm = () => {
 
   useEffect(()=>{
     if(isAuthentical){
-      console.log('s')
-      navigation('/main')
+      
+      navigate('/main')
     }
-  },[isAuthentical]) //只要isAuthentical或navigation有變化便執行
+  },[navigate,isAuthentical]) //只要isAuthentical或navigation有變化便執行
 
 
   return (
