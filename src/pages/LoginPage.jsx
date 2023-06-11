@@ -6,8 +6,23 @@ import iconLogo from '../assets/images/icon/logo.svg';
 // import custom components
 import ContainerColOne from '../components/layout/ContainerColOne';
 import LoginForm from '../components/forms/LoginForm';
+import { useState } from 'react';
+import { useAuth } from '../components/context/AuthContext';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+  const {isAuthentical} = useAuth()
+  const navigation = useNavigate()
+
+  useEffect(()=>{
+    if(isAuthentical){
+      console.log('s')
+      navigation('/main')
+    }
+  },[navigation,isAuthentical]) //只要isAuthentical或navigation有變化便執行
+
+  
   return (
     <>
       <ContainerColOne>
