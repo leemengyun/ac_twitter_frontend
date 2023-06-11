@@ -46,6 +46,11 @@ export const AuthProvider = ({children})=>{
             setIsAuthentical(false)
           }
           return success
+        },
+        logout: async ()=>{
+          localStorage.removeItem('authToken')
+          setIsAuthentical(false)
+          setPayload(null)
         }
       }}
     >
