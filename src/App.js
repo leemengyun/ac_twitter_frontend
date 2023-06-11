@@ -27,19 +27,18 @@ import Modal from './components/basic/Modal';
 import TweetPage from './pages/TweetPage';
 import { AuthProvider } from './components/context/AuthContext';
 
-
-
 function App({ router }) {
   const [modalOpen, setModalOpen] = useState(false);
   // const basename = process.env.PUBLIC_URL;
 
   return (
     <>
-      <Router >
+      <HashRouter>
         <AuthProvider>
           <PageLayout>
             <Routes>
-              <Route path='*' element={<StoryBookPage />}></Route>
+              <Route path='*' element={<LoginPage />}></Route>
+              <Route path='/storybook' element={<StoryBookPage />}></Route>
               <Route path='/login' element={<LoginPage />}></Route>
               <Route path='/admin' element={<AdminPage />}></Route>
               <Route
@@ -55,7 +54,7 @@ function App({ router }) {
             {modalOpen && <Modal setModalOpen={setModalOpen} />}
           </PageLayout>
         </AuthProvider>
-      </Router>
+      </HashRouter>
     </>
   );
 }
