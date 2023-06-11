@@ -9,19 +9,20 @@ import FollowCardList from '../components/user/FollowCardList';
 import TweetLists from '../components/user/TweetsLists';
 import { getTweets } from '../api/twitter';
 import { useNavigate } from 'react-router-dom';
-import ProfileCard from '../components/basic/ProfileCard';
-
+import TweetCardForm from '../components/forms/TweetCardForm';
 
 const MainPage = ({ setModalOpen }) => {
   const [tweets, setTweets] = useState([]);
   const navigate = useNavigate();
- 
-  
-  const handleClickCard = ({id,userId})=>{    
-      {id && navigate(`/main/tweet/${id}`)} 
-      {userId && navigate(`/user/${userId}`)}
-      
+
+  const handleClickCard = ({ id, userId }) => {
+    {
+      id && navigate(`/main/tweet/${id}`);
     }
+    {
+      userId && navigate(`/user/${userId}`);
+    }
+  };
 
   useEffect(() => {
     const getTweetsAsync = async () => {
@@ -41,15 +42,11 @@ const MainPage = ({ setModalOpen }) => {
         <section className='section-outer-m col-7'>
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
-            <h1>輸入tweet區塊</h1>
+            <div className='tweet-form-wrapper'>
+              <TweetCardForm />
+            </div>
 
-            <h1>卡片lists</h1>
-            <ProfileCard />
-             <TweetLists 
-              tweets={tweets}
-              onClick={handleClickCard}
-            />
-
+            <TweetLists tweets={tweets} onClick={handleClickCard} />
           </div>
         </section>
         <section className='section-right col-3'>
