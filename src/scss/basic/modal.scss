@@ -62,10 +62,10 @@
   border-bottom: 1px solid var(--main-border);
 
   .icon-close {
-    width: 24px;
-    height: 24px;
     filter: var(--icon-main-color);
     margin-right: 32px;
+    cursor: pointer;
+    padding: 8px;
   }
 
   &.modal-header-with-btn {
@@ -75,6 +75,26 @@
 
     h5 {
       width: 100%;
+    }
+  }
+}
+
+//modalTweet
+.modal-container {
+  .modal-content {
+    &.modal-tweet-content {
+      .tweet-form-wrapper {
+        border-bottom: none;
+        .avatar {
+          position: relative;
+          top: unset;
+          left: unset;
+          .user-avatar {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
     }
   }
 }

@@ -22,6 +22,7 @@ const ProfileCard = ({
   banner,
   followersCount,
   followingsCount,
+  setModalProOpen,
 }) => {
   console.log(userInfo);
   return (
@@ -40,7 +41,10 @@ const ProfileCard = ({
             alt='icon of Notice'
             className='icon-round icon-notice icon-round cursor-point'
           />
-          <button className='button-md button-m' type='submit'>
+          <button
+            className='button-md button-m'
+            onClick={() => setModalProOpen(true)}
+          >
             編輯個人資料
           </button>
         </div>

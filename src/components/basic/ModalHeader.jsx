@@ -3,7 +3,7 @@ import React from 'react';
 // import svg
 import iconClose from '../../assets/images/icon/close.svg';
 
-const ModalHeader = ({ setModalOpen }) => {
+const ModalHeader = ({ setModalTweetOpen }) => {
   return (
     <>
       <div className='modal-header'>
@@ -11,13 +11,15 @@ const ModalHeader = ({ setModalOpen }) => {
           src={iconClose}
           alt='icon of close button'
           className='icon-close'
-          onClick={() => setModalOpen(false)}
+          onClick={() => {
+            setModalTweetOpen(false);
+          }}
         />
       </div>
     </>
   );
 };
-const ModalHeaderIcon = ({ setModalOpen }) => {
+const ModalHeaderIcon = ({ setModalProOpen }) => {
   return (
     <>
       <div className='modal-header modal-header-with-btn'>
@@ -25,7 +27,7 @@ const ModalHeaderIcon = ({ setModalOpen }) => {
           src={iconClose}
           alt='icon of close button'
           className='icon-close'
-          onClick={() => setModalOpen(false)}
+          onClick={() => setModalProOpen(false)}
         />
         <h5>編輯個人資料</h5>
         <button className='button-md button-m active' type='submit'>

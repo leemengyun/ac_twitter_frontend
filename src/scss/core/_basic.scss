@@ -265,7 +265,7 @@ h5 {
 }
 
 // card 樣式
-.TweetLists{
+.TweetLists {
   position: relative;
   z-index: 1;
 }
@@ -281,10 +281,10 @@ h5 {
   padding: 0px 24px 24px 16px;
   border-bottom: 1px solid var(--main-border);
   & .avatar {
-      position: relative;
-      z-index: 3;
-    }
-  & .tweet-card-left-info{
+    position: relative;
+    z-index: 3;
+  }
+  & .tweet-card-left-info {
     & .tweet-card-name-btn {
       display: flex;
       justify-content: space-between;
@@ -373,7 +373,7 @@ h5 {
 @mixin button-setting($size, $weight, $height, $width, $padding, $line-height) {
   font-size: $size;
   font-weight: $weight;
-  height: $height;
+  min-height: $height;
   width: $width;
   padding: $padding;
   line-height: $line-height;
@@ -440,7 +440,7 @@ h5 {
 
 .button-link {
   color: var(--primary-color);
-  @include button-setting(16px, 400, 24px, auto, 0, 24px);
+  @include button-setting(16px, 400, 24px, auto, 6px 12px, 24px);
   text-decoration-line: underline;
   text-underline-offset: 3px;
 }

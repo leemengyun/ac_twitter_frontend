@@ -11,7 +11,7 @@ import { getTweets } from '../api/twitter';
 import { useNavigate } from 'react-router-dom';
 import TweetCardForm from '../components/forms/TweetCardForm';
 
-const MainPage = ({ setModalOpen }) => {
+const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const navigate = useNavigate();
 
@@ -38,7 +38,11 @@ const MainPage = ({ setModalOpen }) => {
 
   return (
     <>
-      <ContainerColSec role='user' setModalOpen={setModalOpen} pageIndex={0}>
+      <ContainerColSec
+        role='user'
+        setModalTweetOpen={setModalTweetOpen}
+        pageIndex={0}
+      >
         <section className='section-outer-m col-7'>
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />

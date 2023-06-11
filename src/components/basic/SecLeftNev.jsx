@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import iconLogo from '../../assets/images/icon/logo.svg';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -6,12 +5,12 @@ import { useAuth } from '../context/AuthContext';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const SecLeftNav = ({ role, modalOpen, setModalOpen, pageIndex }) => {
+const SecLeftNav = ({ role, setModalTweetOpen, pageIndex }) => {
   // className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')
-  const {logout} = useAuth()
-  const handleClick = ()=>{
-    logout()
-  }
+  const { logout } = useAuth();
+  const handleClick = () => {
+    logout();
+  };
 
   return (
     <>
@@ -19,7 +18,10 @@ const SecLeftNav = ({ role, modalOpen, setModalOpen, pageIndex }) => {
         {/* <nav className='left-nav g-col-2'> */}
         <div className='left-nav-link'>
           <div className='left-nav-link-items'>
-            <Link to={role === 'admin' ? '/admin' : '/main'}>
+            <Link
+              to={role === 'admin' ? '/admin' : '/main'}
+              className='link-logo'
+            >
               <img
                 src={iconLogo}
                 alt='Alphitter Icon'
@@ -65,7 +67,7 @@ const SecLeftNav = ({ role, modalOpen, setModalOpen, pageIndex }) => {
                 <button
                   className='button-filled button-lg button-tweet'
                   type='submit'
-                  onClick={() => setModalOpen(true)}
+                  onClick={() => setModalTweetOpen(true)}
                   // onClick={()=> setModalActive(!)}
                 >
                   推文

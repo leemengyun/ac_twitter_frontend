@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
   // Link,
   Routes,
   Route,
@@ -24,11 +24,15 @@ import UserPage from './pages/UserPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
+import ModalTweet from './components/basic/ModalTweet';
 import TweetPage from './pages/TweetPage';
+import RegisterPage from './pages/RegisterPage';
 import { AuthProvider } from './components/context/AuthContext';
 
 function App({ router }) {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalProOpen, setModalProOpen] = useState(false);
+  const [modalTweetOpen, setModalTweetOpen] = useState(false);
+  console.log(`modalTweetOpen`, modalTweetOpen);
   // const basename = process.env.PUBLIC_URL;
 
   return (
@@ -41,17 +45,32 @@ function App({ router }) {
               <Route path='/storybook' element={<StoryBookPage />}></Route>
               <Route path='/login' element={<LoginPage />}></Route>
               <Route path='/admin' element={<AdminPage />}></Route>
+              <Route path='/register' element={<RegisterPage />}></Route>
               <Route
                 path='/main'
-                element={<MainPage setModalOpen={setModalOpen} />}
+                element={<MainPage setModalTweetOpen={setModalTweetOpen} />}
               ></Route>
-              <Route path='/user/:id' element={<UserPage />}></Route>
+              <Route
+                path='/user/:id'
+                element={
+                  <UserPage
+                    setModalProOpen={setModalProOpen}
+                    setModalTweetOpen={setModalTweetOpen}
+                  />
+                }
+              ></Route>
               <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
-              <Route path='/setting' element={<SettingPage />}></Route>
+              <Route
+                path='/setting'
+                element={<SettingPage setModalTweetOpen={setModalTweetOpen} />}
+              ></Route>
               <Route path='/admin/users' element={<AdminUsers />}></Route>
               <Route path='/main/self2' element={<NestedUserPage />}></Route>
             </Routes>
-            {modalOpen && <Modal setModalOpen={setModalOpen} />}
+            {modalTweetOpen && (
+              <ModalTweet setModalTweetOpen={setModalTweetOpen} />
+            )}
+            {modalProOpen && <Modal setModalProOpen={setModalProOpen} />}
           </PageLayout>
         </AuthProvider>
       </HashRouter>
