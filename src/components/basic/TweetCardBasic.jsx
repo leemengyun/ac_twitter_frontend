@@ -33,6 +33,7 @@ const TweetCardBasic = ({ ...props }) => {
           <TweetIconCount 
             likeCount={props.likeCount} 
             repliesCount={props.repliesCount}
+            isLiked={props.isLiked}
           />
       </div>
     </div>

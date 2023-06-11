@@ -1,9 +1,20 @@
 import React from 'react';
+import TweetCardBasic from '../basic/TweetCardBasic';
 
-const LikeLists = () => {
+const LikeLists = ({ tweets, onClick }) => {
   return (
-    <div>
-      <h1>Nested LikeLists</h1>
+    <div className='TweetLists'>
+      <h1>Nested TweetsLists</h1>
+ update/main
+      {tweets.map((tweet)=>{
+        return <TweetCardBasic 
+          key={tweet.id}
+          {...tweet}
+          onClick={({id,userId})=>{
+            onClick?.({id,userId})
+          }}
+        />
+   })}
     </div>
   );
 };
