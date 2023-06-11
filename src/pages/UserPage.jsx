@@ -32,7 +32,7 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
       email: 'test1@example.com',
       password: '$2a$10$MlmbvV0fDfjJuqipEU88W.KSo75y8Zc1C/hxA.rdG772HaALUiSQ.',
       name: 'test-1',
-      avatr: 'https://i.imgur.com/YcP0tik.jpeg',
+      avatar: 'https://i.imgur.com/YcP0tik.jpeg',
       introduction: 'Hi I am test No.1',
       banner: 'https://i.imgur.com/3ZH4ZZ8.jpeg',
       role: 'user',
@@ -174,9 +174,9 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
-        return <ReplyLists />;
+        return <ReplyLists users={dummyData.user}/>;
       case '2':
-        return <LikeLists />;
+        return <LikeLists tweets={dummyData.user.tweets}/>;
       default:
         return <TweetsLists tweets={dummyData.user.tweets} />;
     }

@@ -337,6 +337,10 @@ h5 {
       margin-right: 9px;
     }
 
+    & .active {
+      filter: var(--icon-main-color);
+    }
+
     & .tweet-count {
       font-size: 14px;
       font-weight: 600;
