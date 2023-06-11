@@ -25,6 +25,9 @@ import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
 import TweetPage from './pages/TweetPage';
+import { AuthProvider } from './components/context/AuthContext';
+
+
 
 function App({ router }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -32,27 +35,27 @@ function App({ router }) {
 
   return (
     <>
-      {/* <Router basename={basename}> */}
-      <HashRouter>
-        <PageLayout>
-          <Routes>
-            <Route path='*' element={<StoryBookPage />}></Route>
-            <Route path='/login' element={<LoginPage />}></Route>
-            <Route path='/admin' element={<AdminPage />}></Route>
-            <Route
-              path='/main'
-              element={<MainPage setModalOpen={setModalOpen} />}
-            ></Route>
-            <Route path='/user/:id' element={<UserPage />}></Route>
-            <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
-            <Route path='/setting' element={<SettingPage />}></Route>
-            <Route path='/admin/users' element={<AdminUsers />}></Route>
-            <Route path='/main/self2' element={<NestedUserPage />}></Route>
-          </Routes>
-          {modalOpen && <Modal setModalOpen={setModalOpen} />}
-        </PageLayout>
-      </HashRouter>
-      {/* </Router> */}
+      <Router >
+        <AuthProvider>
+          <PageLayout>
+            <Routes>
+              <Route path='*' element={<StoryBookPage />}></Route>
+              <Route path='/login' element={<LoginPage />}></Route>
+              <Route path='/admin' element={<AdminPage />}></Route>
+              <Route
+                path='/main'
+                element={<MainPage setModalOpen={setModalOpen} />}
+              ></Route>
+              <Route path='/user/:id' element={<UserPage />}></Route>
+              <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
+              <Route path='/setting' element={<SettingPage />}></Route>
+              <Route path='/admin/users' element={<AdminUsers />}></Route>
+              <Route path='/main/self2' element={<NestedUserPage />}></Route>
+            </Routes>
+            {modalOpen && <Modal setModalOpen={setModalOpen} />}
+          </PageLayout>
+        </AuthProvider>
+      </Router>
     </>
   );
 }

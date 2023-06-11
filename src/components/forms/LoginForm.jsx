@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from './InputGroup';
+import { useAuth } from '../context/AuthContext';
+
 
 const LoginForm = () => {
   // using react-form-hook-set-up
@@ -14,17 +15,40 @@ const LoginForm = () => {
     formState: { errors },
     watch,
   } = useForm();
+  const {login,isAuthentical} = useAuth()
+  const navigation = useNavigate()
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     // 如果是只要給api
     // 就在這設定 person,再給api,不需要setState
     // const person = {
     //   username: data.username,
     //   password: data.password,
     // };
-    console.log(data);
+    if (data.username.length === 0){
+      return
+    }
+    if(data.password.length === 0){
+      return
+    }
+    const success = await login(
+      {
+        account:data.username,
+        password:data.password
+      }
+    )
+      console.log('Login: ' , success)
+      console.log(data);
     reset();
   };
+
+  useEffect(()=>{
+    if(isAuthentical){
+      console.log('s')
+      navigation('/main')
+    }
+  },[isAuthentical]) //只要isAuthentical或navigation有變化便執行
+
 
   return (
     <div className='formLayout login-form'>
