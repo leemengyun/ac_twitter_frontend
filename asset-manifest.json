@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/ac_twitter_frontend/static/css/main.baf581f6.chunk.css",
-    "main.js": "/ac_twitter_frontend/static/js/main.193f2548.chunk.js",
-    "main.js.map": "/ac_twitter_frontend/static/js/main.193f2548.chunk.js.map",
+    "main.css": "/ac_twitter_frontend/static/css/main.0a7ceedf.chunk.css",
+    "main.js": "/ac_twitter_frontend/static/js/main.3bc87c5f.chunk.js",
+    "main.js.map": "/ac_twitter_frontend/static/js/main.3bc87c5f.chunk.js.map",
     "runtime-main.js": "/ac_twitter_frontend/static/js/runtime-main.99e8af4d.js",
     "runtime-main.js.map": "/ac_twitter_frontend/static/js/runtime-main.99e8af4d.js.map",
     "static/css/2.b832f192.chunk.css": "/ac_twitter_frontend/static/css/2.b832f192.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.bd1e3764.chunk.js.map": "/ac_twitter_frontend/static/js/3.bd1e3764.chunk.js.map",
     "index.html": "/ac_twitter_frontend/index.html",
     "static/css/2.b832f192.chunk.css.map": "/ac_twitter_frontend/static/css/2.b832f192.chunk.css.map",
-    "static/css/main.baf581f6.chunk.css.map": "/ac_twitter_frontend/static/css/main.baf581f6.chunk.css.map",
+    "static/css/main.0a7ceedf.chunk.css.map": "/ac_twitter_frontend/static/css/main.0a7ceedf.chunk.css.map",
     "static/js/2.331f3b3c.chunk.js.LICENSE.txt": "/ac_twitter_frontend/static/js/2.331f3b3c.chunk.js.LICENSE.txt",
     "static/media/avatar.bd02c62f.svg": "/ac_twitter_frontend/static/media/avatar.bd02c62f.svg",
     "static/media/avatar1.e64705b6.jpg": "/ac_twitter_frontend/static/media/avatar1.e64705b6.jpg",
@@ -25,14 +25,13 @@
     "static/media/logo.89093620.svg": "/ac_twitter_frontend/static/media/logo.89093620.svg",
     "static/media/message.4c9af58b.svg": "/ac_twitter_frontend/static/media/message.4c9af58b.svg",
     "static/media/notice.60c0a6cc.svg": "/ac_twitter_frontend/static/media/notice.60c0a6cc.svg",
-    "static/media/post.38b40641.svg": "/ac_twitter_frontend/static/media/post.38b40641.svg",
     "static/media/reply.1d9be076.svg": "/ac_twitter_frontend/static/media/reply.1d9be076.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.99e8af4d.js",
     "static/css/2.b832f192.chunk.css",
     "static/js/2.331f3b3c.chunk.js",
-    "static/css/main.baf581f6.chunk.css",
-    "static/js/main.193f2548.chunk.js"
+    "static/css/main.0a7ceedf.chunk.css",
+    "static/js/main.3bc87c5f.chunk.js"
   ]
 }
