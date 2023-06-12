@@ -1,5 +1,5 @@
 import React from "react";
-// import timeHelper from "../../../helper/timeHelper";
+import DayTime from "../../helper/TimeHelper";
 //時間會在更新
 const TweetUserName3 = ({name, account , time})=>{
     // const relativeTime = timeHelper.relativeTimeFromNow(time)
@@ -12,7 +12,7 @@ const TweetUserName3 = ({name, account , time})=>{
           <span className='user-account'>
             @{account}
           </span>
-          <span className='user-time'> ·{time}小時</span>
+          <span className='user-time'> ·{DayTime(time)}</span>
         </div>
     )
   }
