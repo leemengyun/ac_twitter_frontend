@@ -43,19 +43,60 @@
     // max-height: 500px;
     // overflow-y: auto;
     // overflow-x: hidden;
-
     .profile-bk-clip {
       width: 100%;
       height: 200px;
     }
-    .avatar {
+    .profile-bk-wrapper {
+    }
+    .profile-bk-wrapper {
+      position: relative;
+      .icon-camera {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        margin-right: 24px;
+      }
+      .icon-close {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        margin-right: -24px;
+        filter: var(--icon-white-color);
+      }
+      input {
+        display: none;
+      }
+    }
+    .avatar-edit-wrapper {
+      width: 100%;
+      //@ test border
+      // border: 1px solid;
       position: absolute;
       top: 124px;
-      left: var(--margin-s);
-      .user-avatar {
+      padding-left: 16px;
+      height: 140px;
+
+      .avatar {
+        position: absolute;
+        // top: 124px;
+        // left: var(--margin-s);
         width: 140px;
         height: 140px;
-        border: 4px solid var(--main-white);
+        .user-avatar {
+          width: 140px;
+          height: 140px;
+          border: 4px solid var(--main-white);
+        }
+      }
+      .icon-camera {
+        position: absolute;
+        left: 75px;
+        z-index: 10;
+        bottom: 60px;
+      }
+      input {
+        display: none;
       }
     }
   }
@@ -72,7 +113,6 @@
   justify-content: flex-start;
 
   .icon-close {
-    filter: var(--icon-main-color);
     margin-right: 32px;
     cursor: pointer;
     padding: 8px;
@@ -84,6 +124,8 @@
     }
   }
 }
+
+//modalProfile
 
 //modalTweet
 .modal-container {

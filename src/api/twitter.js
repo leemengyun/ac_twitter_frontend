@@ -1,4 +1,5 @@
 import axios from 'axios';
+// const baseUrl = 'http://localhost:3004';
 
 const baseUrl = 'https://calm-eyrie-50498.herokuapp.com/api';
 
@@ -48,7 +49,6 @@ export const getTweets = async () => {
   }
 };
 
-
 export const getTopUsers = async () => {
   try {
     const res = await axiosInstance.get(`${baseUrl}/users/top`);
@@ -59,7 +59,6 @@ export const getTopUsers = async () => {
   }
 };
 
-
 export const getTweet = async () => {
   try {
     const res = await axiosInstance.get(`${baseUrl}/tweets/1`);
@@ -68,4 +67,3 @@ export const getTweet = async () => {
     console.log('[Get Tweet Failed]: ', error);
   }
 };
-
