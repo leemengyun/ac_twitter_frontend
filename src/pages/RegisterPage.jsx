@@ -5,13 +5,12 @@ import iconLogo from '../assets/images/icon/logo.svg';
 
 // import custom components
 import ContainerColOne from '../components/layout/ContainerColOne';
-import LoginForm from '../components/forms/LoginForm';
-// import { useState } from 'react';
+import RegisterForm from '../components/forms/RegisterForm';
 import { useAuth } from '../components/context/AuthContext';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const { isAuthentical } = useAuth();
   const navigation = useNavigate();
 
@@ -33,12 +32,12 @@ const LoginPage = () => {
               className='icon-logo cursor-point'
             />
           </div>
-          <h3 className='page-title'>登入 Alphitter</h3>
-          <LoginForm />
+          <h3 className='page-title'>建立你的帳號</h3>
+          <RegisterForm />
         </div>
       </ContainerColOne>
     </>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

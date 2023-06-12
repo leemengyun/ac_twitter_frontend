@@ -28,6 +28,17 @@ nav {
       // font-weight: 700;
       // font-size: 18px;
 
+      &.link-logo {
+        padding: 0px;
+        width: 50px;
+        height: 50px;
+        // border: 1px solid pink;
+        margin-top: var(--margin-s);
+        .icon-logo {
+          padding: 5px;
+          margin: 0;
+        }
+      }
       .nav-icon {
         margin-right: 20px;
       }

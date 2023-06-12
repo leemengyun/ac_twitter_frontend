@@ -4,10 +4,14 @@ import ContainerColSec from '../components/layout/ContainerColSec';
 import SettingForm from '../components/forms/SettingForm';
 import { HeaderMain } from '../components/basic/Header';
 
-const SettingPage = () => {
+const SettingPage = ({ setModalTweetOpen }) => {
   return (
     <>
-      <ContainerColSec pageIndex={2}>
+      <ContainerColSec
+        role='user'
+        setModalTweetOpen={setModalTweetOpen}
+        pageIndex={2}
+      >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderMain pageTitle='帳戶設定' />

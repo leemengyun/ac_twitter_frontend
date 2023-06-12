@@ -10,16 +10,13 @@ import FollowCardList from '../components/user/FollowCardList';
 import ReplyLists from '../components/user/ReplyLists';
 import TweetsLists from '../components/user/TweetsLists';
 import LikeLists from '../components/user/LikeLists';
+import ProfileCard from '../components/basic/ProfileCard';
 
 import { useParams } from 'react-router-dom';
 //call api
 import { getUserInfo } from '../api/userinfo';
 
-import ProfileCard from '../components/basic/ProfileCard';
-// import { set } from 'react-hook-form';
-// import Modal from '../components/basic/Modal';
-
-const UserPage = ({ modalOpen, setModalOpen }) => {
+const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
   const pathId = Number(useParams().id); //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
@@ -174,9 +171,9 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
-        return <ReplyLists users={dummyData.user}/>;
+        return <ReplyLists users={dummyData.user} />;
       case '2':
-        return <LikeLists tweets={dummyData.user.tweets}/>;
+        return <LikeLists tweets={dummyData.user.tweets} />;
       default:
         return <TweetsLists tweets={dummyData.user.tweets} />;
     }
@@ -185,16 +182,16 @@ const UserPage = ({ modalOpen, setModalOpen }) => {
   return (
     <>
       <ContainerColSec
-        modalOpen={modalOpen}
-        setModalOpen={setModalOpen}
+        role='user'
+        setModalTweetOpen={setModalTweetOpen}
+        setModalProOpen={setModalProOpen}
         pageIndex={1}
       >
-        <section className='section-outer-m  col-7'>
+        <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
 
-            {/* <h1>UserCard</h1> */}
-            <ProfileCard {...userInfo} />
+            <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
             {switchContext(tabIndex)}

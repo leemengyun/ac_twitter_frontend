@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // import svg
 import iconBack from '../../assets/images/icon/back.svg';
@@ -14,11 +15,14 @@ const HeaderMain = ({ pageTitle }) => {
 const HeaderUser = ({ userAccountName, userTweetsLength }) => {
   return (
     <div className='header-container'>
-      <img
-        src={iconBack}
-        alt='Back to pre page'
-        className='icon-back cursor-point'
-      />
+      <Link to='/main'>
+        <img
+          src={iconBack}
+          alt='Back to pre page'
+          className='icon-back cursor-point'
+        />
+      </Link>
+
       <div className='header-user-info'>
         <h5>{userAccountName}</h5>
         <p>{userTweetsLength}</p>

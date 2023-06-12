@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from './InputGroup';
 import { useAuth } from '../context/AuthContext';
 
-
 const LoginForm = () => {
   // using react-form-hook-set-up
   const {
@@ -15,40 +14,36 @@ const LoginForm = () => {
     formState: { errors },
     watch,
   } = useForm();
-  const {login,isAuthentical} = useAuth()
-  const navigate = useNavigate()
+  const { login, isAuthentical } = useAuth();
+  const navigate = useNavigate();
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     // 如果是只要給api
     // 就在這設定 person,再給api,不需要setState
     // const person = {
     //   username: data.username,
     //   password: data.password,
     // };
-    if (data.username.length === 0){
-      return
+    if (data.username.length === 0) {
+      return;
     }
-    if(data.password.length === 0){
-      return
+    if (data.password.length === 0) {
+      return;
     }
-    const success = await login(
-      {
-        account:data.username,
-        password:data.password
-      }
-    )
-      console.log('Login: ' , success)
-      console.log(data);
+    const success = await login({
+      account: data.username,
+      password: data.password,
+    });
+    console.log('Login: ', success);
+    console.log(data);
     reset();
   };
 
-  useEffect(()=>{
-    if(isAuthentical){
-      
-      navigate('/main')
+  useEffect(() => {
+    if (isAuthentical) {
+      navigate('/main');
     }
-  },[navigate,isAuthentical]) //只要isAuthentical或navigation有變化便執行
-
+  }, [navigate, isAuthentical]); //只要isAuthentical或navigation有變化便執行
 
   return (
     <div className='formLayout login-form'>
@@ -96,7 +91,7 @@ const LoginForm = () => {
           登入
         </button>
         <div className='button-group-row login-button-group'>
-          <Link to='/admin' className='button-link'>
+          <Link to='/register' className='button-link'>
             註冊
           </Link>
           <span>・</span>
