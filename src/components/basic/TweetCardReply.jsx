@@ -1,7 +1,6 @@
 import React from 'react';
 import TweetUserName3 from './TweetUserName3';
 import UserAvatar from './UserAvatar';
-
 const TweetCardReply = ({ ...props }) => {
 
   return (
