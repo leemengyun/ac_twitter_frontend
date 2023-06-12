@@ -1,9 +1,7 @@
 import React from 'react';
 import ReplyModal from '../basic/ReplyModal';
-import TweetCardForm from './TweetCardForm';
-
+import {useForm} from 'react-hook-form'
 const ReplyCardForm = ()=>{
-
    const replyDummy = {
     member:{
         id: 3,
@@ -35,6 +33,25 @@ const ReplyCardForm = ()=>{
     }
   }
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: {errors}
+  } = useForm();
+
+  const onSubmit = (data) =>{
+    // 如果是只要給api
+    // 就在這設定 person,再給api,不需要setState
+    // const person = {
+    //   username: data.username,
+    //   password: data.password,
+    // };
+    alert('成功繳交');
+    console.log(data);
+    reset();
+  }
+
   return (
     <div className='tweet-reply-wrapper'>
       <ReplyModal 
@@ -43,6 +60,11 @@ const ReplyCardForm = ()=>{
       userAccount={replyDummy.member.user.account}
       time={replyDummy.member.user.createdAt}
       userAvatar={replyDummy.member.user.avatar}/>
+      <div className='formLayout tweet-card-form'>
+        <form >
+
+        </form>
+      </div>
     </div>
   )
 }

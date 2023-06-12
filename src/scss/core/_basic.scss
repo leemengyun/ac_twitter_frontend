@@ -348,17 +348,17 @@ h5 {
     }
   }
     //ReplyModal
-  .tweet-card-basic-description{
-    position: relative;
-    &::after{
-      content: "";
-      height: 100%;
-      border: 1px solid var(--gray-60);
-      position: absolute;
-      left: -35px;
-      top: 34px;
-    }
-  }  
+  // .tweet-card-basic-description{
+  //   position: relative;
+  //   &::after{
+  //     content: "";
+  //     height: 100%;
+  //     border: 1px solid var(--gray-60);
+  //     position: absolute;
+  //     left: -35px;
+  //     top: 34px;
+  //   }
+  // }  
 }
 // FollowCardList
 .follow-card {
