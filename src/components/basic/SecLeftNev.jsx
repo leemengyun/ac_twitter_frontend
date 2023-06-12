@@ -70,8 +70,10 @@ const SecLeftNav = ({ role, setModalTweetOpen, pageIndex }) => {
                   onClick={() => setModalTweetOpen(true)}
                   // onClick={()=> setModalActive(!)}
                 >
-                  推文
+                  <span className='button-tweet-view'>推文</span>
+                  <span className='button-tweet-view-m'></span>
                 </button>
+
               </>
             )}
           </div>
