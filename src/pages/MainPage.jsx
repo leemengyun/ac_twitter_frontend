@@ -10,12 +10,14 @@ import TweetLists from '../components/user/TweetsLists';
 import { getTweets } from '../api/twitter';
 import { useNavigate } from 'react-router-dom';
 import TweetCardForm from '../components/forms/TweetCardForm';
-
+import { useAuth } from '../components/context/AuthContext';
 
 const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const navigate = useNavigate();
+  const { isAuthentical, currentMember } = useAuth(); // 取出需要的狀態與方法
 
+  //@ 切換內容到卡片/other user
   const handleClickCard = ({ id, userId }) => {
     {
       id && navigate(`/main/tweet/${id}`);
@@ -29,8 +31,8 @@ const MainPage = ({ setModalTweetOpen }) => {
     const getTweetsAsync = async () => {
       try {
         const data = await getTweets();
-        // setTweets(data.tweets);
-        setTweets(data.user.tweets)
+        // console.log(data);
+        setTweets(data);
       } catch (error) {
         console.log(error);
       }
@@ -38,18 +40,25 @@ const MainPage = ({ setModalTweetOpen }) => {
     getTweetsAsync();
   }, []);
 
+  useEffect(() => {
+    if (!isAuthentical) {
+      navigate('/login');
+    }
+  }, [navigate, isAuthentical]); //只要isAuthentical或navigation有變化便執行
+
   return (
     <>
       <ContainerColSec
         role='user'
         setModalTweetOpen={setModalTweetOpen}
         pageIndex={0}
+        {...currentMember}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
             <div className='tweet-form-wrapper'>
-              <TweetCardForm />
+              <TweetCardForm avatar={currentMember?.avatar} />
             </div>
 
             <TweetLists tweets={tweets} onClick={handleClickCard} />

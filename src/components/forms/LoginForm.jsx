@@ -14,6 +14,7 @@ const LoginForm = () => {
     formState: { errors },
     watch,
   } = useForm();
+
   const { login, isAuthentical } = useAuth();
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const LoginForm = () => {
       password: data.password,
     });
     console.log('Login: ', success);
-    console.log(data);
+    // console.log(data);
     reset();
   };
 

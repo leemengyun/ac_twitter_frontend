@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-//nested router - need Link and Outlet
-
+import { useNavigate } from 'react-router-dom';
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
@@ -14,16 +13,18 @@ import ProfileCard from '../components/basic/ProfileCard';
 import { useParams } from 'react-router-dom';
 //call api
 import { getUserInfo } from '../api/userinfo';
+import { useAuth } from '../components/context/AuthContext';
 
 const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
   const pathId = Number(useParams().id); //取得網址:id
-  //向後端 給予(pathid)參數 拿該用戶的資料
+  //向後端 給予(pathId)參數 拿該用戶的資料
+  // console.log(pathId);
+  const navigate = useNavigate();
+  const { isAuthentical, currentMember } = useAuth(); // 取出需要的狀態與方法
+
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
- 
-  
-
   const dummyData = {
     user: {
       id: 1,
@@ -85,90 +86,23 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   };
 
   // @串接 local-server 用這一個
-  const [userInfo, setUserInfo] = useState('');
+  const [userInfo, setUserInfo] = useState({}); // 使用空对象作為初始值
+  console.log(userInfo);
 
-  // @串接 ProfileCard的api資料
-  // const dummyData = {
-  //   status: 'success',
-  //   data: {
-  //     user: {
-  //       id: 1,
-  //       account: 'dummyAAA',
-  //       email: 'test1@example.com',
-  //       password:
-  //         '$2a$10$MlmbvV0fDfjJuqipEU88W.KSo75y8Zc1C/hxA.rdG772HaALUiSQ.',
-  //       name: 'dummyAAA',
-  //       avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-  //       introduction: 'Hi I am AAA',
-  //       banner: 'https://i.imgur.com/3ZH4ZZ8.jpeg',
-  //       role: 'user',
-  //       createdAt: '2023-05-25T11:09:42.000Z',
-  //       updatedAt: '2023-05-25T11:09:42.000Z',
-  //       tweets: [
-  //         {
-  //           id: 1,
-  //           userId: 1,
-  //           description: 'Test-Tweet-user1-1',
-  //           createdAt: '2023-05-25T11:09:42.000Z',
-  //           updatedAt: '2023-05-25T11:09:42.000Z',
-  //           isLiked: true,
-  //           repliesCount: 1,
-  //           user: {
-  //             name: 'test-1-name',
-  //             account: 'test-1-account',
-  //             avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-  //           },
-  //         },
-  //         {
-  //           id: 2,
-  //           userId: 1,
-  //           description: 'Test-Tweet-user1-2',
-  //           createdAt: '2023-05-25T11:09:42.000Z',
-  //           updatedAt: '2023-05-25T11:09:42.000Z',
-  //           isLiked: false,
-  //           repliesCount: 2,
-  //           user: {
-  //             name: 'test-1-name',
-  //             account: 'test-1-account',
-  //             avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-  //           },
-  //         },
-  //         {
-  //           id: 3,
-  //           userId: 1,
-  //           description: 'Test-Tweet-user3-3',
-  //           createdAt: '2023-05-25T11:09:42.000Z',
-  //           updatedAt: '2023-05-25T11:09:42.000Z',
-  //           isLiked: false,
-  //           repliesCount: 3,
-  //           user: {
-  //             name: 'test-1-name',
-  //             account: 'test-1-account',
-  //             avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-  //           },
-  //         },
-  //       ],
-  //     },
-  //   },
-  // };
-  // @串接dummy 用這一個
-  // const userInfo = dummyData.data.user;
-
-  //@ profileCard 渲染後端 userInfo
-
+  //@ profileCard get data when page renders
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const userInfo = await getUserInfo();
+        const userInfo = await getUserInfo(pathId);
         setUserInfo(userInfo);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
       }
     };
     getUserInfoAsync();
-  }, []);
+  }, [userInfo]);
 
-  //切換下方tab
+  //@ 切換下方tab
   //swtich case 與 if else概念相同，但return component更簡潔(??)
   function switchContext(tabIndex) {
     switch (tabIndex) {
@@ -181,6 +115,12 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
     }
   }
 
+  useEffect(() => {
+    if (!isAuthentical) {
+      navigate('/login');
+    }
+  }, [navigate, isAuthentical]); //只要isAuthentical或navigation有變化便執行
+
   return (
     <>
       <ContainerColSec
@@ -188,15 +128,16 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         pageIndex={1}
+        currentMember={currentMember}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
-            
+
             <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
-            {switchContext(tabIndex)}
+            {/* {switchContext(tabIndex)} */}
             {/* {tabIndex === '0' && <TweetsLists />}
             {tabIndex === '1' && <ReplyLists />}
             {tabIndex === '2' && <LikeLists />} */}

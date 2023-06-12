@@ -43,7 +43,8 @@ export const getTweets = async () => {
   try {
     const res = await axiosInstance.get(`${baseUrl}/tweets`); //watch的屬性名作為path
     //console.log(res.data[0].data)//{status: 'success', data: {…}}data: {tweets: Array(7)}status: "success"[[Prototype]]: Object
-    return res.data.data; //{tweets: Array(7)}
+    // console.log('get all Tweets', res.data);
+    return res.data; //{tweets: Array(7)}
   } catch (error) {
     console.log('[Get Tweets failed]:', error);
   }
@@ -52,7 +53,7 @@ export const getTweets = async () => {
 export const getTopUsers = async () => {
   try {
     const res = await axiosInstance.get(`${baseUrl}/users/top`);
-    console.log(res.data);
+    // console.log(res.data);
     return res.data.data;
   } catch (error) {
     console.log('[get topUser failed]:', error);

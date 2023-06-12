@@ -32,8 +32,7 @@ import { AuthProvider } from './components/context/AuthContext';
 function App({ router }) {
   const [modalProOpen, setModalProOpen] = useState(false);
   const [modalTweetOpen, setModalTweetOpen] = useState(false);
-  console.log(`modalTweetOpen`, modalTweetOpen);
-  // const basename = process.env.PUBLIC_URL;
+  // console.log(`modalTweetOpen`, modalTweetOpen);
 
   return (
     <>

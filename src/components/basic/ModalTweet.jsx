@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 
 // import component
 import ModalContent from './ModalContent';
@@ -11,20 +11,20 @@ import TweetCardForm from '../forms/TweetCardForm';
 
 const ModalTweet = ({ setModalTweetOpen }) => {
   // using react-form-hook-set-up
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-    watch,
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   reset,
+  //   formState: { errors },
+  //   watch,
+  // } = useForm();
 
-  const onSubmit = async (data) => {
-    // 如果是只要給api
-    // 就在這設定 person,再給api,不需要setState
-    console.log(data);
-    reset();
-  };
+  // const onSubmit = async (data) => {
+  //   // 如果是只要給api
+  //   // 就在這設定 person,再給api,不需要setState
+  //   console.log(data);
+  //   reset();
+  // };
 
   return (
     <>
