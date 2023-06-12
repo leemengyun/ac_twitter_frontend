@@ -105,5 +105,10 @@ nav {
       display: inline-block;
       background-image: url(../../assets/images/icon/logout.svg);
     }
+    .button-filled{
+      .button-tweet-view{
+        color: var(--main-white);
+      }
+    }
 }
 }

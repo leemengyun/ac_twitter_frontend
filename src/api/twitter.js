@@ -22,6 +22,22 @@ axiosInstance.interceptors.request.use(
   }
 );
 
+// ,  {
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'Origin': 'https://leemengyun.github.io/'
+//   }}
+
+// ,{
+//       headers: {
+//         'Access-Control-Allow-Origin':'*',
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+//         'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+//         'Accept': 'application/json',
+//       }
+//     }
+
 export const getTweets = async () => {
   try {
     const res = await axiosInstance.get(`${baseUrl}/tweets`); //watch的屬性名作為path

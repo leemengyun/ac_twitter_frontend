@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
+
 //nested router - need Link and Outlet
 
 // import custom components
@@ -22,6 +24,8 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
+  const now = dayjs();
+  const format = now.format('DD/MM/YYYY')
   const dummyData = {
     user: {
       id: 1,
@@ -190,7 +194,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
-
+            <h1>{format}</h1>
             <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
