@@ -72,7 +72,6 @@ nav {
       height: 24px;
       display: inline-block;
       background-image: url(../../assets/images/icon/home.svg);
-
       &.active {
         background-image: url(../../assets/images/icon/home-filled.svg);
       }
@@ -106,5 +105,5 @@ nav {
       display: inline-block;
       background-image: url(../../assets/images/icon/logout.svg);
     }
-  }
+}
 }

@@ -36,8 +36,26 @@ $screen-break-point: 992px;
         }
       }
     }
-    .button-tweet {
-      display: none;
+    .button-filled.button-lg {
+      transition-duration: 0.1s;
+      
+      height: 40px;
+      width: 40px;
+      padding: 0px;
+      margin: 0px 8px;
+      line-height: 45px;
+      .button-tweet-view {
+        display: none;
+      }
+      .button-tweet-view-m {
+        transition-duration: 0.1s;
+
+        width: 23.87px;
+        height: 21.6px;
+        display: inline-block;
+        background-image: url(../../assets/images/icon/post.svg);
+        filter: var(--gray-0);
+      }
     }
   }
 }
