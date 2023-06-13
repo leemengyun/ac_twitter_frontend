@@ -368,25 +368,7 @@ h5 {
   //   }
   // }  
 }
-// FollowCardList
-.follow-card {
-  display: flex;
-  align-items: center;
-  min-width: 273px;
-  height: 82px;
-  padding: 16px;
-  & .tweet-username-2 {
-    max-width: 83px;
-    margin-right: 3px;
-    & .user-name,
-    .user-account {
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-  }
-}
+
 /* End [共用元件] ---------------------------------------------------------------------------------------- */
 
 /* @group [buttons] ----------------------------------------------------------------------------------------*/

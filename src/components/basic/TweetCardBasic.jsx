@@ -6,25 +6,25 @@ import TweetIconCount from "./TweetIconCount";
 
 
 const TweetCardBasic = ({ ...props }) => {
-  const value ={
-    id: props.id,
-    userId: props.id,
-  }
+  // const value ={
+  //   tweetId: props.id,
+  //   userId: props.UserId,
+  // }
   return (
     <div className='tweet-card-basic' onClick={()=>{
-      props.onClick?.({id: props.id})
+      props.onClick?.({tweetId: props.id})
       }}>
       <UserAvatar 
-      avatar={props.user.avatar}
-      {...value}
-      onClick={({id,userId})=>{
-        props.onClick?.({id,userId})
+      avatar={props.User.avatar}
+      userId={props.UserId}
+      onClick={({userId})=>{
+        props.onClick?.({userId})
       }}
       />
       <div className='tweet-card-left-info'>
         <TweetUserName3 
-          name={props.user.name} 
-          account={props.user.account} 
+          name={props.User.name} 
+          account={props.User.account} 
           time={'2023-06-10T03:29:40.000Z'}
         />
           <p className='tweet-card-basic-description'>

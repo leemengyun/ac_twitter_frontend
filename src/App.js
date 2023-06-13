@@ -59,7 +59,7 @@ function App({ router }) {
                   />
                 }
               ></Route>
-              <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
+              <Route path='/main/tweet/:id' element={<TweetPage setModalTweetOpen={setModalTweetOpen}/>}></Route>
               <Route
                 path='/setting'
                 element={<SettingPage setModalTweetOpen={setModalTweetOpen} />}

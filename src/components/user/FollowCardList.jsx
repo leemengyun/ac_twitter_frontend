@@ -2,18 +2,20 @@ import React from 'react';
 import { useEffect,useState  } from 'react';
 import { getTopUsers } from '../../api/twitter';
 import FollowCard from '../basic/FollowCard'
+import { useAuth } from '../context/AuthContext';
 // import iconLogo from '../assets/images/icon/logo.svg';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
 const FollowCardList = () => {
 const [users,setUsers] = useState([]);
-  
+
+
    useEffect(()=>{
       const getUsersAsync = async()=>{
          try{
             const data = await getTopUsers()
-            setUsers(data.users)
+            setUsers(data)
          }catch(error){
             console.log(error)
          }
