@@ -104,6 +104,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
       try {
         const data = await getUserTweets(pathId);
         setUserTweets(data);
+        // console.log(data.length);
       } catch (error) {
         console.log(error);
       }
@@ -138,11 +139,14 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         pageIndex={1}
-        {...currentMember}
+        memberId={userInfo.id}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
-            <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
+            <HeaderUser
+              userAccountName={userInfo.name}
+              userTweetsLength={userTweets.length}
+            />
 
             <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />

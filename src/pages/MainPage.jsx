@@ -8,12 +8,15 @@ import { HeaderMain } from '../components/basic/Header';
 import FollowCardList from '../components/user/FollowCardList';
 import TweetLists from '../components/user/TweetsLists';
 import { getTweets } from '../api/twitter';
+import { getUserInfo } from '../api/userinfo';
+
 import { useNavigate } from 'react-router-dom';
 import TweetCardForm from '../components/forms/TweetCardForm';
 import { useAuth } from '../components/context/AuthContext';
 
 const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
+  const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
   const { isAuthentical, currentMember } = useAuth(); // 取出需要的狀態與方法
 
@@ -27,6 +30,15 @@ const MainPage = ({ setModalTweetOpen }) => {
   };
 
   useEffect(() => {
+    const getUserInfoAsync = async () => {
+      try {
+        const profile = await getUserInfo(currentMember.id);
+        setProfile(profile);
+      } catch (error) {
+        console.error('[getUser Info  with Async failed]', error);
+      }
+    };
+
     const getTweetsAsync = async () => {
       try {
         const data = await getTweets();
@@ -35,6 +47,7 @@ const MainPage = ({ setModalTweetOpen }) => {
         console.log(error);
       }
     };
+    getUserInfoAsync();
     getTweetsAsync();
   }, []);
 
@@ -56,7 +69,7 @@ const MainPage = ({ setModalTweetOpen }) => {
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
             <div className='tweet-form-wrapper'>
-              <TweetCardForm avatar={currentMember?.avatar} />
+              <TweetCardForm {...profile} />
             </div>
 
             <TweetLists tweets={tweets} onClick={handleClickCard} />
