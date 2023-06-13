@@ -5,7 +5,7 @@ import TweetUserName3 from "./TweetUserName3";
 import TweetIconCount from "./TweetIconCount";
 
 
-const TweetCardBasic = ({ ...props }) => {
+const TweetCardLike = ({ ...props }) => {
   // const value ={
   //   tweetId: props.id,
   //   userId: props.UserId,
@@ -25,10 +25,10 @@ const TweetCardBasic = ({ ...props }) => {
         <TweetUserName3 
           name={props.User.name} 
           account={props.User.account} 
-          time={props.createdAt}
+          time={props.Tweet.createdAt}
         />
           <p className='tweet-card-basic-description'>
-            {props.description}
+            {props.Tweet.description}
           </p>
           <TweetIconCount 
             likesCount={props.likesCount} 
@@ -40,4 +40,4 @@ const TweetCardBasic = ({ ...props }) => {
   );
 };
 
-export default TweetCardBasic;
+export default TweetCardLike;
