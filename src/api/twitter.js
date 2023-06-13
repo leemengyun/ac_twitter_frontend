@@ -92,7 +92,7 @@ export const getUserLikedTweets = async (pathId)=>{
 //取得User Replied的推文
 export const getUserRepliedTweets = async (pathId)=>{
   try {
-    const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/likes`)
+    const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/replied_tweets`)
     return res.data
   }catch(error){
     console.log('[Get getUserLikedTweets Failed!!]:', error)

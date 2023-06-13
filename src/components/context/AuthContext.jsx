@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   //頁面刷新時，確認是誰
   const { pathname } = useLocation();
 
-  //封裝檢查token
+  // 封裝檢查token
   useEffect(() => {
     const checkTokenIsValid = async () => {
       const authToken = localStorage.getItem('authToken');
