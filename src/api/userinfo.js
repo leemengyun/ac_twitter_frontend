@@ -34,7 +34,6 @@ export const getUserInfo = async (pathId) => {
     // console.log(res.data[0].data.user);
     // return res.data[0].data.user;
     // console.log(res.data.data);
-    console.log(res)
     return res.data;
   } catch (error) {
     console.error('[getUser Info failed]', error);
