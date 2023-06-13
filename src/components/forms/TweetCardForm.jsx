@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import UserAvatar from '../basic/UserAvatar';
 import testAvatar from '../../assets/images/avatar1.jpg';
 
-const TweetCardForm = () => {
+const TweetCardForm = ({ avatar }) => {
   // using react-form-hook-set-up
   const {
     register,
@@ -32,7 +32,7 @@ const TweetCardForm = () => {
       <div className='formLayout tweet-card-form'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='form-group-inner-wrapper'>
-            <UserAvatar avatar={testAvatar} />
+            <UserAvatar avatar={avatar} />
             <div className='textarea-group-container'>
               <div className='grow-wrap'>
                 <textarea

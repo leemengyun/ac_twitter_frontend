@@ -20,8 +20,8 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const pathId = Number(useParams().id); //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
-  const navigate = useNavigate()
-  const {isAuthentical,currentMember} = useAuth()
+  const navigate = useNavigate();
+  const { isAuthentical, currentMember } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
 
@@ -87,7 +87,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
     },
   };
 
-console.log(currentMember)
+  // console.log(currentMember)
   //@ profileCard 渲染後端 userInfo
 
   useEffect(() => {
@@ -101,7 +101,6 @@ console.log(currentMember)
     };
     getUserInfoAsync();
   }, []);
-
 
   useEffect(() => {
     if (!isAuthentical) {
@@ -134,7 +133,7 @@ console.log(currentMember)
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />
-            
+
             <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 

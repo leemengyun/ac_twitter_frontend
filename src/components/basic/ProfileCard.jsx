@@ -14,7 +14,6 @@ import iconNotice from '../../assets/images/icon/notice.svg';
 //   'https://images.unsplash.com/photo-1497290756760-23ac55edf36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80';
 
 const ProfileCard = ({
-  userInfo,
   name,
   account,
   introduction,
@@ -24,7 +23,6 @@ const ProfileCard = ({
   followingsCount,
   setModalProOpen,
 }) => {
-  console.log(userInfo);
   return (
     <>
       <div className='profile-card'>
