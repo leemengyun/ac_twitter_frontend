@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const SecLeftNav = ({ role, setModalTweetOpen, pageIndex,memberId }) => {
+const SecLeftNav = ({ role, setModalTweetOpen, pageIndex, memberId }) => {
   // className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')
   const { logout } = useAuth();
   const handleClick = () => {
@@ -72,7 +72,6 @@ const SecLeftNav = ({ role, setModalTweetOpen, pageIndex,memberId }) => {
                   <span className='button-tweet-view'>推文</span>
                   <span className='button-tweet-view-m'></span>
                 </button>
-
               </>
             )}
           </div>
