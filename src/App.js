@@ -18,9 +18,12 @@ import PageLayout from './components/layout/PageLayout';
 import NestedUserPage from './pages/main/NestedUserPage';
 import LoginPage from './pages/LoginPage';
 import StoryBookPage from './pages/storybooks/StoryBookPage';
+// import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPage from './pages/AdminPage';
 import SettingPage from './pages/SettingPage';
 import UserPage from './pages/UserPage';
+import UserOtherPage from './pages/UserOtherPage';
+import UserFollowersPage from './pages/UserFollowersPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
@@ -44,7 +47,8 @@ function App({ router }) {
               <Route path='*' element={<LoginPage />}></Route>
               <Route path='/storybook' element={<StoryBookPage />}></Route>
               <Route path='/login' element={<LoginPage />}></Route>
-              <Route path='/admin' element={<AdminPage />}></Route>
+              {/* <Route path='/login/admin' element={<AdminLoginPage />}></Route> */}
+              <Route path='/login/admin' element={<AdminPage />}></Route>
               <Route path='/register' element={<RegisterPage />}></Route>
               <Route
                 path='/main'
@@ -59,6 +63,26 @@ function App({ router }) {
                   />
                 }
               ></Route>
+              <Route
+                path='/other'
+                element={
+                  <UserOtherPage
+                    setModalProOpen={setModalProOpen}
+                    setModalTweetOpen={setModalTweetOpen}
+                  />
+                }
+              ></Route>
+
+              <Route
+                path='/user/followers'
+                element={
+                  <UserFollowersPage
+                    setModalProOpen={setModalProOpen}
+                    setModalTweetOpen={setModalTweetOpen}
+                  />
+                }
+              ></Route>
+
               <Route
                 path='/main/tweet/:id'
                 element={<TweetPage setModalTweetOpen={setModalTweetOpen} />}

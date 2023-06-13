@@ -9,17 +9,16 @@ import FollowCardList from '../components/user/FollowCardList';
 import ReplyLists from '../components/user/ReplyLists';
 import TweetsLists from '../components/user/TweetsLists';
 import LikeLists from '../components/user/LikeLists';
-import ProfileCard from '../components/basic/ProfileCard';
+import ProfileOtherCard from '../components/basic/ProfileOtherCard';
 import { useParams } from 'react-router-dom';
 //call api
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
 import { getUserTweets } from '../api/twitter';
 
-const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
+const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
-  const pathId = Number(useParams().id)
-  //取得網址:id
+  const pathId = Number(useParams().id); //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
@@ -95,7 +94,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const userInfo = await getUserInfo(pathId);
+        const userInfo = await getUserInfo(94);
         setUserInfo(userInfo);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
@@ -103,14 +102,12 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
     };
     const getUserTweetsAsync = async () => {
       try {
-        const data = await getUserTweets(pathId);
+        const data = await getUserTweets(94);
         setUserTweets(data);
-        // console.log(data.length);
       } catch (error) {
         console.log(error);
       }
     };
-    
     getUserTweetsAsync();
     getUserInfoAsync();
   }, []);
@@ -126,9 +123,9 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
-        return <ReplyLists pathId={pathId} />;
+        return <ReplyLists pathId={94} />;
       case '2':
-        return <LikeLists pathId={pathId} />;
+        return <LikeLists pathId={94} />;
       default:
         return <TweetsLists tweets={userTweets} />;
     }
@@ -139,17 +136,15 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
       <ContainerColSec
         role='user'
         setModalTweetOpen={setModalTweetOpen}
+        setModalProOpen={setModalProOpen}
         pageIndex={1}
-        memberId={userInfo.id}
+        {...currentMember}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
-            <HeaderUser
-              userAccountName={userInfo.name}
-              userTweetsLength={userTweets.length}
-            />
+            <HeaderUser userAccountName='Others' userTweetsLength='33推文' />
 
-            <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
+            <ProfileOtherCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
             {switchContext(tabIndex)}
@@ -166,4 +161,4 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   );
 };
 
-export default UserPage;
+export default UserOtherPage;

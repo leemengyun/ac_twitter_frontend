@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from './InputGroup';
 import { useAuth } from '../context/AuthContext';
 
-const LoginForm = () => {
+const AdminLoginForm = () => {
   // using react-form-hook-set-up
   const {
     register,
@@ -15,6 +15,7 @@ const LoginForm = () => {
     watch,
   } = useForm();
   const { login, isAuthentical } = useAuth();
+
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -91,12 +92,8 @@ const LoginForm = () => {
           登入
         </button>
         <div className='button-group-row login-button-group'>
-          <Link to='/register' className='button-link'>
-            註冊
-          </Link>
-          <span>・</span>
-          <Link to='/login/admin' className='button-link'>
-            後台登入
+          <Link to='/login' className='button-link'>
+            前台登入
           </Link>
         </div>
       </form>
@@ -104,4 +101,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default AdminLoginForm;
