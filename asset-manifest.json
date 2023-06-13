@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/ac_twitter_frontend/static/css/main.7720773a.chunk.css",
-    "main.js": "/ac_twitter_frontend/static/js/main.22813659.chunk.js",
-    "main.js.map": "/ac_twitter_frontend/static/js/main.22813659.chunk.js.map",
+    "main.js": "/ac_twitter_frontend/static/js/main.0fd7eecf.chunk.js",
+    "main.js.map": "/ac_twitter_frontend/static/js/main.0fd7eecf.chunk.js.map",
     "runtime-main.js": "/ac_twitter_frontend/static/js/runtime-main.ae5838fc.js",
     "runtime-main.js.map": "/ac_twitter_frontend/static/js/runtime-main.ae5838fc.js.map",
     "static/css/2.b832f192.chunk.css": "/ac_twitter_frontend/static/css/2.b832f192.chunk.css",
-    "static/js/2.58bab7b9.chunk.js": "/ac_twitter_frontend/static/js/2.58bab7b9.chunk.js",
-    "static/js/2.58bab7b9.chunk.js.map": "/ac_twitter_frontend/static/js/2.58bab7b9.chunk.js.map",
+    "static/js/2.887ab324.chunk.js": "/ac_twitter_frontend/static/js/2.887ab324.chunk.js",
+    "static/js/2.887ab324.chunk.js.map": "/ac_twitter_frontend/static/js/2.887ab324.chunk.js.map",
     "static/js/3.6dd272b1.chunk.js": "/ac_twitter_frontend/static/js/3.6dd272b1.chunk.js",
     "static/js/3.6dd272b1.chunk.js.map": "/ac_twitter_frontend/static/js/3.6dd272b1.chunk.js.map",
     "index.html": "/ac_twitter_frontend/index.html",
     "static/css/2.b832f192.chunk.css.map": "/ac_twitter_frontend/static/css/2.b832f192.chunk.css.map",
     "static/css/main.7720773a.chunk.css.map": "/ac_twitter_frontend/static/css/main.7720773a.chunk.css.map",
-    "static/js/2.58bab7b9.chunk.js.LICENSE.txt": "/ac_twitter_frontend/static/js/2.58bab7b9.chunk.js.LICENSE.txt",
+    "static/js/2.887ab324.chunk.js.LICENSE.txt": "/ac_twitter_frontend/static/js/2.887ab324.chunk.js.LICENSE.txt",
     "static/media/addphoto.2e797657.svg": "/ac_twitter_frontend/static/media/addphoto.2e797657.svg",
     "static/media/avatar.bd02c62f.svg": "/ac_twitter_frontend/static/media/avatar.bd02c62f.svg",
     "static/media/avatar1.e64705b6.jpg": "/ac_twitter_frontend/static/media/avatar1.e64705b6.jpg",
@@ -31,8 +31,8 @@
   "entrypoints": [
     "static/js/runtime-main.ae5838fc.js",
     "static/css/2.b832f192.chunk.css",
-    "static/js/2.58bab7b9.chunk.js",
+    "static/js/2.887ab324.chunk.js",
     "static/css/main.7720773a.chunk.css",
-    "static/js/main.22813659.chunk.js"
+    "static/js/main.0fd7eecf.chunk.js"
   ]
 }
