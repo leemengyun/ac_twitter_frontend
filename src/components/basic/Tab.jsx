@@ -30,13 +30,25 @@ const TabThreeGroup = ({ tabIndex, setTabIndex }) => {
   );
 };
 
-const TabTwoGroup = () => {
+const TabTwoGroup = ({ tabIndex, setTabIndex, pathName }) => {
+  // if (pathName === 'followings') {
+  //   setTabIndex('1');
+  // }
+
   return (
     <div className='tab-group'>
-      <div className='tab active' tabIndex='0'>
+      <div
+        className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')}
+        tabIndex='0'
+        onClick={() => setTabIndex('0')}
+      >
         追蹤者
       </div>
-      <div className='tab' tabIndex='1'>
+      <div
+        className={['tab', tabIndex === '1' ? 'active' : ''].join(' ')}
+        tabIndex='1'
+        onClick={() => setTabIndex('1')}
+      >
         正在追隨
       </div>
     </div>

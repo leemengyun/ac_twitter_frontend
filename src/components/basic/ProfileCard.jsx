@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import UserAvatar from './UserAvatar';
 import UserBk from './UserBk';
-// import TweetCardBasic from './TweetCardBasic';
 
 // import svg
 // @ testing local photo
@@ -52,12 +53,17 @@ const ProfileCard = ({
           <p className='user-desc'>{introduction}</p>
         </div>
         <div className='user-follow-info'>
-          <p>
-            {followersCount} 個 <span>跟隨中</span>
-          </p>
-          <p>
-            {followingsCount} 位<span>跟隨者</span>
-          </p>
+          <Link to='/user/followers'>
+            <p>
+              {followersCount} 個 <span>跟隨中</span>
+            </p>
+          </Link>
+
+          <Link to='/user/followers'>
+            <p>
+              {followingsCount} 位<span>跟隨者</span>
+            </p>
+          </Link>
         </div>
       </div>
     </>
