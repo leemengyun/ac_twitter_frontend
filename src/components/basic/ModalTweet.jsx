@@ -21,27 +21,27 @@ const ModalTweet = ({ setModalTweetOpen, handleAddTweets }) => {
 
   // @ 0613新增tweet
   // @ 但api與送出資料不太對應，會造成下方tweetLists無法render
-  // const onModalAddTweet = async (data) => {
-  //   alert('submit ModlaTsodos');
-  //   console.log(data);
-  //   // try {
-  //   //   const addData = await createTweet({
-  //   //     UserId: profile.id,
-  //   //     description: data.description,
-  //   //   });
+  const onModalAddTweet = async (data) => {
+    alert('submit ModlaTsodos');
+    console.log(data);
+    // try {
+    //   const addData = await createTweet({
+    //     UserId: profile.id,
+    //     description: data.description,
+    //   });
 
-  //   //   setTweets([
-  //   //     ...tweets,
-  //   //     {
-  //   //       // id: data.id, //我今天嘗試打他都會自己帶id
-  //   //       UserId: addData.UserId,
-  //   //       description: addData.description,
-  //   //     },
-  //   //   ]);
-  //   // } catch (error) {
-  //   //   console.log(`[createData failed]`);
-  //   // }
-  // };
+    //   setTweets([
+    //     ...tweets,
+    //     {
+    //       // id: data.id, //我今天嘗試打他都會自己帶id
+    //       UserId: addData.UserId,
+    //       description: addData.description,
+    //     },
+    //   ]);
+    // } catch (error) {
+    //   console.log(`[createData failed]`);
+    // }
+  };
 
   // const onSubmit = async (data) => {
   //   console.log(data);
