@@ -68,34 +68,46 @@ export const getTweet = async (pathId) => {
 };
 
 //取得User的推文
-export const getUserTweets = async (pathId)=>{
+export const getUserTweets = async (pathId) => {
   try {
-    const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/tweets`)
-    return res.data
-  }catch(error){
-    console.log('[Get UserTweets Failed!!]:', error)
+    const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/tweets`);
+    return res.data;
+  } catch (error) {
+    console.log('[Get UserTweets Failed!!]:', error);
   }
-  
-}
+};
 //取得User Liked的推文
-export const getUserLikedTweets = async (pathId)=>{
+export const getUserLikedTweets = async (pathId) => {
   try {
-    const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/likes`)
-    return res.data
-  }catch(error){
-    console.log('[Get getUserLikedTweets Failed!!]:', error)
+    const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/likes`);
+    return res.data;
+  } catch (error) {
+    console.log('[Get getUserLikedTweets Failed!!]:', error);
   }
-  
-}
-
+};
 
 //取得User Replied的推文
-export const getUserRepliedTweets = async (pathId)=>{
+export const getUserRepliedTweets = async (pathId) => {
   try {
-    const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/replied_tweets`)
-    return res.data
-  }catch(error){
-    console.log('[Get getUserLikedTweets Failed!!]:', error)
+    const res = await axiosInstance.get(
+      `${baseUrl}/users/${pathId}/replied_tweets`
+    );
+    return res.data;
+  } catch (error) {
+    console.log('[Get getUserLikedTweets Failed!!]:', error);
   }
-  
-}
+};
+
+//新增 tweet
+export const createTweet = async (payload) => {
+  try {
+    const { UserId, description } = payload;
+    const res = await axios.post(`http://localhost:3004/tweets`, {
+      UserId,
+      description,
+    });
+    return res.data;
+  } catch (error) {
+    console.error('[CREATE todos failed:]:', error);
+  }
+};

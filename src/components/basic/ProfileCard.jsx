@@ -7,8 +7,8 @@ import UserBk from './UserBk';
 // import svg
 // @ testing local photo
 // import testAvatar from '../../assets/images/avatar1.jpg';
-import iconMessage from '../../assets/images/icon/message.svg';
-import iconNotice from '../../assets/images/icon/notice.svg';
+// import iconMessage from '../../assets/images/icon/message.svg';
+// import iconNotice from '../../assets/images/icon/notice.svg';
 
 //@ testing http photos
 // const testBk =
@@ -30,16 +30,16 @@ const ProfileCard = ({
         <UserBk bkUrl={banner} />
         <UserAvatar avatar={avatar} />
         <div className='profile-btn-group'>
-          <img
+          {/* <img
             src={iconMessage}
             alt='icon of message'
             className='icon-round icon-message icon-round cursor-point'
-          />
-          <img
+          /> */}
+          {/* <img
             src={iconNotice}
             alt='icon of Notice'
             className='icon-round icon-notice icon-round cursor-point'
-          />
+          /> */}
           <button
             className='button-md button-m'
             onClick={() => setModalProOpen(true)}

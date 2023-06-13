@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 
 // import InputGroup from './InputGroup';
 import UserAvatar from '../basic/UserAvatar';
-import testAvatar from '../../assets/images/avatar1.jpg';
+// import testAvatar from '../../assests/images/avatar1.jpg';
 
-const TweetCardForm = ({ avatar }) => {
+const TweetCardForm = ({ avatar, onAddTweet, onModalAddTweet }) => {
   // using react-form-hook-set-up
   const {
     register,
@@ -18,12 +18,16 @@ const TweetCardForm = ({ avatar }) => {
   const onSubmit = (data) => {
     // 如果是只要給api
     // 就在這設定 person,再給api,不需要setState
-    // const person = {
-    //   username: data.username,
-    //   password: data.password,
-    // };
-    alert('成功繳交');
-    console.log(data);
+    // alert('觸發onSubmit');
+    // console.log(data.description);
+    // setNewTweet(data);
+    // onAddTweet?.(data);
+    if (onAddTweet) {
+      onAddTweet(data);
+    }
+    if (onModalAddTweet) {
+      onModalAddTweet(data);
+    }
     reset();
   };
 
@@ -37,10 +41,9 @@ const TweetCardForm = ({ avatar }) => {
               <div className='grow-wrap'>
                 <textarea
                   type='textarea'
-                  id='tweetarea'
-                  name='tweetarea'
-                  // aria-invalid={errors.tweetarea ? 'true' : 'false'}
-                  {...register('tweetarea', {
+                  id='description'
+                  name='description'
+                  {...register('description', {
                     required: true,
                     maxLength: 250,
                   })}
@@ -55,7 +58,7 @@ const TweetCardForm = ({ avatar }) => {
             </div>
           </div>
           <div>
-            {errors.tweetarea && errors.tweetarea.type === 'required' && (
+            {errors.description && errors.description.type === 'required' && (
               <span className='error'>This is required</span>
             )}
             <button className='button-md button-m active' type='submit'>

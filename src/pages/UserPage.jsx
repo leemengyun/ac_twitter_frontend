@@ -18,80 +18,78 @@ import { getUserTweets } from '../api/twitter';
 
 const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
-  const pathId = Number(useParams().id)
+  const pathId = Number(useParams().id);
   //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
   const { isAuthentical, currentMember } = useAuth();
-  // @串接 local-server 用這一個
+  // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
-  const dummyData = {
-    user: {
-      id: 1,
-      account: 'test-acount-1',
-      email: 'test1@example.com',
-      password: '$2a$10$MlmbvV0fDfjJuqipEU88W.KSo75y8Zc1C/hxA.rdG772HaALUiSQ.',
-      name: 'test-1',
-      avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-      introduction: 'Hi I am test No.1',
-      banner: 'https://i.imgur.com/3ZH4ZZ8.jpeg',
-      role: 'user',
-      createdAt: '2023-05-25T11:09:42.000Z',
-      updatedA: '2023-05-25T11:09:42.000Z',
-      tweets: [
-        {
-          id: 1,
-          userId: 1,
-          description: 'Test-Tweet-user1-1',
-          createdAt: '2023-05-25T11:09:42.000Z',
-          updatedAt: '2023-05-25T11:09:42.000Z',
-          isLiked: true,
-          repliesCount: 1,
-          user: {
-            name: 'test-1-name',
-            account: 'test-1-account',
-            avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-          },
-        },
-        {
-          id: 2,
-          userId: 1,
-          description: 'Test-Tweet-user1-1',
-          createdAt: '2023-05-25T11:09:42.000Z',
-          updatedAt: '2023-05-25T11:09:42.000Z',
-          isLiked: true,
-          repliesCount: 1,
-          user: {
-            name: 'test-1-name',
-            account: 'test-1-account',
-            avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-          },
-        },
-        {
-          id: 3,
-          userId: 1,
-          description: 'Test-Tweet-user1-1',
-          createdAt: '2023-05-25T11:09:42.000Z',
-          updatedAt: '2023-05-25T11:09:42.000Z',
-          isLiked: true,
-          repliesCount: 1,
-          user: {
-            name: 'test-1-name',
-            account: 'test-1-account',
-            avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-          },
-        },
-      ],
-    },
-  };
+  // const dummyData = {
+  //   user: {
+  //     id: 1,
+  //     account: 'test-acount-1',
+  //     email: 'test1@example.com',
+  //     password: '$2a$10$MlmbvV0fDfjJuqipEU88W.KSo75y8Zc1C/hxA.rdG772HaALUiSQ.',
+  //     name: 'test-1',
+  //     avatar: 'https://i.imgur.com/YcP0tik.jpeg',
+  //     introduction: 'Hi I am test No.1',
+  //     banner: 'https://i.imgur.com/3ZH4ZZ8.jpeg',
+  //     role: 'user',
+  //     createdAt: '2023-05-25T11:09:42.000Z',
+  //     updatedA: '2023-05-25T11:09:42.000Z',
+  //     tweets: [
+  //       {
+  //         id: 1,
+  //         userId: 1,
+  //         description: 'Test-Tweet-user1-1',
+  //         createdAt: '2023-05-25T11:09:42.000Z',
+  //         updatedAt: '2023-05-25T11:09:42.000Z',
+  //         isLiked: true,
+  //         repliesCount: 1,
+  //         user: {
+  //           name: 'test-1-name',
+  //           account: 'test-1-account',
+  //           avatar: 'https://i.imgur.com/YcP0tik.jpeg',
+  //         },
+  //       },
+  //       {
+  //         id: 2,
+  //         userId: 1,
+  //         description: 'Test-Tweet-user1-1',
+  //         createdAt: '2023-05-25T11:09:42.000Z',
+  //         updatedAt: '2023-05-25T11:09:42.000Z',
+  //         isLiked: true,
+  //         repliesCount: 1,
+  //         user: {
+  //           name: 'test-1-name',
+  //           account: 'test-1-account',
+  //           avatar: 'https://i.imgur.com/YcP0tik.jpeg',
+  //         },
+  //       },
+  //       {
+  //         id: 3,
+  //         userId: 1,
+  //         description: 'Test-Tweet-user1-1',
+  //         createdAt: '2023-05-25T11:09:42.000Z',
+  //         updatedAt: '2023-05-25T11:09:42.000Z',
+  //         isLiked: true,
+  //         repliesCount: 1,
+  //         user: {
+  //           name: 'test-1-name',
+  //           account: 'test-1-account',
+  //           avatar: 'https://i.imgur.com/YcP0tik.jpeg',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // };
 
-  // console.log(currentMember)
   //@ profileCard 渲染後端 userInfo
-
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
@@ -110,7 +108,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         console.log(error);
       }
     };
-    
+
     getUserTweetsAsync();
     getUserInfoAsync();
   }, []);
