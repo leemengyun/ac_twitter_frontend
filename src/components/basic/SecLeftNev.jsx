@@ -5,13 +5,12 @@ import { useAuth } from '../context/AuthContext';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const SecLeftNav = ({ role, setModalTweetOpen, pageIndex }) => {
+const SecLeftNav = ({ role, setModalTweetOpen, pageIndex,memberId }) => {
   // className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')
   const { logout } = useAuth();
   const handleClick = () => {
     logout();
   };
-
   return (
     <>
       <nav className='left-nav col-2'>
@@ -42,7 +41,7 @@ const SecLeftNav = ({ role, setModalTweetOpen, pageIndex }) => {
               <p>{role === 'admin' ? '推文清單' : '首頁'}</p>
             </Link>
 
-            <Link to={role === 'admin' ? '/admin/users' : '/user/:id'}>
+            <Link to={role === 'admin' ? '/admin/users' : `/user/${memberId}`}>
               <span
                 className={[
                   'nav-icon icon-user',

@@ -17,7 +17,6 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isAuthentical) {
-      console.log('s');
       navigation('/main');
     }
   }, [navigation, isAuthentical]); //只要isAuthentical或navigation有變化便執行

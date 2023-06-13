@@ -26,6 +26,10 @@ export const AuthProvider = ({children})=>{
           id: payload.id,
           name: payload.name
         }
+        // currentMember: {
+        //   id :14,
+        //   name: '炸雞排'
+        // }
         ,
         login: async (user)=>{
           console.log("ok")
@@ -34,8 +38,8 @@ export const AuthProvider = ({children})=>{
           });
           const token = data.token
           const tempPayload = jwt.decode(token)
-          console.log('data',data)
-          console.log('tempPayload: ', tempPayload )
+          // console.log('data',data)
+          // console.log('tempPayload: ', tempPayload )
           //{id: 14, account: 'user1', email: 'user1@example.com', name: 'user1 name', avatar: null, …} 
           if (tempPayload){
             setIsAuthentical(true)

@@ -3,7 +3,7 @@ import Defaultavatar from '../../assets/images/icon/avatar.svg';
 
 
 
-const UserAvatar = ({avatar,onClick,id,userId}) =>{
+const UserAvatar = ({avatar,onClick,userId}) =>{
     return (
       <> 
         <div className='avatar' onClick={(e)=>{ 
