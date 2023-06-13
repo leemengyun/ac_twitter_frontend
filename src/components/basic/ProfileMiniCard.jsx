@@ -15,15 +15,32 @@ import iconLike from '../../assets/images/icon/like.svg';
 const testBk =
   'https://images.unsplash.com/photo-1497290756760-23ac55edf36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80';
 
-const ProfileMiniCard = () => {
+const ProfileMiniCard = ({
+  id,
+  account,
+  name,
+  avatar,
+  banner,
+  handleClickCard,
+}) => {
   return (
     <>
-      <div className='profile-mini-card'>
-        <UserBk bkUrl={testBk} />
-        <UserAvatar avatar={testAvatar} />
+      <div
+        className='profile-mini-card'
+        onClick={() => {
+          handleClickCard?.(id);
+        }}
+      >
+        <UserBk bkUrl={banner} />
+        <UserAvatar
+          avatar={avatar}
+          onClick={() => {
+            handleClickCard?.(id);
+          }}
+        />
         <div className='profile-info'>
-          <h5 className='user-name'>John Doe</h5>
-          <p className='user-account'>@heyjohn</p>
+          <h5 className='user-name'>{name}</h5>
+          <p className='user-account'>@{account}</p>
         </div>
         <div className='user-tweet-info'>
           <div className='user-card-post-count'>

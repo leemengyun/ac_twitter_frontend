@@ -393,17 +393,149 @@
   ],
   "tweetCard": [
     {
-"status": "success",
-"data": {
-"tweet": {
-"description": "PopuLady出身的宇珊8日驚喜宣布自己被交往4年的男友Josh求婚成功，經紀人證實喜訊，宇珊也笑說，其實男友是一天照三餐在問「願意當我老婆嗎？」直到去露營第五次時，男友這回直接單膝下跪，把戒指拿出來正式求婚，讓她感動到直接飆淚：「這一切他居然都沒有用任何的器材或設備記錄下來，我才發現原來求婚就是3分鐘這樣子的事情而已呀！」",
-"user": {
-"name": "apple-name",
-"account": "apple-account",
-"avatar": "https://i.imgur.com/YcP0tik.jpeg"
-}
-}
-}
-}
+      "status": "success",
+      "data": {
+        "tweet": {
+          "description": "PopuLady出身的宇珊8日驚喜宣布自己被交往4年的男友Josh求婚成功，經紀人證實喜訊，宇珊也笑說，其實男友是一天照三餐在問「願意當我老婆嗎？」直到去露營第五次時，男友這回直接單膝下跪，把戒指拿出來正式求婚，讓她感動到直接飆淚：「這一切他居然都沒有用任何的器材或設備記錄下來，我才發現原來求婚就是3分鐘這樣子的事情而已呀！」",
+          "user": {
+            "name": "apple-name",
+            "account": "apple-account",
+            "avatar": "https://i.imgur.com/YcP0tik.jpeg"
+          }
+        }
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 4,
+      "account": "root",
+      "email": "root@example.com",
+      "password": "$2a$10$Yoq/9d2I3ljjpAKIIQlRvuVZ5Uwz35kL.s8jVlRyEwKFyU7HQq5k6",
+      "name": "root name",
+      "avatar": "https://i.imgur.com/6MjaOQm.jpeg",
+      "introduction": null,
+      "banner": "https://i.imgur.com/3ZH4ZZ8.jpeg",
+      "role": "admin",
+      "createdAt": "2023-06-11T06:03:17.000Z",
+      "updatedAt": "2023-06-11T06:03:17.000Z"
+    },
+    {
+      "id": 14,
+      "account": "user1",
+      "email": "user1@example.com",
+      "password": "$2a$10$a4U1eaHHbIczLsbOqZ5JrOr/WnG35quQiwFyZDRHs93.KbypWkAT6",
+      "name": "test-put",
+      "avatar": "https://i.imgur.com/0z0x5EK_d.webp?maxwidth=1520&fidelity=grand",
+      "introduction": "test1-put",
+      "banner": "https://i.imgur.com/3ZH4ZZ8.jpeg",
+      "role": "user",
+      "createdAt": "2023-06-11T06:03:18.000Z",
+      "updatedAt": "2023-06-12T18:40:23.000Z"
+    },
+    {
+      "id": 24,
+      "account": "user2",
+      "email": "user2@example.com",
+      "password": "$2a$10$zsyduYhI667dkuQcz39rCOtpDIcFpaegqtJxFZdAYrrUbhlmcGprS",
+      "name": "user2 name",
+      "avatar": "https://i.imgur.com/mwR4POb.jpeg",
+      "introduction": null,
+      "banner": "https://i.imgur.com/3ZH4ZZ8.jpeg",
+      "role": "user",
+      "createdAt": "2023-06-11T06:03:18.000Z",
+      "updatedAt": "2023-06-11T06:03:18.000Z"
+    },
+    {
+      "id": 34,
+      "account": "user3",
+      "email": "user3@example.com",
+      "password": "$2a$10$/U94A65kpBUI6b2Q6wbd8uglVeufV/6a8OTnjLmfE2Bm/RlAsClHC",
+      "name": "user3 name",
+      "avatar": "https://i.imgur.com/Ghu3yvGb.jpg",
+      "introduction": null,
+      "banner": "https://i.imgur.com/3ZH4ZZ8.jpeg",
+      "role": "user",
+      "createdAt": "2023-06-11T06:03:18.000Z",
+      "updatedAt": "2023-06-11T06:03:18.000Z"
+    },
+    {
+      "id": 44,
+      "account": "user4",
+      "email": "user4@example.com",
+      "password": "$2a$10$LYLHrz0OLLalwE5ZQ9RZheNm0DweH5b6pv4an1PHhNtBDETZfcNyW",
+      "name": "user4 name",
+      "avatar": "https://i.imgur.com/fbkd1seb.jpg",
+      "introduction": null,
+      "banner": "https://i.imgur.com/3ZH4ZZ8.jpeg",
+      "role": "user",
+      "createdAt": "2023-06-11T06:03:18.000Z",
+      "updatedAt": "2023-06-11T06:03:18.000Z"
+    },
+    {
+      "id": 54,
+      "account": "user5",
+      "email": "user5@example.com",
+      "password": "$2a$10$MpPK0dyXDurrZZoBshiBGuJE6r/fI.GmskxmQxx6a55ElelsCmIMK",
+      "name": "user5 name",
+      "avatar": "https://i.imgur.com/JpxtkDsb.jpg",
+      "introduction": null,
+      "banner": "https://i.imgur.com/3ZH4ZZ8.jpeg",
+      "role": "user",
+      "createdAt": "2023-06-11T06:03:18.000Z",
+      "updatedAt": "2023-06-11T06:03:18.000Z"
+    },
+    {
+      "id": 64,
+      "account": "test-1",
+      "email": "test1@example.com",
+      "password": "$2a$10$6IP/exZsOpI1s9arlqjMC.z3FE608dEKskhecObVjurZtlAvqhYLe",
+      "name": "test1",
+      "avatar": "https://i.imgur.com/V4RclNb.png",
+      "introduction": null,
+      "banner": "https://i.imgur.com/ZFz8ZEI.png",
+      "role": "user",
+      "createdAt": "2023-06-12T15:21:04.000Z",
+      "updatedAt": "2023-06-12T15:21:04.000Z"
+    },
+    {
+      "id": 74,
+      "account": "test-2",
+      "email": "test2@example.com",
+      "password": "$2a$10$WL9CzVZLk5hslUnpM8cYOuK3ZwSCReQ.XEN2m16WGMMH2ydcnum/m",
+      "name": "test2",
+      "avatar": "https://i.imgur.com/V4RclNb.png",
+      "introduction": null,
+      "banner": "https://i.imgur.com/ZFz8ZEI.png",
+      "role": "user",
+      "createdAt": "2023-06-12T15:24:57.000Z",
+      "updatedAt": "2023-06-12T15:24:57.000Z"
+    },
+    {
+      "id": 84,
+      "account": "eva-1",
+      "email": "eva1@example.com",
+      "password": "$2a$10$w/Q7XBlxHbXagH2LCdah6ucDEMGitdCUAsoZx3mLodMQhYMLU68s2",
+      "name": "eva1",
+      "avatar": "https://i.imgur.com/V4RclNb.png",
+      "introduction": null,
+      "banner": "https://i.imgur.com/ZFz8ZEI.png",
+      "role": "user",
+      "createdAt": "2023-06-12T17:58:01.000Z",
+      "updatedAt": "2023-06-12T17:58:01.000Z"
+    },
+    {
+      "id": 94,
+      "account": "evalee",
+      "email": "eva2@example.com",
+      "password": "$2a$10$HNbFW3icnEFGU3E21zw2uu5pfd2qHJv47D/wRTySQ809sOt0AUeX.",
+      "name": "evaleeeeeeeeeeeee",
+      "avatar": "https://i.imgur.com/qf9JyPC.png",
+      "introduction": "evalee introduction heyyyyheyyyyheyyyyheyyyyheyyyyheyyyyheyyyyheyyyy",
+      "banner": "https://i.imgur.com/mbIrjST.jpeg",
+      "role": "user",
+      "createdAt": "2023-06-12T18:57:30.000Z",
+      "updatedAt": "2023-06-13T11:28:19.000Z"
+    }
   ]
 }
