@@ -1,27 +1,26 @@
 import React from "react";
+import DayTime from "../../helper/TimeHelper";
 import TweetIconCount from "./TweetIconCount";
 import TweetUserName2 from "./TweetUserName2";
 import UserAvatar from "./UserAvatar";
 
 const TweetBigCard = ({tweetInfo})=>{
-
-  console.log({tweetInfo})
   return (
     <div className="TweetBigCard">
       <div className="TweetUserInfo">
         <div className="TweetUserInfo-head">
           <UserAvatar 
-            avatar={tweetInfo.user.avatar}
+            avatar={tweetInfo.User.avatar}
           />
           <TweetUserName2 
-            name={tweetInfo.user.name}
-            account={tweetInfo.user.account}
+            name={tweetInfo.User.name}
+            account={tweetInfo.User.account}
           />
         </div>
         <p className='tweet-card-basic-description'>
             {tweetInfo.description}
         </p>
-        <p className="tweetDate">{`上午10:05·2021年11月10日`}
+        <p className="tweetDate">{DayTime(tweetInfo.createdAt)}
         </p>
       </div>
 
@@ -36,7 +35,7 @@ const TweetBigCard = ({tweetInfo})=>{
       <div className="TweetUserInfo">
         <TweetIconCount />
       </div>
-
+      
     </div>
   )
 }

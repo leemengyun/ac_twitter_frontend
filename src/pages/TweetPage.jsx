@@ -6,23 +6,27 @@ import { useEffect,useState  } from "react";
 import { getTweet } from "../api/twitter";
 import FollowCardList from "../components/user/FollowCardList";
 import { useAuth } from "../components/context/AuthContext";
+import { useParams } from "react-router-dom";
 
 
 const TweetPage = ({ setModalTweetOpen })=>{
-  const [tweetInfo, setTweetInfo] = useState({description:"",user:{avatar:"",name:"",account:""}})
+  const [tweetInfo, setTweetInfo] = useState({id:"",UserId:"",description:"",createdAt:"",User:{}})
+  //這裡很奇怪只有他 要先設定一樣的結構
   const { isAuthentical, currentMember } = useAuth()
+  const pathId = Number(useParams().id);
+  
   useEffect(()=>{
     const getTweetAsync = async()=>{
       try{
-        const data = await getTweet()
-        setTweetInfo(data.tweet)
+        const data = await getTweet(pathId)
+        setTweetInfo(data)
       }catch(error){
         console.log(error)
       }
     }
     getTweetAsync()
   },[])
-console.log(tweetInfo)
+
   return (
     <ContainerColSec
       role='user'

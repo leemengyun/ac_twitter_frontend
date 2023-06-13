@@ -58,10 +58,10 @@ export const getTopUsers = async () => {
   }
 };
 
-export const getTweet = async () => {
+export const getTweet = async (pathId) => {
   try {
-    const res = await axiosInstance.get(`${baseUrl}/tweets/1`);
-    return res.data.data;
+    const res = await axiosInstance.get(`${baseUrl}/tweets/${pathId}`);
+    return res.data;
   } catch (error) {
     console.log('[Get Tweet Failed]: ', error);
   }
