@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 //call api
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
+import { getUserTweets } from '../api/twitter';
 
 const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
@@ -24,7 +25,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const { isAuthentical, currentMember } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
-
+  const [userTweets, setUserTweets] = useState([]);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
   const dummyData = {
@@ -99,6 +100,15 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         console.error('[getUser Info  with Async failed]', error);
       }
     };
+    const getUserTweetsAsync = async () => {
+      try {
+        const data = await getUserTweets(pathId);
+        setUserTweets(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserTweetsAsync();
     getUserInfoAsync();
   }, []);
 
@@ -113,11 +123,11 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
-        return <ReplyLists users={dummyData.user} />;
+        return <ReplyLists pathId={pathId} />;
       case '2':
-        return <LikeLists tweets={dummyData.user.tweets} />;
+        return <LikeLists pathId={pathId} />;
       default:
-        return <TweetsLists tweets={dummyData.user.tweets} />;
+        return <TweetsLists tweets={userTweets} />;
     }
   }
 
@@ -137,7 +147,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
             <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
-            {/* {switchContext(tabIndex)} */}
+            {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <TweetsLists />}
             {tabIndex === '1' && <ReplyLists />}
             {tabIndex === '2' && <LikeLists />} */}

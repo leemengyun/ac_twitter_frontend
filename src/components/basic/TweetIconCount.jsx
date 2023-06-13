@@ -3,7 +3,7 @@ import like from '../../assets/images/icon/like-filled.svg'
 import reply from '../../assets/images/icon/reply.svg'
 import likefilled from '../../assets/images/icon/like.svg'
 import clsx from "clsx";
-const TweetIconCount =({likeCount,repliesCount,isLiked}) => {
+const TweetIconCount =({likesCount,repliesCount,isLiked}) => {
     return(
       <div className='tweet-card-icon-count'>
           <div className='tweet-card-reply-count'>
@@ -17,7 +17,7 @@ const TweetIconCount =({likeCount,repliesCount,isLiked}) => {
            <img src={isLiked ?  likefilled : like} alt='like' className={`${clsx('', {active: isLiked})} like-icon`}
            />
           <span className = 'tweet-count' >
-            {likeCount}
+            {likesCount}
           </span>
         </div>
       </div>
