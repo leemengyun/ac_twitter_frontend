@@ -22,6 +22,7 @@ import StoryBookPage from './pages/storybooks/StoryBookPage';
 import AdminPage from './pages/AdminPage';
 import SettingPage from './pages/SettingPage';
 import UserPage from './pages/UserPage';
+import UserOtherPage from './pages/UserOtherPage';
 import UserFollowersPage from './pages/UserFollowersPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
@@ -62,6 +63,16 @@ function App({ router }) {
                   />
                 }
               ></Route>
+              <Route
+                path='/other'
+                element={
+                  <UserOtherPage
+                    setModalProOpen={setModalProOpen}
+                    setModalTweetOpen={setModalTweetOpen}
+                  />
+                }
+              ></Route>
+
               <Route
                 path='/user/followers'
                 element={
