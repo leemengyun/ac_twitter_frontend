@@ -60,7 +60,7 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         pageIndex={1}
-        {...currentMember}
+        memberId={userInfo.id}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>

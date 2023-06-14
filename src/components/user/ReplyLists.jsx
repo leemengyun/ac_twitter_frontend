@@ -2,37 +2,36 @@ import React, { useEffect, useState } from 'react';
 import { getUserRepliedTweets } from '../../api/twitter';
 import TweetCardReply from '../basic/TweetCardReply';
 
-const ReplyLists = ({pathId, onClick}) => {
-  
-const [userReplied,setUserReplied] = useState([])
-  
-  useEffect(()=>{
-    const getUserRepliedTweetsAsync = async()=>{
-      try{
-        const data = await getUserRepliedTweets(pathId)
-        setUserReplied(data)
-      }catch(error){
-        console.log(error)
+const ReplyLists = ({ pathId, onClick }) => {
+  const [userReplied, setUserReplied] = useState([]);
+
+  useEffect(() => {
+    const getUserRepliedTweetsAsync = async () => {
+      try {
+        const data = await getUserRepliedTweets(pathId);
+        setUserReplied(data);
+      } catch (error) {
+        console.log(error);
       }
-    }
-    getUserRepliedTweetsAsync()
-  },[])
-
-
+    };
+    getUserRepliedTweetsAsync();
+  }, [pathId]);
 
   return (
     <div className='TweetLists'>
       <h1>Nested TweetsLists</h1>
- update/main
-      {userReplied.map((tweet)=>{
-        return <TweetCardReply 
-          key={tweet.id}
-          {...tweet}
-          // onClick={({id,userId})=>{
-          //   onClick?.({id,userId})
-          // }}
-        />
-   })}
+      update/main
+      {userReplied.map((tweet) => {
+        return (
+          <TweetCardReply
+            key={tweet.id}
+            {...tweet}
+            // onClick={({id,userId})=>{
+            //   onClick?.({id,userId})
+            // }}
+          />
+        );
+      })}
     </div>
   );
 };

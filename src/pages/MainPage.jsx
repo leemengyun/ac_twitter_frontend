@@ -1,32 +1,53 @@
 import React from 'react';
-//nested router - need Link and Outlet
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+// import { useForm } from 'react-hook-form';
 
 // import custom components
-import { useState, useEffect } from 'react';
 import ContainerColSec from '../components/layout/ContainerColSec';
-import { HeaderMain } from '../components/basic/Header';
 import FollowCardList from '../components/user/FollowCardList';
 import TweetLists from '../components/user/TweetsLists';
+import TweetCardForm from '../components/forms/TweetCardForm';
+import { HeaderMain } from '../components/basic/Header';
+
 import { getTweets } from '../api/twitter';
 import { getUserInfo } from '../api/userinfo';
-
-import { useNavigate } from 'react-router-dom';
-import TweetCardForm from '../components/forms/TweetCardForm';
+// import { createTweet } from '../api/twitter';
 import { useAuth } from '../components/context/AuthContext';
 
 const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+
   const { isAuthentical, currentMember } = useAuth(); // 取出需要的狀態與方法
 
   const handleClickCard = ({ tweetId, userId }) => {
-    {
-      tweetId && navigate(`/main/tweet/${tweetId}`);
-    }
-    {
-      userId && navigate(`/user/${userId}`);
-    }
+    tweetId && navigate(`/main/tweet/${tweetId}`);
+    userId && navigate(`/user/${userId}`);
+  };
+
+  // @ 0613新增tweet
+  // @ 但api與送出資料不太對應，會造成下方tweetLists無法render
+  const handleAddTweets = async (data) => {
+    alert('submit todos');
+    // try {
+    //   const addData = await createTweet({
+    //     UserId: profile.id,
+    //     description: data.description,
+    //   });
+
+    //   setTweets([
+    //     ...tweets,
+    //     {
+    //       // id: data.id, //我今天嘗試打他都會自己帶id
+    //       UserId: addData.UserId,
+    //       description: addData.description,
+    //     },
+    //   ]);
+    // } catch (error) {
+    //   console.log(`[createData failed]`);
+    // }
   };
 
   useEffect(() => {
@@ -39,6 +60,10 @@ const MainPage = ({ setModalTweetOpen }) => {
       }
     };
 
+    getUserInfoAsync();
+  }, []);
+
+  useEffect(() => {
     const getTweetsAsync = async () => {
       try {
         const data = await getTweets();
@@ -47,10 +72,9 @@ const MainPage = ({ setModalTweetOpen }) => {
         console.log(error);
       }
     };
-    getUserInfoAsync();
     getTweetsAsync();
   }, []);
-
+  //@ 這一頁的驗證身份放最上面,currentMember好像比較不會出錯
   useEffect(() => {
     if (!isAuthentical) {
       navigate('/login');
@@ -69,9 +93,8 @@ const MainPage = ({ setModalTweetOpen }) => {
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
             <div className='tweet-form-wrapper'>
-              <TweetCardForm {...profile} />
+              <TweetCardForm {...profile} onAddTweet={handleAddTweets} />
             </div>
-
             <TweetLists tweets={tweets} onClick={handleClickCard} />
           </div>
         </section>

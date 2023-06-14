@@ -35,7 +35,6 @@ const LoginForm = () => {
       password: data.password,
     });
     console.log('Login: ', success);
-    // console.log(data);
     reset();
   };
 

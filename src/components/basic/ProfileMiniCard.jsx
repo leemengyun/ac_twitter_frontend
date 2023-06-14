@@ -5,15 +5,15 @@ import UserBk from './UserBk';
 
 // import svg
 // @ testing local photo
-import testAvatar from '../../assets/images/avatar1.jpg';
+// import testAvatar from '../../assets/images/avatar1.jpg';
 import iconPost from '../../assets/images/icon/post.svg';
 import iconLike from '../../assets/images/icon/like.svg';
 // import iconMessage from '../../assets/images/icon/message.svg';
 // import iconNotice from '../../assets/images/icon/notice.svg';
 
 //@ testing http photos
-const testBk =
-  'https://images.unsplash.com/photo-1497290756760-23ac55edf36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80';
+// const testBk =
+//   'https://images.unsplash.com/photo-1497290756760-23ac55edf36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80';
 
 const ProfileMiniCard = ({
   id,
