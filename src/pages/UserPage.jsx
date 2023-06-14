@@ -15,6 +15,7 @@ import { useParams } from 'react-router-dom';
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
 import { getUserTweets } from '../api/twitter';
+import ModalReply from '../components/basic/ModalReply';
 
 const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
@@ -23,7 +24,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentic, currentMember } = useAuth();
+  const { isAuthentic,modalReplyOpen} = useAuth();
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
@@ -149,7 +150,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
 
             <ProfileCard {...userInfo} setModalProOpen={setModalProOpen} />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
-
+            {modalReplyOpen && <ModalReply />}
             {switchContext(tabIndex)}
             {/* {tabIndex === '0' && <TweetsLists />}
             {tabIndex === '1' && <ReplyLists />}
