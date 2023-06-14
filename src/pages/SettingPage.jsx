@@ -8,14 +8,14 @@ import { useAuth } from '../components/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const SettingPage = ({ setModalTweetOpen }) => {
-  const { isAuthentical, currentMember } = useAuth(); // 取出需要的狀態與方法
+  const { isAuthentic, currentMember } = useAuth(); // 取出需要的狀態與方法
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthentical) {
+    if (!isAuthentic) {
       navigate('/login');
     }
-  }, [navigate, isAuthentical]); //只要isAuthentical或navigation有變化便執行
+  }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 
   return (
     <>

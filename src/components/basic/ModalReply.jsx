@@ -23,7 +23,7 @@ import { useAuth } from '../context/AuthContext';
     replies:{},
     updatedAt: ''
   });
-   const { isAuthentical, currentMember,setModalReplyOpen,tweetId } = useAuth();
+   const { isAuthentic, currentMember,setModalReplyOpen,tweetId } = useAuth();
   
   useEffect(() => {
     const getTweetAsync = async () => {

@@ -11,14 +11,14 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
-  const { isAuthentical } = useAuth();
+  const { isAuthentic } = useAuth();
   const navigation = useNavigate();
 
   useEffect(() => {
-    if (isAuthentical) {
+    if (isAuthentic) {
       navigation('/main');
     }
-  }, [navigation, isAuthentical]); //只要isAuthentical或navigation有變化便執行
+  }, [navigation, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 
   return (
     <>
