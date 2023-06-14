@@ -2,8 +2,7 @@ import { login } from '../../api/auth';
 import { useState, useEffect, useContext, createContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
-
-
+import { set } from 'react-hook-form';
 
 const defaultAuthContext = {
   isAuthentic: false,
@@ -22,10 +21,9 @@ export const AuthProvider = ({ children }) => {
   //頁面刷新時，確認是誰
   const { pathname } = useLocation();
   const [modalReplyOpen, setModalReplyOpen] = useState(false);
-  const [tweetId, setTweetId] = useState(null)
-  const [member, setMember] = useState({})
+  const [tweetId, setTweetId] = useState(null);
+  const [member, setMember] = useState({});
 
-  
   // 封裝檢查token
   useEffect(() => {
     const checkTokenIsValid = async () => {
@@ -51,7 +49,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthentic(true);
         const tempPayload = jwt.decode(authToken);
         setPayload(tempPayload);
-        setMember(tempPayload)
+        setMember(tempPayload);
         return;
       }
     };
@@ -71,8 +69,7 @@ export const AuthProvider = ({ children }) => {
         modalReplyOpen,
         setTweetId,
         tweetId,
-        member
-        ,
+        member,
         login: async (user) => {
           console.log('ok');
           const { success, data } = await login({
@@ -89,6 +86,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('authToken', token);
             setPayload(tempPayload);
             //等有test-token CheckPermission 完後才導入使用者資訊
+            setMember(tempPayload);
           } else {
             setIsAuthentic(false);
           }
@@ -98,7 +96,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('authToken');
           setIsAuthentic(false);
           setPayload(null);
-        }
+        },
       }}
     >
       {children}

@@ -16,13 +16,15 @@ import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
 import ModalReply from '../components/basic/ModalReply';
 
-const MainPage = ({ setModalTweetOpen  }) => {
+const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-  const { isAuthentic, currentMember,member,modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
+  const { isAuthentic, currentMember, member, modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
   const handleClickCard = ({ userId, tweetId }) => {
-    userId === profile.id  ? navigate(`/user/${userId}`) : userId !== undefined && navigate(`/other/${userId}`);
+    userId === profile.id
+      ? navigate(`/user/${userId}`)
+      : userId !== undefined && navigate(`/other/${userId}`);
     tweetId && navigate(`/main/tweet/${tweetId}`);
   };
 
@@ -52,7 +54,7 @@ const MainPage = ({ setModalTweetOpen  }) => {
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const profile = await getUserInfo(currentMember.id);
+        const profile = await getUserInfo(member.id);
         setProfile(profile);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
@@ -79,14 +81,14 @@ const MainPage = ({ setModalTweetOpen  }) => {
       navigate('/login');
     }
   }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
-  
+
   return (
     <>
       <ContainerColSec
         role='user'
         setModalTweetOpen={setModalTweetOpen}
         pageIndex={0}
-        memberId={currentMember?.id}
+        memberId={member.id}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m '>
