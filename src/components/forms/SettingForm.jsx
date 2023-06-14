@@ -1,10 +1,17 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import InputGroup from './InputGroup';
+import { useAuth } from '../context/AuthContext';
+// import { getUserTweets } from '../api/twitter';
 
 const SettingForm = () => {
+  const navigate = useNavigate();
+  const { isAuthentic, member } = useAuth();
+
   // using react-form-hook-set-up
   const {
     register,
@@ -24,6 +31,14 @@ const SettingForm = () => {
     console.log(data);
     reset();
   };
+  console.log(member.id);
+
+  useEffect(() => {
+    if (!isAuthentic) {
+      navigate('/login');
+    }
+    // console.log(member);
+  }, [navigate, isAuthentic, member]); //只要isAuthentic或navigation有變化便執行
 
   return (
     <div className='formLayout setting-form'>

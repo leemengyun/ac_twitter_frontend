@@ -23,7 +23,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentic, currentMember } = useAuth();
+  const { isAuthentic, currentMember, member } = useAuth();
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
@@ -117,7 +117,8 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
     if (!isAuthentic) {
       navigate('/login');
     }
-  }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
+    console.log(member);
+  }, [navigate, isAuthentic, member]); //只要isAuthentic或navigation有變化便執行
 
   //切換下方tab
   //swtich case 與 if else概念相同，但return component更簡潔(??)
@@ -138,7 +139,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         role='user'
         setModalTweetOpen={setModalTweetOpen}
         pageIndex={1}
-        memberId={userInfo.id}
+        memberId={member.id}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
