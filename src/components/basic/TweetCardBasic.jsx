@@ -3,17 +3,15 @@ import React from "react";
 import UserAvatar from "./UserAvatar";
 import TweetUserName3 from "./TweetUserName3";
 import TweetIconCount from "./TweetIconCount";
+import { useNavigate } from "react-router-dom";
 
 
 const TweetCardBasic = ({ ...props }) => {
-  // const value ={
-  //   tweetId: props.id,
-  //   userId: props.UserId,
-  // }
+  const tweetId = props.id
+
+
   return (
-    <div className='tweet-card-basic' onClick={()=>{
-      props.onClick?.({tweetId: props.id})
-      }}>
+    <div className='tweet-card-basic' onClick={()=>props.onClick?.({tweetId})}>
       <UserAvatar 
       avatar={props.User.avatar}
       userId={props.UserId}

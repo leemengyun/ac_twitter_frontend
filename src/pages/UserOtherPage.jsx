@@ -94,7 +94,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const userInfo = await getUserInfo(94);
+        const userInfo = await getUserInfo(pathId);
         setUserInfo(userInfo);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
@@ -102,7 +102,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
     };
     const getUserTweetsAsync = async () => {
       try {
-        const data = await getUserTweets(94);
+        const data = await getUserTweets(pathId);
         setUserTweets(data);
       } catch (error) {
         console.log(error);
@@ -123,9 +123,9 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
-        return <ReplyLists pathId={94} />;
+        return <ReplyLists pathId={pathId} />;
       case '2':
-        return <LikeLists pathId={94} />;
+        return <LikeLists pathId={pathId} />;
       default:
         return <TweetsLists tweets={userTweets} />;
     }
@@ -137,8 +137,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
         role='user'
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
-        pageIndex={1}
-        memberId={userInfo.id}
+        memberId={currentMember.id}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>

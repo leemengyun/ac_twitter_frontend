@@ -15,16 +15,14 @@ import { getUserInfo } from '../api/userinfo';
 // import { createTweet } from '../api/twitter';
 import { useAuth } from '../components/context/AuthContext';
 
-const MainPage = ({ setModalTweetOpen }) => {
+const MainPage = ({ setModalTweetOpen  }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-
   const { isAuthentical, currentMember } = useAuth(); // 取出需要的狀態與方法
-
-  const handleClickCard = ({ tweetId, userId }) => {
+  const handleClickCard = ({ userId, tweetId }) => {
+    userId === profile.id  ? navigate(`/user/${userId}`) : userId !== undefined && navigate(`/other/${userId}`);
     tweetId && navigate(`/main/tweet/${tweetId}`);
-    userId && navigate(`/user/${userId}`);
   };
 
   // @ 0613新增tweet

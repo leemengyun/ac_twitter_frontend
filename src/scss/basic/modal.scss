@@ -100,6 +100,30 @@
       }
     }
   }
+  .modal-reply-content{
+    //ReplyModal
+      .tweet-card-basic {
+        padding: var(--padding-s) var(--padding-m);
+        margin: 0px;
+        border-bottom: 0px;
+      }
+      .tweet-card-basic-description {
+        position: relative;
+    
+        &::after {
+          content: "";
+          height: 200%;
+          border: 1px solid var(--gray-60);
+          position: absolute;
+          left: -34px;
+          top: 30px;
+        }
+      }
+      .tweet-form-wrapper{
+
+      }
+  }
+ 
 }
 
 // ModalHeader component

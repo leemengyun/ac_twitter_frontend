@@ -3,6 +3,8 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
 
+
+
 const defaultAuthContext = {
   isAuthentic: false,
   currentMember: null,
@@ -19,7 +21,11 @@ export const AuthProvider = ({ children }) => {
   const [payload, setPayload] = useState(null);
   //頁面刷新時，確認是誰
   const { pathname } = useLocation();
+  const [modalReplyOpen, setModalReplyOpen] = useState(false);
+  const [tweetId, setTweetId] = useState(null)
+  
 
+  
   // 封裝檢查token
   useEffect(() => {
     const checkTokenIsValid = async () => {
@@ -60,10 +66,11 @@ export const AuthProvider = ({ children }) => {
           name: payload.name,
           avatar: payload.avatar,
         },
-        // currentMember: {
-        //   id :14,
-        //   name: '炸雞排'
-        // }
+        setModalReplyOpen,
+        modalReplyOpen,
+        setTweetId,
+        tweetId
+        ,
         login: async (user) => {
           console.log('ok');
           const { success, data } = await login({
@@ -89,7 +96,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('authToken');
           setIsAuthentical(false);
           setPayload(null);
-        },
+        }
       }}
     >
       {children}

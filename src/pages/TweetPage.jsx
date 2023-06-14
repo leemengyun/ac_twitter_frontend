@@ -8,7 +8,7 @@ import FollowCardList from '../components/user/FollowCardList';
 import { useAuth } from '../components/context/AuthContext';
 import { useParams } from 'react-router-dom';
 
-const TweetPage = ({ setModalTweetOpen }) => {
+const TweetPage = ({ setModalTweetOpen}) => {
   const [tweetInfo, setTweetInfo] = useState({
     id: '',
     UserId: '',
@@ -17,7 +17,7 @@ const TweetPage = ({ setModalTweetOpen }) => {
     User: {},
   });
   //這裡很奇怪只有他 要先設定一樣的結構
-  const { isAuthentical, currentMember } = useAuth();
+  const { isAuthentical, currentMember,setTweetId } = useAuth();
   const pathId = Number(useParams().id);
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const TweetPage = ({ setModalTweetOpen }) => {
       try {
         const data = await getTweet(pathId);
         setTweetInfo(data);
+        setTweetId(pathId)
       } catch (error) {
         console.log(error);
       }
@@ -37,12 +38,14 @@ const TweetPage = ({ setModalTweetOpen }) => {
       role='user'
       setModalTweetOpen={setModalTweetOpen}
       pageIndex={0}
-      {...currentMember}
+      memberId={currentMember?.id}
     >
       <section className='section-outer-m col-7'>
         <div className='section-main-m'>
           <HeaderUser userAccountName='推文' />
-          <TweetBigCard tweetInfo={tweetInfo} />
+          <TweetBigCard 
+            tweetInfo={tweetInfo} 
+          />
         </div>
       </section>
       <section className='section-right col-3'>
