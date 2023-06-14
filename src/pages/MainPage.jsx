@@ -14,12 +14,13 @@ import { getTweets } from '../api/twitter';
 import { getUserInfo } from '../api/userinfo';
 // import { createTweet } from '../api/twitter';
 import { useAuth } from '../components/context/AuthContext';
+import ModalReply from '../components/basic/ModalReply';
 
 const MainPage = ({ setModalTweetOpen  }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-  const { isAuthentic, currentMember,member } = useAuth(); // 取出需要的狀態與方法
+  const { isAuthentic, currentMember,member,modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
   const handleClickCard = ({ userId, tweetId }) => {
     userId === profile.id  ? navigate(`/user/${userId}`) : userId !== undefined && navigate(`/other/${userId}`);
     tweetId && navigate(`/main/tweet/${tweetId}`);
@@ -95,6 +96,7 @@ const MainPage = ({ setModalTweetOpen  }) => {
             </div>
             <TweetLists tweets={tweets} onClick={handleClickCard} />
           </div>
+          {modalReplyOpen && <ModalReply />}
         </section>
         <section className='section-right col-3'>
           <FollowCardList />

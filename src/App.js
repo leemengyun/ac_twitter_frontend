@@ -36,10 +36,9 @@ import { AuthProvider, useAuth } from './components/context/AuthContext';
 function App({ router }) {
   const [modalProOpen, setModalProOpen] = useState(false);
   const [modalTweetOpen, setModalTweetOpen] = useState(false);
-  const { setModalReplyOpen,tweetId,modalReplyOpen } = useAuth();
+
   // console.log(`modalTweetOpen`, modalTweetOpen);
   // const basename = process.env.PUBLIC_URL;
-
   return (
     <>
       <HashRouter>
@@ -102,7 +101,7 @@ function App({ router }) {
               <ModalTweet setModalTweetOpen={setModalTweetOpen} />
             )}
             {modalProOpen && <Modal setModalProOpen={setModalProOpen} />}
-            {modalReplyOpen && <ModalReply setModalReplyOpen={setModalReplyOpen} tweetId={tweetId}/>}
+            
           </PageLayout>
         </AuthProvider>
       </HashRouter>
