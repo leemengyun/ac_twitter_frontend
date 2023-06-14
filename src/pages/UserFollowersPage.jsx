@@ -16,7 +16,7 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentical, currentMember } = useAuth();
+  const { isAuthentic, currentMember } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
@@ -37,10 +37,10 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   }, []);
 
   useEffect(() => {
-    if (!isAuthentical) {
+    if (!isAuthentic) {
       navigate('/login');
     }
-  }, [navigate, isAuthentical]); //只要isAuthentical或navigation有變化便執行
+  }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 
   //切換下方tab
   //swtich case 與 if else概念相同，但return component更簡潔(??)

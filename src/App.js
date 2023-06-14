@@ -28,13 +28,15 @@ import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
 import ModalTweet from './components/basic/ModalTweet';
+import ModalReply from './components/basic/ModalReply';
 import TweetPage from './pages/TweetPage';
 import RegisterPage from './pages/RegisterPage';
-import { AuthProvider } from './components/context/AuthContext';
+import { AuthProvider, useAuth } from './components/context/AuthContext';
 
 function App({ router }) {
   const [modalProOpen, setModalProOpen] = useState(false);
   const [modalTweetOpen, setModalTweetOpen] = useState(false);
+  const { setModalReplyOpen,tweetId,modalReplyOpen } = useAuth();
   // console.log(`modalTweetOpen`, modalTweetOpen);
   // const basename = process.env.PUBLIC_URL;
 
@@ -52,7 +54,8 @@ function App({ router }) {
               <Route path='/register' element={<RegisterPage />}></Route>
               <Route
                 path='/main'
-                element={<MainPage setModalTweetOpen={setModalTweetOpen} />}
+                element={<MainPage 
+                    setModalTweetOpen={setModalTweetOpen}/>}
               ></Route>
               <Route
                 path='/user/:id'
@@ -64,7 +67,7 @@ function App({ router }) {
                 }
               ></Route>
               <Route
-                path='/other'
+                path='/other/:id'
                 element={
                   <UserOtherPage
                     setModalProOpen={setModalProOpen}
@@ -85,7 +88,8 @@ function App({ router }) {
 
               <Route
                 path='/main/tweet/:id'
-                element={<TweetPage setModalTweetOpen={setModalTweetOpen} />}
+                element={<TweetPage 
+                  setModalTweetOpen={setModalTweetOpen} />}
               ></Route>
               <Route
                 path='/setting'
@@ -98,6 +102,7 @@ function App({ router }) {
               <ModalTweet setModalTweetOpen={setModalTweetOpen} />
             )}
             {modalProOpen && <Modal setModalProOpen={setModalProOpen} />}
+            {modalReplyOpen && <ModalReply setModalReplyOpen={setModalReplyOpen} tweetId={tweetId}/>}
           </PageLayout>
         </AuthProvider>
       </HashRouter>

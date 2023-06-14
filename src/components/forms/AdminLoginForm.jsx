@@ -14,7 +14,7 @@ const AdminLoginForm = () => {
     formState: { errors },
     watch,
   } = useForm();
-  const { login, isAuthentical } = useAuth();
+  const { login, isAuthentic } = useAuth();
 
   const navigate = useNavigate();
 
@@ -41,10 +41,10 @@ const AdminLoginForm = () => {
   };
 
   useEffect(() => {
-    if (isAuthentical) {
+    if (isAuthentic) {
       navigate('/main');
     }
-  }, [navigate, isAuthentical]); //只要isAuthentical或navigation有變化便執行
+  }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 
   return (
     <div className='formLayout login-form'>

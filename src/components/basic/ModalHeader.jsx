@@ -3,7 +3,7 @@ import React from 'react';
 // import svg
 import iconClose from '../../assets/images/icon/close.svg';
 
-const ModalHeader = ({ setModalTweetOpen }) => {
+const ModalHeader = ({ setModalTweetOpen,setModalReplyOpen }) => {
   return (
     <>
       <div className='modal-header'>
@@ -12,7 +12,8 @@ const ModalHeader = ({ setModalTweetOpen }) => {
           alt='icon of close button'
           className='icon-close'
           onClick={() => {
-            setModalTweetOpen(false);
+            setModalTweetOpen?.(false);
+            setModalReplyOpen?.(false);
           }}
         />
       </div>

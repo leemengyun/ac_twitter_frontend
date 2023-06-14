@@ -25,7 +25,7 @@ const TweetBigCard = ({tweetInfo})=>{
       </div>
 
       <div className="TweetUserInfo">
-          <span className="TweetUserInfo-replies">
+          <span className="TweetUserInfo-replies" >
             34 <span>回覆</span>
           </span>
           <span className="TweetUserInfo-likes">
