@@ -11,7 +11,10 @@ const TweetCardBasic = ({ ...props }) => {
 
 
   return (
-    <div className='tweet-card-basic' onClick={()=>props.onClick?.({tweetId})}>
+    <div className='tweet-card-basic' onClick={(e)=>{
+      props.onClick?.({tweetId})
+      e.stopPropagation()
+      }}>
       <UserAvatar 
       avatar={props.User.avatar}
       userId={props.UserId}
@@ -32,6 +35,7 @@ const TweetCardBasic = ({ ...props }) => {
             likesCount={props.likesCount} 
             repliesCount={props.repliesCount}
             isLiked={props.isLiked}
+            id={tweetId}
           />
       </div>
     </div>

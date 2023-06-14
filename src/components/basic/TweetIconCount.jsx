@@ -4,12 +4,15 @@ import reply from '../../assets/images/icon/reply.svg'
 import likefilled from '../../assets/images/icon/like.svg'
 import clsx from "clsx";
 import { useAuth } from "../context/AuthContext";
-const TweetIconCount =({likesCount,repliesCount,isLiked}) => {
-    const { setModalReplyOpen,modalReplyOpen,tweetId } = useAuth();
+const TweetIconCount =({likesCount,repliesCount,isLiked,id}) => {
+    const { setModalReplyOpen,setTweetId} = useAuth();
     return(
       <div className='tweet-card-icon-count'>
-          <div className='tweet-card-reply-count' onClick={()=> setModalReplyOpen(true)}
-            >
+          <div className='tweet-card-reply-count' onClick={(e)=>{ 
+            setTweetId(id)
+            setModalReplyOpen(true)
+            e.stopPropagation()
+            }}>
             <img src={reply} alt='reply' className='reply-icon'
             />
             <span className='tweet-count'>

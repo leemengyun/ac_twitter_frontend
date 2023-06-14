@@ -33,7 +33,7 @@ const TweetBigCard = ({tweetInfo})=>{
           </span>
       </div>
       <div className="TweetUserInfo">
-        <TweetIconCount />
+        <TweetIconCount id={tweetInfo.id}/>
       </div>
       
     </div>
