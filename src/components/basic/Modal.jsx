@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // import component
 import ModalContent from './ModalContent';
@@ -7,18 +8,27 @@ import UserAvatar from './UserAvatar';
 import UserBk from './UserBk';
 import InputGroup from '../forms/InputGroup';
 import { ModalHeaderIcon } from './ModalHeader';
+
+import { getUserInfo, updateUserInfo } from '../../api/userinfo';
+import { useAuth } from '../../components/context/AuthContext';
+
 //import svg
 import iconCamera from '../../assets/images/icon/addphoto.svg';
 import iconClose from '../../assets/images/icon/close.svg';
-// import iconCamera from '../../assets/images/icon/addphoto.svg';
 
-// @ testing local photo
-// import testAvatar from '../../assets/images/avatar1.jpg';
-//@ testing http photos
-// const testBk =
-//   'https://images.unsplash.com/photo-1497290756760-23ac55edf36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80';
+const defaultBk = 'https://i.imgur.com/ZFz8ZEI.png';
+const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
 
 const Modal = ({ setModalProOpen }) => {
+  const { isAuthentic, member } = useAuth(); // 取出需要的狀態與方法
+  const [profile, setProfile] = useState({
+    name: '',
+    introduction: '',
+    avatar: '',
+    banner: '',
+  });
+  const navigate = useNavigate();
+
   // using react-form-hook-set-up
   const {
     register,
@@ -26,13 +36,48 @@ const Modal = ({ setModalProOpen }) => {
     reset,
     formState: { errors },
     watch,
-  } = useForm();
+    setValue,
+  } = useForm({
+    defaultValues: {
+      name: profile.name,
+      introduction: profile.introduction,
+      avatar: profile.avatar,
+      banner: profile.banner,
+    },
+  });
 
+  //@ 打 /api/users/id
+  const getUserInfoAsync = async () => {
+    try {
+      const profile = await getUserInfo(member.id);
+      if (profile) {
+        setProfile(profile);
+        setImageNewUrl_bk(profile.banner);
+        setImageNewUrl(profile.avatar);
+      }
+    } catch (error) {
+      console.error('[getUser Info  with Async failed]', error);
+    }
+  };
+
+  //儲存form
   const onSubmit = async (data) => {
     // 如果是只要給api
-    // 就在這設定 person,再給api,不需要setState
-    console.log(data);
-    reset();
+    console.log('we get data', data);
+    // reset();
+    console.log(member.id);
+    try {
+      const addData = await updateUserInfo({
+        id: member.id,
+        data: data,
+      });
+      if (addData) {
+        setModalProOpen(false);
+      }
+      console.log({ addData });
+    } catch (error) {
+      console.error('[getUser Info  with Async failed]', error);
+    }
   };
 
   //upload photo
@@ -60,9 +105,13 @@ const Modal = ({ setModalProOpen }) => {
         // console.log(e.target.class)
         if (curr_target === 'input-file-avatar') {
           setImageNewUrl(e.target.result);
+          //利用空的input可以用 react-hook-form傳出去
+          setValue('avatar', e.target.result);
         } else if (curr_target === 'input-file-bk') {
           console.log('bk-file');
           setImageNewUrl_bk(e.target.result);
+          //利用空的input可以用 react-hook-form傳出去
+          setValue('banner', e.target.result);
         }
       };
       // console.log(file)
@@ -70,10 +119,38 @@ const Modal = ({ setModalProOpen }) => {
     }
   };
 
+  const handleImageDelete = (e) => {
+    alert('換回原本背景照片');
+    setImageNewUrl_bk(profile.banner ? profile.banner : defaultBk);
+    //新設要送出的form value
+    setValue('banner', profile.banner ? profile.banner : defaultBk);
+  };
+
+  //@ 首次載入profile
+  useEffect(() => {
+    getUserInfoAsync();
+  }, []);
+
+  // @ 首次載入因profile 帳號出不來form要reset
+  useEffect(() => {
+    reset({ ...profile });
+  }, [profile, reset]);
+
+  useEffect(() => {
+    if (!isAuthentic) {
+      navigate('/login');
+    }
+  }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
+
+  console.log({ profile });
+
   return (
     <>
       <ModalContent>
-        <ModalHeaderIcon setModalProOpen={setModalProOpen} />
+        <ModalHeaderIcon
+          setModalProOpen={setModalProOpen}
+          onSubmit={onSubmit}
+        />
         <div className='modal-content'>
           <div className='profile-bk-wrapper'>
             <UserBk bkUrl={imageNewUrl_bk} />
@@ -88,7 +165,7 @@ const Modal = ({ setModalProOpen }) => {
               src={iconClose}
               alt='icon of close button'
               className='icon-close'
-              onClick={() => alert('換回原本照片')}
+              onClick={handleImageDelete}
             />
             <input
               type='file'
@@ -118,10 +195,14 @@ const Modal = ({ setModalProOpen }) => {
             />
           </div>
 
-          <form className='modal-info-form' onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className='modal-info-form'
+            id='hook-form'
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className='input-group-container'>
               <InputGroup
-                name='username'
+                name='name'
                 label='名稱'
                 type='text'
                 placeholder='請輸入帳號'
@@ -129,13 +210,14 @@ const Modal = ({ setModalProOpen }) => {
                 errors={errors}
                 register={register}
                 validationSchema={{
-                  required: 'username is required',
+                  required: 'name is required',
                   minLength: {
                     value: 3,
                     message: 'Please enter a minimum of 3 characters',
                   },
                 }}
                 watch={watch}
+                // value={profile.name}
                 // required
               />
             </div>
@@ -144,15 +226,16 @@ const Modal = ({ setModalProOpen }) => {
                 <label>自我介紹</label>
                 <textarea
                   type='textarea'
-                  id='description'
-                  name='description'
-                  {...register('description', {
+                  id='introduction'
+                  name='introduction'
+                  {...register('introduction', {
                     required: true,
-                    maxLength: 30,
+                    maxLength: 150,
                   })}
                   placeholder='有什麼新鮮事？'
                   maxLength='30'
                   className='desc-text-area'
+                  // value={profile.introduction || ''}
                 />
               </div>
               <div className='error-message-group'>
@@ -165,6 +248,21 @@ const Modal = ({ setModalProOpen }) => {
                 </span>
               </div>
             </div>
+
+            <input
+              type='text'
+              {...register('banner')}
+              style={{
+                display: 'none',
+              }}
+            />
+            <input
+              type='text'
+              {...register('avatar')}
+              style={{
+                display: 'none',
+              }}
+            />
           </form>
         </div>
       </ModalContent>

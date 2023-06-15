@@ -1,11 +1,10 @@
 import React from 'react';
 import TweetCardBasic from '../basic/TweetCardBasic';
+import { useEffect } from 'react';
 
-const TweetsLists = ({ tweets, onClick}) => {
+const TweetsLists = ({ tweets, onClick }) => {
   return (
     <div className='TweetLists'>
-      {/* <h1>Nested TweetsLists</h1> */}
-      {/* update/main */}
       {tweets.map((tweet) => {
         return (
           <TweetCardBasic

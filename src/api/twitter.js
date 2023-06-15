@@ -102,12 +102,12 @@ export const getUserRepliedTweets = async (pathId) => {
 export const createTweet = async (payload) => {
   try {
     const { UserId, description } = payload;
-    const res = await axios.post(`http://localhost:3004/tweets`, {
+    const res = await axiosInstance.post(`${baseUrl}/tweets`, {
       UserId,
       description,
     });
     return res.data;
   } catch (error) {
-    console.error('[CREATE todos failed:]:', error);
+    console.error('[CREATE a Tweet failed:]:', error);
   }
 };
