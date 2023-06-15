@@ -14,7 +14,7 @@ const TweetCardForm = ({
   setTweets,
   tweets,
 }) => {
-  const { isAuthentic, member, modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
+  const { member, modalReplyOpen, setModalTweetOpen } = useAuth(); // 取出需要的狀態與方法
 
   // using react-form-hook-set-up
   const {
@@ -28,16 +28,13 @@ const TweetCardForm = ({
   const onSubmit = (data) => {
     // 如果是只要給api
     // 就在這設定 person,再給api,不需要setState
-    // alert('觸發onSubmit');
-    // console.log(data.description);
-    // setNewTweet(data);
-    // onAddTweet?.(data);
     if (onAddTweet) {
       onAddTweet(data);
     }
     if (onModalAddTweet) {
       onModalAddTweet(data);
     }
+    //清除表單
     reset();
   };
 
