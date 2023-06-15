@@ -7,12 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 
 const TweetCardBasic = ({ ...props }) => {
+  const navigate = useNavigate();
   const tweetId = props.id
-
+  const handleClick = (tweetId)=>{
+    tweetId && navigate(`/main/tweet/${tweetId}`);
+  }
 
   return (
     <div className='tweet-card-basic' onClick={(e)=>{
-      props.onClick?.({tweetId})
+      handleClick(tweetId)
       e.stopPropagation()
       }}>
       <UserAvatar 

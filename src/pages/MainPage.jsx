@@ -20,12 +20,11 @@ const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-  const { isAuthentic, currentMember, member, modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
-  const handleClickCard = ({ userId, tweetId }) => {
+  const { isAuthentic, member, modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
+  const handleClickCard = ({ userId }) => {
     userId === profile.id
       ? navigate(`/user/${userId}`)
       : userId !== undefined && navigate(`/other/${userId}`);
-    tweetId && navigate(`/main/tweet/${tweetId}`);
   };
 
   // @ 0613新增tweet
