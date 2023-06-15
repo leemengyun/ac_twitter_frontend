@@ -15,7 +15,6 @@ import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
 import ModalReply from '../components/basic/ModalReply';
 import ModalTweet from '../components/basic/ModalTweet';
-import { set } from 'react-hook-form';
 
 const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
@@ -103,7 +102,11 @@ const MainPage = ({ setModalTweetOpen }) => {
                 tweets={tweets}
               />
             </div>
-            <TweetLists tweets={tweets} onClick={handleClickCard} />
+            <TweetLists
+              tweets={tweets}
+              onClick={handleClickCard}
+              setIsTweetsLoaded={setIsTweetsLoaded}
+            />
           </div>
         </section>
         <section className='section-right col-3'>

@@ -36,7 +36,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
-  const [refreshPage, setRefreshPage] = useState(false);
+  // const [refreshPage, setRefreshPage] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
   // const dummyData = {

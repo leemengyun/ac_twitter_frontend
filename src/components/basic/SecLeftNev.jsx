@@ -7,8 +7,7 @@ import { useAuth } from '../context/AuthContext';
 
 const SecLeftNav = ({ role, pageIndex, memberId }) => {
   // className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')
-  const { logout, setModalReplyOpen, modalTweetOpen, setModalTweetOpen } =
-    useAuth();
+  const { logout, setModalTweetOpen } = useAuth();
   const handleClick = () => {
     logout();
   };

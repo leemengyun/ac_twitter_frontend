@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -18,12 +18,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    // 如果是只要給api
-    // 就在這設定 person,再給api,不需要setState
-    // const person = {
-    //   username: data.username,
-    //   password: data.password,
-    // };
     if (data.username.length === 0) {
       return;
     }

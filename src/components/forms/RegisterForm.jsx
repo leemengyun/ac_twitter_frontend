@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from './InputGroup';
+import { useAuth } from '../context/AuthContext';
 
 const RegisterForm = () => {
+  const { signUp, isAuthentic } = useAuth();
+  const navigate = useNavigate();
+
   // using react-form-hook-set-up
   const {
     register,
@@ -13,22 +18,33 @@ const RegisterForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // 如果是只要給api
-    // 就在這設定 person,再給api,不需要setState
-    // const person = {
-    //   username: data.username,
-    //   password: data.password,
-    // };
-    if (data.username.length === 0) {
-      return;
-    }
     if (data.password.length === 0) {
       return;
     }
 
     console.log(data);
+
+    // -- 掛載useAuth context 寫法
+    const success = await signUp({
+      account: data.account,
+      email: data.email,
+      password: data.password,
+      checkPassword: data.cpassword,
+      name: data.username,
+    });
+
+    // if (success) {
+    //   alert('註冊成功!');
+    //   return;
+    // }
+    console.log('Register: ', success);
     reset();
   };
+  useEffect(() => {
+    if (isAuthentic) {
+      navigate('/main');
+    }
+  }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 
   return (
     <div className='formLayout register-form'>
@@ -63,7 +79,7 @@ const RegisterForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'username is required',
+              required: 'name is required',
               minLength: {
                 value: 3,
                 message: 'Please enter a minimum of 3 characters',
@@ -125,7 +141,7 @@ const RegisterForm = () => {
             validationSchema={{
               //@ 確認密碼做法？ (還沒有試)
               //https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
-              required: 'password is required',
+              required: 'cpassword is required',
               minLength: {
                 value: 8,
                 message: 'Please enter a minimum of 8 characters',

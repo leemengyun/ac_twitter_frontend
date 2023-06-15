@@ -7,13 +7,12 @@ import { ModalHeader } from './ModalHeader';
 import TweetCardForm from '../forms/TweetCardForm';
 // import api
 import { getUserInfo } from '../../api/userinfo';
-import { getTweets, createTweet } from '../../api/twitter';
+import { createTweet } from '../../api/twitter';
 import { useAuth } from '../../components/context/AuthContext';
 
 const ModalTweet = ({ handleAddTweets }) => {
   const [profile, setProfile] = useState({});
-  const { member, modalReplyOpen, modalTweetOpen, setModalTweetOpen } =
-    useAuth(); // 取出需要的狀態與方法
+  const { member, modalTweetOpen, setModalTweetOpen } = useAuth(); // 取出需要的狀態與方法
 
   // @ 新增tweet
   const onModalAddTweet = async (data) => {
@@ -24,12 +23,9 @@ const ModalTweet = ({ handleAddTweets }) => {
         UserId: member.id,
         description: data.description,
       });
-      // if (addData) {
-      setModalTweetOpen(!modalTweetOpen);
-      // }
-      console.log({ modalTweetOpen });
-
-      // console.log({ addData });
+      if (addData) {
+        setModalTweetOpen(!modalTweetOpen);
+      }
     } catch (error) {
       console.log(`[createData failed]`, error);
     }
@@ -46,9 +42,6 @@ const ModalTweet = ({ handleAddTweets }) => {
     };
     getUserInfoAsync();
   }, []);
-
-  console.log({ modalTweetOpen });
-
   return (
     <>
       <ModalContent>
