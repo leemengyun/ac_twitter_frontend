@@ -1,15 +1,15 @@
-import { login } from '../../api/auth';
+import { login, signUp } from '../../api/auth';
 import { useState, useEffect, useContext, createContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
-import { set } from 'react-hook-form';
+// import { set } from 'react-hook-form';
 
 const defaultAuthContext = {
   isAuthentic: false,
   currentMember: null,
   login: null,
   logout: null,
-  register: null,
+  signUp: null, // 註冊方法
 };
 
 const AuthContext = createContext(defaultAuthContext);
@@ -74,6 +74,30 @@ export const AuthProvider = ({ children }) => {
         setTweetId,
         tweetId,
         member,
+
+        //共用的register流程
+        signUp: async (user) => {
+          const { success, authToken } = await signUp({
+            account: user.account,
+            password: user.password,
+            email: user.email,
+            checkPassword: user.checkPassword,
+            name: user.name,
+          });
+          // 解析payload
+          const tempPayload = jwt.decode(authToken);
+          if (tempPayload) {
+            setPayload(tempPayload);
+            setIsAuthentic(true);
+            localStorage.setItem('authToken', authToken);
+            setMember(tempPayload);
+          } else {
+            setPayload(null);
+            setIsAuthentic(false);
+          }
+          return success;
+        },
+
         login: async (user) => {
           console.log('ok');
           const { success, data } = await login({

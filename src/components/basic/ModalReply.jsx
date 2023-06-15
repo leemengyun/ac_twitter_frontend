@@ -8,23 +8,23 @@ import { ModalHeader } from './ModalHeader';
 import ReplyCardForm from '../forms/ReplyCardForm';
 // @ testing local photo
 // import testAvatar from '../../assets/images/avatar1.jpg';
-import ReplyCard from './ReplyCard'
+import ReplyCard from './ReplyCard';
 import { useEffect, useState } from 'react';
 import { getTweet } from '../../api/twitter';
 import { useAuth } from '../context/AuthContext';
- const ModalReply = () => {
+const ModalReply = () => {
   const [tweetInfo, setTweetInfo] = useState({
     id: '',
     UserId: '',
     description: '',
     createdAt: '',
     User: {},
-    Likes:{},
-    replies:{},
-    updatedAt: ''
+    Likes: {},
+    replies: {},
+    updatedAt: '',
   });
-   const { isAuthentic, currentMember,setModalReplyOpen,tweetId } = useAuth();
-  
+  const { currentMember, setModalReplyOpen, tweetId } = useAuth();
+
   useEffect(() => {
     const getTweetAsync = async () => {
       try {
@@ -36,21 +36,19 @@ import { useAuth } from '../context/AuthContext';
     };
     getTweetAsync();
   }, []);
-  
+
   return (
     <>
       <ModalContent>
         <ModalHeader setModalReplyOpen={setModalReplyOpen} />
         <div className='modal-content modal-reply-content'>
           <div className='tweet-reply-wrapper'>
-            <ReplyCard 
-              tweetInfo={tweetInfo}
-            />
+            <ReplyCard tweetInfo={tweetInfo} />
           </div>
           <div className='tweet-form-wrapper'>
-            <ReplyCardForm 
-            avatar={currentMember.avatar}
-            tweetInfo={tweetInfo}
+            <ReplyCardForm
+              avatar={currentMember.avatar}
+              tweetInfo={tweetInfo}
             />
           </div>
         </div>

@@ -28,10 +28,10 @@ import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
 // import ModalTweet from './components/basic/ModalTweet';
-import ModalReply from './components/basic/ModalReply';
+// import ModalReply from './components/basic/ModalReply';
 import TweetPage from './pages/TweetPage';
 import RegisterPage from './pages/RegisterPage';
-import { AuthProvider, useAuth } from './components/context/AuthContext';
+import { AuthProvider } from './components/context/AuthContext';
 
 function App({ router }) {
   const [modalProOpen, setModalProOpen] = useState(false);

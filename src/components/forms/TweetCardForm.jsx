@@ -1,9 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { createTweet } from '../../api/twitter';
-import { useAuth } from '../../components/context/AuthContext';
+// import { createTweet } from '../../api/twitter';
+// import { useAuth } from '../../components/context/AuthContext';
 
-// import InputGroup from './InputGroup';
 import UserAvatar from '../basic/UserAvatar';
 // import testAvatar from '../../assests/images/avatar1.jpg';
 
@@ -11,11 +10,9 @@ const TweetCardForm = ({
   avatar,
   onAddTweet,
   onModalAddTweet,
-  setTweets,
-  tweets,
+  // setTweets,
+  // tweets,
 }) => {
-  const { member, modalReplyOpen, setModalTweetOpen } = useAuth(); // 取出需要的狀態與方法
-
   // using react-form-hook-set-up
   const {
     register,
