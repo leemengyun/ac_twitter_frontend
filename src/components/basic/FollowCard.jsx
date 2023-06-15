@@ -4,10 +4,15 @@ import TweetUserName2 from './TweetUserName2';
 import clsx from 'clsx';
 
 const FollowCard = ({...props}) => {
+  const id = props.id
   return (
     <div className='follow-card'>
         <div className='follow-card-info'>
-        <UserAvatar avatar={props.avatar} />
+        <UserAvatar 
+        avatar={props.avatar} 
+        userId={id} 
+        onClick={({userId})=>{props.onClick?.({userId})}}
+        />
         <TweetUserName2 name={props.name} account={props.account} />
       </div>
       <div className='follow-card-button'>

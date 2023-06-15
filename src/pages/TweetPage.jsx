@@ -20,7 +20,7 @@ const TweetPage = ({ setModalTweetOpen}) => {
   //這裡很奇怪只有他 要先設定一樣的結構
   const { isAuthentic, currentMember,modalReplyOpen,setTweetId} = useAuth();
   const pathId = Number(useParams().id);
-
+  
   useEffect(() => {
     const getTweetAsync = async () => {
       try {

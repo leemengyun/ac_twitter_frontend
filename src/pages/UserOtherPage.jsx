@@ -14,89 +14,49 @@ import { useParams } from 'react-router-dom';
 //call api
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
-import { getUserTweets } from '../api/twitter';
+import { cancelFollow, getUserTweets, userFollowing } from '../api/twitter';
 import ModalReply from '../components/basic/ModalReply';
 
 const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
-  const pathId = Number(useParams().id); //取得網址:id
+  const [pathId, setPathId] = useState(Number(useParams().id))
+   //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentic, currentMember,modalReplyOpen } = useAuth();
+  const { isAuthentic, member,modalReplyOpen } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
+  const [userIsFollowing, setUserIsFollowing]=useState(false)
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
-  const dummyData = {
-    user: {
-      id: 1,
-      account: 'test-acount-1',
-      email: 'test1@example.com',
-      password: '$2a$10$MlmbvV0fDfjJuqipEU88W.KSo75y8Zc1C/hxA.rdG772HaALUiSQ.',
-      name: 'test-1',
-      avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-      introduction: 'Hi I am test No.1',
-      banner: 'https://i.imgur.com/3ZH4ZZ8.jpeg',
-      role: 'user',
-      createdAt: '2023-05-25T11:09:42.000Z',
-      updatedA: '2023-05-25T11:09:42.000Z',
-      tweets: [
-        {
-          id: 1,
-          userId: 1,
-          description: 'Test-Tweet-user1-1',
-          createdAt: '2023-05-25T11:09:42.000Z',
-          updatedAt: '2023-05-25T11:09:42.000Z',
-          isLiked: true,
-          repliesCount: 1,
-          user: {
-            name: 'test-1-name',
-            account: 'test-1-account',
-            avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-          },
-        },
-        {
-          id: 2,
-          userId: 1,
-          description: 'Test-Tweet-user1-1',
-          createdAt: '2023-05-25T11:09:42.000Z',
-          updatedAt: '2023-05-25T11:09:42.000Z',
-          isLiked: true,
-          repliesCount: 1,
-          user: {
-            name: 'test-1-name',
-            account: 'test-1-account',
-            avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-          },
-        },
-        {
-          id: 3,
-          userId: 1,
-          description: 'Test-Tweet-user1-1',
-          createdAt: '2023-05-25T11:09:42.000Z',
-          updatedAt: '2023-05-25T11:09:42.000Z',
-          isLiked: true,
-          repliesCount: 1,
-          user: {
-            name: 'test-1-name',
-            account: 'test-1-account',
-            avatar: 'https://i.imgur.com/YcP0tik.jpeg',
-          },
-        },
-      ],
-    },
-  };
-
+  
   // console.log(currentMember)
   //@ profileCard 渲染後端 userInfo
+
+
+  const handleUserISFollowing = async (userId)=>{
+    try{
+      if(!userIsFollowing){
+        await userFollowing(userId);
+      }else{
+        await cancelFollow(userId);
+      }
+    setUserIsFollowing(!userIsFollowing);
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+
 
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const userInfo = await getUserInfo(pathId);
-        setUserInfo(userInfo);
+        const data = await getUserInfo(pathId);
+        setUserInfo(data);
+        setUserIsFollowing(data.isFollowing)
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
       }
@@ -111,7 +71,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
     };
     getUserTweetsAsync();
     getUserInfoAsync();
-  }, []);
+  }, [pathId]);
 
   useEffect(() => {
     if (!isAuthentic) {
@@ -138,13 +98,18 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
         role='user'
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
-        memberId={currentMember.id}
+        memberId={member.id}
       >
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='Others' userTweetsLength='33推文' />
 
-            <ProfileOtherCard {...userInfo} setModalProOpen={setModalProOpen} />
+            <ProfileOtherCard 
+            {...userInfo} 
+            setModalProOpen={setModalProOpen}
+            userIsFollowing={userIsFollowing}
+            onClick={handleUserISFollowing}
+            />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
             {modalReplyOpen && <ModalReply />}
             {switchContext(tabIndex)}
@@ -154,7 +119,9 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
           </div>
         </section>
         <section className='section-right col-3'>
-          <FollowCardList />
+          <FollowCardList 
+            setPathId={setPathId}
+          />
         </section>
       </ContainerColSec>
     </>

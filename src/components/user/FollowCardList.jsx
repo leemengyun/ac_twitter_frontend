@@ -1,14 +1,27 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getTopUsers } from '../../api/twitter';
 import FollowCard from '../basic/FollowCard';
+import { useAuth } from '../context/AuthContext';
 // import { useAuth } from '../context/AuthContext';
 // import iconLogo from '../assets/images/icon/logo.svg';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const FollowCardList = () => {
+const FollowCardList = ({setPathId}) => {
   const [users, setUsers] = useState([]);
+  const { member } = useAuth()
+  const navigate = useNavigate()
+  
+  
+  const handleClickCard = ({ userId }) => {
+    userId === member.id
+      ? navigate(`/user/${userId}`)
+      : userId !== undefined && navigate(`/other/${userId}`);
+      setPathId(userId)
+  };
+
 
   useEffect(() => {
     const getUsersAsync = async () => {
@@ -29,7 +42,11 @@ const FollowCardList = () => {
           <h4>推薦跟隨</h4>
         </div>
         {users.map((user) => {
-          return <FollowCard key={user.id} {...user} />;
+          return <FollowCard 
+          key={user.id} 
+          {...user} 
+          onClick={handleClickCard}
+          />;
         })}
       </div>
     </>

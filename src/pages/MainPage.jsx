@@ -22,13 +22,14 @@ const MainPage = ({ setModalTweetOpen }) => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
   const { isAuthentic, member, modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
+
   const [isTweetsLoaded, setIsTweetsLoaded] = useState(false);
 
-  const handleClickCard = ({ userId, tweetId }) => {
+  const handleClickCard = ({ userId }) => {
+
     userId === profile.id
       ? navigate(`/user/${userId}`)
       : userId !== undefined && navigate(`/other/${userId}`);
-    tweetId && navigate(`/main/tweet/${tweetId}`);
   };
   //@呼叫 /api/tweets
   const getTweetsAsync = async () => {
@@ -79,8 +80,8 @@ const MainPage = ({ setModalTweetOpen }) => {
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const profile = await getUserInfo(member.id);
-        setProfile(profile);
+        const data = await getUserInfo(member.id);
+        setProfile(data);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
       }
@@ -123,7 +124,9 @@ const MainPage = ({ setModalTweetOpen }) => {
           {modalReplyOpen && <ModalReply />}
         </section>
         <section className='section-right col-3'>
-          <FollowCardList />
+          <FollowCardList 
+          setPathId={()=>{}}
+          />
         </section>
       </ContainerColSec>
     </>
