@@ -1,8 +1,6 @@
 import React from 'react';
 import Defaultavatar from '../../assets/images/icon/avatar.svg';
 
-
-
 const UserAvatar = ({avatar,onClick,userId}) =>{
     return (
       <> 

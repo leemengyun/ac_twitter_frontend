@@ -48,7 +48,10 @@ import { useAuth } from '../context/AuthContext';
             />
           </div>
           <div className='tweet-form-wrapper'>
-            <ReplyCardForm avatar={currentMember.avatar}/>
+            <ReplyCardForm 
+            avatar={currentMember.avatar}
+            tweetInfo={tweetInfo}
+            />
           </div>
         </div>
       </ModalContent>
