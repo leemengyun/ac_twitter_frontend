@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
   //頁面刷新時，確認是誰
   const { pathname } = useLocation();
   const [modalReplyOpen, setModalReplyOpen] = useState(false);
+  // const [modalProOpen, setModalProOpen] = useState(false);
+  const [modalTweetOpen, setModalTweetOpen] = useState(false);
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
 
@@ -56,8 +58,6 @@ export const AuthProvider = ({ children }) => {
     checkTokenIsValid();
   }, [pathname]);
 
-
-
   return (
     <AuthContext.Provider
       value={{
@@ -69,6 +69,8 @@ export const AuthProvider = ({ children }) => {
         },
         setModalReplyOpen,
         modalReplyOpen,
+        setModalTweetOpen,
+        modalTweetOpen,
         setTweetId,
         tweetId,
         member,
@@ -98,7 +100,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('authToken');
           setIsAuthentic(false);
           setPayload(null);
-        }
+        },
       }}
     >
       {children}

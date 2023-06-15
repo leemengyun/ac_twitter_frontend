@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 import ContainerColSec from '../components/layout/ContainerColSec';
 import SettingForm from '../components/forms/SettingForm';
 import { HeaderMain } from '../components/basic/Header';
+import ModalTweet from '../components/basic/ModalTweet';
 import { useAuth } from '../components/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const SettingPage = ({ setModalTweetOpen }) => {
-  const { isAuthentic, currentMember } = useAuth(); // 取出需要的狀態與方法
+  const { isAuthentic, member, modalTweetOpen } = useAuth(); // 取出需要的狀態與方法
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,8 +24,10 @@ const SettingPage = ({ setModalTweetOpen }) => {
         role='user'
         setModalTweetOpen={setModalTweetOpen}
         pageIndex={2}
-        memberId={currentMember?.id}
+        memberId={member?.id}
       >
+        {modalTweetOpen && <ModalTweet />}
+
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderMain pageTitle='帳戶設定' />

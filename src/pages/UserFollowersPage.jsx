@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
 import { TabTwoGroup } from '../components/basic/Tab';
-
+import ModalTweet from '../components/basic/ModalTweet';
 //call api
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
@@ -16,18 +16,15 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentic, currentMember } = useAuth();
+  const { isAuthentic, member, modalTweetOpen } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
-  //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
-  // @ tweets 的 dummy資料
-  // console.log(currentMember)
-  //@ profileCard 渲染後端 userInfo
 
+  //@ profileCard 渲染後端 userInfo
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const userInfo = await getUserInfo(currentMember.id);
+        const userInfo = await getUserInfo(member.id);
         setUserInfo(userInfo);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
@@ -57,11 +54,12 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
     <>
       <ContainerColSec
         role='user'
-        setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         pageIndex={1}
         memberId={userInfo.id}
       >
+        {modalTweetOpen && <ModalTweet />}
+
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='John Doe' userTweetsLength='25推文' />

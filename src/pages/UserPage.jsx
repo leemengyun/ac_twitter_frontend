@@ -16,10 +16,11 @@ import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
 import { getUserTweets } from '../api/twitter';
 import ModalReply from '../components/basic/ModalReply';
+import ModalTweet from '../components/basic/ModalTweet';
 
 const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
-  const [pathId, setPathId] = useState(Number(useParams().id))
+  const [pathId, setPathId] = useState(Number(useParams().id));
 
   //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
@@ -27,11 +28,10 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const navigate = useNavigate();
   const {
     isAuthentic,
-    currentMember,
+    // currentMember,
     member,
     modalReplyOpen,
     modalTweetOpen,
-    modalProOpen,
   } = useAuth();
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({});
@@ -122,8 +122,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
     };
     getUserTweetsAsync();
     getUserInfoAsync();
-  }, [pathId]);
-
+  }, [pathId, modalTweetOpen]);
 
   useEffect(() => {
     if (!isAuthentic) {
@@ -146,12 +145,8 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
 
   return (
     <>
-      <ContainerColSec
-        role='user'
-        setModalTweetOpen={setModalTweetOpen}
-        pageIndex={1}
-        memberId={member.id}
-      >
+      <ContainerColSec role='user' pageIndex={1} memberId={member.id}>
+        {modalTweetOpen && <ModalTweet />}
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser
@@ -169,9 +164,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
           </div>
         </section>
         <section className='section-right col-3'>
-          <FollowCardList 
-            setPathId={setPathId}
-          />
+          <FollowCardList setPathId={setPathId} />
         </section>
       </ContainerColSec>
     </>

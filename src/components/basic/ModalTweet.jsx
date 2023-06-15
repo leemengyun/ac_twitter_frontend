@@ -1,53 +1,53 @@
 // import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
 
 // import component
 import ModalContent from './ModalContent';
-// import UserAvatar from './UserAvatar';
-// import InputGroup from '../forms/InputGroup';
 import { ModalHeader } from './ModalHeader';
 import TweetCardForm from '../forms/TweetCardForm';
-// @ testing local photo
-// import testAvatar from '../../assets/images/avatar1.jpg';
+// import api
+import { getUserInfo } from '../../api/userinfo';
+import { getTweets, createTweet } from '../../api/twitter';
+import { useAuth } from '../../components/context/AuthContext';
 
-const ModalTweet = ({ setModalTweetOpen, handleAddTweets }) => {
-  // using react-form-hook-set-up
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   reset,
-  //   formState: { errors },
-  //   watch,
-  // } = useForm();
+const ModalTweet = ({ handleAddTweets }) => {
+  const [profile, setProfile] = useState({});
+  const { member, modalReplyOpen, modalTweetOpen, setModalTweetOpen } =
+    useAuth(); // 取出需要的狀態與方法
 
-  // @ 0613新增tweet
-  // @ 但api與送出資料不太對應，會造成下方tweetLists無法render
+  // @ 新增tweet
   const onModalAddTweet = async (data) => {
-    alert('submit ModlaTsodos');
-    console.log(data);
-    // try {
-    //   const addData = await createTweet({
-    //     UserId: profile.id,
-    //     description: data.description,
-    //   });
+    // alert('submit ModlaTsodos');
+    // console.log(data);
+    try {
+      const addData = await createTweet({
+        UserId: member.id,
+        description: data.description,
+      });
+      // if (addData) {
+      setModalTweetOpen(!modalTweetOpen);
+      // }
+      console.log({ modalTweetOpen });
 
-    //   setTweets([
-    //     ...tweets,
-    //     {
-    //       // id: data.id, //我今天嘗試打他都會自己帶id
-    //       UserId: addData.UserId,
-    //       description: addData.description,
-    //     },
-    //   ]);
-    // } catch (error) {
-    //   console.log(`[createData failed]`);
-    // }
+      // console.log({ addData });
+    } catch (error) {
+      console.log(`[createData failed]`, error);
+    }
   };
 
-  // const onSubmit = async (data) => {
-  //   console.log(data);
-  //   // onModalAddTweet(data);
-  //   reset();
-  // };
+  useEffect(() => {
+    const getUserInfoAsync = async () => {
+      try {
+        const data = await getUserInfo(member.id);
+        setProfile(data);
+      } catch (error) {
+        console.error('[getUser Info  with Async failed]', error);
+      }
+    };
+    getUserInfoAsync();
+  }, []);
+
+  console.log({ modalTweetOpen });
 
   return (
     <>
@@ -55,7 +55,10 @@ const ModalTweet = ({ setModalTweetOpen, handleAddTweets }) => {
         <ModalHeader setModalTweetOpen={setModalTweetOpen} />
         <div className='modal-content modal-tweet-content'>
           <div className='tweet-form-wrapper'>
-            <TweetCardForm />
+            <TweetCardForm
+              avatar={profile.avatar}
+              onModalAddTweet={onModalAddTweet}
+            />
           </div>
         </div>
       </ModalContent>
