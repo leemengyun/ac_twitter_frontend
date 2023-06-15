@@ -8,6 +8,7 @@ import TweetRepliesList from '../components/user/TweetRepliesList';
 import { useAuth } from '../components/context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import ModalReply from '../components/basic/ModalReply';
+import FollowCardList from '../components/user/FollowCardList';
 
 
 const TweetPage = ({ setModalTweetOpen}) => {
@@ -78,7 +79,9 @@ const TweetPage = ({ setModalTweetOpen}) => {
         </div>
       </section>
       <section className='section-right col-3'>
-       
+       <FollowCardList 
+          setPathId={()=>{}}
+          />
       </section>
     </ContainerColSec>
   );
