@@ -4,13 +4,18 @@ import TweetIconCount from "./TweetIconCount";
 import TweetUserName2 from "./TweetUserName2";
 import UserAvatar from "./UserAvatar";
 
-const TweetBigCard = ({tweetInfo})=>{
+const TweetBigCard = ({tweetInfo,onClick})=>{
+  const id = tweetInfo.UserId
   return (
     <div className="TweetBigCard">
       <div className="TweetUserInfo">
         <div className="TweetUserInfo-head">
           <UserAvatar 
             avatar={tweetInfo.User.avatar}
+            onClick={({  userId }) => {
+              onClick?.({ userId });
+            }}
+            userId={id}
           />
           <TweetUserName2 
             name={tweetInfo.User.name}

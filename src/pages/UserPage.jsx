@@ -20,7 +20,7 @@ import ModalTweet from '../components/basic/ModalTweet';
 
 const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
-  const [pathId, setPathId] = useState(Number(useParams().id));
+  const [pathId, setPathId] = useState(Number(useParams().id)); //只是為了與UserOtherPage一樣而設定state
 
   //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
