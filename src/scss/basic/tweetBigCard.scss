@@ -1,8 +1,8 @@
+.TweetPage{
+  min-width: 639px;
 .TweetBigCard{
-  min-height: 639px;
-  margin: 22px 102px 0px 32px;
+  margin-top:16px;
   .TweetUserInfo{
-    min-width: 602px;
     margin: 0px 21px 16px 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--main-border);
@@ -50,4 +50,5 @@
       cursor: pointer;
     }
   }
+}
 }

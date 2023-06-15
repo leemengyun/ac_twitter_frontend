@@ -3,11 +3,12 @@ import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
 import TweetBigCard from '../components/basic/TweetBigCard';
 import { useEffect, useState } from 'react';
-import { getTweet } from '../api/twitter';
-import FollowCardList from '../components/user/FollowCardList';
+import { getTweet, getTweetReplies } from '../api/twitter';
+import TweetRepliesList from '../components/user/TweetRepliesList';
 import { useAuth } from '../components/context/AuthContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ModalReply from '../components/basic/ModalReply';
+
 
 const TweetPage = ({ setModalTweetOpen}) => {
   const [tweetInfo, setTweetInfo] = useState({
@@ -17,10 +18,17 @@ const TweetPage = ({ setModalTweetOpen}) => {
     createdAt: '',
     User: {},
   });
+  const [tweetReplies,setTweetReplies] = useState([])
   //這裡很奇怪只有他 要先設定一樣的結構
-  const { isAuthentic, currentMember,modalReplyOpen,setTweetId} = useAuth();
+  const { isAuthentic, member,modalReplyOpen,setTweetId} = useAuth();
   const pathId = Number(useParams().id);
-  
+  const navigate = useNavigate();
+  const handleClickCard = ({ userId }) => {
+    userId === member.id
+      ? navigate(`/user/${userId}`)
+      : userId !== undefined && navigate(`/other/${userId}`);
+  };
+
   useEffect(() => {
     const getTweetAsync = async () => {
       try {
@@ -33,24 +41,44 @@ const TweetPage = ({ setModalTweetOpen}) => {
     };
     getTweetAsync();
   }, [pathId]);
+
+  useEffect(()=>{
+    const getTweetRepliesAsync = async ()=>{
+      try {
+        const data = await getTweetReplies(pathId);
+        setTweetReplies(data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getTweetRepliesAsync()
+  },[])
+  
   return (
     <ContainerColSec
       role='user'
       setModalTweetOpen={setModalTweetOpen}
       pageIndex={0}
-      memberId={currentMember?.id}
+      memberId={member?.id}
     >
       {modalReplyOpen && <ModalReply />}
       <section className='section-outer-m col-7'>
         <div className='section-main-m'>
           <HeaderUser userAccountName='推文' />
-          <TweetBigCard 
-            tweetInfo={tweetInfo} 
-          />
+          <div className='TweetPage'>
+            <TweetBigCard 
+              tweetInfo={tweetInfo} 
+            />
+            <TweetRepliesList 
+            tweetReplies={tweetReplies}
+            account={tweetInfo.User.account}
+            onClick={handleClickCard}
+            />
+        </div>
         </div>
       </section>
       <section className='section-right col-3'>
-        <FollowCardList />
+       
       </section>
     </ContainerColSec>
   );
