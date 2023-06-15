@@ -53,7 +53,7 @@ const TweetPage = ({ setModalTweetOpen}) => {
       }
     }
     getTweetRepliesAsync()
-  },[])
+  },[modalReplyOpen])
   
   return (
     <ContainerColSec
@@ -68,7 +68,8 @@ const TweetPage = ({ setModalTweetOpen}) => {
           <HeaderUser userAccountName='推文' />
           <div className='TweetPage'>
             <TweetBigCard 
-              tweetInfo={tweetInfo} 
+              tweetInfo={tweetInfo}
+              onClick={handleClickCard}
             />
             <TweetRepliesList 
             tweetReplies={tweetReplies}
