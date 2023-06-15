@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import UserAvatar from './UserAvatar';
 import UserBk from './UserBk';
@@ -9,7 +9,7 @@ import UserBk from './UserBk';
 // import testAvatar from '../../assets/images/avatar1.jpg';
 import iconMessage from '../../assets/images/icon/message.svg';
 import iconNotice from '../../assets/images/icon/notice.svg';
-
+import clsx from 'clsx';
 //@ testing http photos
 // const testBk =
 //   'https://images.unsplash.com/photo-1497290756760-23ac55edf36f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80';
@@ -23,7 +23,10 @@ const ProfileOtherCard = ({
   followersCount,
   followingsCount,
   setModalProOpen,
+  userIsFollowing,
+  onClick
 }) => {
+  const userId = Number(useParams().id);
   return (
     <>
       <div className='profile-card'>
@@ -41,10 +44,10 @@ const ProfileOtherCard = ({
             className='icon-round icon-notice icon-round cursor-point'
           />
           <button
-            className='button-md button-m'
-            // onClick={() => setModalProOpen(true)}
+            className={`${clsx('',{active: userIsFollowing})} button-md button-m`}
+            onClick={() => onClick?.(userId)}
           >
-            追蹤
+            {userIsFollowing ? '正在跟隨' : '跟蹤'}
           </button>
         </div>
         <div className='profile-info'>

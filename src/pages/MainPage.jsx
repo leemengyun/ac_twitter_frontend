@@ -53,8 +53,8 @@ const MainPage = ({ setModalTweetOpen }) => {
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const profile = await getUserInfo(member.id);
-        setProfile(profile);
+        const data = await getUserInfo(member.id);
+        setProfile(data);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
       }
@@ -100,7 +100,9 @@ const MainPage = ({ setModalTweetOpen }) => {
           {modalReplyOpen && <ModalReply />}
         </section>
         <section className='section-right col-3'>
-          <FollowCardList />
+          <FollowCardList 
+          setPathId={()=>{}}
+          />
         </section>
       </ContainerColSec>
     </>

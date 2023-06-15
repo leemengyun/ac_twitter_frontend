@@ -56,6 +56,8 @@ export const AuthProvider = ({ children }) => {
     checkTokenIsValid();
   }, [pathname]);
 
+
+
   return (
     <AuthContext.Provider
       value={{
@@ -96,7 +98,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('authToken');
           setIsAuthentic(false);
           setPayload(null);
-        },
+        }
       }}
     >
       {children}

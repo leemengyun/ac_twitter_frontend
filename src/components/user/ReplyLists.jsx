@@ -19,8 +19,6 @@ const ReplyLists = ({ pathId, onClick }) => {
 
   return (
     <div className='TweetLists'>
-      <h1>Nested TweetsLists</h1>
-      update/main
       {userReplied.map((tweet) => {
         return (
           <TweetCardReply

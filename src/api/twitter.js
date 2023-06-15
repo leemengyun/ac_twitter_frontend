@@ -111,3 +111,26 @@ export const createTweet = async (payload) => {
     console.error('[CREATE todos failed:]:', error);
   }
 };
+
+//跟隨使用者
+export const userFollowing = async (payload) => {
+  try {
+    const { UserId } = payload;
+    const res = await axiosInstance.post(`${baseUrl}/followships`, {
+      UserId
+    });
+    return res.data;
+  } catch (error) {
+    console.error('[Following failed:]:', error);
+  }
+};
+//取消跟隨
+export const cancelFollow = async (followerId) => {
+  try {
+    const res = await axiosInstance.delete(`${baseUrl}/followships/${followerId}`);
+    return res.data;
+  } catch (error) {
+    console.error('[Cancel Follow failed:]:', error);
+  }
+};
+
