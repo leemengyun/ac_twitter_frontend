@@ -25,10 +25,18 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentic, currentMember, member, modalReplyOpen } = useAuth();
+  const {
+    isAuthentic,
+    currentMember,
+    member,
+    modalReplyOpen,
+    modalTweetOpen,
+    modalProOpen,
+  } = useAuth();
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
+  const [refreshPage, setRefreshPage] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
   // const dummyData = {
@@ -101,6 +109,8 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         console.error('[getUser Info  with Async failed]', error);
       }
     };
+    getUserInfoAsync();
+
     const getUserTweetsAsync = async () => {
       try {
         const data = await getUserTweets(pathId);
@@ -110,10 +120,10 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
         console.log(error);
       }
     };
-
     getUserTweetsAsync();
     getUserInfoAsync();
   }, [pathId]);
+
 
   useEffect(() => {
     if (!isAuthentic) {

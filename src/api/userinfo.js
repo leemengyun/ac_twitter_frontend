@@ -31,8 +31,6 @@ export const getUserInfo = async (pathId) => {
     const res = await axiosInstance.get(`${baseUrl}/users/${pathId}`);
 
     //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料
-    // console.log(res.data[0].data.user);
-    // return res.data[0].data.user;
     // console.log(res.data.data);
     // console.log(res)
     return res.data;
@@ -41,19 +39,24 @@ export const getUserInfo = async (pathId) => {
   }
 };
 
-//要記得export外面才能用
-// export const updateUserInfo = async (payload) => {
-//   try {
-//     // 要帶的資料設定為payload
-//     const { account, name } = payload;
-//     // 獲得todo end point
-//     const res = await axios.patch(`${baseUrl}/userinfo`, {
-//       account,
-//       name,
-//     });
-//     //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料
-//     return res.data;
-//   } catch (error) {
-//     console.error('[getUser Info failed]', error);
-//   }
-// };
+// 更新個人資料
+export const updateUserInfo = async (payload) => {
+  try {
+    const { id, data } = payload;
+    console.log({ payload });
+    const res = await axiosInstance.put(`${baseUrl}/users/${id}`, {
+      // 這裡的data是前面打包的
+      //name, introduction, avatar,banner
+      name: data.name,
+      introduction: data.introduction,
+      avatar: data.avatar,
+      banner: data.banner,
+    });
+
+    //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料
+    console.log('res data', res.data);
+    return res.data;
+  } catch (error) {
+    console.error('[getUser Info failed]', error);
+  }
+};
