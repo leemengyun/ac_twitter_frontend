@@ -55,13 +55,13 @@ const ProfileCard = ({
         <div className='user-follow-info'>
           <Link to='/user/followers'>
             <p>
-              {followersCount} 個 <span>跟隨中</span>
+              {followingsCount} 個 <span>跟隨中</span>
             </p>
           </Link>
 
           <Link to='/user/followers'>
             <p>
-              {followingsCount} 位<span>跟隨者</span>
+              {followersCount} 位<span>跟隨者</span>
             </p>
           </Link>
         </div>
