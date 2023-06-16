@@ -114,7 +114,7 @@ const Modal = ({ setModalProOpen }) => {
           setValue('banner', e.target.result);
         }
       };
-      // console.log(file)
+      // console.log(file);
       reader.readAsDataURL(file);
     }
   };
@@ -173,6 +173,8 @@ const Modal = ({ setModalProOpen }) => {
               onChange={handleImageUpload}
               ref={imageUploader_bk}
               className='input-file-bk'
+              //@ sam 需要的上傳規格 name='banner'
+              name='banner'
             />
           </div>
 
@@ -192,6 +194,8 @@ const Modal = ({ setModalProOpen }) => {
               onChange={handleImageUpload}
               ref={imageUploader}
               className='input-file-avatar'
+              //@ sam 需要的上傳規格 name='avatar'
+              name='avatar'
             />
           </div>
 

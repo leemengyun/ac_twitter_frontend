@@ -334,10 +334,9 @@ h5 {
     align-items: center;
     width: 120px; //暫時寫死
     .tweet-card-reply-count,
-    .tweet-card-like-count{
+    .tweet-card-like-count {
       cursor: pointer;
     }
-
 
     & .reply-icon {
       width: 13.17px;
@@ -360,7 +359,7 @@ h5 {
       font-weight: 600;
       color: var(--secondary-color);
     }
-  } 
+  }
 }
 
 /* End [共用元件] ---------------------------------------------------------------------------------------- */
@@ -453,10 +452,47 @@ h5 {
 
 /* End [buttons] ---------------------------------------------------------------------------------------- */
 
+/* @testing [notification] ----------------------------------------------------------------------------------------*/
+
+div:where(.swal2-container).swal2-top > .swal2-popup {
+  padding: 13px 0px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.swal2-popup.swal2-toast div#swal2-html-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+
+.icon-alert-noti {
+  width: 56px !important;
+  height: 56px !important;
+}
+
+.swal2-popup.swal2-toast h2#swal2-title {
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  line-height: 28px !important;
+  margin: 8x 16px !important;
+}
+
+/* End [notification] ---------------------------------------------------------------------------------------- */
+
 /* @testing [快速測試頁面用] ----------------------------------------------------------------------------------------*/
 
 .title_test {
   color: teal;
   font-size: 100px;
 }
+
 /* End [快速測試頁面用] ---------------------------------------------------------------------------------------- */
