@@ -87,7 +87,6 @@ export const AuthProvider = ({ children }) => {
         setTweetId,
         tweetId,
         member,
-        UserLike,
         like,
         handleChangeLikeMode
         ,
