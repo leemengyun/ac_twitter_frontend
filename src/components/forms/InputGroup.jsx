@@ -10,7 +10,6 @@ const InputGroup = ({
   maxLength,
   // required,
   validationSchema,
-  defaultValue,
   watch,
 }) => {
   return (
@@ -21,7 +20,6 @@ const InputGroup = ({
         <input
           type={type}
           name={name}
-          defaultValue={defaultValue}
           placeholder={placeholder}
           {...register(name, validationSchema)}
           maxLength={maxLength || null}

@@ -6,19 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import InputGroup from './InputGroup';
 import { useAuth } from '../context/AuthContext';
-import { editSettingInfo, getSettingInfo } from '../../api/twitter';
-import { useState } from 'react';
 // import { getUserTweets } from '../api/twitter';
 
 const SettingForm = () => {
   const navigate = useNavigate();
   const { isAuthentic, member } = useAuth();
-  const [settingInfo , setSettingInfo] = useState({
-    id: "",
-    account: "",
-    email: "",
-    name: "",
-  })
+
   // using react-form-hook-set-up
   const {
     register,
@@ -28,28 +21,17 @@ const SettingForm = () => {
     watch,
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     // 如果是只要給api
     // 就在這設定 person,再給api,不需要setState
     // const person = {
     //   username: data.username,
     //   password: data.password,
     // };
-    const res = await editSettingInfo(member.id)
-
-
     console.log(data);
     reset();
   };
-
-  useEffect(()=> {
-    const getSettingInfoAsync = async()=>{
-      const data = await getSettingInfo(member.id)
-      setSettingInfo(data)
-    }
-    getSettingInfoAsync()
-  },[])
-
+  console.log(member.id);
 
   useEffect(() => {
     if (!isAuthentic) {
@@ -57,7 +39,7 @@ const SettingForm = () => {
     }
     // console.log(member);
   }, [navigate, isAuthentic, member]); //只要isAuthentic或navigation有變化便執行
-  
+
   return (
     <div className='formLayout setting-form'>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -67,7 +49,6 @@ const SettingForm = () => {
             label='帳號'
             type='text'
             placeholder='請輸入帳號'
-            defaultValue= {settingInfo.account}
             maxLength='50'
             errors={errors}
             register={register}
@@ -88,7 +69,6 @@ const SettingForm = () => {
             label='名稱'
             type='text'
             placeholder='請輸入名稱'
-            defaultValue= {settingInfo.name}
             maxLength='50'
             errors={errors}
             register={register}
@@ -110,7 +90,6 @@ const SettingForm = () => {
             label='Email'
             type='email'
             placeholder='請輸入Email'
-            defaultValue= {settingInfo.email}
             errors={errors}
             register={register}
             validationSchema={{
