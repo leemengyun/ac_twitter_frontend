@@ -162,3 +162,29 @@ export const cancelFollow = async (followingId) => {
     console.error('[Cancel Follow failed:]:', error);
   }
 };
+
+//設定頁面取得用戶資訊
+export const getSettingInfo = async (memberId) => {
+  try {
+    const res = await axiosInstance.get(
+      `${baseUrl}/users/${memberId}`
+    );
+    return res.data;
+  } catch (error) {
+    console.error('[Get USer Info failed:]:', error);
+  }
+};
+
+//修改用戶資訊
+export const editSettingInfo = async (payload) => {
+  try {
+    const {memberId,name,account,email,password,} = payload
+    const res = await axiosInstance.patch(
+      `${baseUrl}/users/${memberId}`
+    );
+    console.log(res)
+    return res.data;
+  } catch (error) {
+    console.error('[Get USer Info failed:]:', error);
+  }
+};
