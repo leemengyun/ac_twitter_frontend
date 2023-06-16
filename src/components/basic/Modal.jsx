@@ -19,8 +19,8 @@ import iconClose from '../../assets/images/icon/close.svg';
 const defaultBk = 'https://i.imgur.com/ZFz8ZEI.png';
 // const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
 
-const Modal = ({ setModalProOpen }) => {
-  const { isAuthentic, member } = useAuth(); // 取出需要的狀態與方法
+const Modal = () => {
+  const { isAuthentic, member, setModalProOpen } = useAuth(); // 取出需要的狀態與方法
   const [profile, setProfile] = useState({
     name: '',
     introduction: '',
@@ -141,8 +141,6 @@ const Modal = ({ setModalProOpen }) => {
       navigate('/login');
     }
   }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
-
-  console.log({ profile });
 
   return (
     <>

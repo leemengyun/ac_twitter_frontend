@@ -26,7 +26,7 @@ import UserOtherPage from './pages/UserOtherPage';
 import UserFollowersPage from './pages/UserFollowersPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
-import Modal from './components/basic/Modal';
+// import Modal from './components/basic/Modal';
 // import ModalTweet from './components/basic/ModalTweet';
 // import ModalReply from './components/basic/ModalReply';
 import TweetPage from './pages/TweetPage';
@@ -34,7 +34,7 @@ import RegisterPage from './pages/RegisterPage';
 import { AuthProvider } from './components/context/AuthContext';
 
 function App({ router }) {
-  const [modalProOpen, setModalProOpen] = useState(false);
+  // const [modalProOpen, setModalProOpen] = useState(false);
 
   // const [modalTweetOpen, setModalTweetOpen] = useState(false);
 
@@ -53,17 +53,27 @@ function App({ router }) {
               <Route path='/main' element={<MainPage />}></Route>
               <Route
                 path='/user/:id'
-                element={<UserPage setModalProOpen={setModalProOpen} />}
+                element={
+                  <UserPage
+                  // setModalProOpen={setModalProOpen}
+                  />
+                }
               ></Route>
               <Route
                 path='/other/:id'
-                element={<UserOtherPage setModalProOpen={setModalProOpen} />}
+                element={
+                  <UserOtherPage
+                  // setModalProOpen={setModalProOpen}
+                  />
+                }
               ></Route>
 
               <Route
                 path='/user/followers'
                 element={
-                  <UserFollowersPage setModalProOpen={setModalProOpen} />
+                  <UserFollowersPage
+                  // setModalProOpen={setModalProOpen}
+                  />
                 }
               ></Route>
 
@@ -75,7 +85,7 @@ function App({ router }) {
             {/* {modalTweetOpen && (
               <ModalTweet setModalTweetOpen={setModalTweetOpen} />
             )} */}
-            {modalProOpen && <Modal setModalProOpen={setModalProOpen} />}
+            {/* {modalProOpen && <Modal setModalProOpen={setModalProOpen} />} */}
           </PageLayout>
         </AuthProvider>
       </HashRouter>

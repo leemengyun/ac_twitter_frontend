@@ -59,10 +59,10 @@ const AdminLoginForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'username is required',
+              required: '請輸入帳號',
               minLength: {
                 value: 3,
-                message: 'Please enter a minimum of 3 characters',
+                message: '帳號請輸入至少三個字',
               },
             }}
             watch={watch}
@@ -78,10 +78,10 @@ const AdminLoginForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'password is required',
+              required: '請輸入密碼',
               minLength: {
                 value: 8,
-                message: 'Please enter a minimum of 8 characters',
+                message: '密碼請輸入至少8位',
               },
             }}
             // required

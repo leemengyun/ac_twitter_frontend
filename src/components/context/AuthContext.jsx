@@ -23,16 +23,16 @@ export const AuthProvider = ({ children }) => {
   //頁面刷新時，確認是誰
   const { pathname } = useLocation();
   const [modalReplyOpen, setModalReplyOpen] = useState(false);
-  // const [modalProOpen, setModalProOpen] = useState(false);
+  const [modalProOpen, setModalProOpen] = useState(false);
   const [modalTweetOpen, setModalTweetOpen] = useState(false);
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
   const [like, setLike] = useState(true);
 
   const handleChangeLikeMode = async ({ id, isLike, UserId }) => {
-    if(pathname.includes('other')){
-      return //使用者無法更改其他使用者喜歡的內容
-    };
+    if (pathname.includes('other')) {
+      return; //使用者無法更改其他使用者喜歡的內容
+    }
 
     if (!isLike) {
       await likeTweet(id);
@@ -87,6 +87,8 @@ export const AuthProvider = ({ children }) => {
         modalReplyOpen,
         setModalTweetOpen,
         modalTweetOpen,
+        setModalProOpen,
+        modalProOpen,
         setTweetId,
         tweetId,
         member,
