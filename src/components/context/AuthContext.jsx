@@ -3,6 +3,7 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
 import { set } from 'react-hook-form';
+import { likeTweet, unlikeTweet } from '../../api/twitter';
 
 const defaultAuthContext = {
   isAuthentic: false,
@@ -23,6 +24,16 @@ export const AuthProvider = ({ children }) => {
   const [modalReplyOpen, setModalReplyOpen] = useState(false);
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
+  const [like, setLike] = useState(true)
+  const handleChangeLikeMode = async ({id,isLike}) => {
+      if(!isLike){
+          await likeTweet(id)
+        }else{
+          await unlikeTweet(id)
+        }
+        setLike(!like)
+    };
+
 
   // 封裝檢查token
   useEffect(() => {
@@ -72,6 +83,9 @@ export const AuthProvider = ({ children }) => {
         setTweetId,
         tweetId,
         member,
+        like,
+        handleChangeLikeMode
+        ,
         login: async (user) => {
           console.log('ok');
           const { success, data } = await login({

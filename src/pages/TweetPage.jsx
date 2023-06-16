@@ -3,7 +3,7 @@ import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
 import TweetBigCard from '../components/basic/TweetBigCard';
 import { useEffect, useState } from 'react';
-import { getTweet, getTweetReplies } from '../api/twitter';
+import { getTweet, getTweetReplies, likeTweet, unlikeTweet } from '../api/twitter';
 import TweetRepliesList from '../components/user/TweetRepliesList';
 import { useAuth } from '../components/context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -21,7 +21,7 @@ const TweetPage = ({ setModalTweetOpen}) => {
   });
   const [tweetReplies,setTweetReplies] = useState([])
   //這裡很奇怪只有他 要先設定一樣的結構
-  const { isAuthentic, member,modalReplyOpen,setTweetId} = useAuth();
+  const { isAuthentic, member,modalReplyOpen,setTweetId,handleChangeLikeMode,like} = useAuth();
   const pathId = Number(useParams().id);
   const navigate = useNavigate();
   const handleClickCard = ({ userId }) => {
@@ -29,6 +29,7 @@ const TweetPage = ({ setModalTweetOpen}) => {
       ? navigate(`/user/${userId}`)
       : userId !== undefined && navigate(`/other/${userId}`);
   };
+
 
   useEffect(() => {
     const getTweetAsync = async () => {
@@ -41,7 +42,7 @@ const TweetPage = ({ setModalTweetOpen}) => {
       }
     };
     getTweetAsync();
-  }, [pathId]);
+  }, [pathId,like]);
 
   useEffect(()=>{
     const getTweetRepliesAsync = async ()=>{
@@ -70,6 +71,7 @@ const TweetPage = ({ setModalTweetOpen}) => {
             <TweetBigCard 
               tweetInfo={tweetInfo}
               onClick={handleClickCard}
+              onToggleLike={handleChangeLikeMode}
             />
             <TweetRepliesList 
             tweetReplies={tweetReplies}

@@ -67,7 +67,7 @@ const TweetCardForm = ({ avatar,tweetInfo }) => {
           </div>
           <div>
             {errors.description && errors.description.type === 'required' && (
-              <span className='error'>This is required</span>
+              <span className='error'>內容不可空白</span>
             )}
             <button className='button-md button-m active' type='submit'>
               回覆

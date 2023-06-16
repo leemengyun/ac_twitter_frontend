@@ -1,10 +1,15 @@
 import React, { useEffect,useState } from 'react';
 import { getUserLikedTweets } from '../../api/twitter';
 import TweetCardLike from '../basic/TweetCardLike';
+import { useAuth } from '../context/AuthContext';
 
-const LikeLists = ({ pathId, onClick }) => {
+const LikeLists = ({ pathId, onClick,onToggleLike }) => {
   const [userLiked,setUserLiked] = useState([])
-  
+  const {
+    like,
+    handleChangeLikeMode
+  } = useAuth();
+
   useEffect(()=>{
     const getUserLikedTweetsAsync = async()=>{
       try{
@@ -15,7 +20,7 @@ const LikeLists = ({ pathId, onClick }) => {
       }
     }
     getUserLikedTweetsAsync()
-  },[])
+  },[like])
 
 
   return (
@@ -27,6 +32,7 @@ const LikeLists = ({ pathId, onClick }) => {
           onClick={({tweetId,userId})=>{
             onClick?.({tweetId,userId})
           }}
+          onToggleLike={handleChangeLikeMode }
         />
    })}
     </div>

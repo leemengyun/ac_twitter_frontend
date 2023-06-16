@@ -10,7 +10,7 @@ import TweetLists from '../components/user/TweetsLists';
 import TweetCardForm from '../components/forms/TweetCardForm';
 import { HeaderMain } from '../components/basic/Header';
 
-import { getTweets } from '../api/twitter';
+import { getTweets, likeTweet, unlikeTweet } from '../api/twitter';
 import { getUserInfo } from '../api/userinfo';
 import { createTweet } from '../api/twitter';
 import { useAuth } from '../components/context/AuthContext';
@@ -21,7 +21,7 @@ const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-  const { isAuthentic, member, modalReplyOpen } = useAuth(); // 取出需要的狀態與方法
+  const { isAuthentic, member, modalReplyOpen,handleChangeLikeMode,like } = useAuth(); // 取出需要的狀態與方法
 
   const [isTweetsLoaded, setIsTweetsLoaded] = useState(false);
 
@@ -31,6 +31,8 @@ const MainPage = ({ setModalTweetOpen }) => {
       ? navigate(`/user/${userId}`)
       : userId !== undefined && navigate(`/other/${userId}`);
   };
+
+
   //@呼叫 /api/tweets
   const getTweetsAsync = async () => {
     try {
@@ -91,7 +93,7 @@ const MainPage = ({ setModalTweetOpen }) => {
 
   useEffect(() => {
     getTweetsAsync();
-  }, []);
+  }, [like]); 
   //@ 這一頁的驗證身份放最上面,currentMember好像比較不會出錯
   useEffect(() => {
     if (!isAuthentic) {
@@ -119,7 +121,11 @@ const MainPage = ({ setModalTweetOpen }) => {
                 tweets={tweets}
               />
             </div>
-            <TweetLists tweets={tweets} onClick={handleClickCard} />
+            <TweetLists 
+            tweets={tweets} 
+            onClick={handleClickCard} 
+            onToggleLike={handleChangeLikeMode}
+            />
           </div>
           {modalReplyOpen && <ModalReply />}
         </section>

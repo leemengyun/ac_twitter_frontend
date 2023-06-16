@@ -4,7 +4,7 @@ import TweetIconCount from "./TweetIconCount";
 import TweetUserName2 from "./TweetUserName2";
 import UserAvatar from "./UserAvatar";
 
-const TweetBigCard = ({tweetInfo,onClick})=>{
+const TweetBigCard = ({tweetInfo,onClick,onToggleLike})=>{
   const id = tweetInfo.UserId
   return (
     <div className="TweetBigCard">
@@ -31,14 +31,20 @@ const TweetBigCard = ({tweetInfo,onClick})=>{
 
       <div className="TweetUserInfo">
           <span className="TweetUserInfo-replies" >
-            34 <span>回覆</span>
+            {tweetInfo.repliesCount} <span>回覆</span>
           </span>
           <span className="TweetUserInfo-likes">
-            808 <span>喜歡次數</span>
+            {tweetInfo.likesCount} <span>喜歡次數</span>
           </span>
       </div>
       <div className="TweetUserInfo">
-        <TweetIconCount id={tweetInfo.id}/>
+        <TweetIconCount 
+        id={tweetInfo.id}
+        isLike={tweetInfo.isLike}
+        onToggleLike={({ id,isLike }) => {
+              onToggleLike?.({ id,isLike });
+            }}
+        />
       </div>
       
     </div>
