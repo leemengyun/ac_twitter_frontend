@@ -100,30 +100,28 @@
       }
     }
   }
-  .modal-reply-content{
+  .modal-reply-content {
     //ReplyModal
-      .tweet-card-basic {
-        padding: var(--padding-s) var(--padding-m);
-        margin: 0px;
-        border-bottom: 0px;
-      }
-      .tweet-card-basic-description {
-        position: relative;
-    
-        &::after {
-          content: "";
-          height: 200%;
-          border: 1px solid var(--gray-60);
-          position: absolute;
-          left: -34px;
-          top: 30px;
-        }
-      }
-      .tweet-form-wrapper{
+    .tweet-card-basic {
+      padding: var(--padding-s) var(--padding-m);
+      margin: 0px;
+      border-bottom: 0px;
+    }
+    .tweet-card-basic-description {
+      position: relative;
 
+      &::after {
+        content: '';
+        height: 200%;
+        border: 1px solid var(--gray-60);
+        position: absolute;
+        left: -34px;
+        top: 30px;
       }
+    }
+    .tweet-form-wrapper {
+    }
   }
- 
 }
 
 // ModalHeader component
@@ -150,6 +148,50 @@
 }
 
 //modalProfile
+.modal-info-form {
+  .input-group-container {
+    .input_group input {
+      &:hover {
+        border-bottom: 2px solid var(--primary-color);
+      }
+      &:focus {
+        border-bottom: 2px solid var(--primary-color);
+      }
+      &.error {
+        border-bottom: 2px solid var(--error-color);
+        &:hover {
+          border-bottom: 2px solid var(--error-color);
+        }
+        &:focus {
+          border-bottom: 2px solid var(--error-color);
+        }
+      }
+    }
+  }
+
+  .textarea-group-container {
+    .textarea-group textarea {
+      &.error {
+        border-bottom: 2px solid var(--error-color);
+        &:hover {
+          border-bottom: 2px solid var(--error-color);
+        }
+        &:focus {
+          border-bottom: 2px solid var(--error-color);
+        }
+      }
+      &:hover {
+        border-bottom: 2px solid var(--primary-color);
+      }
+      &:focus {
+        border-bottom: 2px solid var(--primary-color);
+      }
+    }
+    .error {
+      color: var(--error-color);
+    }
+  }
+}
 
 //modalTweet
 .modal-container {
@@ -177,5 +219,3 @@
     }
   }
 }
-
-
