@@ -60,7 +60,6 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen }) => {
       try {
         const data = await getUserTweets(pathId);
         setUserTweets(data);
-        console.log(data)
         // console.log(data.length);
       } catch (error) {
         console.log(error);
