@@ -18,11 +18,10 @@ export const login = async ({ account, password }) => {
     }
     return data;
   } catch (error) {
-    const res = error.response.data
-     console.error('[Login Failed]:', error);
-    return {success: false, errorMessage: res}
-   
-    
+    const res = error.response.data;
+    console.error('[Login Failed]:', error);
+    return { success: false, errorMessage: res };
+
     // return error.response.data.message;
     // if (error.response) {
     //   /*
@@ -69,15 +68,17 @@ export const signUp = async ({
 
     //用解構式帶出data
     //登入成功的結果
-    const { authToken } = data;
-    if (authToken) {
-      console.log(data);
-      return { success: true, ...data };
-    }
+    // const { authToken } = data;
+    // if (authToken) {
+    //   console.log('拿到token', data);
+    //   return { success: true, ...data };
+    // }
 
-    //登入失敗的結果
-    return data;
+    //註冊成功的結果
+    return { success: true, ...data };
   } catch (error) {
+    const res = error.response.data;
     console.error('["Register failed"]', error);
+    return { success: false, errorMessage: res };
   }
 };

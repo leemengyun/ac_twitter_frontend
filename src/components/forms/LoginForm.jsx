@@ -23,6 +23,7 @@ const LoginForm = () => {
   const { login, isAuthentic } = useAuth();
   const navigate = useNavigate();
 
+  // 客製toast 元件
   const ToastSuccess = Swal.mixin({
     toast: true,
     html: `<div>
@@ -33,7 +34,7 @@ const LoginForm = () => {
     width: '394px',
     // height: '96px',
     timer: 3000,
-    timerProgressBar: false,  
+    timerProgressBar: false,
     showClass: {
       popup: 'animate__animated animate__fadeInDown',
     },
@@ -66,27 +67,27 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data) => {
-      if (data.username.length === 0) {
-        return;
-      }
-      if (data.password.length === 0) {
-        return;
-      }
-      const {success,errorMessage}= await login({
-        account: data.username,
-        password: data.password,
+    if (data.username.length === 0) {
+      return;
+    }
+    if (data.password.length === 0) {
+      return;
+    }
+    const { success, errorMessage } = await login({
+      account: data.username,
+      password: data.password,
+    });
+
+    if (success) {
+      console.log('Login: ', success);
+      ToastSuccess.fire({
+        title: '登入成功!',
       });
-      
-      if (success) {
-        console.log('Login: ', success);
-        ToastSuccess.fire({
-          title: '登入成功!',
-        });
-        reset();
-        return;
-      }else{
-        console.log('Login: ', success)
-        ToastWarning.fire({
+      reset();
+      return;
+    } else {
+      console.log('Login: ', success);
+      ToastWarning.fire({
         title: `${errorMessage.message}`,
       });
     }
