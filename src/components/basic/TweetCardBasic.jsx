@@ -37,8 +37,11 @@ const TweetCardBasic = ({ ...props }) => {
           <TweetIconCount 
             likesCount={props.likesCount} 
             repliesCount={props.repliesCount}
-            isLiked={props.isLiked}
+            isLike={props.isLike}
             id={tweetId}
+            onToggleLike={({id,isLike})=>{
+        props.onToggleLike?.({id,isLike})
+      }}
           />
       </div>
     </div>

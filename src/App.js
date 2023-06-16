@@ -35,6 +35,7 @@ import { AuthProvider } from './components/context/AuthContext';
 
 function App({ router }) {
   const [modalProOpen, setModalProOpen] = useState(false);
+
   // const [modalTweetOpen, setModalTweetOpen] = useState(false);
 
   return (
