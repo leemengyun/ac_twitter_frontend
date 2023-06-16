@@ -10,7 +10,6 @@ import TweetLists from '../components/user/TweetsLists';
 import TweetCardForm from '../components/forms/TweetCardForm';
 import { HeaderMain } from '../components/basic/Header';
 
-
 import { getTweets, likeTweet, unlikeTweet, createTweet } from '../api/twitter';
 
 import { getUserInfo } from '../api/userinfo';
@@ -23,9 +22,15 @@ const MainPage = ({ setModalTweetOpen }) => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
 
-  const { isAuthentic, member, modalReplyOpen, modalTweetOpen,handleChangeLikeMode,like  } = useAuth(); // 取出需要的狀態與方法
+  const {
+    isAuthentic,
+    member,
+    modalReplyOpen,
+    modalTweetOpen,
+    handleChangeLikeMode,
+    like,
+  } = useAuth(); // 取出需要的狀態與方法
   const [isTweetsLoaded, setIsTweetsLoaded] = useState(false); // 用來防止tweets-loop產生
-
 
   const handleClickCard = ({ userId }) => {
     userId === profile.id
@@ -77,7 +82,7 @@ const MainPage = ({ setModalTweetOpen }) => {
   // @ 頁面首次載入 /api/tweets,並且modalTweetOpen 也觸發渲染
   useEffect(() => {
     getTweetsAsync();
-  }, [like,modalTweetOpen]); 
+  }, [like, modalTweetOpen]);
 
   //@ 這一頁的驗證身份放最上面,currentMember好像比較不會出錯
   useEffect(() => {
@@ -114,7 +119,6 @@ const MainPage = ({ setModalTweetOpen }) => {
               onClick={handleClickCard}
               setIsTweetsLoaded={setIsTweetsLoaded}
               onToggleLike={handleChangeLikeMode}
-
             />
           </div>
         </section>

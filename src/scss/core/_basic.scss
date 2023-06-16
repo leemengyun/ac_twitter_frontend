@@ -362,6 +362,27 @@ h5 {
   }
 }
 
+// TweetCardAdmin
+.tweet-card-admin {
+  padding-left: 24px;
+  padding-right: 0px;
+  padding-bottom: var(--padding-s);
+
+  .tweet-card-left-info {
+    .icon-inner-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  p.tweet-card-basic-description {
+    width: 100%;
+    display: block;
+    max-width: none;
+    padding-right: 42px;
+  }
+}
+
 /* End [共用元件] ---------------------------------------------------------------------------------------- */
 
 /* @group [buttons] ----------------------------------------------------------------------------------------*/
