@@ -33,7 +33,7 @@ const LoginForm = () => {
     width: '394px',
     // height: '96px',
     timer: 3000,
-    timerProgressBar: false,
+    timerProgressBar: false,  
     showClass: {
       popup: 'animate__animated animate__fadeInDown',
     },
@@ -66,30 +66,28 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data) => {
-    try {
       if (data.username.length === 0) {
         return;
       }
       if (data.password.length === 0) {
         return;
       }
-      const success = await login({
+      const {success,errorMessage}= await login({
         account: data.username,
         password: data.password,
       });
-      reset();
+      
       if (success) {
         console.log('Login: ', success);
         ToastSuccess.fire({
           title: '登入成功!',
         });
+        reset();
         return;
-      }
-    } catch (error) {
-      console.log(error);
-      //登入失敗
-      ToastWarning.fire({
-        title: '找不到使用者!無法登入',
+      }else{
+        console.log('Login: ', success)
+        ToastWarning.fire({
+        title: `${errorMessage.message}`,
       });
     }
   };
