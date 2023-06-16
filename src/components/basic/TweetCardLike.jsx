@@ -3,16 +3,20 @@ import React from "react";
 import UserAvatar from "./UserAvatar";
 import TweetUserName3 from "./TweetUserName3";
 import TweetIconCount from "./TweetIconCount";
+import { useNavigate } from "react-router-dom";
 
 
 const TweetCardLike = ({ ...props }) => {
-  // const value ={
-  //   tweetId: props.id,
-  //   userId: props.UserId,
-  // }
+  const navigate = useNavigate();
+  const handleClick = (tweetId)=>{
+    tweetId && navigate(`/main/tweet/${tweetId}`);
+  }
+
+
   return (
-    <div className='tweet-card-basic' onClick={()=>{
-      props.onClick?.({tweetId: props.id})
+    <div className='tweet-card-basic' onClick={(e)=>{
+      handleClick(props.TweetId)
+      e.stopPropagation()
       }}>
       <UserAvatar 
       avatar={props.User.avatar}
@@ -33,7 +37,11 @@ const TweetCardLike = ({ ...props }) => {
           <TweetIconCount 
             likesCount={props.likesCount} 
             repliesCount={props.repliesCount}
-            isLiked={props.isLiked}
+            isLike={true}
+            id={props.TweetId}
+            onToggleLike={({ id,isLike }) => {
+              props.onToggleLike?.({ id,isLike });
+            }}
           />
       </div>
     </div>

@@ -145,7 +145,9 @@ export const userFollowing = async (id) => {
     const res = await axiosInstance.post(`${baseUrl}/followships`, {
       id,
     });
+    
     console.log(res);
+    
     return res.data;
   } catch (error) {
     console.error('[Following failed:]:', error);
@@ -162,3 +164,27 @@ export const cancelFollow = async (followingId) => {
     console.error('[Cancel Follow failed:]:', error);
   }
 };
+
+
+//喜歡貼文
+export const likeTweet = async (id) => {
+  try {
+    const res = await axiosInstance.post(`${baseUrl}/tweets/${id}/like`);
+    console.log(res)
+    return res.data;
+  } catch (error) {
+    console.error('[Like Tweet failed:]:', error);
+  }
+};
+
+//取消喜歡貼文
+export const unlikeTweet = async (id) => {
+  try {
+    const res = await axiosInstance.post(`${baseUrl}/tweets/${id}/unlike`);
+    console.log(res)
+    return res.data;
+  } catch (error) {
+    console.error('[Unlike Tweet failed:]:', error);
+  }
+};
+
