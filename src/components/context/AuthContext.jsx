@@ -28,10 +28,12 @@ export const AuthProvider = ({ children }) => {
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
   const [like, setLike] = useState(true);
+
   const handleChangeLikeMode = async ({ id, isLike, UserId }) => {
     if(pathname.includes('other')){
       return //使用者無法更改其他使用者喜歡的內容
     };
+
     if (!isLike) {
       await likeTweet(id);
     } else {
@@ -92,25 +94,38 @@ export const AuthProvider = ({ children }) => {
         handleChangeLikeMode,
         //共用的register流程
         signUp: async (user) => {
-          const { success, authToken } = await signUp({
+          const { success, errorMessage, status } = await signUp({
             account: user.account,
             password: user.password,
             email: user.email,
             checkPassword: user.checkPassword,
             name: user.name,
           });
-          // 解析payload
-          const tempPayload = jwt.decode(authToken);
-          if (tempPayload) {
-            setPayload(tempPayload);
-            setIsAuthentic(true);
-            localStorage.setItem('authToken', authToken);
-            setMember(tempPayload);
+          console.log('status data', status);
+
+          if (success) {
+            // 解析payload
+            // eva新增----
+            // const token = data.token;
+            // const tempPayload = jwt.decode(token);
+            // ------------
+            // const tempPayload = jwt.decode(authToken);
+            // if (success) {
+            //   setIsAuthentic(true);
+            //   // localStorage.setItem('authToken', token);
+            //   // localStorage.setItem('authToken', authToken);
+            //   setPayload(success);
+            //   setMember(tempPayload);
+            //   console.log('we have tempPayload', tempPayload);
+            // } else {
+            //   setPayload(null);
+            //   setIsAuthentic(false);
+            //   console.log('no tempPayload', tempPayload);
+            // }
+            return { success };
           } else {
-            setPayload(null);
-            setIsAuthentic(false);
+            return { success, errorMessage };
           }
-          return success;
         },
         login: async (user) => {
           const { success, data, errorMessage } = await login({
