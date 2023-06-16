@@ -10,16 +10,38 @@ export const login = async ({ account, password }) => {
       account,
       password, //解構拿出data
     });
-    console.log(data);
     const { token } = data.data; //解構拿出authToken
-    // console.log('Token: ',token )
-    // console.log('data:',data)
+    console.log('Token: ', token);
+    console.log('data:', data);
     if (token) {
       return { success: true, ...data };
     }
     return data;
   } catch (error) {
     console.error('[Login Failed]:', error);
+    // return error.response.data.message;
+    if (error.response) {
+      /*
+       * The request was made and the server responded with a
+       * status code that falls out of the range of 2xx
+       */
+      console.log(error.response.data);
+      console.log(error.response.status);
+      // console.log(error.response.headers);
+      // return error.response.data;
+    } else if (error.request) {
+      /*
+       * The request was made but no response was received, `error.request`
+       * is an instance of XMLHttpRequest in the browser and an instance
+       * of http.ClientRequest in Node.js
+       */
+      console.log(error.request);
+    } else {
+      // Something happened in setting up the request and triggered an Error
+      console.log('Error', error.message);
+    }
+
+    return error.response;
   }
 };
 

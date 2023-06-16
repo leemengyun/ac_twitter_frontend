@@ -4,6 +4,12 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from './InputGroup';
 import { useAuth } from '../context/AuthContext';
+//modal dialog套件
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+// import withReactContent from 'sweetalert2-react-content';
+import iconNotiSuccess from '../../assets/images/icon/alert-success-2.svg';
+import iconNotiWanrning from '../../assets/images/icon/alert-warning-2.svg';
 
 const LoginForm = () => {
   // using react-form-hook-set-up
@@ -17,19 +23,75 @@ const LoginForm = () => {
   const { login, isAuthentic } = useAuth();
   const navigate = useNavigate();
 
+  const ToastSuccess = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiSuccess}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    // height: '96px',
+    timer: 3000,
+    timerProgressBar: false,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+  });
+
+  const ToastWarning = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiWanrning}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    height: '96px',
+    timer: 3000,
+    timerProgressBar: false,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    // didOpen: (toast) => {
+    //   toast.addEventListener('mouseenter', Swal.stopTimer);
+    //   toast.addEventListener('mouseleave', Swal.resumeTimer);
+    // },
+  });
+
   const onSubmit = async (data) => {
-    if (data.username.length === 0) {
-      return;
+    try {
+      if (data.username.length === 0) {
+        return;
+      }
+      if (data.password.length === 0) {
+        return;
+      }
+      const success = await login({
+        account: data.username,
+        password: data.password,
+      });
+      reset();
+      if (success) {
+        console.log('Login: ', success);
+        ToastSuccess.fire({
+          title: '登入成功!',
+        });
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+      //登入失敗
+      ToastWarning.fire({
+        title: '找不到使用者!無法登入',
+      });
     }
-    if (data.password.length === 0) {
-      return;
-    }
-    const success = await login({
-      account: data.username,
-      password: data.password,
-    });
-    console.log('Login: ', success);
-    reset();
   };
 
   useEffect(() => {
