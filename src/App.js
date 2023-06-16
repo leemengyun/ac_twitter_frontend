@@ -27,18 +27,17 @@ import UserFollowersPage from './pages/UserFollowersPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 import Modal from './components/basic/Modal';
-import ModalTweet from './components/basic/ModalTweet';
-import ModalReply from './components/basic/ModalReply';
+// import ModalTweet from './components/basic/ModalTweet';
+// import ModalReply from './components/basic/ModalReply';
 import TweetPage from './pages/TweetPage';
 import RegisterPage from './pages/RegisterPage';
-import { AuthProvider, useAuth } from './components/context/AuthContext';
+import { AuthProvider } from './components/context/AuthContext';
 
 function App({ router }) {
   const [modalProOpen, setModalProOpen] = useState(false);
-  const [modalTweetOpen, setModalTweetOpen] = useState(false);
-  
-  // console.log(`modalTweetOpen`, modalTweetOpen);
-  // const basename = process.env.PUBLIC_URL;
+
+  // const [modalTweetOpen, setModalTweetOpen] = useState(false);
+
   return (
     <>
       <HashRouter>
@@ -51,57 +50,32 @@ function App({ router }) {
               {/* <Route path='/login/admin' element={<AdminLoginPage />}></Route> */}
               <Route path='/login/admin' element={<AdminPage />}></Route>
               <Route path='/register' element={<RegisterPage />}></Route>
-              <Route
-                path='/main'
-                element={<MainPage 
-                    setModalTweetOpen={setModalTweetOpen}/>}
-              ></Route>
+              <Route path='/main' element={<MainPage />}></Route>
               <Route
                 path='/user/:id'
-                element={
-                  <UserPage
-                    setModalProOpen={setModalProOpen}
-                    setModalTweetOpen={setModalTweetOpen}
-                  />
-                }
+                element={<UserPage setModalProOpen={setModalProOpen} />}
               ></Route>
               <Route
                 path='/other/:id'
-                element={
-                  <UserOtherPage
-                    setModalProOpen={setModalProOpen}
-                    setModalTweetOpen={setModalTweetOpen}
-                  />
-                }
+                element={<UserOtherPage setModalProOpen={setModalProOpen} />}
               ></Route>
 
               <Route
                 path='/user/followers'
                 element={
-                  <UserFollowersPage
-                    setModalProOpen={setModalProOpen}
-                    setModalTweetOpen={setModalTweetOpen}
-                  />
+                  <UserFollowersPage setModalProOpen={setModalProOpen} />
                 }
               ></Route>
 
-              <Route
-                path='/main/tweet/:id'
-                element={<TweetPage 
-                  setModalTweetOpen={setModalTweetOpen} />}
-              ></Route>
-              <Route
-                path='/setting'
-                element={<SettingPage setModalTweetOpen={setModalTweetOpen} />}
-              ></Route>
+              <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
+              <Route path='/setting' element={<SettingPage />}></Route>
               <Route path='/admin/users' element={<AdminUsers />}></Route>
               <Route path='/main/self2' element={<NestedUserPage />}></Route>
             </Routes>
-            {modalTweetOpen && (
+            {/* {modalTweetOpen && (
               <ModalTweet setModalTweetOpen={setModalTweetOpen} />
-            )}
+            )} */}
             {modalProOpen && <Modal setModalProOpen={setModalProOpen} />}
-            
           </PageLayout>
         </AuthProvider>
       </HashRouter>

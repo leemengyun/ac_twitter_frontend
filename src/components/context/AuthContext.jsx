@@ -1,16 +1,18 @@
-import { login } from '../../api/auth';
+import { login, signUp } from '../../api/auth';
 import { useState, useEffect, useContext, createContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
-import { set } from 'react-hook-form';
+
+// import { set } from 'react-hook-form';
 import { likeTweet, unlikeTweet } from '../../api/twitter';
+
 
 const defaultAuthContext = {
   isAuthentic: false,
   currentMember: null,
   login: null,
   logout: null,
-  register: null,
+  signUp: null, // 註冊方法
 };
 
 const AuthContext = createContext(defaultAuthContext);
@@ -22,6 +24,8 @@ export const AuthProvider = ({ children }) => {
   //頁面刷新時，確認是誰
   const { pathname } = useLocation();
   const [modalReplyOpen, setModalReplyOpen] = useState(false);
+  // const [modalProOpen, setModalProOpen] = useState(false);
+  const [modalTweetOpen, setModalTweetOpen] = useState(false);
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
   const [like, setLike] = useState(true)
@@ -67,8 +71,6 @@ export const AuthProvider = ({ children }) => {
     checkTokenIsValid();
   }, [pathname]);
 
-
-
   return (
     <AuthContext.Provider
       value={{
@@ -80,12 +82,37 @@ export const AuthProvider = ({ children }) => {
         },
         setModalReplyOpen,
         modalReplyOpen,
+        setModalTweetOpen,
+        modalTweetOpen,
         setTweetId,
         tweetId,
         member,
+        UserLike,
         like,
         handleChangeLikeMode
         ,
+        //共用的register流程
+        signUp: async (user) => {
+          const { success, authToken } = await signUp({
+            account: user.account,
+            password: user.password,
+            email: user.email,
+            checkPassword: user.checkPassword,
+            name: user.name,
+          });
+          // 解析payload
+          const tempPayload = jwt.decode(authToken);
+          if (tempPayload) {
+            setPayload(tempPayload);
+            setIsAuthentic(true);
+            localStorage.setItem('authToken', authToken);
+            setMember(tempPayload);
+          } else {
+            setPayload(null);
+            setIsAuthentic(false);
+          }
+          return success;
+        },
         login: async (user) => {
           console.log('ok');
           const { success, data } = await login({
@@ -112,7 +139,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('authToken');
           setIsAuthentic(false);
           setPayload(null);
-        }
+        },
       }}
     >
       {children}

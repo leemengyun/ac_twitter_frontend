@@ -17,7 +17,7 @@ import iconCamera from '../../assets/images/icon/addphoto.svg';
 import iconClose from '../../assets/images/icon/close.svg';
 
 const defaultBk = 'https://i.imgur.com/ZFz8ZEI.png';
-const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
+// const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
 
 const Modal = ({ setModalProOpen }) => {
   const { isAuthentic, member } = useAuth(); // 取出需要的狀態與方法

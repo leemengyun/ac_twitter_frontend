@@ -8,9 +8,9 @@ import UserAvatar from '../basic/UserAvatar';
 import { useAuth } from '../context/AuthContext';
 // import testAvatar from '../../assests/images/avatar1.jpg';
 
-const TweetCardForm = ({ avatar,tweetInfo }) => {
-  const { member,setModalReplyOpen} = useAuth();
-  const navigate = useNavigate()
+const TweetCardForm = ({ avatar, tweetInfo }) => {
+  const { member, setModalReplyOpen } = useAuth();
+  const navigate = useNavigate();
   // using react-form-hook-set-up
   const {
     register,
@@ -20,22 +20,22 @@ const TweetCardForm = ({ avatar,tweetInfo }) => {
     // watch,
   } = useForm();
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     // 如果是只要給api
     // 就在這設定 person,再給api,不需要setState
     // alert('觸發onSubmit');
     // console.log(data.description);
     // setNewTweet(data);
     // onAddTweet?.(data);
-    console.log(data)
-    console.log(tweetInfo)
+    console.log(data);
+    console.log(tweetInfo);
     const info = await repliedTweet({
       UserId: member.id,
       TweetId: tweetInfo.id,
-      comment:data.description
-    })
-    setModalReplyOpen(false)
-    navigate(`/main/tweet/${tweetInfo.id}`)
+      comment: data.description,
+    });
+    setModalReplyOpen(false);
+    navigate(`/main/tweet/${tweetInfo.id}`);
     reset();
   };
 

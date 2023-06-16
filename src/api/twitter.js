@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { get } from 'react-hook-form';
 // const baseUrl = 'http://localhost:3004';
 
 const baseUrl = 'https://calm-eyrie-50498.herokuapp.com/api';
+// const baseUrl = 'https://agile-forest-26034.herokuapp.com/api';
 
 const axiosInstance = axios.create({
   baseUrl: baseUrl,
@@ -114,38 +114,40 @@ export const createTweet = async (payload) => {
 };
 
 //取得特定推文的所有回覆
-export const getTweetReplies = async (pathId)=>{
-  try{
-    const res = await axiosInstance.get(`${baseUrl}/tweets/${pathId}/replies`)
-    return res.data
-  }catch(error){
-
-  }
-}
-
+export const getTweetReplies = async (pathId) => {
+  try {
+    const res = await axiosInstance.get(`${baseUrl}/tweets/${pathId}/replies`);
+    return res.data;
+  } catch (error) {}
+};
 
 //回覆貼文
 export const repliedTweet = async (payload) => {
   try {
-    const { UserId,TweetId, comment } = payload;
-    const res = await axiosInstance.post(`${baseUrl}/tweets/${TweetId}/replies`, {
-      UserId,
-      comment
-    });
-    console.log(res)
+    const { UserId, TweetId, comment } = payload;
+    const res = await axiosInstance.post(
+      `${baseUrl}/tweets/${TweetId}/replies`,
+      {
+        UserId,
+        comment,
+      }
+    );
+    console.log(res);
     return res.data;
   } catch (error) {
     console.error('[Reply Tweet failed:]:', error);
   }
 };
 
-
 //跟隨使用者
 export const userFollowing = async (id) => {
   try {
     const res = await axiosInstance.post(`${baseUrl}/followships`, {
-      id
+      id,
     });
+    
+    console.log(res);
+    
     return res.data;
   } catch (error) {
     console.error('[Following failed:]:', error);
@@ -154,12 +156,15 @@ export const userFollowing = async (id) => {
 //取消跟隨
 export const cancelFollow = async (followingId) => {
   try {
-    const res = await axiosInstance.delete(`${baseUrl}/followships/${followingId}`);
+    const res = await axiosInstance.delete(
+      `${baseUrl}/followships/${followingId}`
+    );
     return res.data;
   } catch (error) {
     console.error('[Cancel Follow failed:]:', error);
   }
 };
+
 
 //喜歡貼文
 export const likeTweet = async (id) => {
@@ -182,3 +187,4 @@ export const unlikeTweet = async (id) => {
     console.error('[Unlike Tweet failed:]:', error);
   }
 };
+

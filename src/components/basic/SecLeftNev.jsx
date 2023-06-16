@@ -5,9 +5,9 @@ import { useAuth } from '../context/AuthContext';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const SecLeftNav = ({ role, setModalTweetOpen, pageIndex, memberId}) => {
+const SecLeftNav = ({ role, pageIndex, memberId }) => {
   // className={['tab', tabIndex === '0' ? 'active' : ''].join(' ')
-  const {logout,setModalReplyOpen} = useAuth()
+  const { logout, setModalTweetOpen } = useAuth();
   const handleClick = () => {
     logout();
   };
@@ -41,7 +41,7 @@ const SecLeftNav = ({ role, setModalTweetOpen, pageIndex, memberId}) => {
               <p>{role === 'admin' ? '推文清單' : '首頁'}</p>
             </Link>
 
-            <Link to={role === 'admin' ? '/admin/users' : `/user/${memberId}`} >
+            <Link to={role === 'admin' ? '/admin/users' : `/user/${memberId}`}>
               <span
                 className={[
                   'nav-icon icon-user',

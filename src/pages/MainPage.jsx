@@ -10,30 +10,30 @@ import TweetLists from '../components/user/TweetsLists';
 import TweetCardForm from '../components/forms/TweetCardForm';
 import { HeaderMain } from '../components/basic/Header';
 
-import { getTweets, likeTweet, unlikeTweet } from '../api/twitter';
+
+import { getTweets, likeTweet, unlikeTweet, createTweet } from '../api/twitter';
+
 import { getUserInfo } from '../api/userinfo';
-import { createTweet } from '../api/twitter';
 import { useAuth } from '../components/context/AuthContext';
 import ModalReply from '../components/basic/ModalReply';
-import { set } from 'react-hook-form';
+import ModalTweet from '../components/basic/ModalTweet';
 
 const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-  const { isAuthentic, member, modalReplyOpen,handleChangeLikeMode,like } = useAuth(); // 取出需要的狀態與方法
 
-  const [isTweetsLoaded, setIsTweetsLoaded] = useState(false);
+  const { isAuthentic, member, modalReplyOpen, modalTweetOpen,,handleChangeLikeMode,like  } = useAuth(); // 取出需要的狀態與方法
+  const [isTweetsLoaded, setIsTweetsLoaded] = useState(false); // 用來防止tweets-loop產生
+
 
   const handleClickCard = ({ userId }) => {
-
     userId === profile.id
       ? navigate(`/user/${userId}`)
       : userId !== undefined && navigate(`/other/${userId}`);
   };
 
-
-  //@呼叫 /api/tweets
+  //@ 呼叫 /api/tweets
   const getTweetsAsync = async () => {
     try {
       const data = await getTweets();
@@ -44,8 +44,7 @@ const MainPage = ({ setModalTweetOpen }) => {
     }
   };
 
-  // @ 0613新增tweet
-  // @ 但api與送出資料不太對應，會造成下方tweetLists無法render
+  // @ 新增tweet /api/tweets
   const handleAddTweets = async (data) => {
     // alert('submit todos');
     // console.log(data);
@@ -54,31 +53,15 @@ const MainPage = ({ setModalTweetOpen }) => {
         UserId: member.id,
         description: data.description,
       });
+      console.log(addData);
       //@ 再呼叫一次
       getTweetsAsync();
-
-      // setTweets([
-      //   ...tweets,
-      //   {
-      //     id: addData.id,
-      //     description: addData.description,
-      //     key: addData.id,
-      //     User: {
-      //       avatar: profile.avatar,
-      //       account: profile.account,
-      //       name: profile.name,
-      //     },
-      //     userId: addData.userId,
-      //     time: addData.createdAt,
-      //     likesCount: 0,
-      //     repliesCount: 0,
-      //   },
-      // ]);
     } catch (error) {
       console.log(`[createData failed]`, error);
     }
   };
 
+  // @ 呼叫 使用者資料 /api/users
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
@@ -91,9 +74,11 @@ const MainPage = ({ setModalTweetOpen }) => {
     getUserInfoAsync();
   }, []);
 
+  // @ 頁面首次載入 /api/tweets,並且modalTweetOpen 也觸發渲染
   useEffect(() => {
     getTweetsAsync();
-  }, [like]); 
+  }, [like,modalTweetOpen]); 
+
   //@ 這一頁的驗證身份放最上面,currentMember好像比較不會出錯
   useEffect(() => {
     if (!isAuthentic) {
@@ -106,10 +91,12 @@ const MainPage = ({ setModalTweetOpen }) => {
     <>
       <ContainerColSec
         role='user'
-        setModalTweetOpen={setModalTweetOpen}
+        // setModalTweetOpen={setModalTweetOpen}
         pageIndex={0}
         memberId={member.id}
       >
+        {modalTweetOpen && <ModalTweet />}
+        {modalReplyOpen && <ModalReply />}
         <section className='section-outer-m col-7'>
           <div className='section-main-m '>
             <HeaderMain pageTitle='首頁' />
@@ -121,18 +108,18 @@ const MainPage = ({ setModalTweetOpen }) => {
                 tweets={tweets}
               />
             </div>
-            <TweetLists 
-            tweets={tweets} 
-            onClick={handleClickCard} 
-            onToggleLike={handleChangeLikeMode}
+
+            <TweetLists
+              tweets={tweets}
+              onClick={handleClickCard}
+              setIsTweetsLoaded={setIsTweetsLoaded}
+              onToggleLike={handleChangeLikeMode}
+
             />
           </div>
-          {modalReplyOpen && <ModalReply />}
         </section>
         <section className='section-right col-3'>
-          <FollowCardList 
-          setPathId={()=>{}}
-          />
+          <FollowCardList setPathId={() => {}} />
         </section>
       </ContainerColSec>
     </>

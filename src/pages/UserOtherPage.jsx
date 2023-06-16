@@ -16,47 +16,45 @@ import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
 import { cancelFollow, getUserTweets, userFollowing } from '../api/twitter';
 import ModalReply from '../components/basic/ModalReply';
+import ModalTweet from '../components/basic/ModalTweet';
 
 const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
-  const [pathId, setPathId] = useState(Number(useParams().id))//在推薦跟隨會隨不同的pathId變換
-   //取得網址:id
+  const [pathId, setPathId] = useState(Number(useParams().id)); //在推薦跟隨會隨不同的pathId變換
+  //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentic, member,modalReplyOpen } = useAuth();
+  const { isAuthentic, member, modalReplyOpen, modalTweetOpen } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
-  const [userIsFollowing, setUserIsFollowing]=useState(false)
+  const [userIsFollowing, setUserIsFollowing] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
-  
+
   // console.log(currentMember)
   //@ profileCard 渲染後端 userInfo
 
-
-  const handleUserISFollowing = async (userId)=>{
-    try{
-      if(!userIsFollowing){
+  const handleUserISFollowing = async (userId) => {
+    try {
+      if (!userIsFollowing) {
         await userFollowing(userId);
-      }else{
+      } else {
         await cancelFollow(userId);
       }
-    setUserIsFollowing(!userIsFollowing);
-    }catch(error){
-      console.log(error)
+      setUserIsFollowing(!userIsFollowing);
+    } catch (error) {
+      console.log(error);
     }
-  }
-
-
+  };
 
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
         const data = await getUserInfo(pathId);
         setUserInfo(data);
-        setUserIsFollowing(data.isFollowing)
+        setUserIsFollowing(data.isFollowing);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
       }
@@ -71,7 +69,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
     };
     getUserTweetsAsync();
     getUserInfoAsync();
-  }, [pathId]);//在推薦跟隨會隨不同的pathId變換
+  }, [pathId, modalTweetOpen]);
 
   useEffect(() => {
     if (!isAuthentic) {
@@ -100,15 +98,16 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
         setModalProOpen={setModalProOpen}
         memberId={member.id}
       >
+        {modalTweetOpen && <ModalTweet />}
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser userAccountName='Others' userTweetsLength='33推文' />
 
-            <ProfileOtherCard 
-            {...userInfo} 
-            setModalProOpen={setModalProOpen}
-            userIsFollowing={userIsFollowing}
-            onClick={handleUserISFollowing}
+            <ProfileOtherCard
+              {...userInfo}
+              setModalProOpen={setModalProOpen}
+              userIsFollowing={userIsFollowing}
+              onClick={handleUserISFollowing}
             />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
             {modalReplyOpen && <ModalReply />}
@@ -119,7 +118,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
           </div>
         </section>
         <section className='section-right col-3'>
-          <FollowCardList 
+          <FollowCardList
             setPathId={setPathId}
             userIsFollowing={userIsFollowing}
           />
