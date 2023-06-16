@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from './InputGroup';
 import { useAuth } from '../context/AuthContext';
+//modal dialog套件
+
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+// import withReactContent from 'sweetalert2-react-content';
+import iconNotiSuccess from '../../assets/images/icon/alert-success-2.svg';
+import iconNotiWanrning from '../../assets/images/icon/alert-warning-2.svg';
 
 const AdminLoginForm = () => {
   // using react-form-hook-set-up
@@ -14,35 +21,82 @@ const AdminLoginForm = () => {
     formState: { errors },
     watch,
   } = useForm();
-  const { login, isAuthentic } = useAuth();
-
+  const { adminLogin, isAuthentic } = useAuth();
   const navigate = useNavigate();
 
+  // 客製toast 元件
+  const ToastSuccess = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiSuccess}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    // height: '96px',
+    timer: 3000,
+    timerProgressBar: false,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+  });
+
+  const ToastWarning = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiWanrning}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    height: '96px',
+    timer: 3000,
+    timerProgressBar: false,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    // didOpen: (toast) => {
+    //   toast.addEventListener('mouseenter', Swal.stopTimer);
+    //   toast.addEventListener('mouseleave', Swal.resumeTimer);
+    // },
+  });
+
   const onSubmit = async (data) => {
-    // 如果是只要給api
-    // 就在這設定 person,再給api,不需要setState
-    // const person = {
-    //   username: data.username,
-    //   password: data.password,
-    // };
     if (data.username.length === 0) {
       return;
     }
     if (data.password.length === 0) {
       return;
     }
-    const success = await login({
+    const { success, errorMessage } = await adminLogin({
       account: data.username,
       password: data.password,
     });
-    console.log('Login: ', success);
-    // console.log(data);
-    reset();
+
+    if (success) {
+      console.log('adminLogin: ', success);
+      ToastSuccess.fire({
+        title: 'admin登入成功!',
+      });
+      reset();
+      return;
+    } else {
+      console.log('adminLogin: ', success);
+      ToastWarning.fire({
+        title: `${errorMessage.message}`,
+      });
+    }
   };
 
   useEffect(() => {
     if (isAuthentic) {
-      navigate('/main');
+      navigate('/admin');
     }
   }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 

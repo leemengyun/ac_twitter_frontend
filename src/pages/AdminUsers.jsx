@@ -13,13 +13,13 @@ const AdminUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
   const navigate = useNavigate();
 
-  const handleClickCard = (id) => {
-    // alert('點擊');
-    // console.log(id);
-    if (id) {
-      navigate(`/user/${id}`); //@還沒搭配身份驗證會先跳出跑到login
-    }
-  };
+  // const handleClickCard = (id) => {
+  //   // alert('點擊');
+  //   // console.log(id);
+  //   if (id) {
+  //     navigate(`/user/${id}`); //@還沒搭配身份驗證會先跳出跑到login
+  //   }
+  // };
 
   //前面刷新資料
   useEffect(() => {
@@ -46,17 +46,13 @@ const AdminUsers = () => {
                   <ProfileMiniCard
                     key={allUser.id}
                     {...allUser}
-                    handleClickCard={(id) => {
-                      handleClickCard?.(id);
-                    }}
+                    // handleClickCard={() => {
+                    //   handleClickCard?.(allUser.id);
+                    // }}
                   />
                 );
               })}
-
               {/* <ProfileMiniCard /> */}
-              {/* <ProfileMiniCard /> <ProfileMiniCard /> <ProfileMiniCard />
-              <ProfileMiniCard /> <ProfileMiniCard /> <ProfileMiniCard />
-              <ProfileMiniCard /> <ProfileMiniCard /> */}
             </div>
           </div>
         </div>

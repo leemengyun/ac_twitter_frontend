@@ -18,7 +18,7 @@ import PageLayout from './components/layout/PageLayout';
 import NestedUserPage from './pages/main/NestedUserPage';
 import LoginPage from './pages/LoginPage';
 import StoryBookPage from './pages/storybooks/StoryBookPage';
-// import AdminLoginPage from './pages/AdminLoginPage';
+import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPage from './pages/AdminPage';
 import SettingPage from './pages/SettingPage';
 import UserPage from './pages/UserPage';
@@ -47,8 +47,8 @@ function App({ router }) {
               <Route path='*' element={<LoginPage />}></Route>
               <Route path='/storybook' element={<StoryBookPage />}></Route>
               <Route path='/login' element={<LoginPage />}></Route>
-              {/* <Route path='/login/admin' element={<AdminLoginPage />}></Route> */}
-              <Route path='/login/admin' element={<AdminPage />}></Route>
+              <Route path='/login/admin' element={<AdminLoginPage />}></Route>
+              <Route path='/admin' element={<AdminPage />}></Route>
               <Route path='/register' element={<RegisterPage />}></Route>
               <Route path='/main' element={<MainPage />}></Route>
               <Route

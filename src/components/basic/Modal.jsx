@@ -219,8 +219,7 @@ const Modal = () => {
                   },
                 }}
                 watch={watch}
-                // value={profile.name}
-                // required
+                limitLabel={true}
               />
             </div>
             <div className='textarea-group-container'>
@@ -232,21 +231,24 @@ const Modal = () => {
                   name='introduction'
                   {...register('introduction', {
                     required: true,
-                    maxLength: 150,
+                    maxLength: 160,
                   })}
                   placeholder='有什麼新鮮事？'
-                  maxLength='30'
-                  className='desc-text-area'
+                  maxLength='160'
+                  className={`desc-text-area ${
+                    errors.introduction ? 'error' : ''
+                  }`}
+
                   // value={profile.introduction || ''}
                 />
               </div>
               <div className='error-message-group'>
-                {errors.description &&
-                  errors.description.type === 'required' && (
+                {errors.introduction &&
+                  errors.introduction.type === 'required' && (
                     <span className='error'>This is required</span>
                   )}
                 <span className='limit-num'>
-                  {watch('description') ? watch('description').length : '0'}/50
+                  {watch('description') ? watch('description').length : '0'}/160
                 </span>
               </div>
             </div>

@@ -47,6 +47,22 @@
       width: 100%;
       line-height: 26px;
       padding-left: 16px;
+
+      &.error {
+        border-bottom: 2px solid red;
+        &:hover {
+          border-bottom: 2px solid red;
+        }
+        &:focus {
+          border-bottom: 2px solid red;
+        }
+      }
+      &:hover {
+        border-bottom: 2px solid var(--primary-color);
+      }
+      &:focus {
+        border-bottom: 2px solid var(--primary-color);
+      }
     }
   }
 
