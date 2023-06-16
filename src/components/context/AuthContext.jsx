@@ -113,16 +113,17 @@ export const AuthProvider = ({ children }) => {
           return success;
         },
         login: async (user) => {
-          console.log('ok');
-          const { success, data } = await login({
+          const { success, data, errorMessage } = await login({
             account: user.account,
             password: user.password,
           });
+          if(success){
           const token = data.token;
           const tempPayload = jwt.decode(token);
           // console.log('data',data)
           // console.log('tempPayload: ', tempPayload )
           //{id: 14, account: 'user1', email: 'user1@example.com', name: 'user1 name', avatar: null, …}
+          
           if (tempPayload) {
             setIsAuthentic(true);
             localStorage.setItem('authToken', token);
@@ -132,7 +133,10 @@ export const AuthProvider = ({ children }) => {
           } else {
             setIsAuthentic(false);
           }
-          return success;
+          return {success};
+         }else{
+          return {success,errorMessage}
+         }
         },
         logout: async () => {
           localStorage.removeItem('authToken');
