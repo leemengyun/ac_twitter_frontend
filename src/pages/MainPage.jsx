@@ -23,7 +23,7 @@ const MainPage = ({ setModalTweetOpen }) => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
 
-  const { isAuthentic, member, modalReplyOpen, modalTweetOpen,,handleChangeLikeMode,like  } = useAuth(); // 取出需要的狀態與方法
+  const { isAuthentic, member, modalReplyOpen, modalTweetOpen,handleChangeLikeMode,like  } = useAuth(); // 取出需要的狀態與方法
   const [isTweetsLoaded, setIsTweetsLoaded] = useState(false); // 用來防止tweets-loop產生
 
 
