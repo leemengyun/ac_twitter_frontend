@@ -9,12 +9,14 @@ import { useAuth } from '../context/AuthContext';
 import { editSettingInfo, getSettingInfo } from '../../api/twitter';
 import { useState } from 'react';
 // import { getUserTweets } from '../api/twitter';
-
+import iconNotiSuccess from '../../assets/images/icon/alert-success-2.svg';
+import iconNotiWanrning from '../../assets/images/icon/alert-warning-2.svg';
+import Swal from 'sweetalert2';
 const SettingForm = () => {
   const navigate = useNavigate();
   const { isAuthentic, member } = useAuth();
   const [settingInfo , setSettingInfo] = useState({
-    id: "",
+    id: "null",
     account: "",
     email: "",
     name: "",
@@ -28,6 +30,49 @@ const SettingForm = () => {
     watch,
   } = useForm();
 
+  const ToastSuccess = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiSuccess}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    // height: '96px',
+    timer: 3000,
+    timerProgressBar: false,  
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+  });
+
+  const ToastWarning = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiWanrning}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    height: '96px',
+    timer: 3000,
+    timerProgressBar: false,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+    // didOpen: (toast) => {
+    //   toast.addEventListener('mouseenter', Swal.stopTimer);
+    //   toast.addEventListener('mouseleave', Swal.resumeTimer);
+    // },
+  });
+
+
   const onSubmit = async(data) => {
     // 如果是只要給api
     // 就在這設定 person,再給api,不需要setState
@@ -35,17 +80,44 @@ const SettingForm = () => {
     //   username: data.username,
     //   password: data.password,
     // };
-    const res = await editSettingInfo(member.id)
-    console.log(data);
-    reset();
+    const res = await editSettingInfo({memberId:member.id,
+      account:data.account,
+      name:data.name,
+      email:data.email,
+      password:data.password,
+      checkPassword:data.cpassword
+    })
+    console.log(data)
+    console.log(res)
+    if(res.status === 200){
+      console.log(res)
+      reset();
+      setSettingInfo({
+      id: res.data.id,
+      account: res.data.account,
+      email: res.data.email,
+      name: res.data.name
+      })
+      ToastSuccess.fire({
+        title: '成功修改',
+      })
+    }else{
+      ToastWarning.fire({
+        title: `${res.message}`,
+      })
+      setSettingInfo(settingInfo)
+    }
   };
+
+    
   useEffect(()=> {
     const getSettingInfoAsync = async()=>{
       const data = await getSettingInfo(member.id)
       setSettingInfo(data)
     }
     getSettingInfoAsync()
-  },[])
+    console.log(settingInfo)
+  },[setSettingInfo])
 
   useEffect(() => {
     if (!isAuthentic) {

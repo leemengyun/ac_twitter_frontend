@@ -7,7 +7,8 @@ const LikeLists = ({ pathId, onClick,onToggleLike }) => {
   const [userLiked,setUserLiked] = useState([])
   const {
     like,
-    handleChangeLikeMode
+    handleChangeLikeMode,
+    member
   } = useAuth();
 
   useEffect(()=>{
@@ -20,7 +21,7 @@ const LikeLists = ({ pathId, onClick,onToggleLike }) => {
       }
     }
     getUserLikedTweetsAsync()
-  },[like])
+  },[like,pathId])
 
 
   return (
@@ -32,7 +33,7 @@ const LikeLists = ({ pathId, onClick,onToggleLike }) => {
           onClick={({tweetId,userId})=>{
             onClick?.({tweetId,userId})
           }}
-          onToggleLike={handleChangeLikeMode }
+          onToggleLike ={handleChangeLikeMode}
         />
    })}
     </div>

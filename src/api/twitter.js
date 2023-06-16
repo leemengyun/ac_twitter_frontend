@@ -170,7 +170,6 @@ export const cancelFollow = async (followingId) => {
 export const likeTweet = async (id) => {
   try {
     const res = await axiosInstance.post(`${baseUrl}/tweets/${id}/like`);
-    console.log(res)
     return res.data;
   } catch (error) {
     console.error('[Like Tweet failed:]:', error);
@@ -181,7 +180,6 @@ export const likeTweet = async (id) => {
 export const unlikeTweet = async (id) => {
   try {
     const res = await axiosInstance.post(`${baseUrl}/tweets/${id}/unlike`);
-    console.log(res)
     return res.data;
   } catch (error) {
     console.error('[Unlike Tweet failed:]:', error);
@@ -203,13 +201,20 @@ export const getSettingInfo = async (memberId) => {
 //修改用戶資訊
 export const editSettingInfo = async (payload) => {
   try {
-    const {memberId,name,account,email,password,} = payload
+    const {memberId,name,account,email,password,checkPassword} = payload;
     const res = await axiosInstance.patch(
-      `${baseUrl}/users/${memberId}`
+      `${baseUrl}/users/${memberId}`,{
+        name,
+        account,
+        email,
+        password,
+        checkPassword
+      }
     );
-    console.log(res)
-    return res.data;
+    return res;
   } catch (error) {
-    console.error('[Get USer Info failed:]:', error);
+    const errorMessage = error.response.data
+    console.error('[Edit Setting Info failed:]:', error);
+    return errorMessage
   }
 };

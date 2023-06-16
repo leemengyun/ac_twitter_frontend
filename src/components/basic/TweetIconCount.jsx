@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { likeTweet, unlikeTweet } from "../../api/twitter";
-const TweetIconCount =({likesCount,repliesCount,isLike,id,onToggleLike}) => {
+const TweetIconCount =({likesCount,repliesCount,isLike,id,onToggleLike,UserId}) => {
     const { setModalReplyOpen,setTweetId} = useAuth();
     // const [Like,setIsLike] = useState(isLike)
     // const handleClickLike = async(e)=>{
@@ -32,7 +32,7 @@ const TweetIconCount =({likesCount,repliesCount,isLike,id,onToggleLike}) => {
               {repliesCount}
             </span>
           </div>
-          <div className='tweet-card-like-count' onClick={(e)=>{onToggleLike?.({id,isLike});e.stopPropagation()}}>
+          <div className='tweet-card-like-count' onClick={(e)=>{onToggleLike?.({id,UserId,isLike});e.stopPropagation()}}>
            <img src={isLike ?  likefilled : like } alt='like' className={`${clsx('', {active: isLike})} like-icon`}
            />
           <span className = 'tweet-count' >

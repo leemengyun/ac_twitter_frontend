@@ -33,7 +33,7 @@ const LoginForm = () => {
     width: '394px',
     // height: '96px',
     timer: 3000,
-    timerProgressBar: false,  
+    timerProgressBar: false,
     showClass: {
       popup: 'animate__animated animate__fadeInDown',
     },
@@ -66,27 +66,27 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data) => {
-      if (data.username.length === 0) {
-        return;
-      }
-      if (data.password.length === 0) {
-        return;
-      }
-      const {success,errorMessage}= await login({
-        account: data.username,
-        password: data.password,
+    if (data.username.length === 0) {
+      return;
+    }
+    if (data.password.length === 0) {
+      return;
+    }
+    const { success, errorMessage } = await login({
+      account: data.username,
+      password: data.password,
+    });
+
+    if (success) {
+      console.log('Login: ', success);
+      ToastSuccess.fire({
+        title: '登入成功!',
       });
-      
-      if (success) {
-        console.log('Login: ', success);
-        ToastSuccess.fire({
-          title: '登入成功!',
-        });
-        reset();
-        return;
-      }else{
-        console.log('Login: ', success)
-        ToastWarning.fire({
+      reset();
+      return;
+    } else {
+      console.log('Login: ', success);
+      ToastWarning.fire({
         title: `${errorMessage.message}`,
       });
     }
@@ -99,15 +99,15 @@ const LoginForm = () => {
   }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 
   return (
-    <div className='formLayout login-form'>
+    <div className="formLayout login-form">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='input-group-container'>
+        <div className="input-group-container">
           <InputGroup
-            name='username'
-            label='帳號'
-            type='text'
-            placeholder='請輸入帳號'
-            maxLength='50'
+            name="username"
+            label="帳號"
+            type="text"
+            placeholder="請輸入帳號"
+            maxLength="50"
             errors={errors}
             register={register}
             validationSchema={{
@@ -121,12 +121,12 @@ const LoginForm = () => {
             // required
           />
         </div>
-        <div className='input-group-container'>
+        <div className="input-group-container">
           <InputGroup
-            name='password'
-            label='密碼'
-            type='password'
-            placeholder='請輸入密碼'
+            name="password"
+            label="密碼"
+            type="password"
+            placeholder="請輸入密碼"
             errors={errors}
             register={register}
             validationSchema={{
@@ -140,15 +140,15 @@ const LoginForm = () => {
             watch={watch}
           />
         </div>
-        <button className='button-filled button-lg' type='submit'>
+        <button className="button-filled button-lg" type="submit">
           登入
         </button>
-        <div className='button-group-row login-button-group'>
-          <Link to='/register' className='button-link'>
+        <div className="button-group-row login-button-group">
+          <Link to="/register" className="button-link">
             註冊
           </Link>
           <span>・</span>
-          <Link to='/login/admin' className='button-link'>
+          <Link to="/login/admin" className="button-link">
             後台登入
           </Link>
         </div>

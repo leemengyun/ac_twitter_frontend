@@ -6,7 +6,6 @@ import * as jwt from 'jsonwebtoken';
 // import { set } from 'react-hook-form';
 import { likeTweet, unlikeTweet } from '../../api/twitter';
 
-
 const defaultAuthContext = {
   isAuthentic: false,
   currentMember: null,
@@ -28,16 +27,18 @@ export const AuthProvider = ({ children }) => {
   const [modalTweetOpen, setModalTweetOpen] = useState(false);
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
-  const [like, setLike] = useState(true)
-  const handleChangeLikeMode = async ({id,isLike}) => {
-      if(!isLike){
-          await likeTweet(id)
-        }else{
-          await unlikeTweet(id)
-        }
-        setLike(!like)
+  const [like, setLike] = useState(true);
+  const handleChangeLikeMode = async ({ id, isLike, UserId }) => {
+    if(pathname.includes('other')){
+      return //使用者無法更改其他使用者喜歡的內容
     };
-
+    if (!isLike) {
+      await likeTweet(id);
+    } else {
+      await unlikeTweet(id);
+    }
+    setLike(!like);
+  };
 
   // 封裝檢查token
   useEffect(() => {
@@ -88,8 +89,7 @@ export const AuthProvider = ({ children }) => {
         tweetId,
         member,
         like,
-        handleChangeLikeMode
-        ,
+        handleChangeLikeMode,
         //共用的register流程
         signUp: async (user) => {
           const { success, authToken } = await signUp({
@@ -117,26 +117,26 @@ export const AuthProvider = ({ children }) => {
             account: user.account,
             password: user.password,
           });
-          if(success){
-          const token = data.token;
-          const tempPayload = jwt.decode(token);
-          // console.log('data',data)
-          // console.log('tempPayload: ', tempPayload )
-          //{id: 14, account: 'user1', email: 'user1@example.com', name: 'user1 name', avatar: null, …}
-          
-          if (tempPayload) {
-            setIsAuthentic(true);
-            localStorage.setItem('authToken', token);
-            setPayload(tempPayload);
-            //等有test-token CheckPermission 完後才導入使用者資訊
-            setMember(tempPayload);
+          if (success) {
+            const token = data.token;
+            const tempPayload = jwt.decode(token);
+            // console.log('data',data)
+            // console.log('tempPayload: ', tempPayload )
+            //{id: 14, account: 'user1', email: 'user1@example.com', name: 'user1 name', avatar: null, …}
+
+            if (tempPayload) {
+              setIsAuthentic(true);
+              localStorage.setItem('authToken', token);
+              setPayload(tempPayload);
+              //等有test-token CheckPermission 完後才導入使用者資訊
+              setMember(tempPayload);
+            } else {
+              setIsAuthentic(false);
+            }
+            return { success };
           } else {
-            setIsAuthentic(false);
+            return { success, errorMessage };
           }
-          return {success};
-         }else{
-          return {success,errorMessage}
-         }
         },
         logout: async () => {
           localStorage.removeItem('authToken');
