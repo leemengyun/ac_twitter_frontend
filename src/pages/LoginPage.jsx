@@ -25,15 +25,15 @@ const LoginPage = () => {
   return (
     <>
       <ContainerColOne>
-        <div className='login-container col-4 flex_col_cc'>
-          <div className='page-logo'>
+        <div className="login-container col-4 flex_col_cc">
+          <div className="page-logo">
             <img
               src={iconLogo}
-              alt='Alphitter Icon'
-              className='icon-logo cursor-point'
+              alt="Alphitter Icon"
+              className="icon-logo cursor-point"
             />
           </div>
-          <h3 className='page-title'>登入 Alphitter</h3>
+          <h3 className="page-title">登入 Alphitter</h3>
           <LoginForm />
         </div>
       </ContainerColOne>

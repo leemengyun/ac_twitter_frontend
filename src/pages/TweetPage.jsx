@@ -61,28 +61,31 @@ const TweetPage = ({ setModalTweetOpen }) => {
 
   return (
     <ContainerColSec
-      role='user'
+      role="user"
       setModalTweetOpen={setModalTweetOpen}
       pageIndex={0}
       memberId={member?.id}
     >
       {modalTweetOpen && <ModalTweet />}
       {modalReplyOpen && <ModalReply />}
-      <section className='section-outer-m col-7'>
-        <div className='section-main-m'>
-          <HeaderUser userAccountName='推文' />
-          <div className='TweetPage'>
-            <TweetBigCard tweetInfo={tweetInfo} onClick={handleClickCard} />
+      <section className="section-outer-m col-7">
+        <div className="section-main-m">
+          <HeaderUser userAccountName="推文" />
+          <div className="TweetPage">
+            <TweetBigCard
+              tweetInfo={tweetInfo}
+              onClick={handleClickCard}
+              onToggleLike={handleChangeLikeMode}
+            />
             <TweetRepliesList
               tweetReplies={tweetReplies}
               account={tweetInfo.User.account}
               onClick={handleClickCard}
-              onToggleLike={handleChangeLikeMode}
             />
           </div>
         </div>
       </section>
-      <section className='section-right col-3'>
+      <section className="section-right col-3">
         <FollowCardList setPathId={() => {}} />
       </section>
     </ContainerColSec>
