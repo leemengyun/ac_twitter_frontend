@@ -21,6 +21,10 @@ const ProfileMiniCard = ({
   name,
   avatar,
   banner,
+  tweetsCount,
+  followingsCount,
+  followersCount,
+  likeCount,
   handleClickCard,
 }) => {
   return (
@@ -45,19 +49,19 @@ const ProfileMiniCard = ({
         <div className='user-tweet-info'>
           <div className='user-card-post-count'>
             <img src={iconPost} alt='post' className='icon-post' />
-            <span className='tweet-count'>1.5k</span>
+            <span className='tweet-count'>{tweetsCount}</span>
           </div>
           <div className='user-card-like-count'>
             <img src={iconLike} alt='like' className='icon-like' />
-            <span className='tweet-count'>20k</span>
+            <span className='tweet-count'>{likeCount}</span>
           </div>
         </div>
         <div className='user-follow-info'>
           <p>
-            34 個 <span>跟隨中</span>
+            {followingsCount} 個 <span>跟隨中</span>
           </p>
           <p>
-            59 位<span>跟隨者</span>
+            {followersCount} 位<span>跟隨者</span>
           </p>
         </div>
       </div>
