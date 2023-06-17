@@ -93,15 +93,15 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   return (
     <>
       <ContainerColSec
-        role='user'
+        role="user"
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         memberId={member.id}
       >
         {modalTweetOpen && <ModalTweet />}
-        <section className='section-outer-m col-7'>
-          <div className='section-main-m'>
-            <HeaderUser userAccountName='Others' userTweetsLength='33推文' />
+        <section className="section-outer-m col-7">
+          <div className="section-main-m">
+            <HeaderUser userAccountName="Others" userTweetsLength="33推文" />
 
             <ProfileOtherCard
               {...userInfo}
@@ -117,7 +117,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
             {tabIndex === '2' && <LikeLists />} */}
           </div>
         </section>
-        <section className='section-right col-3'>
+        <section className="section-right col-3">
           <FollowCardList
             setPathId={setPathId}
             userIsFollowing={userIsFollowing}

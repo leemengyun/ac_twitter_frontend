@@ -8,6 +8,8 @@ import ModalTweet from '../components/basic/ModalTweet';
 //call api
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
+import FollowShipCard from '../components/basic/FollowShipCard';
+import FollowerShipLists from '../components/user/FollowerShipLists';
 // import { getUserTweets } from '../api/twitter';
 
 const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
@@ -43,10 +45,10 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //swtich case 與 if else概念相同，但return component更簡潔(??)
   function switchContext(tabIndex) {
     switch (tabIndex) {
-      case '0':
-        return <h1>替換成 tab0要用的component</h1>;
+      case '1':
+        return <FollowerShipLists tabIndex={tabIndex}/>;
       default:
-        return <h1>替換成 tab1要用的component</h1>;
+        return <FollowerShipLists tabIndex={tabIndex} />;
     }
   }
 
