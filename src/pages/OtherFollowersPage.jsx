@@ -13,7 +13,7 @@ import FollowerShipLists from '../components/user/FollowerShipLists';
 import FollowCardList from '../components/user/FollowCardList';
 // import { getUserTweets } from '../api/twitter';
 
-const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
+const OthersFollowersPage = ({ setModalProOpen, setModalTweetOpen}) => {
   const [tabIndex, setTabIndex] = useState('0');
   // const pathId = Number(useParams()); //取得網址
   //向後端 給予(pathid)參數 拿該用戶的資料
@@ -23,8 +23,8 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userIsFollowing, setUserIsFollowing] = useState(0);
-  //@ profileCard 渲染後端 userInfo
   const [pathId, setPathId] = useState(Number(useParams().id));
+  //@ profileCard 渲染後端 userInfo
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
@@ -80,9 +80,7 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
 
         <section className="section-outer-m col-7">
           <div className="section-main-m">
-            <HeaderUser 
-              userAccountName={userInfo.name}
-            />
+            <HeaderUser userAccountName={userInfo.name} />
 
             <TabTwoGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
@@ -100,4 +98,4 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   );
 };
 
-export default UserFollowersPage;
+export default OthersFollowersPage;

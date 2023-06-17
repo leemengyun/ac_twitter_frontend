@@ -9,31 +9,36 @@ import {
 } from '../../api/twitter';
 import { useState } from 'react';
 import FollowShipCard from '../basic/FollowShipCard';
+import { useLocation } from 'react-router-dom';
 
 
 const FollowerShipLists = ({
   tabIndex,
   setUserIsFollowing,
   userIsFollowing,
+  pathId
 }) => {
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
   const { member } = useAuth();
-
+  const { pathname } = useLocation();
   const handleUserIsFollowing = async ({
     userId,
     isfollowing,
     userIsFollowing,
   }) => {
-    try {
-      if (!isfollowing) {
-        await userFollowing(userId);
-      } else {
-        await cancelFollow(userId);
-      }
-    } catch (error) {
-      console.log(error);
+    if (pathname.includes('other')){
+      return 
     }
+      try {
+        if (!isfollowing) {
+          await userFollowing(userId);
+        } else {
+          await cancelFollow(userId);
+        }
+      } catch (error) {
+        console.log(error);
+      }
   };
   
   function switchContext(tabIndex) {
@@ -61,14 +66,14 @@ const FollowerShipLists = ({
         });
     }
   }
-
+  
   useEffect(() => {
     const getUserFollowerAsync = async () => {
-      const data = await getUserFollower(member.id);
+      const data = await getUserFollower(pathId);
       setFollower(data);
     };
     const getUserFollowingAsync = async () => {
-      const data = await getUserFollowing(member.id);
+      const data = await getUserFollowing(pathId);
       setFollowing(data);
     };
     getUserFollowerAsync();

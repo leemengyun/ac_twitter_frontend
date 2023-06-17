@@ -58,13 +58,13 @@ const ProfileOtherCard = ({
           <p className="user-desc">{introduction}</p>
         </div>
         <div className="user-follow-info">
-          <Link to="/user/followers">
+          <Link to={`/other/followers/${userId}`}>
             <p>
               {followersCount} 個 <span>跟隨中</span>
             </p>
           </Link>
 
-          <Link to="/user/followers">
+          <Link to={`/other/followers/${userId}`}>
             <p>
               {followingsCount} 位<span>跟隨者</span>
             </p>
