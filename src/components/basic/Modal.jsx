@@ -18,6 +18,7 @@ import iconClose from '../../assets/images/icon/close.svg';
 
 const defaultBk = 'https://i.imgur.com/ZFz8ZEI.png';
 // const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
+const formData = new FormData();
 
 const Modal = () => {
   const { isAuthentic, member, setModalProOpen } = useAuth(); // 取出需要的狀態與方法
@@ -28,6 +29,14 @@ const Modal = () => {
     banner: '',
   });
   const navigate = useNavigate();
+  // @ 用來上傳更新自我資料用
+
+  //@ upload photo用
+  const uploadedImage = useRef(null);
+  const imageUploader = useRef(null);
+  const imageUploader_bk = useRef(null);
+  const [imageNewUrl, setImageNewUrl] = useState('');
+  const [imageNewUrl_bk, setImageNewUrl_bk] = useState('');
 
   // using react-form-hook-set-up
   const {
@@ -46,7 +55,7 @@ const Modal = () => {
     },
   });
 
-  //@ 打 /api/users/id
+  // 打 /api/users/id
   const getUserInfoAsync = async () => {
     try {
       const profile = await getUserInfo(member.id);
@@ -64,31 +73,43 @@ const Modal = () => {
   const onSubmit = async (data) => {
     // 如果是只要給api
     console.log('we get data', data);
-    // reset();
-    console.log(member.id);
+    console.log('onSubmit formData.get');
+    console.log(formData.get('avatar'));
+    console.log(formData.get('banner'));
+
+    // console.log(member.id);
     try {
       const addData = await updateUserInfo({
         id: member.id,
         data: data,
+        img: formData,
       });
       if (addData) {
+        console.log('SUCCESS!');
         setModalProOpen(false);
+        // reset();
       }
       console.log({ addData });
     } catch (error) {
-      console.error('[getUser Info  with Async failed]', error);
+      console.error('[Update info with Async failed]', error);
     }
   };
 
-  //upload photo
-  const uploadedImage = useRef(null);
-  const imageUploader = useRef(null);
-  const imageUploader_bk = useRef(null);
-  const [imageNewUrl, setImageNewUrl] = useState('');
-  const [imageNewUrl_bk, setImageNewUrl_bk] = useState('');
-
+  // @照片預覽+設定formData
   const handleImageUpload = (e) => {
-    console.log(e.target.className);
+    // console.log(e.target.className);
+
+    //@設定formData
+    const avatarFile = imageUploader.current.files[0];
+    const bannerFile = imageUploader_bk.current.files[0];
+
+    if (avatarFile) {
+      formData.append('avatar', avatarFile);
+    }
+    if (bannerFile) {
+      formData.append('banner', bannerFile);
+    }
+
     let curr_target = 'input-file-avatar';
     if (e.target.className === 'input-file-bk') {
       curr_target = 'input-file-bk';
@@ -108,7 +129,7 @@ const Modal = () => {
           //利用空的input可以用 react-hook-form傳出去
           setValue('avatar', e.target.result);
         } else if (curr_target === 'input-file-bk') {
-          console.log('bk-file');
+          // console.log('bk-file');
           setImageNewUrl_bk(e.target.result);
           //利用空的input可以用 react-hook-form傳出去
           setValue('banner', e.target.result);
@@ -119,6 +140,7 @@ const Modal = () => {
     }
   };
 
+  //照片回到前一版
   const handleImageDelete = (e) => {
     alert('換回原本背景照片');
     setImageNewUrl_bk(profile.banner ? profile.banner : defaultBk);
@@ -149,66 +171,68 @@ const Modal = () => {
           setModalProOpen={setModalProOpen}
           onSubmit={onSubmit}
         />
-        <div className="modal-content">
-          <div className="profile-bk-wrapper">
+        <div className='modal-content'>
+          <div className='profile-bk-wrapper'>
             <UserBk bkUrl={imageNewUrl_bk} />
             <img
-              alt="bk-camera"
+              alt='bk-camera'
               src={iconCamera}
-              className="icon-camera"
+              className='icon-camera'
               ref={uploadedImage}
               onClick={() => imageUploader_bk.current.click()}
             />
             <img
               src={iconClose}
-              alt="icon of close button"
-              className="icon-close"
+              alt='icon of close button'
+              className='icon-close'
               onClick={handleImageDelete}
             />
             <input
-              type="file"
-              accept="image/*"
+              type='file'
+              accept='image/*'
               onChange={handleImageUpload}
               ref={imageUploader_bk}
-              className="input-file-bk"
+              className='input-file-bk'
               //@ sam 需要的上傳規格 name='banner'
-              name="banner"
+              name='banner'
+              id='banner'
             />
           </div>
 
-          <div className="avatar-edit-wrapper">
+          <div className='avatar-edit-wrapper'>
             <UserAvatar avatar={imageNewUrl} />
             <img
-              alt="bbb"
+              alt='bbb'
               src={iconCamera}
-              className="icon-camera"
+              className='icon-camera'
               ref={uploadedImage}
               onClick={() => imageUploader.current.click()}
             />
 
             <input
-              type="file"
-              accept="image/*"
+              type='file'
+              accept='image/*'
               onChange={handleImageUpload}
               ref={imageUploader}
-              className="input-file-avatar"
+              className='input-file-avatar'
               //@ sam 需要的上傳規格 name='avatar'
-              name="avatar"
+              name='avatar'
+              id='avatar'
             />
           </div>
 
           <form
-            className="modal-info-form"
-            id="hook-form"
+            className='modal-info-form'
+            id='hook-form'
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="input-group-container">
+            <div className='input-group-container'>
               <InputGroup
-                name="name"
-                label="名稱"
-                type="text"
-                placeholder="請輸入帳號"
-                maxLength="50"
+                name='name'
+                label='名稱'
+                type='text'
+                placeholder='請輸入帳號'
+                maxLength='50'
                 errors={errors}
                 register={register}
                 validationSchema={{
@@ -222,29 +246,29 @@ const Modal = () => {
                 limitLabel={true}
               />
             </div>
-            <div className="textarea-group-container">
-              <div className="textarea-group grow-wrap">
+            <div className='textarea-group-container'>
+              <div className='textarea-group grow-wrap'>
                 <label>自我介紹</label>
                 <textarea
-                  type="textarea"
-                  id="introduction"
-                  name="introduction"
+                  type='textarea'
+                  id='introduction'
+                  name='introduction'
                   {...register('introduction', {
                     required: true,
                     maxLength: 160,
                   })}
-                  placeholder="有什麼新鮮事？"
-                  maxLength="160"
-                  className="desc-text-area"
+                  placeholder='有什麼新鮮事？'
+                  maxLength='160'
+                  className='desc-text-area'
                   // value={profile.introduction || ''}
                 />
               </div>
-              <div className="error-message-group">
+              <div className='error-message-group'>
                 {errors.description &&
                   errors.description.type === 'required' && (
-                    <span className="error">This is required</span>
+                    <span className='error'>This is required</span>
                   )}
-                <span className="limit-num">
+                <span className='limit-num'>
                   {watch('introduction') ? watch('introduction').length : '0'}
                   /160
                 </span>
@@ -252,14 +276,16 @@ const Modal = () => {
             </div>
 
             <input
-              type="text"
+              type='text'
               {...register('banner')}
               style={{
                 display: 'none',
               }}
             />
             <input
-              type="text"
+              type='text'
+              name='avatar'
+              id='avatar'
               {...register('avatar')}
               style={{
                 display: 'none',
