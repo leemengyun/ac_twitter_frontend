@@ -28,7 +28,7 @@ const OthersFollowersPage = ({ setModalProOpen, setModalTweetOpen}) => {
   useEffect(() => {
     const getUserInfoAsync = async () => {
       try {
-        const userInfo = await getUserInfo(member.id);
+        const userInfo = await getUserInfo(pathId);
         setUserInfo(userInfo);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
