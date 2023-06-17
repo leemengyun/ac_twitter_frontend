@@ -79,7 +79,7 @@ function App({ router }) {
               <Route
                 path="/other/followers"
                 element={
-                  <UserFollowersPage setModalProOpen={setModalProOpen} />
+                  <UserFollowersPage />
                 }
               ></Route>
               <Route path="/main/tweet/:id" element={<TweetPage />}></Route>
