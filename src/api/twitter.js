@@ -145,9 +145,9 @@ export const userFollowing = async (id) => {
     const res = await axiosInstance.post(`${baseUrl}/followships`, {
       id,
     });
-    
+
     console.log(res);
-    
+
     return res.data;
   } catch (error) {
     console.error('[Following failed:]:', error);
@@ -164,7 +164,6 @@ export const cancelFollow = async (followingId) => {
     console.error('[Cancel Follow failed:]:', error);
   }
 };
-
 
 //喜歡貼文
 export const likeTweet = async (id) => {
@@ -189,9 +188,7 @@ export const unlikeTweet = async (id) => {
 //設定頁面取得用戶資訊
 export const getSettingInfo = async (memberId) => {
   try {
-    const res = await axiosInstance.get(
-      `${baseUrl}/users/${memberId}`
-    );
+    const res = await axiosInstance.get(`${baseUrl}/users/${memberId}`);
     return res.data;
   } catch (error) {
     console.error('[Get USer Info failed:]:', error);
@@ -201,24 +198,21 @@ export const getSettingInfo = async (memberId) => {
 //修改用戶資訊
 export const editSettingInfo = async (payload) => {
   try {
-    const {memberId,name,account,email,password,checkPassword} = payload;
-    const res = await axiosInstance.patch(
-      `${baseUrl}/users/${memberId}`,{
-        name,
-        account,
-        email,
-        password,
-        checkPassword
-      }
-    );
+    const { memberId, name, account, email, password, checkPassword } = payload;
+    const res = await axiosInstance.patch(`${baseUrl}/users/${memberId}`, {
+      name,
+      account,
+      email,
+      password,
+      checkPassword,
+    });
     return res;
   } catch (error) {
-    const errorMessage = error.response.data
+    const errorMessage = error.response.data;
     console.error('[Edit Setting Info failed:]:', error);
-    return errorMessage
+    return errorMessage;
   }
 };
-
 
 //取的被跟隨者
 export const getUserFollower = async (userId) => {
@@ -226,16 +220,18 @@ export const getUserFollower = async (userId) => {
     const res = await axiosInstance.get(`${baseUrl}/users/${userId}/followers`);
     return res.data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
 //取的正在跟隨者
 export const getUserFollowing = async (userId) => {
   try {
-    const res = await axiosInstance.get(`${baseUrl}/users/${userId}/followings`);
+    const res = await axiosInstance.get(
+      `${baseUrl}/users/${userId}/followings`
+    );
     return res.data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };

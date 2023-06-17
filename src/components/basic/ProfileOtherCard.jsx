@@ -49,7 +49,7 @@ const ProfileOtherCard = ({
             })} button-md button-m`}
             onClick={() => onClick?.(userId)}
           >
-            {userIsFollowing ? '正在追隨' : '跟隨'}
+            {userIsFollowing ? '正在跟隨' : '跟隨'}
           </button>
         </div>
         <div className='profile-info'>
@@ -57,18 +57,14 @@ const ProfileOtherCard = ({
           <p className='user-account'>@{account}</p>
           <p className='user-desc'>{introduction}</p>
         </div>
-        <div className="user-follow-info">
+        <div className='user-follow-info'>
           <Link to={`/other/followers/${userId}`}>
-
-    
             <p>
               {followingsCount} 個 <span>跟隨中</span>
             </p>
           </Link>
 
           <Link to={`/other/followers/${userId}`}>
-
-  
             <p>
               {followersCount} 位<span>跟隨者</span>
             </p>
