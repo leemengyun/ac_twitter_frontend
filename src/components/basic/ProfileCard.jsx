@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import UserAvatar from './UserAvatar';
 import UserBk from './UserBk';
+import { useAuth } from '../../components/context/AuthContext';
 
 // import svg
 // @ testing local photo
@@ -22,8 +23,9 @@ const ProfileCard = ({
   banner,
   followersCount,
   followingsCount,
-  setModalProOpen,
 }) => {
+  const { setModalProOpen } = useAuth();
+
   return (
     <>
       <div className='profile-card'>
