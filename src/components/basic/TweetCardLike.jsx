@@ -42,9 +42,10 @@ const TweetCardLike = ({ ...props }) => {
           repliesCount={props.repliesCount}
           isLike={true}
           id={props.TweetId}
+          tabIndex={props.tabIndex}
           UserId={props.UserId}
-          onToggleLike={({ id, isLike, UserId }) => {
-            props.onToggleLike?.({ id, isLike, UserId });
+          onToggleLike={({ id, isLike, UserId, tabIndex }) => {
+            props.onToggleLike?.({ id, isLike, UserId, tabIndex });
           }}
         />
       </div>

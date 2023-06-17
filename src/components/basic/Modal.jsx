@@ -149,66 +149,66 @@ const Modal = () => {
           setModalProOpen={setModalProOpen}
           onSubmit={onSubmit}
         />
-        <div className='modal-content'>
-          <div className='profile-bk-wrapper'>
+        <div className="modal-content">
+          <div className="profile-bk-wrapper">
             <UserBk bkUrl={imageNewUrl_bk} />
             <img
-              alt='bk-camera'
+              alt="bk-camera"
               src={iconCamera}
-              className='icon-camera'
+              className="icon-camera"
               ref={uploadedImage}
               onClick={() => imageUploader_bk.current.click()}
             />
             <img
               src={iconClose}
-              alt='icon of close button'
-              className='icon-close'
+              alt="icon of close button"
+              className="icon-close"
               onClick={handleImageDelete}
             />
             <input
-              type='file'
-              accept='image/*'
+              type="file"
+              accept="image/*"
               onChange={handleImageUpload}
               ref={imageUploader_bk}
-              className='input-file-bk'
+              className="input-file-bk"
               //@ sam 需要的上傳規格 name='banner'
-              name='banner'
+              name="banner"
             />
           </div>
 
-          <div className='avatar-edit-wrapper'>
+          <div className="avatar-edit-wrapper">
             <UserAvatar avatar={imageNewUrl} />
             <img
-              alt='bbb'
+              alt="bbb"
               src={iconCamera}
-              className='icon-camera'
+              className="icon-camera"
               ref={uploadedImage}
               onClick={() => imageUploader.current.click()}
             />
 
             <input
-              type='file'
-              accept='image/*'
+              type="file"
+              accept="image/*"
               onChange={handleImageUpload}
               ref={imageUploader}
-              className='input-file-avatar'
+              className="input-file-avatar"
               //@ sam 需要的上傳規格 name='avatar'
-              name='avatar'
+              name="avatar"
             />
           </div>
 
           <form
-            className='modal-info-form'
-            id='hook-form'
+            className="modal-info-form"
+            id="hook-form"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className='input-group-container'>
+            <div className="input-group-container">
               <InputGroup
-                name='name'
-                label='名稱'
-                type='text'
-                placeholder='請輸入帳號'
-                maxLength='50'
+                name="name"
+                label="名稱"
+                type="text"
+                placeholder="請輸入帳號"
+                maxLength="50"
                 errors={errors}
                 register={register}
                 validationSchema={{
@@ -222,46 +222,44 @@ const Modal = () => {
                 limitLabel={true}
               />
             </div>
-            <div className='textarea-group-container'>
-              <div className='textarea-group grow-wrap'>
+            <div className="textarea-group-container">
+              <div className="textarea-group grow-wrap">
                 <label>自我介紹</label>
                 <textarea
-                  type='textarea'
-                  id='introduction'
-                  name='introduction'
+                  type="textarea"
+                  id="introduction"
+                  name="introduction"
                   {...register('introduction', {
                     required: true,
                     maxLength: 160,
                   })}
-                  placeholder='有什麼新鮮事？'
-                  maxLength='160'
-                  className={`desc-text-area ${
-                    errors.introduction ? 'error' : ''
-                  }`}
-
+                  placeholder="有什麼新鮮事？"
+                  maxLength="160"
+                  className="desc-text-area"
                   // value={profile.introduction || ''}
                 />
               </div>
-              <div className='error-message-group'>
-                {errors.introduction &&
-                  errors.introduction.type === 'required' && (
-                    <span className='error'>This is required</span>
+              <div className="error-message-group">
+                {errors.description &&
+                  errors.description.type === 'required' && (
+                    <span className="error">This is required</span>
                   )}
-                <span className='limit-num'>
-                  {watch('description') ? watch('description').length : '0'}/160
+                <span className="limit-num">
+                  {watch('introduction') ? watch('introduction').length : '0'}
+                  /160
                 </span>
               </div>
             </div>
 
             <input
-              type='text'
+              type="text"
               {...register('banner')}
               style={{
                 display: 'none',
               }}
             />
             <input
-              type='text'
+              type="text"
               {...register('avatar')}
               style={{
                 display: 'none',

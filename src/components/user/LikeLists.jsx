@@ -3,7 +3,7 @@ import { getUserLikedTweets } from '../../api/twitter';
 import TweetCardLike from '../basic/TweetCardLike';
 import { useAuth } from '../context/AuthContext';
 
-const LikeLists = ({ pathId, onClick,onToggleLike }) => {
+const LikeLists = ({ pathId, onClick, tabIndex}) => {
   const [userLiked,setUserLiked] = useState([])
   const {
     like,
@@ -30,6 +30,7 @@ const LikeLists = ({ pathId, onClick,onToggleLike }) => {
         return <TweetCardLike 
           key={tweet.id}
           {...tweet}
+          tabIndex={tabIndex}
           onClick={({tweetId,userId})=>{
             onClick?.({tweetId,userId})
           }}

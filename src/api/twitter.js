@@ -218,3 +218,24 @@ export const editSettingInfo = async (payload) => {
     return errorMessage
   }
 };
+
+
+//取的被跟隨者
+export const getUserFollower = async (userId) => {
+  try {
+    const res = await axiosInstance.get(`${baseUrl}/users/${userId}/followers`);
+    return res.data;
+  } catch (error) {
+    console.log(error)
+  }
+};
+
+//取的正在跟隨者
+export const getUserFollowing = async (userId) => {
+  try {
+    const res = await axiosInstance.get(`${baseUrl}/users/${userId}/followings`);
+    return res.data;
+  } catch (error) {
+    console.log(error)
+  }
+};

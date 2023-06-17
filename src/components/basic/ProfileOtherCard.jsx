@@ -24,45 +24,47 @@ const ProfileOtherCard = ({
   followingsCount,
   setModalProOpen,
   userIsFollowing,
-  onClick
+  onClick,
 }) => {
   const userId = Number(useParams().id);
   return (
     <>
-      <div className='profile-card'>
+      <div className="profile-card">
         <UserBk bkUrl={banner} />
         <UserAvatar avatar={avatar} />
-        <div className='profile-btn-group'>
+        <div className="profile-btn-group">
           <img
             src={iconMessage}
-            alt='icon of message'
-            className='icon-round icon-message icon-round cursor-point'
+            alt="icon of message"
+            className="icon-round icon-message icon-round cursor-point"
           />
           <img
             src={iconNotice}
-            alt='icon of Notice'
-            className='icon-round icon-notice icon-round cursor-point'
+            alt="icon of Notice"
+            className="icon-round icon-notice icon-round cursor-point"
           />
           <button
-            className={`${clsx('',{active: userIsFollowing})} button-md button-m`}
+            className={`${clsx('', {
+              active: userIsFollowing,
+            })} button-md button-m`}
             onClick={() => onClick?.(userId)}
           >
-            {userIsFollowing ? '正在跟隨' : '跟蹤'}
+            {userIsFollowing ? '正在追隨' : '跟隨'}
           </button>
         </div>
-        <div className='profile-info'>
-          <h5 className='user-name'>{name}</h5>
-          <p className='user-account'>@{account}</p>
-          <p className='user-desc'>{introduction}</p>
+        <div className="profile-info">
+          <h5 className="user-name">{name}</h5>
+          <p className="user-account">@{account}</p>
+          <p className="user-desc">{introduction}</p>
         </div>
-        <div className='user-follow-info'>
-          <Link to='/user/followers'>
+        <div className="user-follow-info">
+          <Link to="/user/followers">
             <p>
               {followersCount} 個 <span>跟隨中</span>
             </p>
           </Link>
 
-          <Link to='/user/followers'>
+          <Link to="/user/followers">
             <p>
               {followingsCount} 位<span>跟隨者</span>
             </p>

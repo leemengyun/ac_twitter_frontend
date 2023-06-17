@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
@@ -19,7 +19,9 @@ import ModalReply from '../components/basic/ModalReply';
 import ModalTweet from '../components/basic/ModalTweet';
 import Modal from '../components/basic/Modal';
 
+
 const UserPage = () => {
+
   const [tabIndex, setTabIndex] = useState('0');
   const [pathId, setPathId] = useState(Number(useParams().id)); //只是為了與UserOtherPage一樣而設定state
 
@@ -33,12 +35,12 @@ const UserPage = () => {
     member,
     modalReplyOpen,
     modalTweetOpen,
-    modalProOpen,
     like,
     handleChangeLikeMode,
+    modalProOpen
   } = useAuth();
   // @串接 server 用這一個
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({userAccountName :""});
   const [userTweets, setUserTweets] = useState([]);
   // const [refreshPage, setRefreshPage] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
@@ -68,6 +70,7 @@ const UserPage = () => {
     getUserTweetsAsync();
     getUserInfoAsync();
   }, [pathId, like, modalTweetOpen, modalProOpen]);
+
 
   useEffect(() => {
     if (!isAuthentic) {
@@ -113,6 +116,7 @@ const UserPage = () => {
               {...userInfo}
               // setModalProOpen={setModalProOpen}
             />
+
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
             {modalReplyOpen && <ModalReply />}
             {switchContext(tabIndex)}
