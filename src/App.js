@@ -33,10 +33,10 @@ import AdminUsers from './pages/AdminUsers';
 import TweetPage from './pages/TweetPage';
 import RegisterPage from './pages/RegisterPage';
 import { AuthProvider } from './components/context/AuthContext';
+import PhotoPage from './pages/PhotoPage';
 
 function App({ router }) {
   // const [modalProOpen, setModalProOpen] = useState(false);
-
   // const [modalTweetOpen, setModalTweetOpen] = useState(false);
 
   return (
@@ -70,7 +70,7 @@ function App({ router }) {
               ></Route>
 
               <Route
-                path="/user/followers/:id"
+                path='/user/followers/:id'
                 element={
                   <UserFollowersPage
                   // setModalProOpen={setModalProOpen}
@@ -78,20 +78,15 @@ function App({ router }) {
                 }
               ></Route>
               <Route
-                path="/other/followers/:id"
-                element={
-                  <OtherFollowersPage />
-                }
+                path='/other/followers/:id'
+                element={<OtherFollowersPage />}
               ></Route>
-              <Route path="/main/tweet/:id" element={<TweetPage />}></Route>
-              <Route path="/setting" element={<SettingPage />}></Route>
-              <Route path="/admin/users" element={<AdminUsers />}></Route>
-              <Route path="/main/self2" element={<NestedUserPage />}></Route>
+              <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
+              <Route path='/setting' element={<SettingPage />}></Route>
+              <Route path='/admin/users' element={<AdminUsers />}></Route>
+              <Route path='/main/self2' element={<NestedUserPage />}></Route>
+              <Route path='/photo' element={<PhotoPage />}></Route>
             </Routes>
-            {/* {modalTweetOpen && (
-              <ModalTweet setModalTweetOpen={setModalTweetOpen} />
-            )} */}
-            {/* {modalProOpen && <Modal setModalProOpen={setModalProOpen} />} */}
           </PageLayout>
         </AuthProvider>
       </HashRouter>
