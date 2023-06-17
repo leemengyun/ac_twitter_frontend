@@ -1,4 +1,4 @@
-import { login, signUp } from '../../api/auth';
+import { login, signUp, adminLogin } from '../../api/auth';
 import { useState, useEffect, useContext, createContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as jwt from 'jsonwebtoken';
@@ -12,6 +12,7 @@ const defaultAuthContext = {
   login: null,
   logout: null,
   signUp: null, // 註冊方法
+  adminLogin: null, // 後台登入方法
 };
 
 const AuthContext = createContext(defaultAuthContext);
@@ -23,11 +24,12 @@ export const AuthProvider = ({ children }) => {
   //頁面刷新時，確認是誰
   const { pathname } = useLocation();
   const [modalReplyOpen, setModalReplyOpen] = useState(false);
-  // const [modalProOpen, setModalProOpen] = useState(false);
+  const [modalProOpen, setModalProOpen] = useState(false);
   const [modalTweetOpen, setModalTweetOpen] = useState(false);
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
   const [like, setLike] = useState(true);
+
 
   const handleChangeLikeMode = async ({ id, isLike, UserId, tabIndex }) => {
     if (pathname.includes('other') && tabIndex === 2) {
@@ -88,6 +90,8 @@ export const AuthProvider = ({ children }) => {
         modalReplyOpen,
         setModalTweetOpen,
         modalTweetOpen,
+        setModalProOpen,
+        modalProOpen,
         setTweetId,
         tweetId,
         member,
@@ -158,6 +162,32 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('authToken');
           setIsAuthentic(false);
           setPayload(null);
+        },
+        adminLogin: async (user) => {
+          const { success, data, errorMessage } = await adminLogin({
+            account: user.account,
+            password: user.password,
+          });
+          if (success) {
+            const token = data.token;
+            const tempPayload = jwt.decode(token);
+            // console.log('data',data)
+            // console.log('tempPayload: ', tempPayload )
+            //{id: 14, account: 'user1', email: 'user1@example.com', name: 'user1 name', avatar: null, …}
+
+            if (tempPayload) {
+              setIsAuthentic(true);
+              localStorage.setItem('authToken', token);
+              setPayload(tempPayload);
+              //等有test-token CheckPermission 完後才導入使用者資訊
+              setMember(tempPayload);
+            } else {
+              setIsAuthentic(false);
+            }
+            return { success };
+          } else {
+            return { success, errorMessage };
+          }
         },
       }}
     >

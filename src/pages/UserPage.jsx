@@ -17,8 +17,11 @@ import { useAuth } from '../components/context/AuthContext';
 import { getUserTweets } from '../api/twitter';
 import ModalReply from '../components/basic/ModalReply';
 import ModalTweet from '../components/basic/ModalTweet';
+import Modal from '../components/basic/Modal';
 
-const UserPage = ({ setModalProOpen, setModalTweetOpen,modalProOpen}) => {
+
+const UserPage = () => {
+
   const [tabIndex, setTabIndex] = useState('0');
   const [pathId, setPathId] = useState(Number(useParams().id)); //只是為了與UserOtherPage一樣而設定state
 
@@ -33,7 +36,8 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen,modalProOpen}) => {
     modalReplyOpen,
     modalTweetOpen,
     like,
-    handleChangeLikeMode
+    handleChangeLikeMode,
+    modalProOpen
   } = useAuth();
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({userAccountName :""});
@@ -41,7 +45,6 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen,modalProOpen}) => {
   // const [refreshPage, setRefreshPage] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
-  
 
   //@ profileCard 渲染後端 userInfo
   useEffect(() => {
@@ -66,8 +69,7 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen,modalProOpen}) => {
     };
     getUserTweetsAsync();
     getUserInfoAsync();
-  }, [pathId,like, modalTweetOpen,modalProOpen]);
-
+  }, [pathId, like, modalTweetOpen, modalProOpen]);
 
 
   useEffect(() => {
@@ -85,10 +87,12 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen,modalProOpen}) => {
       case '2':
         return <LikeLists pathId={pathId} />;
       default:
-        return <TweetsLists 
-        tweets={userTweets} 
-        onToggleLike={handleChangeLikeMode}
-        />;
+        return (
+          <TweetsLists
+            tweets={userTweets}
+            onToggleLike={handleChangeLikeMode}
+          />
+        );
     }
   }
 
@@ -96,6 +100,11 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen,modalProOpen}) => {
     <>
       <ContainerColSec role='user' pageIndex={1} memberId={member.id}>
         {modalTweetOpen && <ModalTweet />}
+        {modalProOpen && (
+          <Modal
+          // setModalProOpen={setModalProOpen}
+          />
+        )}
         <section className='section-outer-m col-7'>
           <div className='section-main-m'>
             <HeaderUser
@@ -103,7 +112,11 @@ const UserPage = ({ setModalProOpen, setModalTweetOpen,modalProOpen}) => {
               userTweetsLength={userTweets.length}
             />
 
-            <ProfileCard {...userInfo} setModalProOpen={setModalProOpen}/>
+            <ProfileCard
+              {...userInfo}
+              // setModalProOpen={setModalProOpen}
+            />
+
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
             {modalReplyOpen && <ModalReply />}
             {switchContext(tabIndex)}

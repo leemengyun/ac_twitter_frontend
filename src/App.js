@@ -18,7 +18,7 @@ import PageLayout from './components/layout/PageLayout';
 import NestedUserPage from './pages/main/NestedUserPage';
 import LoginPage from './pages/LoginPage';
 import StoryBookPage from './pages/storybooks/StoryBookPage';
-// import AdminLoginPage from './pages/AdminLoginPage';
+import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPage from './pages/AdminPage';
 import SettingPage from './pages/SettingPage';
 import UserPage from './pages/UserPage';
@@ -26,7 +26,7 @@ import UserOtherPage from './pages/UserOtherPage';
 import UserFollowersPage from './pages/UserFollowersPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
-import Modal from './components/basic/Modal';
+// import Modal from './components/basic/Modal';
 // import ModalTweet from './components/basic/ModalTweet';
 // import ModalReply from './components/basic/ModalReply';
 import TweetPage from './pages/TweetPage';
@@ -34,7 +34,7 @@ import RegisterPage from './pages/RegisterPage';
 import { AuthProvider } from './components/context/AuthContext';
 
 function App({ router }) {
-  const [modalProOpen, setModalProOpen] = useState(false);
+  // const [modalProOpen, setModalProOpen] = useState(false);
 
   // const [modalTweetOpen, setModalTweetOpen] = useState(false);
 
@@ -44,31 +44,36 @@ function App({ router }) {
         <AuthProvider>
           <PageLayout>
             <Routes>
-              <Route path="*" element={<LoginPage />}></Route>
-              <Route path="/storybook" element={<StoryBookPage />}></Route>
-              <Route path="/login" element={<LoginPage />}></Route>
-              {/* <Route path='/login/admin' element={<AdminLoginPage />}></Route> */}
-              <Route path="/login/admin" element={<AdminPage />}></Route>
-              <Route path="/register" element={<RegisterPage />}></Route>
-              <Route path="/main" element={<MainPage />}></Route>
+              <Route path='*' element={<LoginPage />}></Route>
+              <Route path='/storybook' element={<StoryBookPage />}></Route>
+              <Route path='/login' element={<LoginPage />}></Route>
+              <Route path='/login/admin' element={<AdminLoginPage />}></Route>
+              <Route path='/admin' element={<AdminPage />}></Route>
+              <Route path='/register' element={<RegisterPage />}></Route>
+              <Route path='/main' element={<MainPage />}></Route>
               <Route
-                path="/user/:id"
+                path='/user/:id'
                 element={
                   <UserPage
-                    setModalProOpen={setModalProOpen}
-                    modalProOpen={modalProOpen}
+                  // setModalProOpen={setModalProOpen}n
                   />
                 }
               ></Route>
               <Route
-                path="/other/:id"
-                element={<UserOtherPage setModalProOpen={setModalProOpen} />}
+                path='/other/:id'
+                element={
+                  <UserOtherPage
+                  // setModalProOpen={setModalProOpen}
+                  />
+                }
               ></Route>
 
               <Route
                 path="/user/followers"
                 element={
-                  <UserFollowersPage setModalProOpen={setModalProOpen} />
+                  <UserFollowersPage
+                  // setModalProOpen={setModalProOpen}
+                  />
                 }
               ></Route>
               <Route
@@ -85,7 +90,7 @@ function App({ router }) {
             {/* {modalTweetOpen && (
               <ModalTweet setModalTweetOpen={setModalTweetOpen} />
             )} */}
-            {modalProOpen && <Modal setModalProOpen={setModalProOpen} />}
+            {/* {modalProOpen && <Modal setModalProOpen={setModalProOpen} />} */}
           </PageLayout>
         </AuthProvider>
       </HashRouter>

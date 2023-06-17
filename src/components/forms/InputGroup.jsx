@@ -8,6 +8,7 @@ const InputGroup = ({
   errors,
   register,
   maxLength,
+  limitLabel = null,
   // required,
   validationSchema,
   defaultValue,
@@ -25,6 +26,7 @@ const InputGroup = ({
           placeholder={placeholder}
           {...register(name, validationSchema)}
           maxLength={maxLength || null}
+          className={errors[name] ? 'error' : ''}
         />
       </div>
       <div className='error-message-group'>
@@ -37,11 +39,11 @@ const InputGroup = ({
         {errors && errors[name]?.type === 'pattern' && (
           <span className='error'>{errors[name]?.message}</span>
         )}
-
-        {/* <span className='limit-num'>15/50</span> */}
-        <span className='limit-num'>
-          {watch(name) ? watch(name).length : '0'}/50
-        </span>
+        {limitLabel === 'true' && (
+          <span className='limit-num'>
+            {watch(name) ? watch(name).length : '0'}/50
+          </span>
+        )}
       </div>
     </>
   );

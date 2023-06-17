@@ -115,10 +115,10 @@ const RegisterForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'account is required',
+              required: '請輸入帳號',
               minLength: {
                 value: 3,
-                message: 'Please enter a minimum of 3 characters',
+                message: '帳號請輸入至少三個字',
               },
             }}
             watch={watch}
@@ -135,11 +135,11 @@ const RegisterForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'name is required',
-              minLength: {
-                value: 3,
-                message: 'Please enter a minimum of 3 characters',
-              },
+              required: '請輸入名稱',
+              // minLength: {
+              //   value: 3,
+              //   message: '請輸入至少三位',
+              // },
             }}
             watch={watch}
             // required
@@ -155,10 +155,10 @@ const RegisterForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'email is required',
+              required: '請輸入Email',
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: 'Entered value does not match email format',
+                message: '請輸入正確的Email',
               },
             }}
             // required
@@ -175,10 +175,10 @@ const RegisterForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'password is required',
+              required: '請輸入密碼',
               minLength: {
                 value: 8,
-                message: 'Please enter a minimum of 8 characters',
+                message: '密碼請輸入至少8位',
               },
             }}
             // required
@@ -197,10 +197,10 @@ const RegisterForm = () => {
             validationSchema={{
               //@ 確認密碼做法？ (還沒有試)
               //https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
-              required: 'cpassword is required',
+              required: '請再次輸入密碼',
               minLength: {
                 value: 8,
-                message: 'Please enter a minimum of 8 characters',
+                message: '密碼請輸入至少8位',
               },
             }}
             // required
