@@ -44,33 +44,43 @@ function App({ router }) {
         <AuthProvider>
           <PageLayout>
             <Routes>
-              <Route path='*' element={<LoginPage />}></Route>
-              <Route path='/storybook' element={<StoryBookPage />}></Route>
-              <Route path='/login' element={<LoginPage />}></Route>
+              <Route path="*" element={<LoginPage />}></Route>
+              <Route path="/storybook" element={<StoryBookPage />}></Route>
+              <Route path="/login" element={<LoginPage />}></Route>
               {/* <Route path='/login/admin' element={<AdminLoginPage />}></Route> */}
-              <Route path='/login/admin' element={<AdminPage />}></Route>
-              <Route path='/register' element={<RegisterPage />}></Route>
-              <Route path='/main' element={<MainPage />}></Route>
+              <Route path="/login/admin" element={<AdminPage />}></Route>
+              <Route path="/register" element={<RegisterPage />}></Route>
+              <Route path="/main" element={<MainPage />}></Route>
               <Route
-                path='/user/:id'
-                element={<UserPage setModalProOpen={setModalProOpen} />}
+                path="/user/:id"
+                element={
+                  <UserPage
+                    setModalProOpen={setModalProOpen}
+                    modalProOpen={modalProOpen}
+                  />
+                }
               ></Route>
               <Route
-                path='/other/:id'
+                path="/other/:id"
                 element={<UserOtherPage setModalProOpen={setModalProOpen} />}
               ></Route>
 
               <Route
-                path='/user/followers'
+                path="/user/followers"
                 element={
                   <UserFollowersPage setModalProOpen={setModalProOpen} />
                 }
               ></Route>
-
-              <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
-              <Route path='/setting' element={<SettingPage />}></Route>
-              <Route path='/admin/users' element={<AdminUsers />}></Route>
-              <Route path='/main/self2' element={<NestedUserPage />}></Route>
+              <Route
+                path="/other/followers"
+                element={
+                  <UserFollowersPage setModalProOpen={setModalProOpen} />
+                }
+              ></Route>
+              <Route path="/main/tweet/:id" element={<TweetPage />}></Route>
+              <Route path="/setting" element={<SettingPage />}></Route>
+              <Route path="/admin/users" element={<AdminUsers />}></Route>
+              <Route path="/main/self2" element={<NestedUserPage />}></Route>
             </Routes>
             {/* {modalTweetOpen && (
               <ModalTweet setModalTweetOpen={setModalTweetOpen} />

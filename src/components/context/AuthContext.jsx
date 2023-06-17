@@ -29,10 +29,11 @@ export const AuthProvider = ({ children }) => {
   const [member, setMember] = useState({});
   const [like, setLike] = useState(true);
 
-  const handleChangeLikeMode = async ({ id, isLike, UserId }) => {
-    if(pathname.includes('other')){
-      return //使用者無法更改其他使用者喜歡的內容
-    };
+  const handleChangeLikeMode = async ({ id, isLike, UserId, tabIndex }) => {
+    if (pathname.includes('other') && tabIndex === 2) {
+      console.log(tabIndex)
+      return; //使用者無法更改其他使用者喜歡的內容
+    }
 
     if (!isLike) {
       await likeTweet(id);

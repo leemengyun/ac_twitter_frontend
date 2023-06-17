@@ -46,13 +46,13 @@ const TweetCardForm = ({
                 <textarea
                   type='textarea'
                   id='description'
-                  name='description'
+                  name='description'  
                   {...register('description', {
                     required: true,
-                    maxLength: 250,
+                    maxLength: 140,
                   })}
                   placeholder='有什麼新鮮事？'
-                  maxLength='250'
+                  maxLength='140'
                   className='tweet-text-area'
                   // ref={textAreaRef}
                   // onChange={onChange}
@@ -63,7 +63,7 @@ const TweetCardForm = ({
           </div>
           <div>
             {errors.description && errors.description.type === 'required' && (
-              <span className='error'>This is required</span>
+              <span className='error'>內容不可空白</span>
             )}
             <button className='button-md button-m active' type='submit'>
               推文

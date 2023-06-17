@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
@@ -25,14 +25,20 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
-  const { isAuthentic, member, modalReplyOpen, modalTweetOpen } = useAuth();
+  const {
+    isAuthentic,
+    member,
+    modalReplyOpen,
+    modalTweetOpen,
+    handleChangeLikeMode,
+    like
+  } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
   const [userIsFollowing, setUserIsFollowing] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
-
   // console.log(currentMember)
   //@ profileCard 渲染後端 userInfo
 
@@ -69,7 +75,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
     };
     getUserTweetsAsync();
     getUserInfoAsync();
-  }, [pathId, modalTweetOpen]);
+  }, [pathId, like,modalTweetOpen]);
 
   useEffect(() => {
     if (!isAuthentic) {
@@ -84,9 +90,14 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
       case '1':
         return <ReplyLists pathId={pathId} />;
       case '2':
-        return <LikeLists pathId={pathId} />;
+        return <LikeLists pathId={pathId} tabIndex={2} />;
       default:
-        return <TweetsLists tweets={userTweets} />;
+        return (
+          <TweetsLists
+            tweets={userTweets}
+            onToggleLike={handleChangeLikeMode}
+          />
+        );
     }
   }
 

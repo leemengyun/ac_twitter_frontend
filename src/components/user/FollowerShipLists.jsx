@@ -10,26 +10,32 @@ import {
 import { useState } from 'react';
 import FollowShipCard from '../basic/FollowShipCard';
 
-const FollowerShipLists = ({ tabIndex }) => {
-  const { member } = useAuth();
+
+const FollowerShipLists = ({
+  tabIndex,
+  setUserIsFollowing,
+  userIsFollowing,
+}) => {
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
+  const { member } = useAuth();
 
-  const handleUserIsFollowing = async ({ userId, isfollowing }) => {
-    console.log(isfollowing);
-    console.log(userId);
-      try {
-        if (!isfollowing) {
-          await userFollowing(userId);
-        } else {
-          await cancelFollow(userId);
-        }
-      } catch (error) {
-        console.log(error);
+  const handleUserIsFollowing = async ({
+    userId,
+    isfollowing,
+    userIsFollowing,
+  }) => {
+    try {
+      if (!isfollowing) {
+        await userFollowing(userId);
+      } else {
+        await cancelFollow(userId);
       }
-    
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
@@ -67,7 +73,7 @@ const FollowerShipLists = ({ tabIndex }) => {
     };
     getUserFollowerAsync();
     getUserFollowingAsync();
-  }, [handleUserIsFollowing]);
+  }, []);
 
   return (
     <>

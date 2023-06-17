@@ -6,41 +6,55 @@ import clsx from "clsx";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { likeTweet, unlikeTweet } from "../../api/twitter";
-const TweetIconCount =({likesCount,repliesCount,isLike,id,onToggleLike,UserId}) => {
-    const { setModalReplyOpen,setTweetId} = useAuth();
-    // const [Like,setIsLike] = useState(isLike)
-    // const handleClickLike = async(e)=>{
-    //   setIsLike(!Like)
-    //   if(!Like){
-    //     await likeTweet(id)
-    //   }else{
-    //     await unlikeTweet(id)
-    //   }
-    // }
+const TweetIconCount = ({
+  likesCount,
+  repliesCount,
+  isLike,
+  id,
+  onToggleLike,
+  UserId,
+  tabIndex,
+}) => {
+  const { setModalReplyOpen, setTweetId } = useAuth();
+  // const [Like,setIsLike] = useState(isLike)
+  // const handleClickLike = async(e)=>{
+  //   setIsLike(!Like)
+  //   if(!Like){
+  //     await likeTweet(id)
+  //   }else{
+  //     await unlikeTweet(id)
+  //   }
+  // }
 
-   
-    return(
-      <div className='tweet-card-icon-count'>
-          <div className='tweet-card-reply-count' onClick={(e)=>{ 
-            setTweetId(id)
-            setModalReplyOpen(true)
-            e.stopPropagation()
-            }}>
-            <img src={reply} alt='reply' className='reply-icon'
-            />
-            <span className='tweet-count'>
-              {repliesCount}
-            </span>
-          </div>
-          <div className='tweet-card-like-count' onClick={(e)=>{onToggleLike?.({id,UserId,isLike});e.stopPropagation()}}>
-           <img src={isLike ?  likefilled : like } alt='like' className={`${clsx('', {active: isLike})} like-icon`}
-           />
-          <span className = 'tweet-count' >
-            {likesCount}
-          </span>
-        </div>
+  return (
+    <div className="tweet-card-icon-count">
+      <div
+        className="tweet-card-reply-count"
+        onClick={(e) => {
+          setTweetId(id);
+          setModalReplyOpen(true);
+          e.stopPropagation();
+        }}
+      >
+        <img src={reply} alt="reply" className="reply-icon" />
+        <span className="tweet-count">{repliesCount}</span>
       </div>
-    )
-  }
+      <div
+        className="tweet-card-like-count"
+        onClick={(e) => {
+          onToggleLike?.({ id, UserId, isLike, tabIndex });
+          e.stopPropagation();
+        }}
+      >
+        <img
+          src={isLike ? likefilled : like}
+          alt="like"
+          className={`${clsx('', { active: isLike })} like-icon`}
+        />
+        <span className="tweet-count">{likesCount}</span>
+      </div>
+    </div>
+  );
+};
 
   export default TweetIconCount;
