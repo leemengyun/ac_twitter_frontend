@@ -15,12 +15,12 @@ import Swal from 'sweetalert2';
 const SettingForm = () => {
   const navigate = useNavigate();
   const { isAuthentic, member } = useAuth();
-  const [settingInfo , setSettingInfo] = useState({
-    id: "null",
-    account: "",
-    email: "",
-    name: "",
-  })
+  const [settingInfo, setSettingInfo] = useState({
+    id: 'null',
+    account: '',
+    email: '',
+    name: '',
+  });
   // using react-form-hook-set-up
   const {
     register,
@@ -40,7 +40,7 @@ const SettingForm = () => {
     width: '394px',
     // height: '96px',
     timer: 3000,
-    timerProgressBar: false,  
+    timerProgressBar: false,
     showClass: {
       popup: 'animate__animated animate__fadeInDown',
     },
@@ -72,52 +72,45 @@ const SettingForm = () => {
     // },
   });
 
-
-  const onSubmit = async(data) => {
-    // 如果是只要給api
-    // 就在這設定 person,再給api,不需要setState
-    // const person = {
-    //   username: data.username,
-    //   password: data.password,
-    // };
-    const res = await editSettingInfo({memberId:member.id,
-      account:data.account,
-      name:data.name,
-      email:data.email,
-      password:data.password,
-      checkPassword:data.cpassword
-    })
-    console.log(data)
-    console.log(res)
-    if(res.status === 200){
-      console.log(res)
+  const onSubmit = async (data) => {
+    const res = await editSettingInfo({
+      memberId: member.id,
+      account: data.account,
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      checkPassword: data.cpassword,
+    });
+    console.log(data);
+    console.log(res);
+    if (res.status === 200) {
+      console.log(res);
       reset();
       setSettingInfo({
-      id: res.data.id,
-      account: res.data.account,
-      email: res.data.email,
-      name: res.data.name
-      })
+        id: res.data.id,
+        account: res.data.account,
+        email: res.data.email,
+        name: res.data.name,
+      });
       ToastSuccess.fire({
         title: '成功修改',
-      })
-    }else{
+      });
+    } else {
       ToastWarning.fire({
         title: `${res.message}`,
-      })
-      setSettingInfo(settingInfo)
+      });
+      setSettingInfo(settingInfo);
     }
   };
 
-    
-  useEffect(()=> {
-    const getSettingInfoAsync = async()=>{
-      const data = await getSettingInfo(member.id)
-      setSettingInfo(data)
-    }
-    getSettingInfoAsync()
-    console.log(settingInfo)
-  },[setSettingInfo])
+  useEffect(() => {
+    const getSettingInfoAsync = async () => {
+      const data = await getSettingInfo(member.id);
+      setSettingInfo(data);
+    };
+    getSettingInfoAsync();
+    console.log(settingInfo);
+  }, [setSettingInfo]);
 
   useEffect(() => {
     if (!isAuthentic) {
@@ -135,15 +128,19 @@ const SettingForm = () => {
             label='帳號'
             type='text'
             placeholder='請輸入帳號'
-            defaultValue= {settingInfo.account}
-            maxLength='50'
+            defaultValue={settingInfo.account}
+            // maxLength='50'
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'account is required',
+              required: '請輸入帳號',
               minLength: {
                 value: 3,
-                message: 'Please enter a minimum of 3 characters',
+                message: '帳號請輸入至少三個字',
+              },
+              maxLength: {
+                value: 50,
+                message: '字數超出上限！',
               },
             }}
             watch={watch}
@@ -156,15 +153,19 @@ const SettingForm = () => {
             label='名稱'
             type='text'
             placeholder='請輸入名稱'
-            defaultValue= {settingInfo.name}
-            maxLength='50'
+            defaultValue={settingInfo.name}
+            // maxLength='50'
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'username is required',
+              required: '請輸入名稱',
               minLength: {
                 value: 3,
-                message: 'Please enter a minimum of 3 characters',
+                message: '帳號請輸入至少三個字',
+              },
+              maxLength: {
+                value: 50,
+                message: '字數超出上限！',
               },
             }}
             watch={watch}
@@ -178,14 +179,14 @@ const SettingForm = () => {
             label='Email'
             type='email'
             placeholder='請輸入Email'
-            defaultValue= {settingInfo.email}
+            defaultValue={settingInfo.email}
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'email is required',
+              required: '請輸入Email',
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: 'Entered value does not match email format',
+                message: '請輸入正確的Email',
               },
             }}
             // required
@@ -202,10 +203,10 @@ const SettingForm = () => {
             errors={errors}
             register={register}
             validationSchema={{
-              required: 'password is required',
+              required: '請輸入密碼',
               minLength: {
                 value: 8,
-                message: 'Please enter a minimum of 8 characters',
+                message: '密碼請輸入至少8位',
               },
             }}
             // required
@@ -224,10 +225,10 @@ const SettingForm = () => {
             validationSchema={{
               //@ 確認密碼做法？ (還沒有試)
               //https://www.positronx.io/add-confirm-password-validation-in-react-with-hook-form/
-              required: 'password is required',
+              required: '請再次輸入密碼',
               minLength: {
                 value: 8,
-                message: 'Please enter a minimum of 8 characters',
+                message: '密碼請輸入至少8位',
               },
             }}
             // required

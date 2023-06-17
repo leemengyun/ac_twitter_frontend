@@ -4,14 +4,16 @@ import TweetUserName3 from './TweetUserName3';
 // import TweetIconCount from './TweetIconCount';
 // import { useNavigate } from 'react-router-dom';
 import iconClose from '../../assets/images/icon/close.svg';
+import DayTime from '../../helper/TimeHelper';
 
-const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
+// const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
 
 const TweetCardAdmin = ({
   id,
   description,
   UserId,
   User,
+  createdAt,
   // onHandleClick,
   onDelete,
   tweetId,
@@ -26,9 +28,14 @@ const TweetCardAdmin = ({
       <UserAvatar avatar={User.avatar} userId={UserId} />
       <div className='tweet-card-left-info'>
         <div className='icon-inner-wrap'>
-          <TweetUserName3 name='Apple' account='apple' time='3小時' />
+          <TweetUserName3
+            name={User.name}
+            account={User.account}
+            time={createdAt}
+          />
 
           <img
+            className='icon-delete'
             src={iconClose}
             alt='cross icon'
             onClick={() => {

@@ -53,14 +53,12 @@ const TweetCardForm = ({ avatar, tweetInfo }) => {
                   name='description'
                   {...register('description', {
                     required: true,
-                    maxLength: 250,
+                    maxLength: 140,
                   })}
                   placeholder='推你的回覆？'
-                  maxLength='250'
-                  className='tweet-text-area'
-                  // ref={textAreaRef}
-                  // onChange={onChange}
-                  // rows={1}
+                  className={`tweet-text-area ${
+                    errors.description ? 'error' : ''
+                  }`}
                 />
               </div>
             </div>
@@ -69,6 +67,10 @@ const TweetCardForm = ({ avatar, tweetInfo }) => {
             {errors.description && errors.description.type === 'required' && (
               <span className='error'>內容不可空白</span>
             )}
+            {errors?.description?.type === 'maxLength' && (
+              <span className='error'>字數超出上限！</span>
+            )}
+
             <button className='button-md button-m active' type='submit'>
               回覆
             </button>

@@ -102,6 +102,9 @@
   }
   .modal-reply-content {
     //ReplyModal
+    .tweet-form-wrapper {
+      border-bottom: none;
+    }
     .tweet-card-basic {
       padding: var(--padding-s) var(--padding-m);
       margin: 0px;
@@ -216,6 +219,13 @@
           }
         }
       }
+    }
+  }
+  .modal-tweet-content {
+    textarea {
+      resize: none;
+      overflow-y: auto;
+      height: 160px;
     }
   }
 }

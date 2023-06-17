@@ -104,7 +104,7 @@ const LoginForm = () => {
             label='帳號'
             type='text'
             placeholder='請輸入帳號'
-            maxLength='50'
+            // maxLength='50'
             errors={errors}
             register={register}
             validationSchema={{
@@ -112,6 +112,10 @@ const LoginForm = () => {
               minLength: {
                 value: 3,
                 message: '帳號請輸入至少三個字',
+              },
+              maxLength: {
+                value: 50,
+                message: '字數超出上限！',
               },
             }}
             watch={watch}

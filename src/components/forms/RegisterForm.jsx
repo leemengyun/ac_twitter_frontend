@@ -111,7 +111,7 @@ const RegisterForm = () => {
             label='帳號'
             type='text'
             placeholder='請輸入帳號'
-            maxLength='50'
+            // maxLength='50'
             errors={errors}
             register={register}
             validationSchema={{
@@ -119,6 +119,10 @@ const RegisterForm = () => {
               minLength: {
                 value: 3,
                 message: '帳號請輸入至少三個字',
+              },
+              maxLength: {
+                value: 50,
+                message: '字數超出上限！',
               },
             }}
             watch={watch}
@@ -131,15 +135,19 @@ const RegisterForm = () => {
             label='名稱'
             type='text'
             placeholder='請輸入名稱'
-            maxLength='50'
+            // maxLength='50'
             errors={errors}
             register={register}
             validationSchema={{
               required: '請輸入名稱',
-              // minLength: {
-              //   value: 3,
-              //   message: '請輸入至少三位',
-              // },
+              minLength: {
+                value: 3,
+                message: '帳號請輸入至少三個字',
+              },
+              maxLength: {
+                value: 50,
+                message: '字數超出上限！',
+              },
             }}
             watch={watch}
             // required

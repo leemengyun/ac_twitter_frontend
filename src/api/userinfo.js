@@ -43,23 +43,16 @@ export const getUserInfo = async (pathId) => {
 // 更新個人資料
 export const updateUserInfo = async (payload) => {
   try {
-    const { id, data, img } = payload;
+    const {
+      id,
+      // data,
+      img,
+    } = payload;
 
     console.log('updateUserInfo formData.get');
     console.log(img.get('avatar'));
     console.log({ payload });
-    const res = await axiosInstance.put(`${baseUrl}/users/${id}`, {
-      // 這裡的data是前面打包的
-      //name, introduction, avatar,banner
-      // name: data.name,
-      // introduction: data.introduction,
-      // avatar: data.avatar,
-      // banner: data.banner,
-      name: data.name,
-      introduction: data.introduction,
-      avatar: img.get('avatar'),
-      banner: img.get('avatar'),
-    });
+    const res = await axiosInstance.put(`${baseUrl}/users/${id}`, img);
 
     //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料
     console.log('res data', res.data);
