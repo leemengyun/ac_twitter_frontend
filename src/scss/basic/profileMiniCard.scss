@@ -7,6 +7,8 @@
   overflow: hidden;
   border: 1px solid var(--main-border);
   .avatar {
+    //@ 這頁卡片不能點連結，滑鼠特別設定default
+    cursor: default;
     position: absolute;
     top: 64px;
     left: calc(50% - 50px);

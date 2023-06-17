@@ -49,7 +49,7 @@ const TabTwoGroup = ({ tabIndex, setTabIndex, pathName }) => {
         tabIndex='1'
         onClick={() => setTabIndex('1')}
       >
-        正在追隨
+        正在跟隨
       </div>
     </div>
   );
