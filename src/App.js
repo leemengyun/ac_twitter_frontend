@@ -24,6 +24,7 @@ import SettingPage from './pages/SettingPage';
 import UserPage from './pages/UserPage';
 import UserOtherPage from './pages/UserOtherPage';
 import UserFollowersPage from './pages/UserFollowersPage';
+import OtherFollowersPage from './pages/OtherFollowersPage';
 import MainPage from './pages/MainPage';
 import AdminUsers from './pages/AdminUsers';
 // import Modal from './components/basic/Modal';
@@ -69,7 +70,7 @@ function App({ router }) {
               ></Route>
 
               <Route
-                path="/user/followers"
+                path="/user/followers/:id"
                 element={
                   <UserFollowersPage
                   // setModalProOpen={setModalProOpen}
@@ -77,9 +78,9 @@ function App({ router }) {
                 }
               ></Route>
               <Route
-                path="/other/followers"
+                path="/other/followers/:id"
                 element={
-                  <UserFollowersPage />
+                  <OtherFollowersPage />
                 }
               ></Route>
               <Route path="/main/tweet/:id" element={<TweetPage />}></Route>

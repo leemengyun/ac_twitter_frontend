@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import UserAvatar from './UserAvatar';
 import UserBk from './UserBk';
@@ -25,13 +25,13 @@ const ProfileCard = ({
   followingsCount,
 }) => {
   const { setModalProOpen } = useAuth();
-
+  const userId = Number(useParams().id);
   return (
     <>
-      <div className='profile-card'>
+      <div className="profile-card">
         <UserBk bkUrl={banner} />
         <UserAvatar avatar={avatar} />
-        <div className='profile-btn-group'>
+        <div className="profile-btn-group">
           {/* <img
             src={iconMessage}
             alt='icon of message'
@@ -43,25 +43,25 @@ const ProfileCard = ({
             className='icon-round icon-notice icon-round cursor-point'
           /> */}
           <button
-            className='button-md button-m'
+            className="button-md button-m"
             onClick={() => setModalProOpen(true)}
           >
             編輯個人資料
           </button>
         </div>
-        <div className='profile-info'>
-          <h5 className='user-name'>{name}</h5>
-          <p className='user-account'>@{account}</p>
-          <p className='user-desc'>{introduction}</p>
+        <div className="profile-info">
+          <h5 className="user-name">{name}</h5>
+          <p className="user-account">@{account}</p>
+          <p className="user-desc">{introduction}</p>
         </div>
-        <div className='user-follow-info'>
-          <Link to='/user/followers'>
+        <div className="user-follow-info">
+          <Link to={`/user/followers/${userId}`}>
             <p>
               {followingsCount} 個 <span>跟隨中</span>
             </p>
           </Link>
 
-          <Link to='/user/followers'>
+          <Link to={`/user/followers/${userId}`}>
             <p>
               {followersCount} 位<span>跟隨者</span>
             </p>
