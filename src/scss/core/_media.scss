@@ -91,6 +91,12 @@ $screen-break-point: 992px;
       min-width: auto;
     }
   }
+
+  //Modal components 位置定位
+  .modal-container {
+    width: 610px;
+    left: calc(50% - 300px);
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
@@ -140,11 +146,17 @@ $screen-break-point: 992px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .wrapper {
       transition-duration: 0.1s;
-      max-width: 1140px;
+      // max-width: 1140px;
       padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .container_sec {
+        max-width: 1140px;
+      }
     }
   }
 }
