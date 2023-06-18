@@ -27,8 +27,8 @@ const TweetCardForm = ({ avatar, tweetInfo }) => {
     // console.log(data.description);
     // setNewTweet(data);
     // onAddTweet?.(data);
-    console.log(data);
-    console.log(tweetInfo);
+    // console.log(data);
+    // console.log(tweetInfo);
     const info = await repliedTweet({
       UserId: member.id,
       TweetId: tweetInfo.id,

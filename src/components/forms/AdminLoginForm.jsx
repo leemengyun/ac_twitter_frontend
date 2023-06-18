@@ -80,14 +80,14 @@ const AdminLoginForm = () => {
     });
 
     if (success) {
-      console.log('adminLogin: ', success);
+      // console.log('adminLogin: ', success);
       ToastSuccess.fire({
         title: 'admin登入成功!',
       });
       reset();
       return;
     } else {
-      console.log('adminLogin: ', success);
+      // console.log('adminLogin: ', success);
       ToastWarning.fire({
         title: `${errorMessage.message}`,
       });

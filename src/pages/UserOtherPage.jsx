@@ -32,27 +32,28 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
     modalTweetOpen,
     handleChangeLikeMode,
     like,
+    setUserIsFollowing,
+    userIsFollowing,
   } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
-  const [userIsFollowing, setUserIsFollowing] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
   // console.log(currentMember)
   //@ profileCard 渲染後端 userInfo
 
-  const handleUserISFollowing = async (userId) => {
+  const handleUserISFollowing = async (userId,isFollowing) => {
     try {
-      if (!userIsFollowing) {
+      if (!isFollowing) {
         await userFollowing(userId);
       } else {
         await cancelFollow(userId);
       }
-      setUserIsFollowing(!userIsFollowing);
     } catch (error) {
       console.log(error);
     }
+    setUserIsFollowing((prev) => !prev);
   };
 
   useEffect(() => {
@@ -60,7 +61,6 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
       try {
         const data = await getUserInfo(pathId);
         setUserInfo(data);
-        setUserIsFollowing(data.isFollowing);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
       }
@@ -119,7 +119,6 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
             <ProfileOtherCard
               {...userInfo}
               setModalProOpen={setModalProOpen}
-              userIsFollowing={userIsFollowing}
               onClick={handleUserISFollowing}
             />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
@@ -133,7 +132,6 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
         <section className="section-right col-3">
           <FollowCardList
             setPathId={setPathId}
-            userIsFollowing={userIsFollowing}
           />
         </section>
       </ContainerColSec>

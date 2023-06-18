@@ -81,10 +81,10 @@ const SettingForm = () => {
       password: data.password,
       checkPassword: data.cpassword,
     });
-    console.log(data);
-    console.log(res);
+    // console.log(data);
+    // console.log(res);
     if (res.status === 200) {
-      console.log(res);
+      // console.log(res);
       reset();
       setSettingInfo({
         id: res.data.id,
@@ -109,10 +109,9 @@ const SettingForm = () => {
       setSettingInfo(data);
     };
     getSettingInfoAsync();
-    console.log(settingInfo);
   }, [setSettingInfo]);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (!isAuthentic) {
       navigate('/login');
     }

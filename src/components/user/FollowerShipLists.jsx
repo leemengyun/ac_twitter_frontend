@@ -14,18 +14,15 @@ import { useLocation } from 'react-router-dom';
 
 const FollowerShipLists = ({
   tabIndex,
-  setUserIsFollowing,
-  userIsFollowing,
   pathId
 }) => {
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
-  const { member } = useAuth();
+  const { member, setUserIsFollowing, userIsFollowing } = useAuth();
   const { pathname } = useLocation();
   const handleUserIsFollowing = async ({
     userId,
     isfollowing,
-    userIsFollowing,
   }) => {
     if (pathname.includes('other')){
       return 
@@ -33,12 +30,14 @@ const FollowerShipLists = ({
       try {
         if (!isfollowing) {
           await userFollowing(userId);
+          
         } else {
           await cancelFollow(userId);
         }
       } catch (error) {
         console.log(error);
       }
+      setUserIsFollowing((prev)=> !prev)
   };
   
   function switchContext(tabIndex) {
@@ -78,7 +77,7 @@ const FollowerShipLists = ({
     };
     getUserFollowerAsync();
     getUserFollowingAsync();
-  }, []);
+  }, [userIsFollowing]);
 
   return (
     <>

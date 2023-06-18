@@ -64,7 +64,7 @@ export const signUp = async ({
       name,
     });
 
-    console.log('we got data', data);
+    // console.log('we got data', data);
 
     //用解構式帶出data
     //登入成功的結果

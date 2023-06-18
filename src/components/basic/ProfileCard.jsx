@@ -51,9 +51,9 @@ const ProfileCard = ({
         </div>
         <div className="profile-info">
           <h5 className="user-name">{name}</h5>
-          <p className="user-account">@{account}</p>
+          <p className="user-account">{ account && `@${account}`}</p>
           <p className="user-desc">{introduction}</p>
-        </div>
+        </div>  
         <div className="user-follow-info">
           <Link to={`/user/followers/${userId}`}>
             <p>

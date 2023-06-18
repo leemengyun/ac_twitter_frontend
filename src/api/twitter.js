@@ -132,7 +132,7 @@ export const repliedTweet = async (payload) => {
         comment,
       }
     );
-    console.log(res);
+    // console.log(res);
     return res.data;
   } catch (error) {
     console.error('[Reply Tweet failed:]:', error);
@@ -146,7 +146,7 @@ export const userFollowing = async (id) => {
       id,
     });
 
-    console.log(res);
+    // console.log(res);
 
     return res.data;
   } catch (error) {

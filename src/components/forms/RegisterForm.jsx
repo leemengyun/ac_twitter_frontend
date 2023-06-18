@@ -81,7 +81,7 @@ const RegisterForm = () => {
 
     if (success) {
       // alert('註冊成功!');
-      console.log('Register: ', success);
+      // console.log('Register: ', success);
       ToastSuccess.fire({
         title: '註冊成功!',
       });
@@ -90,7 +90,7 @@ const RegisterForm = () => {
 
       return;
     } else {
-      console.log('Register: ', success);
+      // console.log('Register: ', success);
       ToastWarning.fire({
         title: `${errorMessage.message}`,
       });

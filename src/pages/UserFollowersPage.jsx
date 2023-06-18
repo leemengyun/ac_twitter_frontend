@@ -22,7 +22,7 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const { isAuthentic, member, modalTweetOpen } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
-  const [userIsFollowing, setUserIsFollowing] = useState(0);
+  
   //@ profileCard 渲染後端 userInfo
   const [pathId, setPathId] = useState(Number(useParams().id));
   useEffect(() => {
@@ -51,8 +51,6 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
         return (
           <FollowerShipLists
             tabIndex={tabIndex}
-            setUserIsFollowing={setUserIsFollowing}
-            userIsFollowing={userIsFollowing}
             pathId={pathId}
           />
         );
@@ -60,8 +58,6 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
         return (
           <FollowerShipLists
             tabIndex={tabIndex}
-            setFollowingFlag={setUserIsFollowing}
-            userIsFollowing={userIsFollowing}
             pathId={pathId}
           />
         );
@@ -92,7 +88,6 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
         <section className="section-right col-3">
           <FollowCardList
             setPathId={() => {}}
-            userIsFollowing={userIsFollowing}
           />
         </section>
       </ContainerColSec>

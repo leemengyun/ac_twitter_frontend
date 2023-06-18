@@ -75,14 +75,14 @@ const LoginForm = () => {
     });
 
     if (success) {
-      console.log('Login: ', success);
+      // console.log('Login: ', success);
       ToastSuccess.fire({
         title: '登入成功!',
       });
       reset();
       return;
     } else {
-      console.log('Login: ', success);
+      // console.log('Login: ', success);
       ToastWarning.fire({
         title: `${errorMessage.message}`,
       });
