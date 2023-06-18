@@ -11,35 +11,27 @@ import { useState } from 'react';
 import FollowShipCard from '../basic/FollowShipCard';
 import { useLocation } from 'react-router-dom';
 
-
-const FollowerShipLists = ({
-  tabIndex,
-  pathId
-}) => {
+const FollowerShipLists = ({ tabIndex, pathId }) => {
   const [follower, setFollower] = useState([]);
   const [following, setFollowing] = useState([]);
-  const { member, setUserIsFollowing, userIsFollowing } = useAuth();
+  const { setUserIsFollowing, userIsFollowing } = useAuth();
   const { pathname } = useLocation();
-  const handleUserIsFollowing = async ({
-    userId,
-    isfollowing,
-  }) => {
-    if (pathname.includes('other')){
-      return 
+  const handleUserIsFollowing = async ({ userId, isfollowing }) => {
+    if (pathname.includes('other')) {
+      return;
     }
-      try {
-        if (!isfollowing) {
-          await userFollowing(userId);
-          
-        } else {
-          await cancelFollow(userId);
-        }
-      } catch (error) {
-        console.log(error);
+    try {
+      if (!isfollowing) {
+        await userFollowing(userId);
+      } else {
+        await cancelFollow(userId);
       }
-      setUserIsFollowing((prev)=> !prev)
+    } catch (error) {
+      console.log(error);
+    }
+    setUserIsFollowing((prev) => !prev);
   };
-  
+
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
@@ -65,7 +57,7 @@ const FollowerShipLists = ({
         });
     }
   }
-  
+
   useEffect(() => {
     const getUserFollowerAsync = async () => {
       const data = await getUserFollower(pathId);
@@ -81,7 +73,7 @@ const FollowerShipLists = ({
 
   return (
     <>
-      <div className="TweetLists">{switchContext(tabIndex)}</div>
+      <div className='TweetLists'>{switchContext(tabIndex)}</div>
     </>
   );
 };

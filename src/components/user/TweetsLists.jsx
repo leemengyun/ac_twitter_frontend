@@ -1,10 +1,8 @@
 import React from 'react';
 import TweetCardBasic from '../basic/TweetCardBasic';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
-const TweetsLists = ({ tweets, onClick,onToggleLike }) => {
-  
-
+const TweetsLists = ({ tweets, onClick, onToggleLike }) => {
   return (
     <div className='TweetLists'>
       {tweets.map((tweet) => {
@@ -15,8 +13,8 @@ const TweetsLists = ({ tweets, onClick,onToggleLike }) => {
             onClick={({ tweetId, userId }) => {
               onClick?.({ tweetId, userId });
             }}
-            onToggleLike={({id,isLike})=>{
-              onToggleLike?.({id,isLike})
+            onToggleLike={({ id, isLike }) => {
+              onToggleLike?.({ id, isLike });
             }}
           />
         );

@@ -8,12 +8,12 @@ import ModalTweet from '../components/basic/ModalTweet';
 //call api
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
-import FollowShipCard from '../components/basic/FollowShipCard';
+// import FollowShipCard from '../components/basic/FollowShipCard';
 import FollowerShipLists from '../components/user/FollowerShipLists';
 import FollowCardList from '../components/user/FollowCardList';
 // import { getUserTweets } from '../api/twitter';
 
-const OthersFollowersPage = ({ setModalProOpen, setModalTweetOpen}) => {
+const OthersFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const [tabIndex, setTabIndex] = useState('0');
   // const pathId = Number(useParams()); //取得網址
   //向後端 給予(pathid)參數 拿該用戶的資料
@@ -71,15 +71,15 @@ const OthersFollowersPage = ({ setModalProOpen, setModalTweetOpen}) => {
   return (
     <>
       <ContainerColSec
-        role="user"
+        role='user'
         setModalProOpen={setModalProOpen}
         pageIndex={1}
         memberId={userInfo.id}
       >
         {modalTweetOpen && <ModalTweet />}
 
-        <section className="section-outer-m col-7">
-          <div className="section-main-m">
+        <section className='section-outer-m col-7'>
+          <div className='section-main-m'>
             <HeaderUser userAccountName={userInfo.name} />
 
             <TabTwoGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
@@ -87,7 +87,7 @@ const OthersFollowersPage = ({ setModalProOpen, setModalTweetOpen}) => {
             {switchContext(tabIndex)}
           </div>
         </section>
-        <section className="section-right col-3">
+        <section className='section-right col-3'>
           <FollowCardList
             setPathId={() => {}}
             userIsFollowing={userIsFollowing}

@@ -8,7 +8,7 @@ import ModalTweet from '../components/basic/ModalTweet';
 //call api
 import { getUserInfo } from '../api/userinfo';
 import { useAuth } from '../components/context/AuthContext';
-import FollowShipCard from '../components/basic/FollowShipCard';
+// import FollowShipCard from '../components/basic/FollowShipCard';
 import FollowerShipLists from '../components/user/FollowerShipLists';
 import FollowCardList from '../components/user/FollowCardList';
 // import { getUserTweets } from '../api/twitter';
@@ -22,7 +22,7 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   const { isAuthentic, member, modalTweetOpen } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
-  
+
   //@ profileCard 渲染後端 userInfo
   const [pathId, setPathId] = useState(Number(useParams().id));
   useEffect(() => {
@@ -48,47 +48,33 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   function switchContext(tabIndex) {
     switch (tabIndex) {
       case '1':
-        return (
-          <FollowerShipLists
-            tabIndex={tabIndex}
-            pathId={pathId}
-          />
-        );
+        return <FollowerShipLists tabIndex={tabIndex} pathId={pathId} />;
       default:
-        return (
-          <FollowerShipLists
-            tabIndex={tabIndex}
-            pathId={pathId}
-          />
-        );
+        return <FollowerShipLists tabIndex={tabIndex} pathId={pathId} />;
     }
   }
 
   return (
     <>
       <ContainerColSec
-        role="user"
+        role='user'
         setModalProOpen={setModalProOpen}
         pageIndex={1}
         memberId={userInfo.id}
       >
         {modalTweetOpen && <ModalTweet />}
 
-        <section className="section-outer-m col-7">
-          <div className="section-main-m">
-            <HeaderUser 
-              userAccountName={userInfo.name}
-            />
+        <section className='section-outer-m col-7'>
+          <div className='section-main-m'>
+            <HeaderUser userAccountName={userInfo.name} />
 
             <TabTwoGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
 
             {switchContext(tabIndex)}
           </div>
         </section>
-        <section className="section-right col-3">
-          <FollowCardList
-            setPathId={() => {}}
-          />
+        <section className='section-right col-3'>
+          <FollowCardList setPathId={() => {}} />
         </section>
       </ContainerColSec>
     </>

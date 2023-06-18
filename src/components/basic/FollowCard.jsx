@@ -7,9 +7,9 @@ import { useAuth } from '../context/AuthContext';
 
 const FollowCard = ({ ...props }) => {
   const id = props.id;
-  const { member, setUserIsFollowing } = useAuth();
+  const { setUserIsFollowing } = useAuth();
   const handleUserIsFollowing = async ({ userId, isfollowing }) => {
-    console.log(isfollowing)
+    console.log(isfollowing);
     try {
       if (!isfollowing) {
         await userFollowing(userId);
@@ -23,8 +23,8 @@ const FollowCard = ({ ...props }) => {
   };
 
   return (
-    <div className="follow-card">
-      <div className="follow-card-info">
+    <div className='follow-card'>
+      <div className='follow-card-info'>
         <UserAvatar
           avatar={props.avatar}
           userId={id}
@@ -34,12 +34,12 @@ const FollowCard = ({ ...props }) => {
         />
         <TweetUserName2 name={props.name} account={props.account} />
       </div>
-      <div className="follow-card-button">
+      <div className='follow-card-button'>
         <button
           className={`${clsx('', {
             active: props.isFollowing,
           })} button-md button-m`}
-          type="submit"
+          type='submit'
           onClick={(e) => {
             handleUserIsFollowing({
               userId: props.id,
