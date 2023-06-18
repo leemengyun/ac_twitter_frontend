@@ -12,6 +12,7 @@ import ReplyCard from './ReplyCard';
 import { useEffect, useState } from 'react';
 import { getTweet } from '../../api/twitter';
 import { useAuth } from '../context/AuthContext';
+import { getUserInfo } from '../../api/userinfo';
 const ModalReply = () => {
   const [tweetInfo, setTweetInfo] = useState({
     id: '',
@@ -23,8 +24,9 @@ const ModalReply = () => {
     replies: {},
     updatedAt: '',
   });
-  const { currentMember, setModalReplyOpen, tweetId } = useAuth();
-
+  const { member, setModalReplyOpen, tweetId } = useAuth();
+  const [profile, setProfile] = useState({});
+  
   useEffect(() => {
     const getTweetAsync = async () => {
       try {
@@ -37,6 +39,18 @@ const ModalReply = () => {
     getTweetAsync();
   }, []);
 
+  useEffect(() => {
+    const getUserInfoAsync = async () => {
+      try {
+        const data = await getUserInfo(member.id);
+        setProfile(data);
+      } catch (error) {
+        console.error('[getUser Info  with Async failed]', error);
+      }
+    };
+    getUserInfoAsync();
+  }, []);
+
   return (
     <>
       <ModalContent>
@@ -47,7 +61,7 @@ const ModalReply = () => {
           </div>
           <div className='tweet-form-wrapper'>
             <ReplyCardForm
-              avatar={currentMember.avatar}
+              avatar={profile.avatar}
               tweetInfo={tweetInfo}
             />
           </div>
