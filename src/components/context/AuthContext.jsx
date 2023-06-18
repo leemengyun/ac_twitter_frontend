@@ -101,14 +101,13 @@ export const AuthProvider = ({ children }) => {
         userIsFollowing,
         //共用的register流程
         signUp: async (user) => {
-          const { success, errorMessage, status } = await signUp({
+          const { success, errorMessage } = await signUp({
             account: user.account,
             password: user.password,
             email: user.email,
             checkPassword: user.checkPassword,
             name: user.name,
           });
-          // console.log('status data', status);
 
           if (success) {
             // 解析payload

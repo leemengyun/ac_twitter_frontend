@@ -3,7 +3,7 @@ import UserAvatar from './UserAvatar';
 import TweetUserName3 from './TweetUserName3';
 
 import iconClose from '../../assets/images/icon/close.svg';
-import DayTime from '../../helper/TimeHelper';
+// import DayTime from '../../helper/TimeHelper';
 
 const TweetCardAdmin = ({
   id,

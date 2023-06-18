@@ -63,12 +63,6 @@ export const updateUserInfo = async (payload) => {
 // 更新個人資料-photo VERSION
 export const updateUserPhoto = async (payload) => {
   try {
-    // const { id, data, img } = payload;
-    const { id, introduction, name, img } = payload;
-
-    // console.log('updateUserInfo formData.get');
-    // console.log(img.get('avatar'));
-    // console.log({ payload });
     const res = await axiosInstance.put(`${baseUrl}/users/74`, FormData);
 
     //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料

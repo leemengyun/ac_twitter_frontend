@@ -1,8 +1,23 @@
+// 大螢幕 break point
+$screen-extra-break-point: 1200px;
 // ipad break point
 $screen-break-point: 992px;
 
 @media screen and (max-width: $screen-break-point) {
   // @media screen and (max-width: 985px) {
+  .container-fluid {
+    // border: 10px solid teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .wrapper {
+      max-width: 960px;
+      padding: 0px 24px;
+      .container_sec {
+        // justify-content: center;
+      }
+    }
+  }
   .section-right {
     h3 {
       color: teal;
@@ -38,7 +53,7 @@ $screen-break-point: 992px;
     }
     .button-filled.button-lg {
       transition-duration: 0.1s;
-      
+
       height: 40px;
       width: 40px;
       padding: 0px;
@@ -56,6 +71,63 @@ $screen-break-point: 992px;
         background-image: url(../../assets/images/icon/post.svg);
         filter: var(--icon-white-color);
       }
+    }
+  }
+
+  nav .left-nav-link a.link-logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .follow-list-container {
+    min-width: auto;
+    .follow-card {
+      min-width: auto;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .container-fluid {
+    // border: 10px solid teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .wrapper {
+      max-width: 960px;
+      padding: 0;
+    }
+  }
+  .follow-list-container {
+    min-width: auto;
+    .follow-card {
+      min-width: auto;
+    }
+  }
+}
+
+// @media screen and (min-width: $screen-break-point) {
+//   .container-fluid {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     .wrapper {
+//       max-width: 960px;
+//       padding: 0;
+//     }
+//   }
+// }
+
+@media screen and (min-width: $screen-extra-break-point) {
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .wrapper {
+      max-width: 1140px;
+      padding: 0;
     }
   }
 }

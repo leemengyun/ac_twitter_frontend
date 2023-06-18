@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'; // 引入React庫和useRef hook
-import axios from 'axios'; // 引入axios庫，用於與後端伺服器進行HTTP通信
 import { updateUserPhoto } from '../api/userinfo';
 
 const PhotoPage = () => {

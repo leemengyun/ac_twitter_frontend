@@ -54,7 +54,8 @@
   height: 100%;
   overflow: hidden;
   position: relative;
-  border: 1px solid;
+  // @test border
+  // border: 1px solid;
   padding: 0px 130px;
 }
 .container_one {
@@ -85,7 +86,8 @@
 
 .section-outer-l {
   height: 100%;
-  padding: 0 0 0 12px;
+  // padding: 0 0 0 12px;
+  padding: 0;
 }
 
 .section-main-l {

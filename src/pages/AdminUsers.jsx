@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
@@ -11,7 +11,7 @@ import { getAllUsers } from '../api/admin';
 
 const AdminUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const handleClickCard = (id) => {
   //   // alert('點擊');
