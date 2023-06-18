@@ -31,18 +31,35 @@ const AdminPage = () => {
   };
 
   const handleDeleteUserTweet = async (id) => {
-    alert('click 一個刪除');
-    // console.log({ tweetId });
-    // console.log(id);
-    try {
-      if (id) {
-        await deleteUserTweet(id);
-        getAllTweetsAsync();
-        return;
+    let text = '是否確認要刪除？';
+
+    if (window.confirm(text) == true) {
+      // console.log('You pressed OK!');
+      try {
+        // console.log({ tweetId });
+        // console.log(id);
+        if (id) {
+          await deleteUserTweet(id);
+          getAllTweetsAsync();
+          return;
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      // console.log('You pressed delete!');
+      return;
     }
+
+    // try {
+    //   if (id) {
+    //     await deleteUserTweet(id);
+    //     getAllTweetsAsync();
+    //     return;
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   useEffect(() => {
