@@ -31,7 +31,7 @@
   background: var(--main-white);
   border-radius: 14px;
   position: absolute;
-  left: calc(50% - 317px);
+  left: calc(50% - 367px);
   top: 56px;
   overflow: hidden;
   .modal-content {
@@ -47,8 +47,7 @@
       width: 100%;
       height: 200px;
     }
-    .profile-bk-wrapper {
-    }
+
     .profile-bk-wrapper {
       position: relative;
       .icon-camera {
@@ -127,8 +126,6 @@
         left: -34px;
         top: 30px;
       }
-    }
-    .tweet-form-wrapper {
     }
   }
 }

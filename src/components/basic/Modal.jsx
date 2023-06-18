@@ -152,6 +152,10 @@ const Modal = () => {
           title: `圖檔不符合,請使用jpg/png/gif`,
         });
       }
+      for (var key of formData.keys()) {
+        // console.log(key);
+        formData.delete(key);
+      }
     } catch (error) {
       ToastWarning.fire({
         title: `${error}`,
