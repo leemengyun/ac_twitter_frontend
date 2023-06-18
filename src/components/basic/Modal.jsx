@@ -11,10 +11,14 @@ import { ModalHeaderIcon } from './ModalHeader';
 
 import { getUserInfo, updateUserInfo } from '../../api/userinfo';
 import { useAuth } from '../../components/context/AuthContext';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 //import svg
 import iconCamera from '../../assets/images/icon/addphoto.svg';
 import iconClose from '../../assets/images/icon/close.svg';
+import iconNotiSuccess from '../../assets/images/icon/alert-success-2.svg';
+import iconNotiWanrning from '../../assets/images/icon/alert-warning-2.svg';
 
 const defaultBk = 'https://i.imgur.com/ZFz8ZEI.png';
 // const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
@@ -30,6 +34,44 @@ const Modal = () => {
     banner: '',
   });
   const navigate = useNavigate();
+  // 客製toast 元件
+  const ToastSuccess = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiSuccess}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    // height: '96px',
+    timer: 3000,
+    timerProgressBar: false,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+  });
+
+  const ToastWarning = Swal.mixin({
+    toast: true,
+    html: `<div>
+    <img src="${iconNotiWanrning}" class="icon-alert-noti"/>
+    </div>`,
+    showConfirmButton: false,
+    position: 'top',
+    width: '394px',
+    height: '96px',
+    timer: 3000,
+    timerProgressBar: false,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown',
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp',
+    },
+  });
 
   //@ upload photo用
   const uploadedImage = useRef(null); // 預覽照片用
@@ -89,22 +131,31 @@ const Modal = () => {
       if (formData.get('introduction')) {
         formData.delete('introduction');
       }
+
       formData.append('introduction', data.introduction);
 
-      const addData = await updateUserInfo({
+      const res = await updateUserInfo({
         id: member.id,
         // data: data,
         img: formData,
       });
 
-      if (addData) {
+      if (res.status === 200) {
         // console.log('SUCCESS!');
         setModalProOpen(false);
-        // reset();
+        ToastSuccess.fire({
+          title: '上傳照片成功!',
+        });
+      } else {
+        setModalProOpen(true);
+        ToastWarning.fire({
+          title: `圖檔不符合,請使用jpg/png/gif`,
+        });
       }
-      // console.log({ addData });
     } catch (error) {
-      console.error('[Update info with Async failed]', error);
+      ToastWarning.fire({
+        title: `${error}`,
+      });
     }
   };
 
@@ -165,6 +216,8 @@ const Modal = () => {
     setImageNewUrl_bk(profile.banner ? profile.banner : defaultBk);
     //新設要送出的form value
     setValue('banner', profile.banner ? profile.banner : defaultBk);
+    //取消按鈕隱藏
+    setImageChanging(false);
   };
 
   //@ 首次載入profile
