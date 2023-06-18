@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
@@ -19,6 +19,7 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
+  let { state } = useLocation(); //@接收前一頁LINK頁面的state值
   const { isAuthentic, member, modalTweetOpen } = useAuth();
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
@@ -38,6 +39,12 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
   }, []);
 
   useEffect(() => {
+    if (state && state.tabIndex === '1') {
+      setTabIndex('1');
+    }
+  }, [state]);
+
+  useEffect(() => {
     if (!isAuthentic) {
       navigate('/login');
     }
@@ -54,6 +61,8 @@ const UserFollowersPage = ({ setModalProOpen, setModalTweetOpen }) => {
     }
   }
 
+  // setTabIndex(state);
+  // console.log(state);
   return (
     <>
       <ContainerColSec

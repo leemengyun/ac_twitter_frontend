@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 // import custom components
 import ContainerColSec from '../components/layout/ContainerColSec';
 import { HeaderUser } from '../components/basic/Header';
@@ -25,6 +25,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
+  let { state } = useLocation(); //@接收前一頁LINK頁面的state值
   const {
     isAuthentic,
     member,
@@ -43,7 +44,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   // console.log(currentMember)
   //@ profileCard 渲染後端 userInfo
 
-  const handleUserISFollowing = async (userId,isFollowing) => {
+  const handleUserISFollowing = async (userId, isFollowing) => {
     try {
       if (!isFollowing) {
         await userFollowing(userId);
@@ -103,14 +104,14 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   return (
     <>
       <ContainerColSec
-        role="user"
+        role='user'
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         memberId={member.id}
       >
         {modalTweetOpen && <ModalTweet />}
-        <section className="section-outer-m col-7">
-          <div className="section-main-m">
+        <section className='section-outer-m col-7'>
+          <div className='section-main-m'>
             <HeaderUser
               userAccountName={userInfo.name}
               userTweetsLength={userTweets.length}
@@ -129,10 +130,8 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
             {tabIndex === '2' && <LikeLists />} */}
           </div>
         </section>
-        <section className="section-right col-3">
-          <FollowCardList
-            setPathId={setPathId}
-          />
+        <section className='section-right col-3'>
+          <FollowCardList setPathId={setPathId} />
         </section>
       </ContainerColSec>
     </>
