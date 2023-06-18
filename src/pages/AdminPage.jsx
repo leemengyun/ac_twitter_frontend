@@ -33,7 +33,7 @@ const AdminPage = () => {
   const handleDeleteUserTweet = async (id) => {
     alert('click 一個刪除');
     // console.log({ tweetId });
-    console.log(id);
+    // console.log(id);
     try {
       if (id) {
         await deleteUserTweet(id);
@@ -56,7 +56,7 @@ const AdminPage = () => {
     }
   }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
 
-  console.log(tweets);
+  // console.log(tweets);
 
   return (
     <>

@@ -49,13 +49,13 @@ export const updateUserInfo = async (payload) => {
       img,
     } = payload;
 
-    console.log('updateUserInfo formData.get');
-    console.log(img.get('avatar'));
-    console.log({ payload });
+    // console.log('updateUserInfo formData.get');
+    // console.log(img.get('avatar'));
+    // console.log({ payload });
     const res = await axiosInstance.put(`${baseUrl}/users/${id}`, img);
 
     //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料
-    console.log('res data', res.data);
+    // console.log('res data', res.data);
     return res.data;
   } catch (error) {
     console.error('[getUser Info failed]', error);
@@ -68,13 +68,13 @@ export const updateUserPhoto = async (payload) => {
     // const { id, data, img } = payload;
     const { id, introduction, name, img } = payload;
 
-    console.log('updateUserInfo formData.get');
-    console.log(img.get('avatar'));
-    console.log({ payload });
+    // console.log('updateUserInfo formData.get');
+    // console.log(img.get('avatar'));
+    // console.log({ payload });
     const res = await axiosInstance.put(`${baseUrl}/users/74`, FormData);
 
     //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料
-    console.log('res data', res.data);
+    // console.log('res data', res.data);
     return res.data;
   } catch (error) {
     console.error('[getUser Info failed]', error);

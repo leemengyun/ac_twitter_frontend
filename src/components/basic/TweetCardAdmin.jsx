@@ -40,7 +40,7 @@ const TweetCardAdmin = ({
             alt='cross icon'
             onClick={() => {
               onDelete?.(id);
-              console.log(id);
+              // console.log(id);
             }}
           />
         </div>

@@ -73,10 +73,10 @@ const Modal = () => {
   //儲存form
   const onSubmit = async (data) => {
     // 如果是只要給api
-    console.log('we get data', data);
-    console.log('onSubmit formData.get');
-    console.log(formData.get('avatar'));
-    console.log(formData.get('banner'));
+    // console.log('we get data', data);
+    // console.log('onSubmit formData.get');
+    // console.log(formData.get('avatar'));
+    // console.log(formData.get('banner'));
 
     // console.log(member.id);
     try {
@@ -98,11 +98,11 @@ const Modal = () => {
       });
 
       if (addData) {
-        console.log('SUCCESS!');
+        // console.log('SUCCESS!');
         setModalProOpen(false);
         // reset();
       }
-      console.log({ addData });
+      // console.log({ addData });
     } catch (error) {
       console.error('[Update info with Async failed]', error);
     }

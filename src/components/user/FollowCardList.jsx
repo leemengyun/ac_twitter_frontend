@@ -9,19 +9,17 @@ import { useAuth } from '../context/AuthContext';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const FollowCardList = ({setPathId,userIsFollowing,followingFlag}) => {
+const FollowCardList = ({ setPathId,}) => {
   const [users, setUsers] = useState([]);
-  const { member } = useAuth()
-  const navigate = useNavigate()
-  
-  
+  const { member, userIsFollowing } = useAuth();
+  const navigate = useNavigate();
+
   const handleClickCard = ({ userId }) => {
     userId === member.id
       ? navigate(`/user/${userId}`)
       : userId !== undefined && navigate(`/other/${userId}`);
-      setPathId(userId)
+    setPathId(userId);
   };
-
 
   useEffect(() => {
     const getUsersAsync = async () => {
@@ -37,16 +35,14 @@ const FollowCardList = ({setPathId,userIsFollowing,followingFlag}) => {
 
   return (
     <>
-      <div className='follow-list-container'>
-        <div className='title-secondary'>
+      <div className="follow-list-container">
+        <div className="title-secondary">
           <h4>推薦跟隨</h4>
         </div>
         {users.map((user) => {
-          return <FollowCard 
-          key={user.id} 
-          {...user} 
-          onClick={handleClickCard}
-          />;
+          return (
+            <FollowCard key={user.id} {...user} onClick={handleClickCard} />
+          );
         })}
       </div>
     </>

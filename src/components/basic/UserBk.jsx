@@ -5,11 +5,11 @@ const UserBk = ({ bkUrl }) => {
   return (
     <>
       <div className='profile-bk-clip'>
-        <img
-          src={bkUrl || DefaultBk}
+        {bkUrl && <img
+          src={bkUrl}
           alt='mountain pic'
           className='profile-bk-image'
-        />
+        />}
       </div>
     </>
   );

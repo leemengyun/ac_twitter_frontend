@@ -29,11 +29,11 @@ export const AuthProvider = ({ children }) => {
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
   const [like, setLike] = useState(true);
-
+  const [userIsFollowing, setUserIsFollowing] = useState(true); //控制追隨按鈕切換變化
 
   const handleChangeLikeMode = async ({ id, isLike, UserId, tabIndex }) => {
     if (pathname.includes('other') && tabIndex === 2) {
-      console.log(tabIndex)
+      // console.log(tabIndex);
       return; //使用者無法更改其他使用者喜歡的內容
     }
 
@@ -97,6 +97,8 @@ export const AuthProvider = ({ children }) => {
         member,
         like,
         handleChangeLikeMode,
+        setUserIsFollowing,
+        userIsFollowing,
         //共用的register流程
         signUp: async (user) => {
           const { success, errorMessage, status } = await signUp({
@@ -106,7 +108,7 @@ export const AuthProvider = ({ children }) => {
             checkPassword: user.checkPassword,
             name: user.name,
           });
-          console.log('status data', status);
+          // console.log('status data', status);
 
           if (success) {
             // 解析payload
