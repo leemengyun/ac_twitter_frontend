@@ -18,6 +18,7 @@ import iconClose from '../../assets/images/icon/close.svg';
 
 const defaultBk = 'https://i.imgur.com/ZFz8ZEI.png';
 // const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
+// @ 用來上傳更新自我資料用
 const formData = new FormData();
 
 const Modal = () => {
@@ -29,14 +30,14 @@ const Modal = () => {
     banner: '',
   });
   const navigate = useNavigate();
-  // @ 用來上傳更新自我資料用
 
   //@ upload photo用
-  const uploadedImage = useRef(null);
-  const imageUploader = useRef(null);
-  const imageUploader_bk = useRef(null);
-  const [imageNewUrl, setImageNewUrl] = useState('');
-  const [imageNewUrl_bk, setImageNewUrl_bk] = useState('');
+  const uploadedImage = useRef(null); // 預覽照片用
+  const imageUploader = useRef(null); // 拿到input file avatar狀態
+  const imageUploader_bk = useRef(null); // 拿到input file bk狀態
+  const [imageNewUrl, setImageNewUrl] = useState(''); //預覽後把取的avtar圖片存的變數
+  const [imageNewUrl_bk, setImageNewUrl_bk] = useState(''); //預覽後把取的bk圖片存的變數
+  const [imageChanging, setImageChanging] = useState(false);
 
   // using react-form-hook-set-up
   const {
@@ -79,11 +80,23 @@ const Modal = () => {
 
     // console.log(member.id);
     try {
+      //@ 加入input值
+      if (formData.get('name')) {
+        formData.delete('name');
+      }
+      formData.append('name', data.name);
+
+      if (formData.get('introduction')) {
+        formData.delete('introduction');
+      }
+      formData.append('introduction', data.introduction);
+
       const addData = await updateUserInfo({
         id: member.id,
-        data: data,
+        // data: data,
         img: formData,
       });
+
       if (addData) {
         console.log('SUCCESS!');
         setModalProOpen(false);
@@ -99,50 +112,56 @@ const Modal = () => {
   const handleImageUpload = (e) => {
     // console.log(e.target.className);
 
-    //@設定formData
+    //@先設定formData拿input file avatar/bk的file
     const avatarFile = imageUploader.current.files[0];
     const bannerFile = imageUploader_bk.current.files[0];
 
-    if (avatarFile) {
-      formData.append('avatar', avatarFile);
-    }
-    if (bannerFile) {
-      formData.append('banner', bannerFile);
-    }
-
+    // @預覽功能-先看是哪一個換圖(用className區分)
     let curr_target = 'input-file-avatar';
     if (e.target.className === 'input-file-bk') {
       curr_target = 'input-file-bk';
+
+      // 以免重複存圖在formData，要清空formData,不然換幾次會多拿幾個檔案
+      if (formData.get('banner')) {
+        formData.delete('banner');
+      }
+      formData.append('banner', bannerFile);
+    } else {
+      // 以免重複存圖在formData，要清空formData,不然換幾次會多拿幾個檔案
+      if (formData.get('avatar')) {
+        formData.delete('avatar');
+      }
+      formData.append('avatar', avatarFile);
     }
 
+    // @預覽功能-把圖換上去（這裡會把圖檔換轉base64）
     const [file] = e.target.files;
     if (file) {
       const reader = new FileReader();
       const { current } = uploadedImage;
       current.file = file;
       reader.onload = (e) => {
-        // current.src = e.target.result;
-        // console.log(current)
-        // console.log(e.target.class)
         if (curr_target === 'input-file-avatar') {
+          //把imageUrl存下來
           setImageNewUrl(e.target.result);
           //利用空的input可以用 react-hook-form傳出去
-          setValue('avatar', e.target.result);
+          // setValue('avatar', e.target.result);
         } else if (curr_target === 'input-file-bk') {
-          // console.log('bk-file');
+          //把imageUrl存下來
           setImageNewUrl_bk(e.target.result);
+          setImageChanging(true);
           //利用空的input可以用 react-hook-form傳出去
-          setValue('banner', e.target.result);
+          // setValue('banner', e.target.result);
         }
       };
-      // console.log(file);
+      // 照片在預覽的時候要讀取base64照片編碼的寫法
       reader.readAsDataURL(file);
     }
   };
 
-  //照片回到前一版
+  //照片換回原本背景照片
   const handleImageDelete = (e) => {
-    alert('換回原本背景照片');
+    // alert('換回原本背景照片');
     setImageNewUrl_bk(profile.banner ? profile.banner : defaultBk);
     //新設要送出的form value
     setValue('banner', profile.banner ? profile.banner : defaultBk);
@@ -181,12 +200,15 @@ const Modal = () => {
               ref={uploadedImage}
               onClick={() => imageUploader_bk.current.click()}
             />
-            <img
-              src={iconClose}
-              alt='icon of close button'
-              className='icon-close'
-              onClick={handleImageDelete}
-            />
+            {imageChanging && (
+              <img
+                src={iconClose}
+                alt='icon of close button'
+                className='icon-close'
+                onClick={handleImageDelete}
+              />
+            )}
+
             <input
               type='file'
               accept='image/*'
@@ -202,7 +224,7 @@ const Modal = () => {
           <div className='avatar-edit-wrapper'>
             <UserAvatar avatar={imageNewUrl} />
             <img
-              alt='bbb'
+              alt='bk-camera'
               src={iconCamera}
               className='icon-camera'
               ref={uploadedImage}
@@ -231,15 +253,19 @@ const Modal = () => {
                 name='name'
                 label='名稱'
                 type='text'
-                placeholder='請輸入帳號'
-                maxLength='50'
+                placeholder='請輸入名稱'
+                // maxLength='50'
                 errors={errors}
                 register={register}
                 validationSchema={{
-                  required: 'name is required',
+                  required: '請輸入名稱',
                   minLength: {
                     value: 3,
-                    message: 'Please enter a minimum of 3 characters',
+                    message: '請輸入至少3字',
+                  },
+                  maxLength: {
+                    value: 50,
+                    message: '最多不可輸入超過50字',
                   },
                 }}
                 watch={watch}
@@ -257,17 +283,22 @@ const Modal = () => {
                     required: true,
                     maxLength: 160,
                   })}
-                  placeholder='有什麼新鮮事？'
-                  maxLength='160'
-                  className='desc-text-area'
+                  placeholder='請輸入你的自我介紹'
+                  className={`desc-text-area ${
+                    errors.introduction ? 'error' : ''
+                  }`}
                   // value={profile.introduction || ''}
                 />
               </div>
               <div className='error-message-group'>
-                {errors.description &&
-                  errors.description.type === 'required' && (
-                    <span className='error'>This is required</span>
+                {errors.introduction &&
+                  errors.introduction.type === 'required' && (
+                    <span className='error'>請輸入你的自我介紹</span>
                   )}
+                {errors?.introduction?.type === 'maxLength' && (
+                  <span className='error'>最多不可輸入超過160字</span>
+                )}
+
                 <span className='limit-num'>
                   {watch('introduction') ? watch('introduction').length : '0'}
                   /160
@@ -275,7 +306,7 @@ const Modal = () => {
               </div>
             </div>
 
-            <input
+            {/* <input
               type='text'
               {...register('banner')}
               style={{
@@ -290,7 +321,7 @@ const Modal = () => {
               style={{
                 display: 'none',
               }}
-            />
+            /> */}
           </form>
         </div>
       </ModalContent>

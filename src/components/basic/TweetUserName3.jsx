@@ -4,6 +4,7 @@ import DayTime from '../../helper/TimeHelper';
 const TweetUserName3 = ({ name, account, time }) => {
   // const relativeTime = timeHelper.relativeTimeFromNow(time)
   // console.log(relativeTime)
+  console.log(time);
   return (
     <div className='tweet-username-3'>
       <div>

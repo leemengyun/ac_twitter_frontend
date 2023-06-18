@@ -115,6 +115,16 @@
       padding-left: 16px;
       height: 97px;
       resize: none;
+
+      &.error {
+        border-bottom: 2px solid red;
+        &:hover {
+          border-bottom: 2px solid red;
+        }
+        &:focus {
+          border-bottom: 2px solid red;
+        }
+      }
     }
   }
   .error-message-group {
@@ -148,7 +158,7 @@
 /* @[TweetCardForm] - 無label 透明樣式 ----------------------------------------------------------------------------------------*/
 .tweet-form-wrapper {
   padding: var(--padding-s) var(--padding-m);
-  border-bottom: 1px solid var(--main-border);
+  border-bottom: 10px solid var(--main-border);
   .tweet-card-form {
     form {
       display: flex;
@@ -179,11 +189,10 @@
     display: grid;
     width: 100%;
     textarea {
-      // resize: none;
-      // overflow: hidden;
       padding: 2px;
       resize: none;
-      overflow-y: hidden;
+      overflow-y: auto;
+      height: 72px;
     }
   }
   // .grow-wrap > textarea,
