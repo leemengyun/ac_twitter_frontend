@@ -119,6 +119,7 @@ const LoginForm = () => {
               },
             }}
             watch={watch}
+            limitLabel='true'
             // required
           />
         </div>

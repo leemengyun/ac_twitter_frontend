@@ -56,6 +56,8 @@
         top: 50%;
         right: 50%;
         margin-right: 24px;
+        cursor: pointer;
+        margin-top: -12px;
       }
       .icon-close {
         position: absolute;
@@ -63,6 +65,8 @@
         right: 50%;
         margin-right: -24px;
         filter: var(--icon-white-color);
+        margin-top: -12px;
+        cursor: pointer;
       }
       input {
         display: none;
@@ -90,6 +94,8 @@
         }
       }
       .icon-camera {
+        // padding: 16px;
+        cursor: pointer;
         position: absolute;
         left: 75px;
         z-index: 10;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const InputGroup = ({
   name,
@@ -42,6 +42,11 @@ const InputGroup = ({
         {errors && errors[name]?.type === 'pattern' && (
           <span className='error'>{errors[name]?.message}</span>
         )}
+
+        {/* {watch(name).length > maxLength && (
+          <span className='error'>字數超出上限</span>
+        )} */}
+
         {limitLabel === 'true' && (
           <span className='limit-num'>
             {watch(name) ? watch(name).length : '0'}/50

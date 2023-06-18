@@ -49,16 +49,14 @@ export const updateUserInfo = async (payload) => {
       img,
     } = payload;
 
-    // console.log('updateUserInfo formData.get');
-    // console.log(img.get('avatar'));
-    // console.log({ payload });
     const res = await axiosInstance.put(`${baseUrl}/users/${id}`, img);
 
-    //server 回傳的物件會包在data,所以一定要用.data才會拿到對的資料
-    // console.log('res data', res.data);
-    return res.data;
+    return { success: true, ...res };
+    // return res.data;
   } catch (error) {
+    const errorMessage = error.response.data;
     console.error('[getUser Info failed]', error);
+    return { success: false, errorMessage: errorMessage };
   }
 };
 
