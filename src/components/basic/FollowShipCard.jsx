@@ -36,14 +36,14 @@ const FollowShipCard = ({ ...props }) => {
                 e.stopPropagation();
               }}
             >
-              <button
+              { member.id === props.id ? <></> : <button
                 className={`${clsx('', {
                   active: props.isfollowing,
                 })} button-md button-m`}
                 type='submit'
               >
                 {props.isfollowing ? '正在跟隨' : '跟隨'}
-              </button>
+              </button> }
             </span>
           </div>
           <p className='tweet-card-basic-description'>{props.introduction}</p>
