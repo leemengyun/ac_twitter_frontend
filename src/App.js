@@ -85,7 +85,7 @@ function App({ router }) {
               <Route path='/setting' element={<SettingPage />}></Route>
               <Route path='/admin/users' element={<AdminUsers />}></Route>
               <Route path='/main/self2' element={<NestedUserPage />}></Route>
-              <Route path='/photo' element={<PhotoPage />}></Route>
+              {/* <Route path='/photo' element={<PhotoPage />}></Route> */}
             </Routes>
           </PageLayout>
         </AuthProvider>

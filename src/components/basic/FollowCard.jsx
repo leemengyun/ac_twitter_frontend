@@ -9,7 +9,6 @@ const FollowCard = ({ ...props }) => {
   const id = props.id;
   const { setUserIsFollowing } = useAuth();
   const handleUserIsFollowing = async ({ userId, isfollowing }) => {
-    console.log(isfollowing);
     try {
       if (!isfollowing) {
         await userFollowing(userId);
