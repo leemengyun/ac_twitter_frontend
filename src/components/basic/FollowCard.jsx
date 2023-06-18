@@ -8,8 +8,8 @@ import { useAuth } from '../context/AuthContext';
 const FollowCard = ({ ...props }) => {
   const id = props.id;
   const { member, setUserIsFollowing } = useAuth();
-
   const handleUserIsFollowing = async ({ userId, isfollowing }) => {
+    console.log(isfollowing)
     try {
       if (!isfollowing) {
         await userFollowing(userId);
@@ -43,7 +43,7 @@ const FollowCard = ({ ...props }) => {
           onClick={(e) => {
             handleUserIsFollowing({
               userId: props.id,
-              isfollowing: props.isfollowing,
+              isfollowing: props.isFollowing,
             });
             e.stopPropagation();
           }}

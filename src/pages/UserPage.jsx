@@ -37,7 +37,8 @@ const UserPage = () => {
     modalTweetOpen,
     like,
     handleChangeLikeMode,
-    modalProOpen
+    modalProOpen,
+    userIsFollowing,
   } = useAuth();
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({userAccountName :""});
@@ -69,7 +70,7 @@ const UserPage = () => {
     };
     getUserTweetsAsync();
     getUserInfoAsync();
-  }, [pathId, like, modalTweetOpen, modalProOpen]);
+  }, [pathId, like, modalTweetOpen, modalProOpen, userIsFollowing]);
 
 
   useEffect(() => {
