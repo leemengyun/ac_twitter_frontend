@@ -13,7 +13,14 @@ const InputGroup = ({
   validationSchema,
   defaultValue,
   watch,
+  // onChange,
 }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (e) => {
+    // console.log(e.target.value.length);
+    setInputValue(e.target.value.length);
+  };
   return (
     <>
       {' '}
@@ -27,6 +34,7 @@ const InputGroup = ({
           {...register(name, validationSchema)}
           maxLength={maxLength || null}
           className={errors[name] ? 'error' : ''}
+          onChange={handleInputChange}
         />
       </div>
       <div className='error-message-group'>
@@ -43,9 +51,7 @@ const InputGroup = ({
           <span className='error'>{errors[name]?.message}</span>
         )}
 
-        {/* {watch(name).length > maxLength && (
-          <span className='error'>字數超出上限</span>
-        )} */}
+        {inputValue > maxLength && <span className='error'>字數超出上限</span>}
 
         {limitLabel === 'true' && (
           <span className='limit-num'>

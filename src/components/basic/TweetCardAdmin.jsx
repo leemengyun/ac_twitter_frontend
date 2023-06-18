@@ -1,12 +1,9 @@
 import React from 'react';
 import UserAvatar from './UserAvatar';
 import TweetUserName3 from './TweetUserName3';
-// import TweetIconCount from './TweetIconCount';
-// import { useNavigate } from 'react-router-dom';
+
 import iconClose from '../../assets/images/icon/close.svg';
 import DayTime from '../../helper/TimeHelper';
-
-// const defaultAvatar = 'https://i.imgur.com/V4RclNb.png';
 
 const TweetCardAdmin = ({
   id,
@@ -19,10 +16,9 @@ const TweetCardAdmin = ({
   tweetId,
   setTweetId,
 }) => {
-  // const handleClick = (tweetId) => {
-  //   tweetId && navigate(`/main/tweet/${tweetId}`);
-  // };
-
+  const truncate = (str, maxlenth) => {
+    return str.length > maxlenth ? str.slice(0, maxlenth - 1) + '...' : str;
+  };
   return (
     <div className='tweet-card-basic tweet-card-admin'>
       <UserAvatar avatar={User.avatar} userId={UserId} />
@@ -45,7 +41,11 @@ const TweetCardAdmin = ({
           />
         </div>
 
-        <p className='tweet-card-basic-description'>{description}</p>
+        <div className='description-wrap'>
+          <p className='tweet-card-basic-description'>
+            {truncate(description, 51)}
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -418,11 +418,18 @@ h5 {
       justify-content: space-between;
     }
   }
-  p.tweet-card-basic-description {
-    width: 100%;
+
+  .description-wrap {
+    // width: 100%;
     display: block;
     max-width: none;
     padding-right: 42px;
+    // width: 50rem;
+    p.tweet-card-basic-description {
+      // overflow: hidden;
+      // white-space: nowrap;
+      // text-overflow: ellipsis;
+    }
   }
 }
 
