@@ -24,7 +24,7 @@ const ProfileOtherCard = ({
   followingsCount,
   setModalProOpen,
   onClick,
-  isFollowing
+  isFollowing,
 }) => {
   const userId = Number(useParams().id);
   return (
@@ -47,7 +47,7 @@ const ProfileOtherCard = ({
             className={`${clsx('', {
               active: isFollowing,
             })} button-md button-m`}
-            onClick={() => onClick?.(userId,isFollowing)}
+            onClick={() => onClick?.(userId, isFollowing)}
           >
             {isFollowing ? '正在跟隨' : '跟隨'}
           </button>
@@ -58,13 +58,13 @@ const ProfileOtherCard = ({
           <p className='user-desc'>{introduction}</p>
         </div>
         <div className='user-follow-info'>
-          <Link to={`/other/followers/${userId}`}>
+          <Link to={`/other/followers/${userId}`} state={{ tabIndex: '1' }}>
             <p>
               {followingsCount} 個 <span>跟隨中</span>
             </p>
           </Link>
 
-          <Link to={`/other/followers/${userId}`}>
+          <Link to={`/other/followers/${userId}`} state={{ tabIndex: '0' }}>
             <p>
               {followersCount} 位<span>跟隨者</span>
             </p>
