@@ -331,7 +331,7 @@ const Modal = () => {
             </div>
             <div className='textarea-group-container'>
               <div className='textarea-group grow-wrap'>
-                <label>自我介紹</label>
+                <label htmlFor='introduction'>自我介紹</label>
                 <textarea
                   type='textarea'
                   id='introduction'

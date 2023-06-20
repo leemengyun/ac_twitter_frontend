@@ -18,10 +18,14 @@ import { getUserTweets } from '../api/twitter';
 import ModalReply from '../components/basic/ModalReply';
 import ModalTweet from '../components/basic/ModalTweet';
 import Modal from '../components/basic/Modal';
+import palinBg from '../assets/images/gray-bk.jpeg';
+import loadingBg from '../assets/images/loading-bk.jpeg';
 
 const UserPage = () => {
   const [tabIndex, setTabIndex] = useState('0');
   const [pathId, setPathId] = useState(Number(useParams().id)); //只是為了與UserOtherPage一樣而設定state
+  const [isLoading, setIsLoading] = useState(true); //ProfileCard-圖片元件狀態
+  const [imageStatus, setImageStatus] = useState('loading'); // ProfileCard-圖片元件狀態：'loading', 'fetching', 'loaded'
 
   //取得網址:id
   //向後端 給予(pathid)參數 拿該用戶的資料
@@ -29,8 +33,8 @@ const UserPage = () => {
   const navigate = useNavigate();
   const {
     isAuthentic,
-    // currentMember,
     member,
+    isLoggedIn,
     modalReplyOpen,
     modalTweetOpen,
     like,
@@ -50,9 +54,17 @@ const UserPage = () => {
     const getUserInfoAsync = async () => {
       try {
         const userInfo = await getUserInfo(pathId);
-        setUserInfo(userInfo);
+        setImageStatus('fetching'); // 開始獲取圖片
+        if (userInfo) {
+          setIsLoading(false);
+          setImageStatus('loaded');
+          setUserInfo(userInfo);
+        }
+        return;
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
+        setIsLoading(false);
+        setImageStatus('loading'); // 發生錯誤，設置回 loading 狀態
       }
     };
     getUserInfoAsync();
@@ -68,13 +80,32 @@ const UserPage = () => {
     };
     getUserTweetsAsync();
     getUserInfoAsync();
-  }, [pathId, like, modalTweetOpen, modalProOpen, userIsFollowing]);
+  }, [
+    pathId,
+    like,
+    modalTweetOpen,
+    modalProOpen,
+    userIsFollowing,
+    setIsLoading,
+    setImageStatus,
+  ]);
 
-  useEffect(() => {
-    if (!isAuthentic) {
-      navigate('/login');
-    }
-  }, [navigate, isAuthentic, member]); //只要isAuthentic或navigation有變化便執行
+  // useEffect(() => {
+  //   const loadImage = () => {
+  //     const img = new Image();
+  //     img.onload = () => {
+  //       setImageStatus('loaded'); // 圖片加載完成
+  //     };
+  //     img.onerror = () => {
+  //       setImageStatus('loading'); // 圖片加載失敗，回到 loading 狀態
+  //     };
+  //     img.src = userInfo?.avatar; // 假設個人資料中有 avatar 屬性表示圖片的URL
+  //   };
+
+  //   if (userInfo && imageStatus === 'fetching') {
+  //     loadImage();
+  //   }
+  // }, [userInfo, imageStatus]);
 
   //切換下方tab
   //swtich case 與 if else概念相同，但return component更簡潔(??)
@@ -94,6 +125,28 @@ const UserPage = () => {
     }
   }
 
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     navigate('/login');
+  //   }
+  // }, [navigate, isAuthentic]); //只要isAuthentic或navigation有變化便執行
+
+  //@ ProfileCard-圖片元件狀態 - 照片載入不同狀態設定圖片來源
+  let avatarSource = '';
+  let bkSource = '';
+  // avatarSource = userInfo.avatar; // 顯示實際使用者的圖片
+  // bkSource = userInfo.banner; // 顯示實際使用者的圖片
+
+  if (imageStatus === 'loading') {
+    avatarSource = palinBg; // 顯示示意圖，代表圖片尚未拿到
+    bkSource = palinBg; // 顯示示意圖，代表圖片尚未拿到
+  } else if (imageStatus === 'fetching') {
+    avatarSource = loadingBg; // 顯示示意圖，代表圖片正在拿取中
+    bkSource = loadingBg; // 顯示示意圖，代表圖片正在拿取中
+  } else if (imageStatus === 'loaded') {
+    avatarSource = userInfo.avatar; // 顯示實際使用者的圖片
+    bkSource = userInfo.banner; // 顯示實際使用者的圖片
+  }
   return (
     <>
       <ContainerColSec role='user' pageIndex={1} memberId={member.id}>
@@ -108,6 +161,9 @@ const UserPage = () => {
 
             <ProfileCard
               {...userInfo}
+              avatar={avatarSource}
+              banner={bkSource}
+              imageStatus={imageStatus}
               // setModalProOpen={setModalProOpen}
             />
 

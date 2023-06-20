@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,13 +15,16 @@ import iconNotiWanrning from '../../assets/images/icon/alert-warning-2.svg';
 import Swal from 'sweetalert2';
 const SettingForm = () => {
   const navigate = useNavigate();
-  const { isAuthentic, member } = useAuth();
+  const { isAuthentic, member, logout } = useAuth();
   const [settingInfo, setSettingInfo] = useState({
     id: 'null',
     account: '',
     email: '',
     name: '',
   });
+  const handleClick = () => {
+    logout();
+  };
   // using react-form-hook-set-up
   const {
     register,
@@ -111,7 +115,7 @@ const SettingForm = () => {
     getSettingInfoAsync();
   }, [setSettingInfo]);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (!isAuthentic) {
       navigate('/login');
     }
@@ -239,6 +243,11 @@ const SettingForm = () => {
           <button className='button-bg button-m active' type='submit'>
             儲存
           </button>
+        </div>
+        <div className='left-nav-link-logout'>
+          <Link to='/login' onClick={handleClick} className='button-link'>
+            登出
+          </Link>
         </div>
       </form>
     </div>

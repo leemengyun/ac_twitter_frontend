@@ -13,7 +13,14 @@ const SecLeftNav = ({ role, pageIndex, memberId }) => {
   };
   return (
     <>
-      <nav className='left-nav col-2'>
+      <nav
+        className={[
+          'left-nav col-2',
+          role === 'admin' ? 'admin-left-nav' : 'user-left-nav',
+        ].join(' ')}
+
+        // 'left-nav col-2'
+      >
         {/* <nav className='left-nav g-col-2'> */}
         <div className='left-nav-link'>
           <div className='left-nav-link-items'>

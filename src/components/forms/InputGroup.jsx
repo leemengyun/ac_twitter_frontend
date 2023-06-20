@@ -25,8 +25,9 @@ const InputGroup = ({
     <>
       {' '}
       <div className='input_group'>
-        <label>{label}</label>
+        <label htmlFor={name}>{label}</label>
         <input
+          id={name}
           type={type}
           name={name}
           defaultValue={defaultValue}
