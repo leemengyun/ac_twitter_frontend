@@ -19,6 +19,10 @@ $screen-break-point: 992px;
       max-width: 960px;
       padding: 0px 24px;
     }
+    .section-main-m {
+      width: 100vw;
+      max-width: none;
+    }
   }
   .section-right {
     h3 {
