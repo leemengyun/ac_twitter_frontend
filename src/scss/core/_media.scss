@@ -19,8 +19,6 @@ $screen-break-point: 992px;
       transition-duration: 0.1s;
       max-width: 960px;
       padding: 0px 24px;
-      //@ for i phone browser bar
-      height: 100svh;
     }
     .section-main-m {
       width: 100vw;
@@ -106,9 +104,14 @@ $screen-break-point: 992px;
 
 //@手機版 991以下
 @media screen and (max-width: $screen-phone-point) {
-  .container-fluid .wrapper {
-    padding: 0px;
-    max-width: none;
+  .container-fluid {
+    height: 100svh;
+    .wrapper {
+      padding: 0px;
+      max-width: none;
+      //@ for i phone browser bar
+      height: 100svh;
+    }
   }
   .container_one .col-4 {
     width: 100%;
@@ -134,7 +137,7 @@ $screen-break-point: 992px;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: flex-end;
-
+    height: 100svh;
     nav.left-nav.col-2 {
       width: 100vw;
       height: 52px;
