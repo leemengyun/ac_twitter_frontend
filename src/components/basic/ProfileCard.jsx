@@ -23,6 +23,7 @@ const ProfileCard = ({
   banner,
   followersCount,
   followingsCount,
+  imageStatus,
 }) => {
   const { setModalProOpen } = useAuth();
   const userId = Number(useParams().id);
@@ -32,16 +33,6 @@ const ProfileCard = ({
         <UserBk bkUrl={banner} />
         <UserAvatar avatar={avatar} />
         <div className='profile-btn-group'>
-          {/* <img
-            src={iconMessage}
-            alt='icon of message'
-            className='icon-round icon-message icon-round cursor-point'
-          /> */}
-          {/* <img
-            src={iconNotice}
-            alt='icon of Notice'
-            className='icon-round icon-notice icon-round cursor-point'
-          /> */}
           <button
             className='button-md button-m'
             onClick={() => setModalProOpen(true)}

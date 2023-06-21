@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
   const [modalTweetOpen, setModalTweetOpen] = useState(false);
   const [tweetId, setTweetId] = useState(null);
   const [member, setMember] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [like, setLike] = useState(true);
   const [userIsFollowing, setUserIsFollowing] = useState(true); //控制追隨按鈕切換變化
 
@@ -99,6 +100,7 @@ export const AuthProvider = ({ children }) => {
         handleChangeLikeMode,
         setUserIsFollowing,
         userIsFollowing,
+        isLoggedIn,
         //共用的register流程
         signUp: async (user) => {
           const { success, errorMessage } = await signUp({
@@ -151,8 +153,10 @@ export const AuthProvider = ({ children }) => {
               setPayload(tempPayload);
               //等有test-token CheckPermission 完後才導入使用者資訊
               setMember(tempPayload);
+              setIsLoggedIn(true);
             } else {
               setIsAuthentic(false);
+              setIsLoggedIn(false);
             }
             return { success };
           } else {
@@ -163,6 +167,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.removeItem('authToken');
           setIsAuthentic(false);
           setPayload(null);
+          setIsLoggedIn(false);
         },
         adminLogin: async (user) => {
           const { success, data, errorMessage } = await adminLogin({
