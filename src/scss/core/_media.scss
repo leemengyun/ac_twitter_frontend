@@ -11,6 +11,7 @@ $screen-break-point: 992px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     .col-7 {
       transition-duration: 0.1s;
     }
@@ -18,6 +19,8 @@ $screen-break-point: 992px;
       transition-duration: 0.1s;
       max-width: 960px;
       padding: 0px 24px;
+      //@ for i phone browser bar
+      height: 100svh;
     }
     .section-main-m {
       width: 100vw;
