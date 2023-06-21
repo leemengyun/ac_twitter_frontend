@@ -18,6 +18,9 @@
 
   &.setting-form {
     padding: 24px;
+    .left-nav-link-logout {
+      display: none;
+    }
   }
 }
 
