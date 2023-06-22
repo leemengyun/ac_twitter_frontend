@@ -122,6 +122,7 @@ $screen-break-point: 992px;
     }
     .formLayout {
       width: 100%;
+      min-width: auto;
     }
   }
 
@@ -251,7 +252,7 @@ $screen-break-point: 992px;
 
   //settingPage - log out
   .formLayout {
-    min-width: 360px;
+    min-width: auto;
 
     &.setting-form {
       .left-nav-link-logout {

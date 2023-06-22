@@ -100,16 +100,17 @@
 .section-outer-m {
   height: 100%;
   padding: 0 12px;
-  padding-right: 0;
+  // padding-right: 0;
   overflow-y: visible;
   overflow-x: hidden;
+  border: 1px solid var(--main-border);
+  padding: 0;
 }
 
 .section-main-m {
-  border: 1px solid var(--main-border);
   height: 100%;
   // @ this section is scrollable
-  max-width: 641px;
+  max-width: 643px;
 }
 
 .section-right {

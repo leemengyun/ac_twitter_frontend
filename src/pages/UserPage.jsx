@@ -45,9 +45,7 @@ const UserPage = () => {
   // @串接 server 用這一個
   const [userInfo, setUserInfo] = useState({ userAccountName: '' });
   const [userTweets, setUserTweets] = useState([]);
-  // const [refreshPage, setRefreshPage] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
-  // @ tweets 的 dummy資料
 
   //@ profileCard 渲染後端 userInfo
   useEffect(() => {
@@ -89,23 +87,6 @@ const UserPage = () => {
     setIsLoading,
     setImageStatus,
   ]);
-
-  // useEffect(() => {
-  //   const loadImage = () => {
-  //     const img = new Image();
-  //     img.onload = () => {
-  //       setImageStatus('loaded'); // 圖片加載完成
-  //     };
-  //     img.onerror = () => {
-  //       setImageStatus('loading'); // 圖片加載失敗，回到 loading 狀態
-  //     };
-  //     img.src = userInfo?.avatar; // 假設個人資料中有 avatar 屬性表示圖片的URL
-  //   };
-
-  //   if (userInfo && imageStatus === 'fetching') {
-  //     loadImage();
-  //   }
-  // }, [userInfo, imageStatus]);
 
   //切換下方tab
   //swtich case 與 if else概念相同，但return component更簡潔(??)
