@@ -1,9 +1,10 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Route, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 // import svg
 import iconBack from '../../assets/images/icon/back.svg';
+
 
 const HeaderMain = ({ pageTitle }) => {
   return (
@@ -13,24 +14,25 @@ const HeaderMain = ({ pageTitle }) => {
   );
 };
 
-const HeaderUser = ({ userAccountName, userTweetsLength }) => {
+const HeaderUser = ({ userAccountName, userTweetsLength}) => {
   const navigate = useNavigate();
+  
 
   return (
-    <div className='header-container'>
+    <div className="header-container">
       {/* <Link to='/main'> */}
       <img
         src={iconBack}
-        alt='Back to pre page'
-        className='icon-back cursor-point'
+        alt="Back to pre page"
+        className="icon-back cursor-point"
         onClick={() => {
           //@ 回上頁
-          navigate(-1);
+          navigate(-1)
         }}
       />
       {/* </Link> */}
 
-      <div className='header-user-info'>
+      <div className="header-user-info">
         <h5>{userAccountName}</h5>
         <p>{userTweetsLength} 推文</p>
       </div>

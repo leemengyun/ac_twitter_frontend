@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getUserLikedTweets } from '../../api/twitter';
 import TweetCardLike from '../basic/TweetCardLike';
 import { useAuth } from '../context/AuthContext';
 
-const LikeLists = ({ pathId, onClick, tabIndex }) => {
+const LikeLists = ({ pathId, tabIndex, setPathId}) => {
   const [userLiked, setUserLiked] = useState([]);
-  const {
-    like,
-    handleChangeLikeMode,
-    // member
-  } = useAuth();
+  const navigate = useNavigate();
+  const { like, handleChangeLikeMode, member } = useAuth();
+
+  const handleClickCard = ({ userId }) => {
+    userId === member.id
+      ? navigate(`/user/${userId}`)
+      : userId !== undefined && navigate(`/other/${userId}`);
+    setPathId(userId);
+  };
 
   useEffect(() => {
     const getUserLikedTweetsAsync = async () => {
@@ -24,16 +29,14 @@ const LikeLists = ({ pathId, onClick, tabIndex }) => {
   }, [like, pathId]);
 
   return (
-    <div className='TweetLists'>
+    <div className="TweetLists">
       {userLiked.map((tweet) => {
         return (
           <TweetCardLike
             key={tweet.id}
             {...tweet}
             tabIndex={tabIndex}
-            onClick={({ tweetId, userId }) => {
-              onClick?.({ tweetId, userId });
-            }}
+            onClick={handleClickCard}
             onToggleLike={handleChangeLikeMode}
           />
         );

@@ -25,6 +25,8 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   //向後端 給予(pathid)參數 拿該用戶的資料
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   const navigate = useNavigate();
+  const location = useLocation();
+  const goBackNum = Number(useParams().id); //刷新otherPage
   let { state } = useLocation(); //@接收前一頁LINK頁面的state值
   const {
     isAuthentic,
@@ -57,7 +59,12 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
     setUserIsFollowing((prev) => !prev);
   };
 
+  useEffect(()=>{
+    setPathId(goBackNum);
+  },[navigate])//避免loop
+
   useEffect(() => {
+    
     const getUserInfoAsync = async () => {
       try {
         const data = await getUserInfo(pathId);
@@ -91,7 +98,13 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
       case '1':
         return <ReplyLists pathId={pathId} />;
       case '2':
-        return <LikeLists pathId={pathId} tabIndex={2} />;
+        return (
+          <LikeLists
+            pathId={pathId}
+            tabIndex={2}
+            setPathId={setPathId}
+          />
+        );
       default:
         return (
           <TweetsLists
@@ -104,14 +117,14 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   return (
     <>
       <ContainerColSec
-        role='user'
+        role="user"
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         memberId={member.id}
       >
         {modalTweetOpen && <ModalTweet />}
-        <section className='section-outer-m col-7'>
-          <div className='section-main-m'>
+        <section className="section-outer-m col-7">
+          <div className="section-main-m">
             <HeaderUser
               userAccountName={userInfo.name}
               userTweetsLength={userTweets.length}
@@ -130,7 +143,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
             {tabIndex === '2' && <LikeLists />} */}
           </div>
         </section>
-        <section className='section-right col-3'>
+        <section className="section-right col-3">
           <FollowCardList setPathId={setPathId} />
         </section>
       </ContainerColSec>
