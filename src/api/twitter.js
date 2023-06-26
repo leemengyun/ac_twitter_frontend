@@ -169,7 +169,9 @@ export const cancelFollow = async (followingId) => {
 export const likeTweet = async (id) => {
   try {
     const res = await axiosInstance.post(`${baseUrl}/tweets/${id}/like`);
+    
     return res.data;
+    
   } catch (error) {
     console.error('[Like Tweet failed:]:', error);
   }

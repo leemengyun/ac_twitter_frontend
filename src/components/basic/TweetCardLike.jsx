@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const TweetCardLike = ({ ...props }) => {
   const navigate = useNavigate();
+  
   const handleClick = (tweetId)=>{
     tweetId && navigate(`/main/tweet/${tweetId}`);
   }
@@ -23,7 +24,7 @@ const TweetCardLike = ({ ...props }) => {
     >
       <UserAvatar
         avatar={props.Tweet.User.avatar}
-        userId={props.UserId}
+        userId={props.Tweet.UserId}
         onClick={({ userId }) => {
           props.onClick?.({ userId });
         }}

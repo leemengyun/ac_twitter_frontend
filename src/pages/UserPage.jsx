@@ -95,7 +95,7 @@ const UserPage = () => {
       case '1':
         return <ReplyLists pathId={pathId} />;
       case '2':
-        return <LikeLists pathId={pathId} />;
+        return <LikeLists pathId={pathId} setPathId={setPathId}/>;
       default:
         return (
           <TweetsLists

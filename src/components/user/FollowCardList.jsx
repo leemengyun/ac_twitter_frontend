@@ -9,7 +9,7 @@ import { useAuth } from '../context/AuthContext';
 // import svg
 // import iconHome from '../assets/images/icon/home.svg';
 
-const FollowCardList = ({ setPathId,}) => {
+const FollowCardList = ({ setPathId}) => {
   const [users, setUsers] = useState([]);
   const { member, userIsFollowing } = useAuth();
   const navigate = useNavigate();
