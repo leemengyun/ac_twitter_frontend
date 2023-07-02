@@ -120,7 +120,8 @@
 
       &::after {
         content: '';
-        height: 200%;
+        min-height: 44px;
+        height: calc(100% + 18px);
         border: 1px solid var(--gray-60);
         position: absolute;
         left: -34px;

@@ -43,7 +43,7 @@ const UserPage = () => {
     userIsFollowing,
   } = useAuth();
   // @串接 server 用這一個
-  const [userInfo, setUserInfo] = useState({ userAccountName: '' });
+  const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
   // const [refreshPage, setRefreshPage] = useState(false);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
@@ -147,6 +147,7 @@ const UserPage = () => {
     avatarSource = userInfo.avatar; // 顯示實際使用者的圖片
     bkSource = userInfo.banner; // 顯示實際使用者的圖片
   }
+  // console.log('firstRender:', userInfo)
   return (
     <>
       <ContainerColSec role='user' pageIndex={1} memberId={member.id}>

@@ -81,6 +81,7 @@ export const getUserTweets = async (pathId) => {
 export const getUserLikedTweets = async (pathId) => {
   try {
     const res = await axiosInstance.get(`${baseUrl}/users/${pathId}/likes`);
+    console.log(res)
     return res.data;
   } catch (error) {
     console.log('[Get getUserLikedTweets Failed!!]:', error);
