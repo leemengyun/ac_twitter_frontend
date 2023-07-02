@@ -37,7 +37,7 @@ const SecLeftNav = ({ role, pageIndex, memberId }) => {
 
             <Link
               to={role === 'admin' ? '/admin' : '/main'}
-              className='nav-link '
+              className='nav-link link-home'
             >
               <span
                 className={[
@@ -48,7 +48,10 @@ const SecLeftNav = ({ role, pageIndex, memberId }) => {
               <p>{role === 'admin' ? '推文清單' : '首頁'}</p>
             </Link>
 
-            <Link to={role === 'admin' ? '/admin/users' : `/user/${memberId}`}>
+            <Link
+              to={role === 'admin' ? '/admin/users' : `/user/${memberId}`}
+              className='link-user'
+            >
               <span
                 className={[
                   'nav-icon icon-user',
@@ -60,7 +63,7 @@ const SecLeftNav = ({ role, pageIndex, memberId }) => {
 
             {role !== 'admin' && (
               <>
-                <Link to='/setting'>
+                <Link to='/setting' className='link-setting'>
                   <span
                     className={[
                       'nav-icon icon-setting',
