@@ -201,6 +201,16 @@ $screen-break-point: 992px;
             &.link-logo {
               display: none;
             }
+            &.link-home {
+              order: 1;
+            }
+
+            &.link-user {
+              order: 3;
+            }
+            &.link-setting {
+              order: 4;
+            }
           }
           button {
             width: 100%;
@@ -215,6 +225,9 @@ $screen-break-point: 992px;
           }
           .button-filled.button-lg .button-tweet-view-m {
             filter: none;
+          }
+          .button-tweet {
+            order: 2;
           }
         }
         .left-nav-link-logout {
@@ -278,8 +291,8 @@ $screen-break-point: 992px;
     justify-content: center;
     .wrapper {
       transition-duration: 0.1s;
-      max-width: 960px;
-      padding: 0;
+      // max-width: 960px;
+      padding: 0 60px;
     }
     .col-7 {
       transition-duration: 0.1s;
@@ -299,18 +312,6 @@ $screen-break-point: 992px;
     }
   }
 }
-
-// @media screen and (min-width: $screen-break-point) {
-//   .container-fluid {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     .wrapper {
-//       max-width: 960px;
-//       padding: 0;
-//     }
-//   }
-// }
 
 @media screen and (min-width: $screen-extra-break-point) {
   .container-fluid {
