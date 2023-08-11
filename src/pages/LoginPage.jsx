@@ -33,7 +33,7 @@ const LoginPage = () => {
               className='icon-logo cursor-point'
             />
           </div>
-          <h3 className='page-title'>登入 Alphitter</h3>
+          <h3 className='page-title'>登入 CoffeeTalk</h3>
           <LoginForm />
         </div>
       </ContainerColOne>
