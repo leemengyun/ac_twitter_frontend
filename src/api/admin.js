@@ -1,8 +1,5 @@
 import axios from 'axios';
-// const baseUrl = 'http://localhost:3004';
-
-const baseUrl = 'https://calm-eyrie-50498.herokuapp.com/api';
-// const baseUrl = 'https://agile-forest-26034.herokuapp.com/api';
+const baseUrl = 'https://twitter-api-2023-suua.onrender.com/api';
 
 const axiosInstance = axios.create({
   baseUrl: baseUrl,

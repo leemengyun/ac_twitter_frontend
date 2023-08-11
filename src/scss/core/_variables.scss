@@ -6,7 +6,8 @@
 
 body {
   // color palette from figma - style guide
-  --main-color: #ff6600;
+  // --main-color: #ff6600;
+  --main-color: #4ba3af;
   --primary-color: #0062ff;
   --secondary-color: #6c757d;
   --success-color: #3dd598;
@@ -35,12 +36,16 @@ body {
   --gray-0: #ffffff;
 
   // color palette for filter
-  --icon-main-color: brightness(0) saturate(100%) invert(54%) sepia(46%)
-    saturate(6975%) hue-rotate(2deg) brightness(104%) contrast(104%);
+  // --icon-main-color: brightness(0) saturate(100%) invert(54%) sepia(46%)
+  //   saturate(6975%) hue-rotate(2deg) brightness(104%) contrast(104%);
+  --icon-main-color: invert(65%) sepia(9%) saturate(2107%) hue-rotate(139deg)
+    brightness(87%) contrast(89%);
   --icon-gray-color: invert(25%) sepia(10%) saturate(545%) hue-rotate(201deg)
     brightness(97%) contrast(92%);
-  --icon-white-color: invert(100%) sepia(0%) saturate(7466%) hue-rotate(261deg) brightness(110%) contrast(99%);
-  --icon-like-color: invert(57%) sepia(36%) saturate(3564%) hue-rotate(324deg) brightness(99%) contrast(99%);
+  --icon-white-color: invert(100%) sepia(0%) saturate(7466%) hue-rotate(261deg)
+    brightness(110%) contrast(99%);
+  --icon-like-color: invert(57%) sepia(36%) saturate(3564%) hue-rotate(324deg)
+    brightness(99%) contrast(99%);
 
   // custom color
   --background-color: var(--gray-0);
