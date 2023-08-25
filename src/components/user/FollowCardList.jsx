@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { getTopUsers } from '../../api/twitter';
 import FollowCard from '../basic/FollowCard';
 import { useAuth } from '../context/AuthContext';
-// import { useAuth } from '../context/AuthContext';
-// import iconLogo from '../assets/images/icon/logo.svg';
-// import svg
-// import iconHome from '../assets/images/icon/home.svg';
+import FollowCardSkeleton from '../skeleton/FollowCardSkeleton';
 
-const FollowCardList = ({ setPathId}) => {
+const FollowCardList = ({ setPathId }) => {
   const [users, setUsers] = useState([]);
   const { member, userIsFollowing } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleClickCard = ({ userId }) => {
@@ -21,29 +20,50 @@ const FollowCardList = ({ setPathId}) => {
     setPathId(userId);
   };
 
+  const getUsersInitialAsync = async () => {
+    setIsLoading(true);
+    try {
+      const data = await getTopUsers();
+      setUsers(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  const getUsersAsync = async () => {
+    try {
+      const data = await getTopUsers();
+      setUsers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //initial render
   useEffect(() => {
-    const getUsersAsync = async () => {
-      try {
-        const data = await getTopUsers();
-        setUsers(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    getUsersInitialAsync();
+  }, []);
+
+  // render when userIsFollowing changing
+  useEffect(() => {
     getUsersAsync();
   }, [userIsFollowing]);
 
   return (
     <>
-      <div className="follow-list-container">
-        <div className="title-secondary">
+      <div className='follow-list-container'>
+        <div className='title-secondary'>
           <h4>推薦跟隨</h4>
         </div>
-        {users.map((user) => {
-          return (
-            <FollowCard key={user.id} {...user} onClick={handleClickCard} />
-          );
-        })}
+        {isLoading && <FollowCardSkeleton cards={8} />}
+        {!isLoading &&
+          users.map((user) => {
+            return (
+              <FollowCard key={user.id} {...user} onClick={handleClickCard} />
+            );
+          })}
       </div>
     </>
   );

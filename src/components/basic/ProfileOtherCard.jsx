@@ -25,13 +25,14 @@ const ProfileOtherCard = ({
   setModalProOpen,
   onClick,
   isFollowing,
+  isLoading,
 }) => {
   const userId = Number(useParams().id);
   return (
     <>
       <div className='profile-card'>
-        <UserBk bkUrl={banner} />
-        <UserAvatar avatar={avatar} />
+        <UserBk bkUrl={banner} isLoading={isLoading} />
+        <UserAvatar avatar={avatar} isLoading={isLoading} />
         <div className='profile-btn-group'>
           <img
             src={iconMessage}

@@ -1,17 +1,19 @@
 import React from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { createTweet } from '../../api/twitter';
 // import { useAuth } from '../../components/context/AuthContext';
 
 import UserAvatar from '../basic/UserAvatar';
-// import testAvatar from '../../assests/images/avatar1.jpg';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const TweetCardForm = ({
   avatar,
   onAddTweet,
   onModalAddTweet,
-  // setTweets,
-  // tweets,
+  isUserLoading,
+  isTweetSending,
 }) => {
   // using react-form-hook-set-up
   const {
@@ -40,7 +42,18 @@ const TweetCardForm = ({
       <div className='formLayout tweet-card-form'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='form-group-inner-wrapper'>
-            <UserAvatar avatar={avatar} />
+            {isUserLoading && (
+              <Skeleton
+                circle
+                width={50}
+                height={50}
+                style={{
+                  marginRight: '8px',
+                }}
+              />
+            )}
+
+            {!isUserLoading && <UserAvatar avatar={avatar} />}
             <div className='textarea-group-container'>
               <div className='grow-wrap'>
                 <textarea
@@ -67,7 +80,11 @@ const TweetCardForm = ({
             {errors?.description?.type === 'maxLength' && (
               <span className='error'>字數超出上限！</span>
             )}
-            <button className='button-md button-m active' type='submit'>
+            <button
+              className='button-md button-m active'
+              type='submit'
+              disabled={isTweetSending ? true : false}
+            >
               推文
             </button>
           </div>

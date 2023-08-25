@@ -33,6 +33,8 @@ const Modal = () => {
     avatar: '',
     banner: '',
   });
+  const [isUpdating, setIsupdating] = useState(false); //update-profile-loading狀態
+  const [isLoading, setIsLoading] = useState(false); //Profile-loading狀態
   const navigate = useNavigate();
   // 客製toast 元件
   const ToastSuccess = Swal.mixin({
@@ -100,27 +102,23 @@ const Modal = () => {
 
   // 打 /api/users/id
   const getUserInfoAsync = async () => {
+    setIsLoading(true);
     try {
       const profile = await getUserInfo(member.id);
       if (profile) {
         setProfile(profile);
         setImageNewUrl_bk(profile.banner);
         setImageNewUrl(profile.avatar);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('[getUser Info  with Async failed]', error);
+      setIsLoading(false);
     }
   };
 
   //儲存form
   const onSubmit = async (data) => {
-    // 如果是只要給api
-    // console.log('we get data', data);
-    // console.log('onSubmit formData.get');
-    // console.log(formData.get('avatar'));
-    // console.log(formData.get('banner'));
-
-    // console.log(member.id);
     try {
       //@ 加入input值
       if (formData.get('name')) {
@@ -134,6 +132,7 @@ const Modal = () => {
 
       formData.append('introduction', data.introduction);
 
+      setIsupdating(true);
       const res = await updateUserInfo({
         id: member.id,
         // data: data,
@@ -143,6 +142,8 @@ const Modal = () => {
       if (res.status === 200) {
         // console.log('SUCCESS!');
         setModalProOpen(false);
+        setIsupdating(false);
+
         ToastSuccess.fire({
           title: '上傳照片成功!',
         });
@@ -246,10 +247,11 @@ const Modal = () => {
         <ModalHeaderIcon
           setModalProOpen={setModalProOpen}
           onSubmit={onSubmit}
+          isUpdating={isUpdating}
         />
         <div className='modal-content'>
           <div className='profile-bk-wrapper'>
-            <UserBk bkUrl={imageNewUrl_bk} />
+            <UserBk bkUrl={imageNewUrl_bk} isLoading={isLoading} />
             <img
               alt='bk-camera'
               src={iconCamera}
@@ -279,7 +281,7 @@ const Modal = () => {
           </div>
 
           <div className='avatar-edit-wrapper'>
-            <UserAvatar avatar={imageNewUrl} />
+            <UserAvatar avatar={imageNewUrl} isLoading={isLoading} />
             <img
               alt='bk-camera'
               src={iconCamera}
@@ -362,23 +364,6 @@ const Modal = () => {
                 </span>
               </div>
             </div>
-
-            {/* <input
-              type='text'
-              {...register('banner')}
-              style={{
-                display: 'none',
-              }}
-            />
-            <input
-              type='text'
-              name='avatar'
-              id='avatar'
-              {...register('avatar')}
-              style={{
-                display: 'none',
-              }}
-            /> */}
           </form>
         </div>
       </ModalContent>

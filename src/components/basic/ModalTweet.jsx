@@ -13,6 +13,7 @@ import { useAuth } from '../../components/context/AuthContext';
 const ModalTweet = ({ handleAddTweets }) => {
   const [profile, setProfile] = useState({});
   const { member, modalTweetOpen, setModalTweetOpen } = useAuth(); // 取出需要的狀態與方法
+  const [isUserLoading, setIsUserLoading] = useState(false);
 
   // @ 新增tweet
   const onModalAddTweet = async (data) => {
@@ -33,11 +34,14 @@ const ModalTweet = ({ handleAddTweets }) => {
 
   useEffect(() => {
     const getUserInfoAsync = async () => {
+      setIsUserLoading(true);
       try {
         const data = await getUserInfo(member.id);
         setProfile(data);
+        setIsUserLoading(false);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
+        setIsUserLoading(false);
       }
     };
     getUserInfoAsync();
@@ -51,6 +55,7 @@ const ModalTweet = ({ handleAddTweets }) => {
             <TweetCardForm
               avatar={profile.avatar}
               onModalAddTweet={onModalAddTweet}
+              isUserLoading={isUserLoading}
             />
           </div>
         </div>

@@ -33,7 +33,7 @@ import AdminUsers from './pages/AdminUsers';
 import TweetPage from './pages/TweetPage';
 import RegisterPage from './pages/RegisterPage';
 import { AuthProvider } from './components/context/AuthContext';
-import PhotoPage from './pages/PhotoPage';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 function App({ router }) {
   // const [modalProOpen, setModalProOpen] = useState(false);
@@ -41,55 +41,57 @@ function App({ router }) {
 
   return (
     <>
-      <HashRouter>
-        <AuthProvider>
-          <PageLayout>
-            <Routes>
-              <Route path='*' element={<LoginPage />}></Route>
-              <Route path='/storybook' element={<StoryBookPage />}></Route>
-              <Route path='/login' element={<LoginPage />}></Route>
-              <Route path='/login/admin' element={<AdminLoginPage />}></Route>
-              <Route path='/admin' element={<AdminPage />}></Route>
-              <Route path='/register' element={<RegisterPage />}></Route>
-              <Route path='/main' element={<MainPage />}></Route>
-              <Route
-                path='/user/:id'
-                element={
-                  <UserPage
-                  // setModalProOpen={setModalProOpen}n
-                  />
-                }
-              ></Route>
-              <Route
-                path='/other/:id'
-                element={
-                  <UserOtherPage
-                  // setModalProOpen={setModalProOpen}
-                  />
-                }
-              ></Route>
+      <SkeletonTheme baseColor='#efefef' highlightColor='#e4e4e4'>
+        <HashRouter>
+          <AuthProvider>
+            <PageLayout>
+              <Routes>
+                <Route path='*' element={<LoginPage />}></Route>
+                <Route path='/storybook' element={<StoryBookPage />}></Route>
+                <Route path='/login' element={<LoginPage />}></Route>
+                <Route path='/login/admin' element={<AdminLoginPage />}></Route>
+                <Route path='/admin' element={<AdminPage />}></Route>
+                <Route path='/register' element={<RegisterPage />}></Route>
+                <Route path='/main' element={<MainPage />}></Route>
+                <Route
+                  path='/user/:id'
+                  element={
+                    <UserPage
+                    // setModalProOpen={setModalProOpen}n
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/other/:id'
+                  element={
+                    <UserOtherPage
+                    // setModalProOpen={setModalProOpen}
+                    />
+                  }
+                ></Route>
 
-              <Route
-                path='/user/followers/:id'
-                element={
-                  <UserFollowersPage
-                  // setModalProOpen={setModalProOpen}
-                  />
-                }
-              ></Route>
-              <Route
-                path='/other/followers/:id'
-                element={<OtherFollowersPage />}
-              ></Route>
-              <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
-              <Route path='/setting' element={<SettingPage />}></Route>
-              <Route path='/admin/users' element={<AdminUsers />}></Route>
-              <Route path='/main/self2' element={<NestedUserPage />}></Route>
-              {/* <Route path='/photo' element={<PhotoPage />}></Route> */}
-            </Routes>
-          </PageLayout>
-        </AuthProvider>
-      </HashRouter>
+                <Route
+                  path='/user/followers/:id'
+                  element={
+                    <UserFollowersPage
+                    // setModalProOpen={setModalProOpen}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/other/followers/:id'
+                  element={<OtherFollowersPage />}
+                ></Route>
+                <Route path='/main/tweet/:id' element={<TweetPage />}></Route>
+                <Route path='/setting' element={<SettingPage />}></Route>
+                <Route path='/admin/users' element={<AdminUsers />}></Route>
+                <Route path='/main/self2' element={<NestedUserPage />}></Route>
+                {/* <Route path='/photo' element={<PhotoPage />}></Route> */}
+              </Routes>
+            </PageLayout>
+          </AuthProvider>
+        </HashRouter>
+      </SkeletonTheme>
     </>
   );
 }

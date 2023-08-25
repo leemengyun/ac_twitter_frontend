@@ -1,15 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import InputGroup from './InputGroup';
 import { useAuth } from '../context/AuthContext';
+import { clsx } from 'clsx';
+
 //modal dialog套件
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 // import withReactContent from 'sweetalert2-react-content';
 import iconNotiSuccess from '../../assets/images/icon/alert-success-2.svg';
 import iconNotiWanrning from '../../assets/images/icon/alert-warning-2.svg';
+// import react-spinners
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const LoginForm = () => {
   // using react-form-hook-set-up
@@ -22,7 +26,7 @@ const LoginForm = () => {
   } = useForm();
   const { login, isAuthentic } = useAuth();
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   // 客製toast 元件
   const ToastSuccess = Swal.mixin({
     toast: true,
@@ -69,6 +73,7 @@ const LoginForm = () => {
     if (data.password.length === 0) {
       return;
     }
+    setIsLoading(true);
     const { success, errorMessage } = await login({
       account: data.username,
       password: data.password,
@@ -76,9 +81,11 @@ const LoginForm = () => {
 
     if (success) {
       // console.log('Login: ', success);
+      setIsLoading(false);
       ToastSuccess.fire({
         title: '登入成功!',
       });
+
       reset();
       return;
     } else {
@@ -86,6 +93,7 @@ const LoginForm = () => {
       ToastWarning.fire({
         title: `${errorMessage.message}`,
       });
+      setIsLoading(false);
     }
   };
 
@@ -144,8 +152,15 @@ const LoginForm = () => {
             watch={watch}
           />
         </div>
-        <button className='button-filled button-lg' type='submit'>
-          登入
+        <button
+          className='button-filled button-lg'
+          type='submit'
+          disabled={isLoading ? true : false}
+        >
+          {isLoading === false && '登入'}
+          {isLoading && (
+            <ClipLoader color='#36d7b7' loading={isLoading} size={35} />
+          )}
         </button>
         <div className='button-group-row login-button-group'>
           <Link to='/register' className='button-link'>

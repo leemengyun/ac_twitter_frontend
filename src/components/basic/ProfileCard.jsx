@@ -24,14 +24,23 @@ const ProfileCard = ({
   followersCount,
   followingsCount,
   imageStatus,
+  isLoading,
 }) => {
   const { setModalProOpen } = useAuth();
   const userId = Number(useParams().id);
   return (
     <>
       <div className='profile-card'>
-        <UserBk bkUrl={banner} />
-        <UserAvatar avatar={avatar} />
+        <UserBk
+          bkUrl={banner}
+          isLoading={isLoading}
+          imageStatus={imageStatus}
+        />
+        <UserAvatar
+          avatar={avatar}
+          isLoading={isLoading}
+          imageStatus={imageStatus}
+        />
         <div className='profile-btn-group'>
           <button
             className='button-md button-m'

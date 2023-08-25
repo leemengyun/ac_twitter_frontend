@@ -41,6 +41,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   // @串接 local-server 用這一個
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
   // @ tweets 的 dummy資料
   // console.log(currentMember)
@@ -59,28 +60,47 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
     setUserIsFollowing((prev) => !prev);
   };
 
-  useEffect(()=>{
-    setPathId(goBackNum);
-  },[navigate])//避免loop
+  const getUserInfoInitialAsync = async () => {
+    setIsLoading(true);
+    try {
+      const data = await getUserInfo(pathId);
+      setUserInfo(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('[getUser Info  with Async failed]', error);
+      setIsLoading(false);
+    }
+  };
+
+  const getUserInfoAsync = async () => {
+    try {
+      const data = await getUserInfo(pathId);
+      setUserInfo(data);
+    } catch (error) {
+      console.error('[getUser Info  with Async failed]', error);
+    }
+  };
+
+  const getUserTweetsAsync = async () => {
+    try {
+      const data = await getUserTweets(pathId);
+      setUserTweets(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    
-    const getUserInfoAsync = async () => {
-      try {
-        const data = await getUserInfo(pathId);
-        setUserInfo(data);
-      } catch (error) {
-        console.error('[getUser Info  with Async failed]', error);
-      }
-    };
-    const getUserTweetsAsync = async () => {
-      try {
-        const data = await getUserTweets(pathId);
-        setUserTweets(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    setPathId(goBackNum);
+  }, [navigate]); //避免loop
+
+  //initial render
+  useEffect(() => {
+    getUserTweetsAsync();
+    getUserInfoInitialAsync();
+  }, []);
+
+  useEffect(() => {
     getUserTweetsAsync();
     getUserInfoAsync();
   }, [pathId, like, modalTweetOpen, userIsFollowing]);
@@ -98,13 +118,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
       case '1':
         return <ReplyLists pathId={pathId} />;
       case '2':
-        return (
-          <LikeLists
-            pathId={pathId}
-            tabIndex={2}
-            setPathId={setPathId}
-          />
-        );
+        return <LikeLists pathId={pathId} tabIndex={2} setPathId={setPathId} />;
       default:
         return (
           <TweetsLists
@@ -117,23 +131,25 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
   return (
     <>
       <ContainerColSec
-        role="user"
+        role='user'
         setModalTweetOpen={setModalTweetOpen}
         setModalProOpen={setModalProOpen}
         memberId={member.id}
       >
         {modalTweetOpen && <ModalTweet />}
-        <section className="section-outer-m col-7">
-          <div className="section-main-m">
+        <section className='section-outer-m col-7'>
+          <div className='section-main-m'>
             <HeaderUser
               userAccountName={userInfo.name}
               userTweetsLength={userTweets.length}
+              isLoading={isLoading}
             />
 
             <ProfileOtherCard
               {...userInfo}
               setModalProOpen={setModalProOpen}
               onClick={handleUserISFollowing}
+              isLoading={isLoading}
             />
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
             {modalReplyOpen && <ModalReply />}
@@ -143,7 +159,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
             {tabIndex === '2' && <LikeLists />} */}
           </div>
         </section>
-        <section className="section-right col-3">
+        <section className='section-right col-3'>
           <FollowCardList setPathId={setPathId} />
         </section>
       </ContainerColSec>
