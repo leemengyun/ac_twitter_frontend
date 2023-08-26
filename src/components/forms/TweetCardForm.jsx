@@ -54,6 +54,7 @@ const TweetCardForm = ({
             )}
 
             {!isUserLoading && <UserAvatar avatar={avatar} />}
+            {/* ? : */}
             <div className='textarea-group-container'>
               <div className='grow-wrap'>
                 <textarea

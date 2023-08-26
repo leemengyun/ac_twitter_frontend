@@ -50,8 +50,8 @@ const ModalTweet = ({ handleAddTweets }) => {
     <>
       <ModalContent>
         <ModalHeader setModalTweetOpen={setModalTweetOpen} />
-        <div className='modal-content modal-tweet-content'>
-          <div className='tweet-form-wrapper'>
+        <div className="modal-content modal-tweet-content">
+          <div className="tweet-form-wrapper">
             <TweetCardForm
               avatar={profile.avatar}
               onModalAddTweet={onModalAddTweet}

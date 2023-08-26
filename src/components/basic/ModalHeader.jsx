@@ -43,6 +43,7 @@ const ModalHeaderIcon = ({ setModalProOpen, onSubmit, isUpdating }) => {
           {isUpdating && (
             <ClipLoader color='#36d7b7' loading={isUpdating} size={20} />
           )}
+          {/* ? : */}
         </button>
       </div>
     </>

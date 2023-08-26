@@ -42,18 +42,7 @@ const MainPage = ({ setModalTweetOpen }) => {
   };
 
   //@ 初始呼叫 /api/tweets
-  const getInitialTweetsAsync = async () => {
-    setIsLoading(true);
-    try {
-      const data = await getTweets();
-      setTweets(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-      setIsTweetsLoaded(true); // 标记为已加载，以防止无限加载
-      setIsLoading(false);
-    }
-  };
+
 
   //@ 初始呼叫 /api/tweets
   const getTweetsAsync = async () => {
@@ -61,11 +50,11 @@ const MainPage = ({ setModalTweetOpen }) => {
     try {
       const data = await getTweets();
       setTweets(data);
-      // setIsLoading(false);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsTweetsLoaded(true); // 标记为已加载，以防止无限加载
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -106,9 +95,9 @@ const MainPage = ({ setModalTweetOpen }) => {
 
   // @頁面首次載入 /api/tweets
   useEffect(() => {
-    getInitialTweetsAsync();
+    setIsLoading(true);
   }, []);
-
+  //減少函示產生
   // @ like , modalTweetOpen 也觸發渲染讀取新資料
   useEffect(() => {
     getTweetsAsync();

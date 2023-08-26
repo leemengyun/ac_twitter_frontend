@@ -19,12 +19,12 @@ const HeaderUser = ({ userAccountName, userTweetsLength, isLoading }) => {
   const navigate = useNavigate();
 
   return (
-    <div className='header-container'>
+    <div className="header-container">
       {/* <Link to='/main'> */}
       <img
         src={iconBack}
-        alt='Back to pre page'
-        className='icon-back cursor-point'
+        alt="Back to pre page"
+        className="icon-back cursor-point"
         onClick={() => {
           //@ 回上頁
           navigate(-1);
@@ -32,7 +32,7 @@ const HeaderUser = ({ userAccountName, userTweetsLength, isLoading }) => {
       />
       {/* </Link> */}
 
-      <div className='header-user-info'>
+      <div className="header-user-info">
         <h5>{userAccountName || <Skeleton />}</h5>
         <p>{userTweetsLength} 推文 </p>
       </div>

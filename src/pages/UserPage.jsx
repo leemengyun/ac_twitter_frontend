@@ -47,24 +47,7 @@ const UserPage = () => {
   const [userInfo, setUserInfo] = useState({});
   const [userTweets, setUserTweets] = useState([]);
   //分別建立一個state儲存tweets like replies資料 若state有資料便不抓取新資料 除非重整頁面
-  const getUserInfoIntialAsync = async () => {
-    setIsLoading(true);
-    try {
-      const userInfo = await getUserInfo(pathId);
-      setImageStatus('fetching'); // 開始獲取圖片
-      if (userInfo) {
-        setImageStatus('loaded');
-        setIsLoading(false);
-        setUserInfo(userInfo);
-      }
-      return;
-    } catch (error) {
-      console.error('[getUser Info  with Async failed]', error);
-      setIsLoading(false);
-      setImageStatus('loading'); // 發生錯誤，設置回 loading 狀態
-    }
-  };
-
+ 
   const getUserInfoAsync = async () => {
     try {
       const userInfo = await getUserInfo(pathId);
@@ -72,11 +55,13 @@ const UserPage = () => {
       if (userInfo) {
         setImageStatus('loaded');
         setUserInfo(userInfo);
+        setIsLoading(false);
       }
       return;
     } catch (error) {
       console.error('[getUser Info  with Async failed]', error);
       setImageStatus('loading'); // 發生錯誤，設置回 loading 狀態
+      setIsLoading(false);
     }
   };
 
@@ -91,7 +76,7 @@ const UserPage = () => {
 
   //@ profileCard/tweets初始渲染
   useEffect(() => {
-    getUserInfoIntialAsync();
+    setIsLoading(true);
     getUserTweetsAsync();
   }, []);
 
@@ -151,11 +136,11 @@ const UserPage = () => {
 
   return (
     <>
-      <ContainerColSec role='user' pageIndex={1} memberId={member.id}>
+      <ContainerColSec role="user" pageIndex={1} memberId={member.id}>
         {modalTweetOpen && <ModalTweet />}
         {modalProOpen && <Modal />}
-        <section className='section-outer-m col-7'>
-          <div className='section-main-m'>
+        <section className="section-outer-m col-7">
+          <div className="section-main-m">
             <HeaderUser
               userAccountName={userInfo.name}
               userTweetsLength={userTweets.length || null}
@@ -169,7 +154,7 @@ const UserPage = () => {
               imageStatus={imageStatus}
               isLoading={isLoading}
             />
-
+            {/* 沒有使用上imageStatus */}
             <TabThreeGroup tabIndex={tabIndex} setTabIndex={setTabIndex} />
             {modalReplyOpen && <ModalReply />}
             {switchContext(tabIndex)}
@@ -178,7 +163,7 @@ const UserPage = () => {
             {tabIndex === '2' && <LikeLists />} */}
           </div>
         </section>
-        <section className='section-right col-3'>
+        <section className="section-right col-3">
           <FollowCardList setPathId={setPathId} />
         </section>
       </ContainerColSec>

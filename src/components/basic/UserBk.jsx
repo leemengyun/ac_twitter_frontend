@@ -9,6 +9,7 @@ const UserBk = ({ bkUrl = null, isLoading }) => {
         {!isLoading && (
           <img src={bkUrl} alt='mountain pic' className='profile-bk-image' />
         )}
+        {/* ? : */}
       </div>
     </>
   );
