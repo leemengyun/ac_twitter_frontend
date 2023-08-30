@@ -124,6 +124,7 @@ const UserOtherPage = ({ setModalProOpen, setModalTweetOpen }) => {
           <TweetsLists
             tweets={userTweets}
             onToggleLike={handleChangeLikeMode}
+            isLoading={isLoading}
           />
         );
     }

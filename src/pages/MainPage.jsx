@@ -21,7 +21,7 @@ const MainPage = ({ setModalTweetOpen }) => {
   const [tweets, setTweets] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isUserLoading, setIsUserLoading] = useState(false);
   const [isTweetSending, setIsTweetSending] = useState(false);
 
@@ -43,10 +43,9 @@ const MainPage = ({ setModalTweetOpen }) => {
 
   //@ 初始呼叫 /api/tweets
 
-
   //@ 初始呼叫 /api/tweets
   const getTweetsAsync = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     try {
       const data = await getTweets();
       setTweets(data);

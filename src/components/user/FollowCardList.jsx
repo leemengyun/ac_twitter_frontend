@@ -20,8 +20,8 @@ const FollowCardList = ({ setPathId }) => {
     setPathId(userId);
   };
 
-
   const getUsersAsync = async () => {
+    setIsLoading(true);
     try {
       const data = await getTopUsers();
       setUsers(data);
@@ -45,8 +45,8 @@ const FollowCardList = ({ setPathId }) => {
   // 兩個一樣的useEffect 使用相同的函示，第一次配合loading，其他經過改變後的替換渲染，
   return (
     <>
-      <div className="follow-list-container">
-        <div className="title-secondary">
+      <div className='follow-list-container'>
+        <div className='title-secondary'>
           <h4>推薦跟隨</h4>
         </div>
         {/* 固定 8 名 */}

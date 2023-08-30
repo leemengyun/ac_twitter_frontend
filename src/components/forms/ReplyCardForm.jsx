@@ -6,9 +6,11 @@ import { repliedTweet } from '../../api/twitter';
 // import InputGroup from './InputGroup';
 import UserAvatar from '../basic/UserAvatar';
 import { useAuth } from '../context/AuthContext';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 // import testAvatar from '../../assests/images/avatar1.jpg';
 
-const TweetCardForm = ({ avatar, tweetInfo }) => {
+const TweetCardForm = ({ avatar, tweetInfo, isUserLoading }) => {
   const { member, setModalReplyOpen } = useAuth();
   const navigate = useNavigate();
   // using react-form-hook-set-up
@@ -44,7 +46,17 @@ const TweetCardForm = ({ avatar, tweetInfo }) => {
       <div className='formLayout tweet-card-form'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='form-group-inner-wrapper'>
-            <UserAvatar avatar={avatar} />
+            {isUserLoading && (
+              <Skeleton
+                circle
+                width={50}
+                height={50}
+                style={{
+                  marginRight: '8px',
+                }}
+              />
+            )}
+            {!isUserLoading && <UserAvatar avatar={avatar} />}
             <div className='textarea-group-container'>
               <div className='grow-wrap'>
                 <textarea
