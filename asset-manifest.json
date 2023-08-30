@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/ac_twitter_frontend/static/css/main.0a04ea73.chunk.css",
-    "main.js": "/ac_twitter_frontend/static/js/main.45818421.chunk.js",
-    "main.js.map": "/ac_twitter_frontend/static/js/main.45818421.chunk.js.map",
+    "main.js": "/ac_twitter_frontend/static/js/main.43917063.chunk.js",
+    "main.js.map": "/ac_twitter_frontend/static/js/main.43917063.chunk.js.map",
     "runtime-main.js": "/ac_twitter_frontend/static/js/runtime-main.fc931ec9.js",
     "runtime-main.js.map": "/ac_twitter_frontend/static/js/runtime-main.fc931ec9.js.map",
     "static/css/2.8b1caef3.chunk.css": "/ac_twitter_frontend/static/css/2.8b1caef3.chunk.css",
-    "static/js/2.3a7bad89.chunk.js": "/ac_twitter_frontend/static/js/2.3a7bad89.chunk.js",
-    "static/js/2.3a7bad89.chunk.js.map": "/ac_twitter_frontend/static/js/2.3a7bad89.chunk.js.map",
+    "static/js/2.f2241f67.chunk.js": "/ac_twitter_frontend/static/js/2.f2241f67.chunk.js",
+    "static/js/2.f2241f67.chunk.js.map": "/ac_twitter_frontend/static/js/2.f2241f67.chunk.js.map",
     "static/js/3.bdc5065d.chunk.js": "/ac_twitter_frontend/static/js/3.bdc5065d.chunk.js",
     "static/js/3.bdc5065d.chunk.js.map": "/ac_twitter_frontend/static/js/3.bdc5065d.chunk.js.map",
     "index.html": "/ac_twitter_frontend/index.html",
     "static/css/2.8b1caef3.chunk.css.map": "/ac_twitter_frontend/static/css/2.8b1caef3.chunk.css.map",
     "static/css/main.0a04ea73.chunk.css.map": "/ac_twitter_frontend/static/css/main.0a04ea73.chunk.css.map",
-    "static/js/2.3a7bad89.chunk.js.LICENSE.txt": "/ac_twitter_frontend/static/js/2.3a7bad89.chunk.js.LICENSE.txt",
+    "static/js/2.f2241f67.chunk.js.LICENSE.txt": "/ac_twitter_frontend/static/js/2.f2241f67.chunk.js.LICENSE.txt",
     "static/media/addphoto.2e797657.svg": "/ac_twitter_frontend/static/media/addphoto.2e797657.svg",
     "static/media/alert-success-2.c7bb216b.svg": "/ac_twitter_frontend/static/media/alert-success-2.c7bb216b.svg",
     "static/media/alert-warning-2.c524ac36.svg": "/ac_twitter_frontend/static/media/alert-warning-2.c524ac36.svg",
@@ -30,8 +30,8 @@
   "entrypoints": [
     "static/js/runtime-main.fc931ec9.js",
     "static/css/2.8b1caef3.chunk.css",
-    "static/js/2.3a7bad89.chunk.js",
+    "static/js/2.f2241f67.chunk.js",
     "static/css/main.0a04ea73.chunk.css",
-    "static/js/main.45818421.chunk.js"
+    "static/js/main.43917063.chunk.js"
   ]
 }
