@@ -26,7 +26,8 @@ const ModalReply = () => {
   });
   const { member, setModalReplyOpen, tweetId } = useAuth();
   const [profile, setProfile] = useState({});
-  
+  const [isUserLoading, setIsUserLoading] = useState(false);
+
   useEffect(() => {
     const getTweetAsync = async () => {
       try {
@@ -41,11 +42,14 @@ const ModalReply = () => {
 
   useEffect(() => {
     const getUserInfoAsync = async () => {
+      setIsUserLoading(true);
       try {
         const data = await getUserInfo(member.id);
         setProfile(data);
+        setIsUserLoading(false);
       } catch (error) {
         console.error('[getUser Info  with Async failed]', error);
+        setIsUserLoading(false);
       }
     };
     getUserInfoAsync();
@@ -57,12 +61,13 @@ const ModalReply = () => {
         <ModalHeader setModalReplyOpen={setModalReplyOpen} />
         <div className='modal-content modal-reply-content'>
           <div className='tweet-reply-wrapper'>
-            <ReplyCard tweetInfo={tweetInfo} />
+            <ReplyCard tweetInfo={tweetInfo} isUserLoading={isUserLoading} />
           </div>
           <div className='tweet-form-wrapper'>
             <ReplyCardForm
               avatar={profile.avatar}
               tweetInfo={tweetInfo}
+              isUserLoading={isUserLoading}
             />
           </div>
         </div>
